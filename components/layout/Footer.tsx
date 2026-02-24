@@ -75,7 +75,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-white" >
+    <footer className="bg-green-900 text-white" >
       {/* Gold accent line */}
       <div style={{ height: "3px", background: "linear-gradient(to right, #d4a017, rgba(212,160,23,.2), transparent)" }} />
 
@@ -140,7 +140,7 @@ export default function Footer() {
               <h4
                 className="text-xs font-bold uppercase tracking-widest mb-4 pb-2"
                 style={{
-                  color: "rgba(255,255,255,.75)",
+                  // color: "rgba(255,255,255,.75)",
                   borderBottom: "1px solid rgba(255,255,255,.07)",
                 }}
               >
