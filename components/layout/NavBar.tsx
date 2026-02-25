@@ -14,22 +14,32 @@ const navItems = [
         { href: "/", label: "Home" },
         { href: "/about", label: "Our Story" },
         { href: "/about#mission", label: "Mission & Vision" },
-        { href: "/about#team", label: "Our Team" },
-        { href: "/about#partners", label: "Our Partners" },
+        { href: "/about#objectives", label: "Objectives" },
         { href: "/contact", label: "Contact Us" },
       ],
     },
   },
   {
-    label: "OUR WORK",
+    label: "NATIONAL",
     dropdown: {
-      title: "What We Do",
+      title: "National Office",
       links: [
-        { href: "/work/conservation", label: "Biodiversity Conservation" },
-        { href: "/work/tree-planting", label: "Tree Planting Campaigns" },
-        { href: "/work/education", label: "Environmental Education" },
-        { href: "/work/community", label: "Community Development" },
-        { href: "/work/climate", label: "Climate Action" },
+        { href: "/work", label: "Our Work" },
+        { href: "/programs", label: "National Programs" },
+        { href: "/partners", label: "National Partners" },
+        { href: "/stats", label: "National Statistical Data" },
+      ],
+    },
+  },
+  {
+    label: "REGIONS",
+    dropdown: {
+      title: "Regional Hubs",
+      links: [
+        { href: "/impact/northern", label: "Northern Region" },
+        { href: "/impact/central", label: "Central Region" },
+        { href: "/impact/southern", label: "Southern Region" },
+        { href: "/impact/eastern", label: "Eastern Region" },
       ],
     },
   },
@@ -38,24 +48,9 @@ const navItems = [
     dropdown: {
       title: "Stay Informed",
       links: [
-        { href: "/news", label: "All News" },
-        { href: "/news/press-releases", label: "Press Releases" },
-        { href: "/news/articles", label: "Articles & Blogs" },
-        { href: "/news/stories", label: "Impact Stories" },
+        { href: "/news", label: "National News" },
+        { href: "/news/regions", label: "Regional Stories" },
         { href: "/news/videos", label: "Videos" },
-      ],
-    },
-  },
-  {
-    label: "PROGRAMS",
-    dropdown: {
-      title: "Our Programs",
-      links: [
-        { href: "/programs/youth-clubs", label: "Youth Clubs" },
-        { href: "/programs/schools", label: "School Programs" },
-        { href: "/programs/districts", label: "District Chapters" },
-        { href: "/programs/internships", label: "Internships & Volunteering" },
-        { href: "/programs/reports", label: "Annual Reports" },
       ],
     },
   },
