@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const quickLinks = [
@@ -55,7 +56,7 @@ export default function NorthernRegionPage() {
               >
                 <p className="font-semibold text-[#1a2e1a]">{item}</p>
                 <p className="text-sm text-[#2e3d35] mt-2">
-                  Brief description of the partnership focus and outcomes.
+                They collaborate with YASCON to implement conservation programs, mobilize
                 </p>
               </div>
             )
@@ -76,31 +77,44 @@ export default function NorthernRegionPage() {
                 name: "Tiwonge Ngwira",
                 role: "Regional Coordinator",
                 focus: "Landscape restoration and regional partnerships.",
+                avatar: "/avatars/avatar-1.svg",
               },
               {
                 name: "Chisomo Zimba",
                 role: "Programs Lead",
                 focus: "School eco-clubs and climate literacy.",
+                avatar: "/avatars/avatar-2.svg",
               },
               {
                 name: "Nyasha Tembo",
                 role: "Community Liaison",
                 focus: "District outreach and volunteer coordination.",
+                avatar: "/avatars/avatar-3.svg",
               },
             ].map((member) => (
               <div
                 key={member.name}
-                className="border border-gray-200 rounded-xl bg-white overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
+                className="border border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-lg transition-shadow"
               >
-                <div className="h-28 bg-gradient-to-r from-[#1a2e1a] via-[#2d4a2d] to-[#52b788]" />
                 <div className="p-5">
-                  <p className="text-lg font-semibold text-[#1a2e1a]">
-                    {member.name}
-                  </p>
-                  <p className="text-sm font-semibold text-green-700 mt-1">
-                    {member.role}
-                  </p>
-                  <p className="text-sm text-[#2e3d35] mt-3">
+                  <div className="flex items-center gap-4">
+                    <Image
+                      src={member.avatar}
+                      alt={member.name}
+                      width={72}
+                      height={72}
+                      className="rounded-full border border-gray-200"
+                    />
+                    <div>
+                      <p className="text-lg font-semibold text-[#1a2e1a]">
+                        {member.name}
+                      </p>
+                      <p className="text-sm font-semibold text-green-700 mt-1">
+                        {member.role}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-[#2e3d35] mt-4">
                     {member.focus}
                   </p>
                 </div>
@@ -188,22 +202,53 @@ export default function NorthernRegionPage() {
           Stories and updates from Northern Region initiatives.
         </p>
         <div className="grid md:grid-cols-3 gap-6 mt-6">
-          {["Watershed Guardians", "Youth for Nature", "Forest Watch"].map(
-            (post) => (
-              <div
-                key={post}
-                className="border border-gray-200 rounded-lg p-5 bg-white"
-              >
-                <p className="font-semibold text-[#1a2e1a]">{post}</p>
+          {[
+            {
+              title: "Watershed Guardians",
+              image: "/blog/blog-1.svg",
+              date: "Oct 2024",
+              excerpt: "Volunteer teams restoring critical water catchments.",
+            },
+            {
+              title: "Youth for Nature",
+              image: "/blog/blog-2.svg",
+              date: "Nov 2024",
+              excerpt: "Eco-club leaders championing biodiversity action.",
+            },
+            {
+              title: "Forest Watch",
+              image: "/blog/blog-3.svg",
+              date: "Dec 2024",
+              excerpt: "Community monitoring to reduce deforestation risks.",
+            },
+          ].map((post) => (
+            <div
+              key={post.title}
+              className="border border-gray-200 rounded-xl bg-white overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
+            >
+              <Image
+                src={post.image}
+                alt={post.title}
+                width={420}
+                height={240}
+                className="w-full h-40 object-cover"
+              />
+              <div className="p-5">
+                <p className="text-xs font-semibold text-green-700">
+                  {post.date}
+                </p>
+                <p className="font-semibold text-[#1a2e1a] mt-2">
+                  {post.title}
+                </p>
                 <p className="text-sm text-[#2e3d35] mt-2">
-                  Placeholder excerpt for a regional story.
+                  {post.excerpt}
                 </p>
                 <button className="text-sm font-semibold text-green-700 mt-3">
                   Read more
                 </button>
               </div>
-            )
-          )}
+            </div>
+          ))}
         </div>
       </section>
 
