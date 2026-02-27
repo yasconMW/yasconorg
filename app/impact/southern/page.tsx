@@ -187,7 +187,7 @@ function TeamPanel() {
               className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold mb-4"
               style={{ background: "#f0e8c8", color: "#5a4a00" }}
             >
-              <span>📍</span>
+              <span></span>
               {m.district}
             </div>
             <div className="w-full h-px mb-4" style={{ background: "#e8d9a0" }} />

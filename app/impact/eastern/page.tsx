@@ -33,7 +33,7 @@ const partners = [
   { name: "Lake Chilwa Conservation Trust", type: "NGO", image: "/Images/lake chirwa.jpg", desc: "Joint wetland conservation programmes focused on buffer zone protection and community awareness along Lake Chilwa." },
   { name: "Mangochi District Council", type: "Government", image: "/Images/mangochi.jpg", desc: "Providing logistical support and coordination for YASCON activities across lakeshore communities." },
   { name: "USAID Kulima Programme", type: "Development Partner", image: "/Images/USAID.jpg", desc: "Supporting agroforestry integration within youth-led conservation clubs to build livelihoods alongside ecology." },
-  { name: "Catholic University of Malawi", type: "Academic", image: "/Images/Unima.jpg", desc: "Research partnership on biodiversity monitoring and environmental education in secondary schools across the region." },
+  { name: "Catholic University of Malawi", type: "Academic", image: "/Images/chatholic.png", desc: "Research partnership on biodiversity monitoring and environmental education in secondary schools across the region." },
 ];
 const team = [
   { name: "Thandizo Msusa", initials: "TM", role: "Regional Coordinator", district: "Zomba", bio: "Thandizo has led Eastern Region conservation efforts for four years, overseeing all district coordinators and regional partnerships." },
@@ -185,7 +185,7 @@ function TeamPanel() {
               className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold mb-4"
               style={{ background: "#d4f0d4", color: "#0f4a1f" }}
             >
-              <span>📍</span>
+              <span></span>
               {m.district}
             </div>
 
