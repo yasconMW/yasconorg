@@ -1,9 +1,5 @@
-
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/layout/Footer";
-import Navbar from "@/components/layout/NavBar";
-import ScrollToTop from "@/components/ScrollToTop";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -28,14 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={roboto.variable}>
-      <body className="font-sans antialiased">
-        <Navbar />
-        <main className="min-h-screen ">
-          {children}
-        </main>
-        <ScrollToTop />
-        <Footer />
-      </body>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }

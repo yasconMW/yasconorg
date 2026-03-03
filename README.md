@@ -110,3 +110,32 @@ This project uses a structured Git workflow:
 This project is developed for the official use of YASCON.
 All branding and organizational content belong to Youth Association for Conservation of Nature and Environment.
 
+---
+
+# CMS Dashboard Setup
+
+The CMS dashboard is available at:
+
+`/dashboard/cms`
+
+It uses PostgreSQL + API routes for authentication, content management, and user management.
+
+Required environment variables:
+
+```env
+DATABASE_URL=postgres://USER:PASSWORD@HOST:5432/DB_NAME
+CMS_SUPERADMIN_EMAIL=admin@example.com
+CMS_SUPERADMIN_PASSWORD=change-me
+CMS_SUPERADMIN_NAME=CMS Super Admin
+```
+
+How it works:
+
+1. On first authenticated API call, CMS tables are auto-created.
+2. If `CMS_SUPERADMIN_EMAIL` and `CMS_SUPERADMIN_PASSWORD` are set, a bootstrap super admin is created (if not already present).
+3. Login via `/dashboard/login`, then access `/dashboard/cms`.
+
+Authorization rules:
+
+1. `super_admin`: can access all regions + national content, and manage all users.
+2. `regional_admin`: can only access and manage content in their own region.
