@@ -5,7 +5,7 @@ import Impact from "@/components/common/Impact";
 import NewsSection from "@/components/common/NewsSection";
 import Newsletter from "@/components/common/NewsLetter";
 import MissionStatement from "@/components/common/MissionStatement";
-
+import KeyObjectives from "@/components/common/keyObjectives";
 export default function Home() {
   return (
     <div>
@@ -13,6 +13,7 @@ export default function Home() {
       <About />
       <OurWork />
       <MissionStatement />
+      <KeyObjectives />
       <NewsSection />
       <Newsletter />
     </div>
