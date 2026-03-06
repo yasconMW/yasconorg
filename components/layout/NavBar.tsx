@@ -24,7 +24,7 @@ const navItems = [
     dropdown: {
       title: "National Office",
       links: [
-        { href: "/work", label: "Our Work" },
+        { href: "/#work", label: "Our Work" },
         { href: "/impact/national#programs", label: "National Programs" },
         { href: "/impact/national#partners", label: "National Partners" },
         {
