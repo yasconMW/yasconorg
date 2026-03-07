@@ -15,6 +15,9 @@ const navItems = [
         { href: "/about/OurStory", label: "Our Story" },
         { href: "/about/Mission", label: "Mission & Vision" },
         { href: "/about/Objectives", label: "Objectives" },
+        { href: "/about/Location", label: "Where We Work" },
+        { href: "/about/Work", label: "Our Work" },
+        { href: "/about/Team", label: "Our Team" },
         { href: "/contact", label: "Contact Us" },
       ],
     },
@@ -24,11 +27,12 @@ const navItems = [
     dropdown: {
       title: "National Office",
       links: [
-        { href: "/#work", label: "Our Work" },
-        { href: "/impact/national#programs", label: "National Programs" },
-        { href: "/impact/national#partners", label: "National Partners" },
+        { href: "/impact/national/board", label: "Board" },
+        { href: "/impact/national/management", label: "Management" },
+        { href: "/impact/national/programs", label: "National Programs" },
+        { href: "/impact/national/partners", label: "National Partners" },
         {
-          href: "/impact/national#statistics",
+          href: "/impact/national/statistics",
           label: "National Statistical Data",
         },
       ],
