@@ -89,8 +89,8 @@ export default function Hero() {
             className="slide-bg "
             style={{ backgroundImage: `url('${slide.bg}')` }}
           />
-          <div className="slide-overlay  bg-linear-to-b from-black via-transparent to-transparent" />
-          <div className="slide-overlay  bg-black opacity-60" />
+          <div className="slide-overlay  " />
+          <div className="slide-overlay  " />
           {/* Content — only render for active */}
           {i === current && (
             <div className="relative inset-0 flex items-center z-10 pt-24 sm:pt-24">
