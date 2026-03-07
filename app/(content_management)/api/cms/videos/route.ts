@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
         slug,
         excerpt: body.excerpt,
         richContent: body.richContent,
-        coverImage: body.coverImage || null,
+        coverImage: body.coverImage.url|| null,
         videoUrl: body.videoUrl,
         videoDuration: body.videoDuration || null,
         region: body.region,
