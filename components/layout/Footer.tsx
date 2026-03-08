@@ -6,7 +6,7 @@ const footerLinks = {
     { label: "Our Story", href: "/about/OurStory" },
     { label: "Mission & Vision", href: "/about/Mission" },
     { label: "Our Team", href: "/about/Team" },
-    { label: "Our Partners", href: "/national/partners" },
+    { label: "Our Partners", href: "/impact/national/partners" },
     { label: "Contact Us", href: "/contact" },
     { label: "Careers", href: "/careers" },
   ],
