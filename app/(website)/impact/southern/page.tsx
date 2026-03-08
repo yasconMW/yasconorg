@@ -90,12 +90,11 @@ function Badge({ text, color }: { text: string; color: string }) {
   );
 }
 
-function SectionHeader({ label, title }: { label: string; title: string }) {
+function SectionHeader({ title }: { label?: string; title: string }) {
   return (
-    <div className="mb-10">
-      <span className="text-xs font-bold uppercase tracking-[0.22em]" style={{ color: ACCENT }}>{label}</span>
-      <h2 className="text-3xl md:text-4xl font-bold text-[#0f1a0f] mt-2 leading-tight">{title}</h2>
-      <div className="w-12 h-[3px] mt-4 rounded-full" style={{ background: ACCENT }} />
+    <div className="mb-6">
+      <h2 className="text-3xl md:text-4xl font-bold text-[#0f1a0f] leading-tight">{title}</h2>
+      <div className="w-12 h-[3px] mt-3 rounded-full" style={{ background: ACCENT }} />
     </div>
   );
 }
@@ -449,7 +448,7 @@ export default function SouthernRegionPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-6 py-8">
         {activeTab === "partners"   && <PartnersPanel />}
         {activeTab === "team"       && <TeamPanel />}
         {activeTab === "districts"  && <DistrictsPanel />}

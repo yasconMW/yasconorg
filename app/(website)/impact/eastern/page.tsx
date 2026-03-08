@@ -72,10 +72,9 @@ function Badge({ text, color }: { text: string; color: string }) {
   return <span className="px-3 py-1 rounded-sm text-xs font-bold tracking-wide" style={{ background: color + "18", color }}>{text}</span>;
 }
 
-function SectionHeader({ label, title }: { label: string; title: string }) {
+function SectionHeader({ title }: { label?: string; title: string }) {
   return (
-    <div className="mb-10">
-      <div className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: ACCENT }}>{label}</div>
+    <div className="mb-6">
       <h2 className="text-3xl font-black text-[#0f1a0f]">{title}</h2>
     </div>
   );
@@ -421,7 +420,7 @@ export default function EasternRegionPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-6 py-8">
         {activeTab === "partners"   && <PartnersPanel />}
         {activeTab === "team"       && <TeamPanel />}
         {activeTab === "districts"  && <DistrictsPanel />}
