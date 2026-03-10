@@ -37,9 +37,9 @@ const partners = [
 ];
 
 const team = [
-  { name: "Grace Chirwa",  initials: "GC", role: "Regional Coordinator (Southern)", district: "Southern Region", image: "/Images/avatar-southern-1.png", bio: "Grace holds an MSc in Environmental Management from the University of Malawi. She leads strategic partnerships and conservation planning for YASCON's largest regional hub by district coverage." },
-  { name: "Patrick Msosa", initials: "PM", role: "Programs Lead",                   district: "Zomba",           image: "/Images/avatar-southern-2.png", bio: "Patrick manages youth eco-club networks and school outreach across Zomba and Chiradzulu, coordinating YASCON's flagship biodiversity education programme." },
-  { name: "Esther Nkosi",  initials: "EN", role: "Community Liaison",               district: "Mulanje",         image: "/Images/avatar-southern-3.png", bio: "Esther specialises in community mobilisation and grassroots conservation in Mulanje and Phalombe, engaging smallholder farmers in sustainable land management." },
+  { name: "Bridget Namakhwa",  initials: "BN", role: "Regional Coordinator (Southern)", district: "Southern Region", image: "/teampics/southern-coordinator.png", bio: "Bridget holds a Bachelor of Science Degree in Education, majoring in Geography from the Catholic University of Malawi and a certificate in Introduction to Child Protection.She initially served as a Conservation Coordinator when she successfully led and implemented YASCON's conservation activities in the Southern region of Malawi.Bridget, a passionate and enthusiastic youth brings to the organisation proven communication, community mobilization, organisation, project management, leadership and coordination skills." },
+  //{ name: "Patrick Msosa", initials: "PM", role: "Programs Lead",                   district: "Zomba",           image: "/Images/avatar-southern-2.png", bio: "Patrick manages youth eco-club networks and school outreach across Zomba and Chiradzulu, coordinating YASCON's flagship biodiversity education programme." },
+  //{ name: "Esther Nkosi",  initials: "EN", role: "Community Liaison",               district: "Mulanje",         image: "/Images/avatar-southern-3.png", bio: "Esther specialises in community mobilisation and grassroots conservation in Mulanje and Phalombe, engaging smallholder farmers in sustainable land management." },
 ];
 
 const activities = [

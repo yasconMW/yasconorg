@@ -33,9 +33,9 @@ const partners = [
 ];
 
 const team = [
-  { name: "Agnes Phiri",  initials: "AP", role: "Regional Coordinator (Central)", district: "Central Region", image: "/Images/avatar-central-1.png", bio: "Agnes holds a BSc in Geography from Chancellor College. She leads community conservation strategy and partner relations for YASCON's Central hub, Malawi's capital-city base." },
-  { name: "Kelvin Banda", initials: "KB", role: "Programs Lead",                  district: "Salima",         image: "/Images/avatar-central-2.png", bio: "Kelvin coordinates youth climate education and school outreach across Salima and Dedza, managing YASCON's largest school eco-club network in the Central Region." },
-  { name: "Ruth Mbewe",   initials: "RM", role: "Community Liaison",              district: "Kasungu",        image: "/Images/avatar-central-3.png", bio: "Ruth manages district engagement and volunteer mobilisation in Kasungu and Ntcheu, building community ownership of conservation activities at the grassroots level." },
+  { name: "Chisomo Nyirenda",  initials: "CN", role: "Regional Coordinator (Central)", district: "Central Region", image: "/teampics/central-coordinator.png", bio: "Chisomo holds a Bachelor of Science Degree in Value Chain Agriculture from Mzuzu University.He initially served as a Conservation Coordinator when he successfully led and implemented YASCON's conservation activities in the central region of Malawi.Chisomo brings to the organization proven community mobilization, organization, project management, leadership and coordination skills." },
+  //{ name: "Kelvin Banda", initials: "KB", role: "Programs Lead",                  district: "Salima",         image: "/Images/avatar-central-2.png", bio: "Kelvin coordinates youth climate education and school outreach across Salima and Dedza, managing YASCON's largest school eco-club network in the Central Region." },
+  //{ name: "Ruth Mbewe",   initials: "RM", role: "Community Liaison",              district: "Kasungu",        image: "/Images/avatar-central-3.png", bio: "Ruth manages district engagement and volunteer mobilisation in Kasungu and Ntcheu, building community ownership of conservation activities at the grassroots level." },
 ];
 
 const activities = [
