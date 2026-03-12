@@ -26,10 +26,10 @@ const districts = [
 const partners = [
   { name: "Zomba City Council",                 type: "Government",         image: "/Images/Eastern1.png", desc: "Urban greening and school tree-planting in partnership with Zomba City Council across all wards." },
   { name: "Chancellor College (UNIMA)",         type: "Academic",           image: "/Images/Eastern2.png", desc: "Research collaboration on land-use change and biodiversity assessment in the Eastern highlands." },
-  { name: "Lake Chilwa Basin Climate Change",   type: "Development Partner",image: "/Images/Eastern3.png", desc: "Co-implementing wetland restoration and community resilience programmes around Lake Chilwa." },
+  { name: "Lake Chilwa Basin Climate Change",   type: "Development Partner",image: "/Images/Eastern333.jpg", desc: "Co-implementing wetland restoration and community resilience programmes around Lake Chilwa." },
   { name: "WWF Malawi – Eastern Programme",     type: "International NGO",  image: "/Images/Eastern1.png", desc: "Capacity building for biodiversity monitoring and wetland conservation in Mangochi and Zomba." },
   { name: "Department of Forestry – East",      type: "Government",         image: "/Images/Eastern2.png", desc: "Seedling supply and technical guidance for catchment reforestation in Machinga and Balaka." },
-  { name: "Concern Universal Malawi",           type: "NGO",                image: "/Images/Eastern3.png", desc: "Community-based natural resource management training and livelihoods integration in Phalombe." },
+  { name: "Concern Universal Malawi",           type: "NGO",                image: "/Images/Eastern33.jpg", desc: "Community-based natural resource management training and livelihoods integration in Phalombe." },
 ];
 
 const team = [

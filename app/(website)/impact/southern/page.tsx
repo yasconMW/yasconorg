@@ -30,10 +30,10 @@ const partners = [
   { name: "WWF Malawi",                      type: "International NGO",   image: "/Images/Eastern3.png", desc: "Joint biodiversity conservation programming in Mulanje cedar forest and Thyolo tea estate buffer zones." },
   { name: "UNDP Malawi – Southern Office",   type: "Development Partner", image: "/Images/Eastern1.png", desc: "Climate resilience funding supporting community-based adaptation in flood-prone Nsanje and Phalombe lowlands." },
   { name: "Department of Forestry – South", type: "Government",          image: "/Images/Eastern2.png", desc: "Seedling nursery support and technical guidance for cedar and indigenous species reforestation on Mulanje Mountain." },
-  { name: "ActionAid Malawi",                type: "NGO",                 image: "/Images/Eastern3.png", desc: "Gender and youth inclusion framework ensuring equitable participation of girls in Southern Region conservation clubs." },
+  { name: "ActionAid Malawi",                type: "NGO",                 image: "/Images/Eastern333.jpg", desc: "Gender and youth inclusion framework ensuring equitable participation of girls in Southern Region conservation clubs." },
   { name: "USAID SCOPE",                     type: "Development Partner", image: "/Images/Eastern1.png", desc: "Sustainable conservation and productivity enhancement — funding riparian zone restoration along the Shire River valley." },
   { name: "Tearfund Malawi",                 type: "NGO",                 image: "/Images/Eastern2.png", desc: "Community disaster risk reduction and environmental stewardship programmes in Nsanje's flood-vulnerable communities." },
-  { name: "Malawi Tourism Authority",        type: "Government",          image: "/Images/Eastern3.png", desc: "Eco-tourism and conservation awareness initiatives promoting Mulanje Mountain and Zomba Plateau as green heritage sites." },
+  { name: "Malawi Tourism Authority",        type: "Government",          image: "/Images/Eastern33.jpg", desc: "Eco-tourism and conservation awareness initiatives promoting Mulanje Mountain and Zomba Plateau as green heritage sites." },
 ];
 
 const team = [

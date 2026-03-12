@@ -26,10 +26,10 @@ const districts = [
 const partners = [
   { name: "Mzuzu City Council",            type: "Government",          image: "/Images/Eastern1.png", desc: "Urban greening and roadside tree planting across Mzuzu city, targeting all major arterial roads and public spaces." },
   { name: "Mzuzu University",              type: "Academic",            image: "/Images/Eastern2.png", desc: "Joint research on indigenous Miombo woodland restoration and carbon sequestration potential across Northern Region landscapes." },
-  { name: "Wildlife Conservation Society", type: "International NGO",   image: "/Images/Eastern3.png", desc: "Biodiversity corridor protection linking Nyika National Park and Vwaza Marsh Wildlife Reserve through community buffer zones." },
+  { name: "Wildlife Conservation Society", type: "International NGO",   image: "/Images/Eastern333.jpg", desc: "Biodiversity corridor protection linking Nyika National Park and Vwaza Marsh Wildlife Reserve through community buffer zones." },
   { name: "SNV Malawi",                    type: "Development Partner", image: "/Images/Eastern1.png", desc: "Sustainable land management and agroforestry integration for smallholder farmers in Rumphi and Chitipa highlands." },
   { name: "Department of Forestry – North",type: "Government",          image: "/Images/Eastern2.png", desc: "Seedling nursery operations and technical guidance for Miombo woodland restoration across Mzimba and Rumphi." },
-  { name: "Nature Conservancy Malawi",     type: "NGO",                 image: "/Images/Eastern3.png", desc: "Lake Malawi shoreline and lakebed ecosystem conservation with focus on Nkhata Bay's critical coral and fish habitats." },
+  { name: "Nature Conservancy Malawi",     type: "NGO",                 image: "/Images/Eastern33.jpg", desc: "Lake Malawi shoreline and lakebed ecosystem conservation with focus on Nkhata Bay's critical coral and fish habitats." },
   { name: "GIZ Malawi – Northern Office",  type: "Development Partner", image: "/Images/Eastern1.png", desc: "Climate-smart agriculture and land restoration training for youth coordinators in Karonga and Chitipa border districts." },
   { name: "Heifer International Malawi",   type: "NGO",                 image: "/Images/Eastern2.png", desc: "Integrating tree planting with livestock management to reduce overgrazing and restore pastureland in Mzimba district." },
 ];

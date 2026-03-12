@@ -25,10 +25,10 @@ const districts = [
 const partners = [
   { name: "Lilongwe City Council",                   type: "Government",          image: "/Images/Eastern1.png", desc: "Urban greening and school tree-planting across all 4 Lilongwe Area Councils, targeting 500 trees per school." },
   { name: "LUANAR Bunda College",                    type: "Academic",            image: "/Images/Eastern2.png", desc: "Research partnership on soil conservation and agroforestry integration in Central Region farming communities." },
-  { name: "GIZ Malawi – Central Office",             type: "Development Partner", image: "/Images/Eastern3.png", desc: "Climate-smart land use training for youth coordinators in Dedza and Ntcheu." },
+  { name: "GIZ Malawi – Central Office",             type: "Development Partner", image: "/Images/Eastern333.jpg", desc: "Climate-smart land use training for youth coordinators in Dedza and Ntcheu." },
   { name: "Plan International Malawi",               type: "International NGO",   image: "/Images/Eastern1.png", desc: "Gender-inclusive conservation programming ensuring 50% female leadership in all Central Region clubs." },
   { name: "Department of Forestry – Central Region", type: "Government",          image: "/Images/Eastern2.png", desc: "Seedling supply and technical guidance for catchment reforestation across Kasungu and Ntcheu." },
-  { name: "USAID Feed the Future",                   type: "Development Partner", image: "/Images/Eastern3.png", desc: "Integrating conservation with food security — funding watershed management activities in Salima lakeshore areas." },
+  { name: "USAID Feed the Future",                   type: "Development Partner", image: "/Images/Eastern33.jpg", desc: "Integrating conservation with food security — funding watershed management activities in Salima lakeshore areas." },
   { name: "Malawi Red Cross Society",                type: "NGO",                 image: "/Images/Eastern1.png", desc: "Joint disaster risk reduction and environmental awareness campaigns in flood-prone communities around Salima." },
 ];
 
