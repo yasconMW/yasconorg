@@ -7,21 +7,21 @@ const profiles = [
     title: "OUR VISION",
     description:
       "A world where young people lead in protecting, restoring, and sustaining nature and the environment for present and future generations.",
-    image: "/hero/hero5.png",
+    image: "/hero/mission1.jpg",
     href: "#",
   },
   {
     title: "OUR MISSION",
     description:
       "To empower youth to engage in nature and environmental conservation through education, advocacy, community action, and sustainable practices.",
-    image: "/hero/hero4.png",
+    image: "/hero/mission2.jpg",
     href: "#",
   },
   {
     title: "CORE VALUES",
     description:
       "Youth Empowerment, Environmental Education, Climate Action, and Biodiversity Protection ",
-    image: "/hero/hero.png",
+    image: "/hero/mission3.jpg",
     href: "#",
   },
 ];
@@ -56,11 +56,11 @@ export default function MissionStatement() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
           {profiles.map((profile, idx) => (
             <div key={idx} className="group block">
-              <div className="max-w-lg rounded overflow-hidden shadow-lg brightness-70 hover:brightness-50 transition duration-300 rounded-lg bg-green shadow-md p-6 border-t-4 border-green-500 border-solid p-4">
+              <div className="max-w-lg rounded overflow-hidden shadow-lg brightness-90 hover:brightness-70 transition duration-300 rounded-lg bg-green shadow-md p-6 border-t-4 border-green-500 border-solid p-4">
                 <img
                   className="w-full"
                   src={profile.image}
-                  alt="Sunset in the mountains"
+                  alt="Youth Images"
                 />
                 <div className="px-6 py-4 hover:shadow-lg transition duration-300 ">
                   <div>
