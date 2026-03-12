@@ -15,31 +15,31 @@ export default function team() {
               name: "Mwai Mtayamanja",
               role: "National Coordinator",
               focus: "",
-              avatar: "/avatars/avatar-1.svg",
+              avatar: "/teampics/national-coordinator.png",
             },
             {
               name: "Clement Chiwambo",
               role: "Funding & Compliance Manager",
               focus: "",
-              avatar: "/avatars/avatar-2.svg",
+              avatar: "/teampics/funding-officer.png",
             },
             {
               name: "Rashid Mailos",
               role: "Extension Methodologies Manager",
               focus: "",
-              avatar: "/avatars/avatar-3.svg",
+              avatar: "/teampics/extensions-officer.png",
             },
             {
               name: "Salomy Chivunga",
               role: "Public Relations & Events Manager",
               focus: "",
-              avatar: "/avatars/avatar-3.svg",
+              avatar: "/teampics/public-relations.png",
             },
             {
               name: "Mussa John Witness",
               role: "Media Relations Manager",
               focus: "",
-              avatar: "/avatars/avatar-3.svg",
+              avatar: "/teampics/mediarelations.png",
             },
           ].map((member) => (
             <div
