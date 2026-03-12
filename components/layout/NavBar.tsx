@@ -27,7 +27,7 @@ const navItems = [
       title: "National Office",
       links: [
         { href: "/impact/national/board", label: "Board" },
-        { href: "/impact/national/management", label: "Management" },
+        { href: "/impact/national/management", label: "Our People" },
         { href: "/impact/national/partners", label: "Partners" },
         { href: "/impact/national/programs", label: "Programs" },
         { href: "/impact/national/statistics", label: "Statistics" },
@@ -115,7 +115,7 @@ export default function Navbar() {
               <div
                 className={`text-xs ${useTransparentStyle ? "text-white/80" : "text-gray-500"} leading-tight max-w-[160px]`}
               >
-                Youth Organization for Conservation of Nature and Environment
+                Youth Association for Conservation of Nature and Environment
               </div>
             </div>
           </Link>

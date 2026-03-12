@@ -42,8 +42,7 @@ export default function TeamPage() {
       </section>
 
       <section className="max-w-6xl mx-auto px-6 py-12">
-        <h2 className="text-2xl font-bold text-[#1a2e1a]">Management</h2>
-        <p className="text-[#2e3d35] mt-1 mb-6">National Level</p>
+        <h2 className="text-2xl font-bold text-[#1a2e1a]">Our People</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {management.map((m) => <MemberCard key={m.name} {...m} />)}
         </div>
