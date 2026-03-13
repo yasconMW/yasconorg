@@ -76,21 +76,20 @@ export default function Hero() {
               <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full">
                 <div className="max-w-2xl">
 
-                  {/* Badge — improved visibility */}
+                  {/* Badge — olive/dark gold color from screenshot */}
                   <div className="slide-label mb-5">
                     <span
-                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] px-5 py-2"
+                      className="inline-flex items-center gap-2 font-bold uppercase px-5 py-2.5"
                       style={{
-                        background: "#d4a017",
+                        background: "#c8961e",
                         color: "#fff",
                         borderRadius: "3px",
-                        boxShadow: "0 2px 12px rgba(212,160,23,0.5)",
+                        boxShadow: "0 4px 16px rgba(200,150,30,0.4)",
                         letterSpacing: "0.18em",
+                        fontSize: "13px",
                       }}
                     >
-                      <span
-                        className="w-2 h-2 rounded-full bg-white animate-pulse"
-                      />
+                      <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
                       {slide.label}
                     </span>
                   </div>

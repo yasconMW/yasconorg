@@ -317,9 +317,16 @@ export default function EasternRegionPage() {
                 <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full">
                   <div className="max-w-2xl">
                     <div className="slide-label mb-5">
-                      <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] px-4 py-1.5"
-                        style={{ background: "rgba(184,134,11,.15)", border: "1px solid rgba(184,134,11,.4)", color: "#d4a017", borderRadius: "2px" }}>
-                        <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#d4a017" }} />
+                      <span className="inline-flex items-center gap-2 font-bold uppercase px-5 py-2.5"
+                        style={{
+                          background: "#c8961e",
+                          color: "#fff",
+                          borderRadius: "3px",
+                          boxShadow: "0 4px 16px rgba(200,150,30,0.4)",
+                          letterSpacing: "0.18em",
+                          fontSize: "13px",
+                        }}>
+                        <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
                         YASCON Regional Hub
                       </span>
                     </div>
