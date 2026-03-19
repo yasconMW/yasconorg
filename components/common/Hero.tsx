@@ -4,10 +4,10 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 
 const slides = [
-  {
+   {
     bg: "/hero/hero1.png",
     label: "Welcome to YASCON",
-    heading: "Protecting Nature,\nEmpowering\nMalawi's Youth",
+    heading: "Protecting Nature,Empowering Malawi's Youth",
     sub: "YASCON unites young Malawians in grassroots conservation — planting trees, restoring ecosystems, and championing environmental stewardship for future generations.",
     cta1: { label: "Join the Movement", href: "/get-involved" },
     cta2: { label: "Learn More →", href: "/about" },
@@ -15,7 +15,7 @@ const slides = [
   {
     bg: "/hero/hero2.png",
     label: "National Tree Planting Season 2026",
-    heading: "Together, Let's\nGrow a Greener\nFuture",
+    heading: "Together, Let's Grow a Greener Future",
     sub: "Every youth club across all 28 districts is called to lead tree-planting activities. The real impact happens when we act locally — starting this week.",
     cta1: { label: "Get Involved", href: "/get-involved" },
     cta2: { label: "Our Work →", href: "/work" },
@@ -23,11 +23,12 @@ const slides = [
   {
     bg: "/hero/hero2.png",
     label: "Youth Conservation Programs",
-    heading: "The Most\nEnergetic Force\nof Conservation",
+    heading: "The Most Energetic Force of Conservation",
     sub: "From biodiversity conservation to climate action, YASCON's nationwide network of youth clubs drives measurable environmental impact across Malawi.",
     cta1: { label: "Our Programs", href: "/programs" },
     cta2: { label: "Read Stories →", href: "/news" },
   },
+
 ];
 
 export default function Hero() {
@@ -48,10 +49,6 @@ export default function Hero() {
     () => goTo((current + 1) % slides.length),
     [current, goTo],
   );
-  const prev = useCallback(
-    () => goTo((current - 1 + slides.length) % slides.length),
-    [current, goTo],
-  );
 
   useEffect(() => {
     const t = setTimeout(next, 6000);
@@ -59,106 +56,45 @@ export default function Hero() {
   }, [current, next]);
 
   return (
-    <section className="relative w-full h-svh min-h-170 overflow-hidden">
-      {/* Slides */}
+    <section className="relative w-full min-h-[92vh] h-svh overflow-hidden">
       {slides.map((slide, i) => (
         <div key={i} className={`slide ${i === current ? "active" : ""}`}>
           <div
-            className="slide-bg"
+            className="slide-bg absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
             style={{ backgroundImage: `url('${slide.bg}')` }}
           />
-          <div className="slide-overlay" />
-          <div className="slide-overlay" />
+          <div className="slide-overlay bg-gradient-to-b from-black/55 via-black/55 to-black/70" />
 
-          {/* Content — only render for active */}
           {i === current && (
-            <div className="relative inset-0 flex items-center z-10 pt-24 sm:pt-24">
-              <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full">
-                <div className="max-w-2xl">
+            <div className="relative inset-0 flex items-center justify-center z-10 pt-25 pb-24">
+              <div className="w-full max-w-6xl px-6 sm:px-10 text-center">
+               
 
-                  {/* Badge — olive/dark gold color from screenshot */}
-                  <div className="slide-label mb-5">
-                    <span
-                      className="inline-flex items-center gap-2 font-bold uppercase px-5 py-2.5"
-                      style={{
-                        background: "#c8961e",
-                        color: "#fff",
-                        borderRadius: "3px",
-                        boxShadow: "0 4px 16px rgba(200,150,30,0.4)",
-                        letterSpacing: "0.18em",
-                        fontSize: "13px",
-                      }}
-                    >
-                      <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
-                      {slide.label}
+                <h1
+                  className="slide-h1 text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight drop-shadow-2xl mb-6"
+                  style={{ whiteSpace: "pre-line" }}
+                >
+                  {slide.heading}
+                </h1>
+
+                <p className="slide-sub max-w-3xl mx-auto text-lg sm:text-xl text-white/90 leading-relaxed mb-10">
+                  {slide.sub}
+                </p>
+
+                <div className="slide-btns flex flex-wrap justify-center gap-4 sm:gap-5">
+                  <Link href={slide.cta1.href}>
+                    <span className="inline-flex items-center justify-center gap-2 px-8 py-3.5 text-base font-bold uppercase tracking-wide bg-[#f5a524] text-white rounded-sm shadow-lg shadow-[rgba(0,0,0,0.28)] hover:bg-[#e3910c] transition-colors duration-200">
+                      {slide.cta1.label}
                     </span>
-                  </div>
-
-                  {/* Heading */}
-                  <h1
-                    className="slide-h1 text-white text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.08] mb-6"
-                    style={{ whiteSpace: "pre-line" }}
-                  >
-                    {slide.heading}
-                  </h1>
-
-                  {/* Subtext */}
-                  <p
-                    className="slide-sub mb-9 leading-relaxed"
-                    style={{
-                      color: "rgba(255,255,255,.75)",
-                      fontSize: "clamp(15px, 1.6vw, 17px)",
-                      maxWidth: "520px",
-                    }}
-                  >
-                    {slide.sub}
-                  </p>
-
-                  {/* Buttons */}
-                  <div className="slide-btns flex flex-wrap gap-3">
-                    <Link
-                      href={slide.cta1.href}
-                      className="bg-yellow-600 hover:bg-yellow-700"
-                    >
-                      <span
-                        className="inline-flex items-center gap-2 font-semibold px-7 py-3.5 text-sm tracking-wide cursor-pointer"
-                        style={{
-                          color: "white",
-                          borderRadius: "3px",
-                          boxShadow: "0 4px 16px rgba(212,160,23,.35)",
-                          transition: "all .2s",
-                        }}
-                      >
-                        {slide.cta1.label}
-                      </span>
-                    </Link>
-                    <Link href={slide.cta2.href} className="hover:bg-green-700">
-                      <span
-                        className="inline-flex items-center gap-2 font-semibold px-7 py-3.5 text-sm tracking-wide cursor-pointer"
-                        style={{
-                          background: "transparent",
-                          color: "white",
-                          border: "1.5px solid rgba(255,255,255,.45)",
-                          borderRadius: "3px",
-                          transition: "all .2s",
-                        }}
-                      >
-                        {slide.cta2.label}
-                      </span>
-                    </Link>
-                  </div>
+                  </Link>
+                  <Link href={slide.cta2.href}>
+                    <span className="inline-flex items-center justify-center gap-2 px-8 py-3.5 text-base font-bold uppercase tracking-wide border border-white/70 text-white rounded-sm hover:bg-white/10 transition-all duration-200">
+                      {slide.cta2.label}
+                    </span>
+                  </Link>
                 </div>
               </div>
-            </div>
-          )}
-        </div>
-      ))}
-
-      {/* Dots */}
-      <div
-        className="absolute z-20 flex gap-2"
-        style={{ bottom: "120px", left: "50%", transform: "translateX(-50%)" }}
-      >
+                <div className="absolute z-20 flex gap-2 bottom-14 left-1/2 -translate-x-1/2">
         {slides.map((_, i) => (
           <button
             key={i}
@@ -168,6 +104,13 @@ export default function Hero() {
           />
         ))}
       </div>
+            </div>
+          )}
+        </div>
+
+      ))}
+
+    
     </section>
   );
 }

@@ -90,7 +90,9 @@ export default function Navbar() {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          useTransparentStyle ? "bg-transparent " : "bg-white shadow-md"
+          useTransparentStyle
+            ? " bg-transparent"
+            : "bg-white shadow-md"
         }`}
       >
         <div
@@ -125,7 +127,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className={`hidden lg:flex items-center gap-1 ${useTransparentStyle ? " bg-black/70 rounded-full px-5 py-1" : ""}`}>
+          <div className={`hidden lg:flex items-center gap-3 ${useTransparentStyle ? "bg-black/50 rounded-xl px-5 py-1" : ""}`}>
             {navItems.map((item, idx) => (
               <div
                 key={idx}
@@ -134,9 +136,11 @@ export default function Navbar() {
                 onMouseLeave={handleMouseLeave}
               >
                 <button
-                  className={`flex items-center gap-1 px-4 py-2 text-sm font-semibold tracking-wide nav-link transition-colors ${
-                    useTransparentStyle ? "text-white" : "text-gray-800"
-                  } ${activeDropdown === idx ? "bg-green-600 rounded-t-md" : ""}`}
+                  className={`flex items-center gap-1 px-4 py-2 text-sm font-semibold tracking-[0.08em] uppercase transition-colors ${
+                    useTransparentStyle
+                      ? "text-white hover:text-[#f4a32a]"
+                      : "text-gray-800 hover:text-green-700"
+                  } ${activeDropdown === idx ? "text-[#f4a32a]" : ""}`}
                 >
                   {item.label}
                   <svg
@@ -183,19 +187,19 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3">
             <Link
               href="/get-involved"
-              className={`border-2 text-sm font-bold px-5 py-2 rounded-full transition-all duration-200 ${
-                useTransparentStyle
-                  ? "border-white text-white hover:bg-white hover:text-green-700"
-                  : "border-green-600 text-green-600 hover:bg-green-700 hover:text-white"
-              }`}
+              className="bg-[#f5a524] text-white text-sm font-bold px-6 py-2 rounded-sm shadow-lg hover:bg-[#e3910c] transition-colors"
             >
               GET INVOLVED
             </Link>
             <Link
-              href="/donate"
-              className="bg-yellow-600 text-white text-sm font-bold px-6 py-2 rounded-full hover:bg-yellow-700 transition-colors shadow-lg"
+              href="/contact"
+              className={`border text-sm font-bold px-5 py-2 rounded-sm transition-all duration-200 ${
+                useTransparentStyle
+                  ? "border-white/70 text-white hover:bg-white/10"
+                  : "border-green-700 text-green-700 hover:bg-green-700 hover:text-white"
+              }`}
             >
-              DONATE
+              CONTACT
             </Link>
           </div>
 
@@ -259,18 +263,18 @@ export default function Navbar() {
             ))}
             <div className="flex flex-col gap-3 mt-6">
               <Link
-                href="/get-involved"
-                className="text-center border-2 border-white text-white py-3 rounded-full font-bold hover:bg-white hover:text-green-700 transition-colors"
+                href="/tickets"
+                className="text-center bg-[#f5a524] text-white py-3 rounded-sm font-bold hover:bg-[#e3910c] transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
-                Get Involved
+                Buy Tickets
               </Link>
               <Link
-                href="/donate"
-                className="text-center bg-yellow-600 text-white py-3 rounded-full font-bold hover:bg-yellow-700 transition-colors"
+                href="/contact"
+                className="text-center border border-white text-white py-3 rounded-sm font-bold hover:bg-white/10 transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
-                Donate
+                Contact
               </Link>
             </div>
           </div>

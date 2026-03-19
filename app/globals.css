@@ -82,6 +82,8 @@ h5 {
 .slide-overlay {
   position: absolute;
   inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.48) 0%, rgba(0, 0, 0, 0.52) 40%, rgba(0, 0, 0, 0.72) 100%);
+  pointer-events: none;
 }
 
 @keyframes sldUp {
@@ -113,8 +115,8 @@ h5 {
 }
 
 .slider-dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.4);
   border: none;
@@ -124,9 +126,9 @@ h5 {
 }
 
 .slider-dot.active {
-  width: 26px;
+  width: 30px;
   border-radius: 4px;
-  background: var(--gold);
+  background: #f5a524;
 }
 
 /* Nav dropdown */
