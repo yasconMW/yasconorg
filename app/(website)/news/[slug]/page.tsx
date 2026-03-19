@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
 import { formatDate } from "@/lib/cms/utils";
+import { BeatLoader } from "react-spinners";
 
 interface NewsItem {
   id: number;
@@ -42,7 +43,11 @@ export default function NewsSlugPage({ params }: PageProps) {
     return (
       <main className="min-h-screen bg-[#f7f3ea] pt-24">
         <div className="max-w-4xl mx-auto px-6 py-20 text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1a2e1a] mx-auto mb-4"></div>
+          <BeatLoader
+            color="#1a2e1a"
+            loading={true}
+           className='mb-2'
+          />
           <p>Loading news...</p>
         </div>
       </main>

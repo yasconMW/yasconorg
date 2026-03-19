@@ -11,7 +11,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gray-50 mt-16">
       {/* Hero Section */}
-      <section className="bg-gray-800 text-white py-16">
+      <section className="bg-green-900 text-white py-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <div className="flex justify-center mb-6">
             <Image

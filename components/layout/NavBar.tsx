@@ -11,12 +11,13 @@ const navItems = [
     dropdown: {
       title: "About YASCON",
       links: [
-        { href: "/about/Mission", label: "Vision & Mission" },
-        { href: "/about/Objectives", label: "Objectives" },
-        { href: "/about/Location", label: "Where We Work" },
-        { href: "/about/Work", label: "Our Work" },
-        { href: "/about/Team", label: "Our Team" },
-        { href: "/about/OurStory", label: "Our Story" },
+        { href: "/", label: "Home" },
+        { href: "/about/mission", label: "Vision & Mission" },
+        { href: "/about/objectives", label: "Objectives" },
+        { href: "/about/location", label: "Where We Work" },
+        { href: "/about/work", label: "Our Work" },
+        { href: "/about/management", label: "Our Management Team" },
+        { href: "/about/our-story", label: "Our Story" },
         { href: "/contact", label: "Contact Us" },
       ],
     },
@@ -27,7 +28,7 @@ const navItems = [
       title: "National Office",
       links: [
         { href: "/impact/national/board", label: "Board" },
-        { href: "/impact/national/management", label: "Our People" },
+        { href: "/about/management", label: "Management" },
         { href: "/impact/national/partners", label: "Partners" },
         { href: "/impact/national/programs", label: "Programs" },
         { href: "/impact/national/statistics", label: "Statistics" },
