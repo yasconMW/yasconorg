@@ -191,7 +191,7 @@ function Programs() {
               <p className="text-gray-600 mb-4">{program.description}</p>
 
               <div>
-                <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">
+                <h3 className="text-sm font-semibold text-[#d4a017] uppercase mb-2">
                   Activities
                 </h3>
 
