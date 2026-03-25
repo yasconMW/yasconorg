@@ -6,12 +6,20 @@ const ACCENT = "#b8860b";
 const heroImages = ["/Images/Eastern1.png", "/Images/Eastern2.png", "/Images/Eastern3.jpg"];
 
 const stats = [
-  { value: 7,    suffix: "",  label: "Districts",     desc: "Under Southern Coverage" },
-  { value: 1850, suffix: "+", label: "Members",       desc: "Registered Youth" },
-  { value: 14200,suffix: "+", label: "Trees Planted", desc: "Reforestation Total" },
-  { value: 38,   suffix: "",  label: "Youth Clubs",   desc: "Active This Season" },
-  { value: 72,   suffix: "+", label: "Activities",    desc: "Completed to Date" },
-  { value: 9,    suffix: "",  label: "Key Partners",  desc: "NGOs & Government" },
+  { value: 11,   suffix: "", label: "Districts",                   desc: "Under Southern Coverage" },
+  { value: 8,    suffix: "", label: "Consultation Meetings",       desc: "Community Consultations Held" },
+  { value: 95,   suffix: "", label: "Youth Meetings",              desc: "Youth Engagement Sessions" },
+  { value: 191,  suffix: "", label: "Conservation Clubs",          desc: "Active Clubs in Southern Region" },
+  { value: 4641, suffix: "", label: "Youths Registered",           desc: "Registered Under YASCON" },
+  { value: 2,    suffix: "", label: "Capacity Building Trainings", desc: "Training Sessions Facilitated" },
+  { value: 6,    suffix: "", label: "Clean-Up Campaigns",          desc: "Campaigns Facilitated" },
+  { value: 22,   suffix: "", label: "Conservation Talks",          desc: "Awareness Talks Delivered" },
+  { value: 1,    suffix: "", label: "Stakeholder Meetings",        desc: "Key Stakeholder Engagements" },
+  { value: 58,   suffix: "", label: "Tree Nurseries",              desc: "Nurseries Established" },
+  { value: 598,  suffix: "", label: "Tree Seedlings Raised",       desc: "Seedlings Grown for Planting" },
+  { value: 1695, suffix: "", label: "Trees Planted",               desc: "Trees Successfully Planted" },
+  { value: 66,   suffix: "", label: "Village Forest Areas",        desc: "Community Forest Areas Created" },
+  { value: 21,   suffix: "", label: "Forest Regeneration Areas",   desc: "Areas Under Active Management" },
 ];
 
 const districts = [
@@ -37,9 +45,7 @@ const partners = [
 ];
 
 const team = [
-  { name: "Bridget Namakhwa",  initials: "BN", role: "Regional Coordinator (Southern)", district: "Southern Region", image: "/teampics/southern-coordinator.png", bio: "Bridget holds a Bachelor of Science Degree in Education, majoring in Geography from the Catholic University of Malawi and a certificate in Introduction to Child Protection.She initially served as a Conservation Coordinator when she successfully led and implemented YASCON's conservation activities in the Southern region of Malawi.Bridget, a passionate and enthusiastic youth brings to the organisation proven communication, community mobilization, organisation, project management, leadership and coordination skills." },
-  //{ name: "Patrick Msosa", initials: "PM", role: "Programs Lead",                   district: "Zomba",           image: "/Images/avatar-southern-2.png", bio: "Patrick manages youth eco-club networks and school outreach across Zomba and Chiradzulu, coordinating YASCON's flagship biodiversity education programme." },
-  //{ name: "Esther Nkosi",  initials: "EN", role: "Community Liaison",               district: "Mulanje",         image: "/Images/avatar-southern-3.png", bio: "Esther specialises in community mobilisation and grassroots conservation in Mulanje and Phalombe, engaging smallholder farmers in sustainable land management." },
+  { name: "Bridget Namakhwa", initials: "BN", role: "Regional Coordinator (Southern)", district: "Southern Region", image: "/teampics/southern-coordinator.png", bio: "Bridget holds a Bachelor of Science Degree in Education, majoring in Geography from the Catholic University of Malawi and a certificate in Introduction to Child Protection.She initially served as a Conservation Coordinator when she successfully led and implemented YASCON's conservation activities in the Southern region of Malawi.Bridget, a passionate and enthusiastic youth brings to the organisation proven communication, community mobilization, organisation, project management, leadership and coordination skills." },
 ];
 
 const activities = [
@@ -323,14 +329,7 @@ export default function SouthernRegionPage() {
                   <div className="max-w-2xl">
                     <div className="slide-label mb-5">
                       <span className="inline-flex items-center gap-2 font-bold uppercase px-5 py-2.5"
-                        style={{
-                          background: "#c8961e",
-                          color: "#fff",
-                          borderRadius: "3px",
-                          boxShadow: "0 4px 16px rgba(200,150,30,0.4)",
-                          letterSpacing: "0.18em",
-                          fontSize: "13px",
-                        }}>
+                        style={{ background: "#c8961e", color: "#fff", borderRadius: "3px", boxShadow: "0 4px 16px rgba(200,150,30,0.4)", letterSpacing: "0.18em", fontSize: "13px" }}>
                         <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
                         YASCON Regional Hub
                       </span>

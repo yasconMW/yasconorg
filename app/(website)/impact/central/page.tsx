@@ -6,12 +6,20 @@ const ACCENT = "#b8860b";
 const heroImages = ["/Images/Eastern1.png", "/Images/Eastern2.png", "/Images/Eastern3.jpg"];
 
 const stats = [
-  { value: 5,    suffix: "",  label: "Districts",     desc: "Under Central Coverage" },
-  { value: 1200, suffix: "+", label: "Members",       desc: "Registered Youth" },
-  { value: 9400, suffix: "+", label: "Trees Planted", desc: "Reforestation Total" },
-  { value: 24,   suffix: "",  label: "Youth Clubs",   desc: "Active This Season" },
-  { value: 55,   suffix: "+", label: "Activities",    desc: "Completed to Date" },
-  { value: 7,    suffix: "",  label: "Key Partners",  desc: "NGOs & Government" },
+  { value: 5,    suffix: "", label: "Districts",                   desc: "Under Central Coverage" },
+  { value: 6,    suffix: "", label: "Consultation Meetings",       desc: "Community Consultations Held" },
+  { value: 97,   suffix: "", label: "Youth Meetings",              desc: "Youth Engagement Sessions" },
+  { value: 192,  suffix: "", label: "Conservation Clubs",          desc: "Active Clubs in Central Region" },
+  { value: 4641, suffix: "", label: "Youths Registered",           desc: "Registered Under YASCON" },
+  { value: 2,    suffix: "", label: "Capacity Building Trainings", desc: "Training Sessions Facilitated" },
+  { value: 6,    suffix: "", label: "Clean-Up Campaigns",          desc: "Campaigns Facilitated" },
+  { value: 22,   suffix: "", label: "Conservation Talks",          desc: "Awareness Talks Delivered" },
+  { value: 1,    suffix: "", label: "Stakeholder Meetings",        desc: "Key Stakeholder Engagements" },
+  { value: 59,   suffix: "", label: "Tree Nurseries",              desc: "Nurseries Established" },
+  { value: 599,  suffix: "", label: "Tree Seedlings Raised",       desc: "Seedlings Grown for Planting" },
+  { value: 1697, suffix: "", label: "Trees Planted",               desc: "Trees Successfully Planted" },
+  { value: 67,   suffix: "", label: "Village Forest Areas",        desc: "Community Forest Areas Created" },
+  { value: 22,   suffix: "", label: "Forest Regeneration Areas",   desc: "Areas Under Active Management" },
 ];
 
 const districts = [
@@ -33,9 +41,7 @@ const partners = [
 ];
 
 const team = [
-  { name: "Chisomo Nyirenda",  initials: "CN", role: "Regional Coordinator (Central)", district: "Central Region", image: "/teampics/central-coordinator.png", bio: "Chisomo holds a Bachelor of Science Degree in Value Chain Agriculture from Mzuzu University.He initially served as a Conservation Coordinator when he successfully led and implemented YASCON's conservation activities in the central region of Malawi.Chisomo brings to the organization proven community mobilization, organization, project management, leadership and coordination skills." },
-  //{ name: "Kelvin Banda", initials: "KB", role: "Programs Lead",                  district: "Salima",         image: "/Images/avatar-central-2.png", bio: "Kelvin coordinates youth climate education and school outreach across Salima and Dedza, managing YASCON's largest school eco-club network in the Central Region." },
-  //{ name: "Ruth Mbewe",   initials: "RM", role: "Community Liaison",              district: "Kasungu",        image: "/Images/avatar-central-3.png", bio: "Ruth manages district engagement and volunteer mobilisation in Kasungu and Ntcheu, building community ownership of conservation activities at the grassroots level." },
+  { name: "Chisomo Nyirenda", initials: "CN", role: "Regional Coordinator (Central)", district: "Central Region", image: "/teampics/central-coordinator.png", bio: "Chisomo holds a Bachelor of Science Degree in Value Chain Agriculture from Mzuzu University.He initially served as a Conservation Coordinator when he successfully led and implemented YASCON's conservation activities in the central region of Malawi.Chisomo brings to the organization proven community mobilization, organization, project management, leadership and coordination skills." },
 ];
 
 const activities = [
@@ -317,14 +323,7 @@ export default function CentralRegionPage() {
                   <div className="max-w-2xl">
                     <div className="slide-label mb-5">
                       <span className="inline-flex items-center gap-2 font-bold uppercase px-5 py-2.5"
-                        style={{
-                          background: "#c8961e",
-                          color: "#fff",
-                          borderRadius: "3px",
-                          boxShadow: "0 4px 16px rgba(200,150,30,0.4)",
-                          letterSpacing: "0.18em",
-                          fontSize: "13px",
-                        }}>
+                        style={{ background: "#c8961e", color: "#fff", borderRadius: "3px", boxShadow: "0 4px 16px rgba(200,150,30,0.4)", letterSpacing: "0.18em", fontSize: "13px" }}>
                         <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
                         YASCON Regional Hub
                       </span>

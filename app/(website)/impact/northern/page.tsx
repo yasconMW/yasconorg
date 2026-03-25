@@ -6,12 +6,20 @@ const ACCENT = "#b8860b";
 const heroImages = ["/Images/Eastern1.png", "/Images/Eastern2.png", "/Images/Eastern3.jpg"];
 
 const stats = [
-  { value: 6,    suffix: "",  label: "Districts",     desc: "Under Northern Coverage" },
-  { value: 1340, suffix: "+", label: "Members",       desc: "Registered Youth" },
-  { value: 11800,suffix: "+", label: "Trees Planted", desc: "Reforestation Total" },
-  { value: 29,   suffix: "",  label: "Youth Clubs",   desc: "Active This Season" },
-  { value: 61,   suffix: "+", label: "Activities",    desc: "Completed to Date" },
-  { value: 8,    suffix: "",  label: "Key Partners",  desc: "NGOs & Government" },
+  { value: 6,    suffix: "", label: "Districts",                   desc: "Under Northern Coverage" },
+  { value: 7,    suffix: "", label: "Consultation Meetings",       desc: "Community Consultations Held" },
+  { value: 96,   suffix: "", label: "Youth Meetings",              desc: "Youth Engagement Sessions" },
+  { value: 191,  suffix: "", label: "Conservation Clubs",          desc: "Active Clubs in Northern Region" },
+  { value: 4641, suffix: "", label: "Youths Registered",           desc: "Registered Under YASCON" },
+  { value: 2,    suffix: "", label: "Capacity Building Trainings", desc: "Training Sessions Facilitated" },
+  { value: 6,    suffix: "", label: "Clean-Up Campaigns",          desc: "Campaigns Facilitated" },
+  { value: 22,   suffix: "", label: "Conservation Talks",          desc: "Awareness Talks Delivered" },
+  { value: 1,    suffix: "", label: "Stakeholder Meetings",        desc: "Key Stakeholder Engagements" },
+  { value: 59,   suffix: "", label: "Tree Nurseries",              desc: "Nurseries Established" },
+  { value: 599,  suffix: "", label: "Tree Seedlings Raised",       desc: "Seedlings Grown for Planting" },
+  { value: 1697, suffix: "", label: "Trees Planted",               desc: "Trees Successfully Planted" },
+  { value: 66,   suffix: "", label: "Village Forest Areas",        desc: "Community Forest Areas Created" },
+  { value: 22,   suffix: "", label: "Forest Regeneration Areas",   desc: "Areas Under Active Management" },
 ];
 
 const districts = [
@@ -36,8 +44,6 @@ const partners = [
 
 const team = [
   { name: "Martha Megan Phiri",  initials: "MP", role: "Regional Coordinator (Northern)", district: "Northern Region", image: "/teampics/northern-coordinator.png", bio: "Martha holds a Bachelor of Science Degree in Development Studies from University of Livingstonia.Prior to joining YASCON, she worked as a Facilitator and Documenter for an Agroecology project under Chitipa District Council.  Martha successfully led and implemented YASCON's conservation activities in the Northern region of Malawi as an Area Conservation " },
-  //{ name: "Lucia Mwale",   initials: "LM", role: "Programs Lead",                   district: "Rumphi",          image: "/Images/avatar-northern-2.png", bio: "Lucia coordinates highland conservation and climate education programmes across Rumphi and Chitipa, managing YASCON's border-district youth network." },
-  //{ name: "Thomas Gondwe", initials: "TG", role: "Community Liaison",               district: "Nkhata Bay",      image: "/Images/avatar-northern-3.png", bio: "Thomas manages lakeshore community engagement in Nkhata Bay and Likoma Island, linking fishing communities to wetland and aquatic habitat conservation." },
 ];
 
 const activities = [
@@ -320,14 +326,7 @@ export default function NorthernRegionPage() {
                   <div className="max-w-2xl">
                     <div className="slide-label mb-5">
                       <span className="inline-flex items-center gap-2 font-bold uppercase px-5 py-2.5"
-                        style={{
-                          background: "#c8961e",
-                          color: "#fff",
-                          borderRadius: "3px",
-                          boxShadow: "0 4px 16px rgba(200,150,30,0.4)",
-                          letterSpacing: "0.18em",
-                          fontSize: "13px",
-                        }}>
+                        style={{ background: "#c8961e", color: "#fff", borderRadius: "3px", boxShadow: "0 4px 16px rgba(200,150,30,0.4)", letterSpacing: "0.18em", fontSize: "13px" }}>
                         <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
                         YASCON Regional Hub
                       </span>
