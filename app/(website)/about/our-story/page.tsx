@@ -37,7 +37,7 @@ export default function OurStoryPage() {
           ))}
         </div>
         <div className="rounded-xl overflow-hidden shadow-lg h-full">
-          <img src="/hero/hero4.png" alt="Our team" className="w-full h-full object-cover rounded-xl" />
+          <img src="/hero/hero2.avif" alt="Our team" className="w-full h-full object-cover rounded-xl" />
         </div>
       </section>
     </main>

@@ -129,7 +129,9 @@ export default async function TeamPage() {
 
       {/* Empty state */}
       {!nationalCoordinator && team.length === 0 && (
-        <div className="text-center mt-12">No team members found</div>
+        <div>
+          <Team />
+        </div>
       )}
 
       {/* Management Team */}

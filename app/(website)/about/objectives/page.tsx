@@ -22,7 +22,7 @@ export default function ObjectivesPage() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-8 ">
         <div className=" overflow-hidden shadow-lg md:flex bg-white border border-gray-100">
           <div className="md:w-1/3 relative min-h-64">
-            <Image src="/hero/hero1.png" alt="YASCON in Action" fill className="object-cover brightness-75" />
+            <Image src="/hero/hero1.avif" alt="YASCON in Action" fill className="object-cover brightness-75" />
           </div>
 
           <div className="p-8 md:w-3/4">

@@ -11,7 +11,7 @@ type Member = {
 
 const nationalCoordinator: Member = {
   name: "Mwai Mtayamanja",
-  role: "National Coordinator",
+  role: "",
   avatar: "/teampics/national-coordinator.webp",
   focus: "Guides strategy, partnerships, and nationwide program delivery.",
   bio: "A distinguished anthropologist and dedicated young conservation leader, and a prominent advocate for youth empowerment. His work focuses on harnessing youth leadership to drive conservation and promote sustainable development in Malawi. Through entrepreneurship, innovation, and research, Mwai aims to create opportunities for young people to thrive and realise their full potential.",
