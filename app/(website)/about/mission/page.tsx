@@ -12,12 +12,12 @@ const profiles = [
     title: "OUR MISSION",
     description:
       "To empower youth to engage in nature and environmental conservation through education, advocacy, community action, and sustainable practices.",
-    image: "/hero/hero4.png",
+    image: "/hero/her03.avif",
   },
   {
     title: "CORE VALUES",
     description:
-      "Youth Empowerment, Environmental Education, Climate Action, and Biodiversity Protection.",
+      "Passion, Interest, Innovation, Integrity, Stewardship, Collaboration and Fun.",
     image: "/hero/mission3.jpg",
   },
 ];
