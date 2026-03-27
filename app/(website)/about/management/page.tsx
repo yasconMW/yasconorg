@@ -20,8 +20,7 @@ async function getManagementTeam() {
   try {
     const members = await getTeamMembers({ type: "management", status: "published" });
     const national = members.find((m) => m.role.toLowerCase() === "national coordinator") ?? null;
-    const team = members.filter((m) => m.region !== "national");
- 
+    const team = members.filter((m) => m.role.toLowerCase() !== "national coordinator");
     return { nationalCoordinator: national, team };
   } catch (err) {
     console.error("Failed to load management team:", err);
