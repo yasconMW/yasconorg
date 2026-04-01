@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { getTeamMembers } from "@/lib/cms/service";
 
+export const dynamic = "force-dynamic";
+
 type BoardMember = {
   id: number;
   name: string;

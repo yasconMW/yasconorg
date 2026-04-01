@@ -1,9 +1,17 @@
+/**
+ * CMS Service Layer — Unified Content
+ *
+ * All content (news, blog, announcement, press_briefing, video) is stored in
+ * the single `CmsContent` table, distinguished by `contentType`.
+ * No in-process cache — revalidatePath() in API routes handles cache busting.
+ */
 
 import { getPrismaClient } from "./db";
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 export type ContentStatus = "draft" | "published" | "archived";
 export type ContentRegion = "national" | "northern" | "central" | "southern" | "eastern";
+export type CmsContentType = "news" | "announcement" | "press_briefing" | "blog" | "video";
 
 export interface ListOptions {
   region?: ContentRegion | "all";
@@ -12,334 +20,209 @@ export interface ListOptions {
   skip?: number;
 }
 
-// ─── News ──────────────────────────────────────────────────────────────────
-export async function getNews(opts: ListOptions = {}) {
+export interface ContentListOptions extends ListOptions {
+  contentType?: CmsContentType | null;
+}
+
+// ─── Unified Content ────────────────────────────────────────────────────────
+
+export async function getContent(opts: ContentListOptions = {}) {
   const prisma = getPrismaClient();
   const where: Record<string, unknown> = {};
+
+  if (opts.contentType) where.contentType = opts.contentType;
   if (opts.region && opts.region !== "all") where.region = opts.region;
   where.status = opts.status && opts.status !== "all" ? opts.status : "published";
 
-  return prisma.cmsNews.findMany({
+  return prisma.cmsContent.findMany({
     where,
     include: { createdBy: { select: { id: true, name: true } } },
     orderBy: { publishedAt: "desc" },
     take: opts.limit ?? 50,
     skip: opts.skip ?? 0,
   });
+}
+
+export async function getContentBySlug(slug: string) {
+  const prisma = getPrismaClient();
+  return prisma.cmsContent.findFirst({
+    where: { slug, status: "published" },
+    include: { createdBy: { select: { id: true, name: true } } },
+  });
+}
+
+export interface NewsItem {
+  id: number;
+  slug: string;
+  title: string;
+  excerpt: string;
+  richContent: string;
+  coverImage: string | null;
+  videoUrl: string | null;
+  videoDuration: number | null;
+  contentType: CmsContentType;
+  type: CmsContentType;
+  region: ContentRegion;
+  level: "national" | "regional";
+  status: ContentStatus;
+  publishedAt: Date | null;
+  createdBy: { id: number; name: string };
+}
+
+function unifyNewsItem(item: Awaited<ReturnType<typeof getContentBySlug>>): NewsItem | null {
+  if (!item) return null;
+  return {
+    ...item,
+    type: item.contentType,
+  };
+}
+
+export async function getUnifiedNewsItems(opts: ContentListOptions = {}) {
+  const items = await getContent(opts);
+  return items.map((item) => ({
+    ...item,
+    type: item.contentType,
+  })) as NewsItem[];
+}
+
+export async function getUnifiedNewsBySlug(slug: string) {
+  const item = await getContentBySlug(slug);
+  return unifyNewsItem(item);
+}
+
+export function getTagFromType(type: CmsContentType) {
+  switch (type) {
+    case "blog":
+      return "Blog";
+    case "press_briefing":
+    case "announcement":
+      return "Press Release";
+    case "news":
+    case "video":
+    default:
+      return "News";
+  }
+}
+
+export async function getContentById(id: number) {
+  const prisma = getPrismaClient();
+  return prisma.cmsContent.findUnique({
+    where: { id },
+    include: { createdBy: { select: { id: true, name: true } } },
+  });
+}
+
+function normalizeNullableStringField(value: unknown): string | null {
+  if (typeof value === "string") {
+    return value || null;
+  }
+  if (value && typeof value === "object" && "url" in value) {
+    const maybeUrl = (value as { url?: unknown }).url;
+    return typeof maybeUrl === "string" ? maybeUrl || null : null;
+  }
+  return null;
+}
+
+export async function createContent(data: {
+  title: string;
+  slug: string;
+  excerpt: string;
+  richContent: string;
+  coverImage?: string | null;
+  videoUrl?: string | null;
+  videoDuration?: number | null;
+  contentType: CmsContentType;
+  region: ContentRegion;
+  level?: "national" | "regional";
+  status: ContentStatus;
+  createdById: number;
+}) {
+  const prisma = getPrismaClient();
+  return prisma.cmsContent.create({
+    data: {
+      ...data,
+      coverImage: normalizeNullableStringField(data.coverImage),
+      videoUrl: normalizeNullableStringField(data.videoUrl),
+      level: data.level ?? "national",
+      publishedAt: data.status === "published" ? new Date() : null,
+      updatedById: data.createdById,
+    },
+    include: { createdBy: { select: { id: true, name: true } } },
+  });
+}
+
+export async function updateContent(
+  id: number,
+  data: Partial<{
+    title: string;
+    slug: string;
+    excerpt: string;
+    richContent: string;
+    coverImage?: string | null;
+    videoUrl?: string | null;
+    videoDuration?: number | null;
+    region: ContentRegion;
+    level: "national" | "regional";
+    status: ContentStatus;
+  }>,
+  updatedById: number
+) {
+  const prisma = getPrismaClient();
+  const existing = await prisma.cmsContent.findUnique({ where: { id } });
+  const wasPublished = existing?.status !== "published" && data.status === "published";
+
+  const normalizedData = {
+    ...data,
+    coverImage: normalizeNullableStringField(data.coverImage),
+    videoUrl: normalizeNullableStringField(data.videoUrl),
+  };
+
+  return prisma.cmsContent.update({
+    where: { id },
+    data: {
+      ...normalizedData,
+      updatedById,
+      ...(wasPublished ? { publishedAt: new Date() } : {}),
+      updatedAt: new Date(),
+    },
+    include: { createdBy: { select: { id: true, name: true } } },
+  });
+}
+
+export async function deleteContent(id: number) {
+  const prisma = getPrismaClient();
+  await prisma.cmsContent.delete({ where: { id } });
+}
+
+// ─── Convenience wrappers (used by public-facing website pages) ─────────────
+// These keep public page imports simple — they just call getContent with a filter.
+
+export function getNews(opts: ListOptions = {}) {
+  return getContent({ ...opts, contentType: "news" });
+}
+
+export function getAnnouncements(opts: ListOptions = {}) {
+  return getContent({ ...opts, contentType: "announcement" });
+}
+
+export function getBlogs(opts: ListOptions = {}) {
+  return getContent({ ...opts, contentType: "blog" });
+}
+
+export function getPressBriefings(opts: ListOptions = {}) {
+  return getContent({ ...opts, contentType: "press_briefing" });
+}
+
+export function getVideos(opts: ListOptions = {}) {
+  return getContent({ ...opts, contentType: "video" });
 }
 
 export async function getNewsBySlug(slug: string) {
-  const prisma = getPrismaClient();
-  return prisma.cmsNews.findFirst({
-    where: { slug, status: "published" },
-    include: { createdBy: { select: { name: true } } },
-  });
-}
-
-export async function getNewsById(id: number) {
-  const prisma = getPrismaClient();
-  return prisma.cmsNews.findUnique({
-    where: { id },
-    include: { createdBy: { select: { name: true } } },
-  });
-}
-
-export async function createNews(data: {
-  title: string; slug: string; excerpt: string; richContent: string;
-  coverImage?: string | null; region: ContentRegion; status: ContentStatus;
-  createdById: number;
-}) {
-  const prisma = getPrismaClient();
-  return prisma.cmsNews.create({
-    data: {
-      ...data,
-      publishedAt: data.status === "published" ? new Date() : null,
-      updatedById: data.createdById,
-    },
-  });
-}
-
-export async function updateNews(id: number, data: Partial<{
-  title: string; slug: string; excerpt: string; richContent: string;
-  coverImage: string | null; region: ContentRegion; status: ContentStatus;
-}>, updatedById: number) {
-  const prisma = getPrismaClient();
-  const existing = await prisma.cmsNews.findUnique({ where: { id } });
-  const wasPublished = existing?.status !== "published" && data.status === "published";
-  return prisma.cmsNews.update({
-    where: { id },
-    data: {
-      ...data,
-      updatedById,
-      ...(wasPublished ? { publishedAt: new Date() } : {}),
-      updatedAt: new Date(),
-    },
-  });
-}
-
-export async function deleteNews(id: number) {
-  const prisma = getPrismaClient();
-  await prisma.cmsNews.delete({ where: { id } });
-}
-
-// ─── Announcements ─────────────────────────────────────────────────────────
-export async function getAnnouncements(opts: ListOptions = {}) {
-  const prisma = getPrismaClient();
-  const where: Record<string, unknown> = {};
-  if (opts.region && opts.region !== "all") where.region = opts.region;
-  where.status = opts.status && opts.status !== "all" ? opts.status : "published";
-
-  return prisma.cmsAnnouncement.findMany({
-    where,
-    include: { createdBy: { select: { id: true, name: true } } },
-    orderBy: { publishedAt: "desc" },
-    take: opts.limit ?? 50,
-    skip: opts.skip ?? 0,
-  });
-}
-
-export async function getAnnouncementById(id: number) {
-  const prisma = getPrismaClient();
-  return prisma.cmsAnnouncement.findUnique({
-    where: { id },
-    include: { createdBy: { select: { name: true } } },
-  });
-}
-
-export async function createAnnouncement(data: {
-  title: string; slug: string; excerpt: string; richContent: string;
-  coverImage?: string | null; region: ContentRegion; status: ContentStatus;
-  createdById: number;
-}) {
-  const prisma = getPrismaClient();
-  return prisma.cmsAnnouncement.create({
-    data: {
-      ...data,
-      publishedAt: data.status === "published" ? new Date() : null,
-      updatedById: data.createdById,
-    },
-  });
-}
-
-export async function updateAnnouncement(id: number, data: Partial<{
-  title: string; slug: string; excerpt: string; richContent: string;
-  coverImage: string | null; region: ContentRegion; status: ContentStatus;
-}>, updatedById: number) {
-  const prisma = getPrismaClient();
-  const existing = await prisma.cmsAnnouncement.findUnique({ where: { id } });
-  const wasPublished = existing?.status !== "published" && data.status === "published";
-  return prisma.cmsAnnouncement.update({
-    where: { id },
-    data: {
-      ...data,
-      updatedById,
-      ...(wasPublished ? { publishedAt: new Date() } : {}),
-      updatedAt: new Date(),
-    },
-  });
-}
-
-export async function deleteAnnouncement(id: number) {
-  const prisma = getPrismaClient();
-  await prisma.cmsAnnouncement.delete({ where: { id } });
-}
-
-// ─── Blogs ─────────────────────────────────────────────────────────────────
-export async function getBlogs(opts: ListOptions = {}) {
-  const prisma = getPrismaClient();
-  const where: Record<string, unknown> = {};
-  if (opts.region && opts.region !== "all") where.region = opts.region;
-  where.status = opts.status && opts.status !== "all" ? opts.status : "published";
-
-  return prisma.cmsBlog.findMany({
-    where,
-    include: { createdBy: { select: { id: true, name: true } } },
-    orderBy: { publishedAt: "desc" },
-    take: opts.limit ?? 50,
-    skip: opts.skip ?? 0,
-  });
-}
-
-export async function getBlogById(id: number) {
-  const prisma = getPrismaClient();
-  return prisma.cmsBlog.findUnique({
-    where: { id },
-    include: { createdBy: { select: { name: true } } },
-  });
-}
-
-export async function getBlogBySlug(slug: string) {
-  const prisma = getPrismaClient();
-  return prisma.cmsBlog.findFirst({
-    where: { slug, status: "published" },
-    include: { createdBy: { select: { name: true } } },
-  });
-}
-
-export async function createBlog(data: {
-  title: string; slug: string; excerpt: string; richContent: string;
-  coverImage?: string | null; region: ContentRegion; status: ContentStatus;
-  createdById: number;
-}) {
-  const prisma = getPrismaClient();
-  return prisma.cmsBlog.create({
-    data: {
-      ...data,
-      publishedAt: data.status === "published" ? new Date() : null,
-      updatedById: data.createdById,
-    },
-  });
-}
-
-export async function updateBlog(id: number, data: Partial<{
-  title: string; slug: string; excerpt: string; richContent: string;
-  coverImage: string | null; region: ContentRegion; status: ContentStatus;
-}>, updatedById: number) {
-  const prisma = getPrismaClient();
-  const existing = await prisma.cmsBlog.findUnique({ where: { id } });
-  const wasPublished = existing?.status !== "published" && data.status === "published";
-  return prisma.cmsBlog.update({
-    where: { id },
-    data: {
-      ...data,
-      updatedById,
-      ...(wasPublished ? { publishedAt: new Date() } : {}),
-      updatedAt: new Date(),
-    },
-  });
-}
-
-export async function deleteBlog(id: number) {
-  const prisma = getPrismaClient();
-  await prisma.cmsBlog.delete({ where: { id } });
-}
-
-// ─── Press Briefings ───────────────────────────────────────────────────────
-export async function getPressBriefings(opts: ListOptions = {}) {
-  const prisma = getPrismaClient();
-  const where: Record<string, unknown> = {};
-  if (opts.region && opts.region !== "all") where.region = opts.region;
-  where.status = opts.status && opts.status !== "all" ? opts.status : "published";
-
-  return prisma.cmsPressBreifing.findMany({
-    where,
-    include: { createdBy: { select: { id: true, name: true } } },
-    orderBy: { publishedAt: "desc" },
-    take: opts.limit ?? 50,
-    skip: opts.skip ?? 0,
-  });
-}
-
-export async function getPressBriefingById(id: number) {
-  const prisma = getPrismaClient();
-  return prisma.cmsPressBreifing.findUnique({
-    where: { id },
-    include: { createdBy: { select: { name: true } } },
-  });
-}
-
-export async function createPressBriefing(data: {
-  title: string; slug: string; excerpt: string; richContent: string;
-  coverImage?: string | null; region: ContentRegion; status: ContentStatus;
-  createdById: number;
-}) {
-  const prisma = getPrismaClient();
-  return prisma.cmsPressBreifing.create({
-    data: {
-      ...data,
-      publishedAt: data.status === "published" ? new Date() : null,
-      updatedById: data.createdById,
-    },
-  });
-}
-
-export async function updatePressBriefing(id: number, data: Partial<{
-  title: string; slug: string; excerpt: string; richContent: string;
-  coverImage: string | null; region: ContentRegion; status: ContentStatus;
-}>, updatedById: number) {
-  const prisma = getPrismaClient();
-  const existing = await prisma.cmsPressBreifing.findUnique({ where: { id } });
-  const wasPublished = existing?.status !== "published" && data.status === "published";
-  return prisma.cmsPressBreifing.update({
-    where: { id },
-    data: {
-      ...data,
-      updatedById,
-      ...(wasPublished ? { publishedAt: new Date() } : {}),
-      updatedAt: new Date(),
-    },
-  });
-}
-
-export async function deletePressBriefing(id: number) {
-  const prisma = getPrismaClient();
-  await prisma.cmsPressBreifing.delete({ where: { id } });
-}
-
-// ─── Videos ────────────────────────────────────────────────────────────────
-export async function getVideos(opts: ListOptions = {}) {
-  const prisma = getPrismaClient();
-  const where: Record<string, unknown> = {};
-  if (opts.region && opts.region !== "all") where.region = opts.region;
-  where.status = opts.status && opts.status !== "all" ? opts.status : "published";
-
-  return prisma.cmsVideo.findMany({
-    where,
-    include: { createdBy: { select: { id: true, name: true } } },
-    orderBy: { publishedAt: "desc" },
-    take: opts.limit ?? 50,
-    skip: opts.skip ?? 0,
-  });
-}
-
-export async function getVideoById(id: number) {
-  const prisma = getPrismaClient();
-  return prisma.cmsVideo.findUnique({
-    where: { id },
-    include: { createdBy: { select: { name: true } } },
-  });
-}
-
-export async function createVideo(data: {
-  title: string; slug: string; excerpt: string; richContent: string;
-  coverImage?: string | null; videoUrl: string; videoDuration?: number | null;
-  region: ContentRegion; status: ContentStatus; createdById: number;
-}) {
-  const prisma = getPrismaClient();
-  return prisma.cmsVideo.create({
-    data: {
-      ...data,
-      publishedAt: data.status === "published" ? new Date() : null,
-      updatedById: data.createdById,
-    },
-  });
-}
-
-export async function updateVideo(id: number, data: Partial<{
-  title: string; slug: string; excerpt: string; richContent: string;
-  coverImage: string | null; videoUrl: string; videoDuration: number | null;
-  region: ContentRegion; status: ContentStatus;
-}>, updatedById: number) {
-  const prisma = getPrismaClient();
-  const existing = await prisma.cmsVideo.findUnique({ where: { id } });
-  const wasPublished = existing?.status !== "published" && data.status === "published";
-  return prisma.cmsVideo.update({
-    where: { id },
-    data: {
-      ...data,
-      updatedById,
-      ...(wasPublished ? { publishedAt: new Date() } : {}),
-      updatedAt: new Date(),
-    },
-  });
-}
-
-export async function deleteVideo(id: number) {
-  const prisma = getPrismaClient();
-  await prisma.cmsVideo.delete({ where: { id } });
+  return getContentBySlug(slug);
 }
 
 // ─── Team Members ──────────────────────────────────────────────────────────
+
 export interface TeamMember {
   id: number;
   name: string;
@@ -347,14 +230,16 @@ export interface TeamMember {
   joined?: string | null;
   avatar: string | null;
   focus: string;
-  teamType: 'management' | 'board';
+  teamType: "management" | "board";
   region: ContentRegion | null;
   status: ContentStatus;
   publishedAt: string | null;
   createdBy: { name: string };
 }
 
-export async function getTeamMembers(opts: ListOptions & { type?: 'management' | 'board' | 'all' } = {}) {
+export async function getTeamMembers(
+  opts: ListOptions & { type?: "management" | "board" | "all" } = {}
+) {
   const prisma = getPrismaClient();
   const where: Record<string, unknown> = {};
   if (opts.region && opts.region !== "all") where.region = opts.region;
@@ -368,7 +253,6 @@ export async function getTeamMembers(opts: ListOptions & { type?: 'management' |
     take: opts.limit ?? 50,
     skip: opts.skip ?? 0,
   });
-
   return data as TeamMember[];
 }
 
@@ -385,9 +269,9 @@ export async function createTeamMember(data: {
   slug: string;
   role: string;
   joined?: string | null;
-  avatar?: { url: string | null } | null;
+  avatar?: string | null;
   focus: string;
-  teamType: 'management' | 'board';
+  teamType: "management" | "board";
   region?: ContentRegion | null;
   status: ContentStatus;
   createdById: number;
@@ -396,23 +280,26 @@ export async function createTeamMember(data: {
   return prisma.cmsTeamMember.create({
     data: {
       ...data,
-      avatar: data.avatar?.url === "" ? null : data.avatar?.url,
       publishedAt: data.status === "published" ? new Date() : null,
       updatedById: data.createdById,
     },
   });
 }
 
-export async function updateTeamMember(id: number, data: Partial<{
-  name: string;
-  role: string;
-  joined: string | null;
-  avatar: { url: string | null };
-  focus: string;
-  teamType: 'management' | 'board';
-  region: ContentRegion | null;
-  status: ContentStatus;
-}>, updatedById: number) {
+export async function updateTeamMember(
+  id: number,
+  data: Partial<{
+    name: string;
+    role: string;
+    joined: string | null;
+    avatar: string | null;
+    focus: string;
+    teamType: "management" | "board";
+    region: ContentRegion | null;
+    status: ContentStatus;
+  }>,
+  updatedById: number
+) {
   const prisma = getPrismaClient();
   const existing = await prisma.cmsTeamMember.findUnique({ where: { id } });
   const wasPublished = existing?.status !== "published" && data.status === "published";
@@ -420,7 +307,6 @@ export async function updateTeamMember(id: number, data: Partial<{
     where: { id },
     data: {
       ...data,
-      avatar: data.avatar?.url === "" ? null : data.avatar?.url,
       updatedById,
       ...(wasPublished ? { publishedAt: new Date() } : {}),
       updatedAt: new Date(),
@@ -434,12 +320,13 @@ export async function deleteTeamMember(id: number) {
 }
 
 // ─── Media Items ───────────────────────────────────────────────────────────
+
 export interface MediaItem {
   id: number;
   title: string;
   slug: string;
   description: string | null;
-  mediaType: 'gallery' | 'document';
+  mediaType: "gallery" | "document";
   fileUrl: string;
   coverImage: string | null;
   region: ContentRegion | null;
@@ -448,7 +335,9 @@ export interface MediaItem {
   createdBy: { name: string };
 }
 
-export async function getMediaItems(opts: ListOptions & { type?: 'gallery' | 'document' | 'all' } = {}) {
+export async function getMediaItems(
+  opts: ListOptions & { type?: "gallery" | "document" | "all" } = {}
+) {
   const prisma = getPrismaClient();
   const where: Record<string, unknown> = {};
   if (opts.region && opts.region !== "all") where.region = opts.region;
@@ -462,7 +351,6 @@ export async function getMediaItems(opts: ListOptions & { type?: 'gallery' | 'do
     take: opts.limit ?? 50,
     skip: opts.skip ?? 0,
   });
-
   return data as MediaItem[];
 }
 
@@ -478,7 +366,7 @@ export async function createMediaItem(data: {
   title: string;
   slug: string;
   description?: string | null;
-  mediaType: 'gallery' | 'document';
+  mediaType: "gallery" | "document";
   fileUrl: string;
   coverImage?: string | null;
   region?: ContentRegion | null;
@@ -495,16 +383,20 @@ export async function createMediaItem(data: {
   });
 }
 
-export async function updateMediaItem(id: number, data: Partial<{
-  title: string;
-  slug: string;
-  description: string | null;
-  mediaType: 'gallery' | 'document';
-  fileUrl: string;
-  coverImage: string | null;
-  region: ContentRegion | null;
-  status: ContentStatus;
-}>, updatedById: number) {
+export async function updateMediaItem(
+  id: number,
+  data: Partial<{
+    title: string;
+    slug: string;
+    description: string | null;
+    mediaType: "gallery" | "document";
+    fileUrl: string;
+    coverImage: string | null;
+    region: ContentRegion | null;
+    status: ContentStatus;
+  }>,
+  updatedById: number
+) {
   const prisma = getPrismaClient();
   const existing = await prisma.cmsMediaItem.findUnique({ where: { id } });
   const wasPublished = existing?.status !== "published" && data.status === "published";
@@ -524,7 +416,8 @@ export async function deleteMediaItem(id: number) {
   await prisma.cmsMediaItem.delete({ where: { id } });
 }
 
-// ─── Hero Slides ───────────────────────────────────────────────────────────
+// ─── Hero Slides (stored as a JSON blob in CmsContent) ─────────────────────
+
 export interface HeroSlide {
   id: string;
   label: string;
@@ -545,8 +438,8 @@ export async function getHeroSlides(): Promise<HeroSlide[]> {
   const prisma = getPrismaClient();
   try {
     const record = await prisma.cmsContent.findUnique({ where: { slug: HERO_SLUG } });
-    if (!record?.body) return [];
-    const slides: HeroSlide[] = JSON.parse(record.body);
+    if (!record?.richContent) return [];
+    const slides: HeroSlide[] = JSON.parse(record.richContent);
     return slides.filter((s) => s.active).sort((a, b) => a.order - b.order);
   } catch {
     return [];
@@ -560,7 +453,7 @@ export async function saveHeroSlides(slides: HeroSlide[], userId: number) {
   if (existing) {
     await prisma.cmsContent.update({
       where: { slug: HERO_SLUG },
-      data: { body, updatedById: userId },
+      data: { richContent: body, updatedById: userId },
     });
   } else {
     await prisma.cmsContent.create({
@@ -568,9 +461,9 @@ export async function saveHeroSlides(slides: HeroSlide[], userId: number) {
         title: "Hero Slides Configuration",
         slug: HERO_SLUG,
         contentType: "blog",
-        category: "announcement",
+        region: "national",
         level: "national",
-        body,
+        richContent: body,
         createdById: userId,
         updatedById: userId,
       },

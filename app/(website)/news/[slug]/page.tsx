@@ -1,122 +1,107 @@
-"use client";
 import Image from 'next/image';
 import Link from 'next/link';
-import { useQuery } from '@tanstack/react-query';
-import { formatDate } from "@/lib/cms/utils";
-import { BeatLoader } from "react-spinners";
+import { notFound } from 'next/navigation';
+import { getUnifiedNewsBySlug, getTagFromType, NewsItem } from '@/lib/cms/service';
+import { initCms } from '@/lib/cms/init';
 
-interface NewsItem {
-  id: number;
-  title: string;
-  slug: string;
-  excerpt: string;
-  richContent: string;
-  coverImage: string | null;
-  region: string;
-  status: PublishStatus;
-  publishedAt: string;
-  createdBy: {
-    name: string;
-  };
-}
+export const dynamic = 'force-dynamic';
 
-type PublishStatus = 'draft' | 'published' | 'archived';
-
-interface PageProps {
+interface Props {
   params: { slug: string };
 }
 
-export default function NewsSlugPage({ params }: PageProps) {
-  const { slug } = params;
-
-  const { data: news, isLoading, error } = useQuery({
-    queryKey: ['news', slug],
-    queryFn: async () => {
-      const response = await fetch(`/api/cms/news/${slug}`);
-      if (!response.ok) throw new Error('News not found');
-      const data = await response.json();
-      return data as NewsItem;
-    },
-  });
-
-  if (isLoading) {
-    return (
-      <main className="min-h-screen bg-[#f7f3ea] pt-0.5">
-        <div className="max-w-4xl mx-auto px-6 py-20 text-center">
-          <BeatLoader
-            color="#1a2e1a"
-            loading={true}
-           className='mb-2'
-          />
-          <p>Loading news...</p>
-        </div>
-      </main>
-    );
+export default async function NewsDetailPage({ params }: Props) {
+  const resolvedParams = await params;
+  await initCms();
+  
+  const item = await getUnifiedNewsBySlug(resolvedParams.slug);
+  
+  if (!item) {
+    notFound();
   }
 
-  if (error || !news) {
-    return (
-      <main className="min-h-screen bg-[#f7f3ea] pt-0.5">
-        <div className="max-w-4xl mx-auto px-6 py-20 text-center">
-          <h1 className="text-3xl font-bold text-slate-900 mb-4">News not found</h1>
-          <Link href="/news" className="text-green-600 hover:text-green-700 font-semibold">
-            ← Back to Newsroom
-          </Link>
-        </div>
-      </main>
-    );
-  }
+  const tag = getTagFromType(item.type);
+  const dateStr = item.publishedAt ? new Date(item.publishedAt).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }) : '';
+
+  const fallbackImage = '/our-work/work1.avif';
 
   return (
-    <main className="min-h-screen bg-[#f7f3ea] pt-0.5">
-      {/* Hero Cover */}
-      {news.coverImage && (
-        <div className="relative h-96 md:h-[500px]">
+    <article className="bg-[#f7f3ea] min-h-screen">
+      {/* Hero */}
+      <section className="relative">
+        <div className="relative h-[60vh] md:h-[70vh] overflow-hidden">
           <Image
-            src={news.coverImage}
-            alt={news.title}
+            src={item.coverImage || fallbackImage}
+            alt={item.title}
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/40" />
         </div>
-      )}
-
-      <article className="max-w-4xl mx-auto px-6 md:px-8 pb-24 md:pb-32">
-        {/* Meta */}
-        <div className="flex flex-wrap items-center gap-4 text-sm text-[#6a7a6a] mb-6 pt-8">
-          <span>YASCON-{news.region.toUpperCase()}</span>
-          <span>•</span>
-          <time>{formatDate(news.publishedAt)}</time>
+        
+        <div className="absolute bottom-8 left-6 md:left-12 max-w-4xl">
+          <span className="inline-flex items-center px-3 py-1 text-xs font-bold uppercase tracking-wide rounded-sm bg-white/90 backdrop-blur-sm text-[#1a2e1a]">
+            {tag}
+          </span>
+          <h1 className="text-3xl md:text-5xl font-bold text-white mt-4 leading-tight">
+            {item.title}
+          </h1>
+          <div className="text-white/90 mt-2 text-sm md:text-base flex flex-col sm:flex-row gap-4 sm:items-center">
+            <span>By {item.createdBy.name}</span>
+            {dateStr && <span>{dateStr}</span>}
+            {item.region && <span className="capitalize">— {item.region.replace('_', ' ')}</span>}
+          </div>
         </div>
+      </section>
 
-        {/* Title */}
-        <h1 className="text-4xl md:text-5xl font-bold text-[#1a2e1a] leading-tight mb-6">
-          {news.title}
-        </h1>
+      <div className="max-w-4xl mx-auto px-6 md:px-12 py-16 md:py-24">
+        {/* Back button */}
+        <Link
+          href="/news"
+          className="inline-flex items-center gap-2 text-green-700 hover:text-green-800 font-semibold mb-12 group"
+        >
+          <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Newsroom
+        </Link>
 
         {/* Excerpt */}
-        <p className="text-xl text-[#4a5a4a] mb-12 leading-relaxed max-w-3xl">
-          {news.excerpt}
+        <p className="text-xl md:text-2xl text-[#4a5a4a] italic leading-relaxed mb-12 max-w-3xl">
+          {item.excerpt}
         </p>
 
-        {/* Rich Content */}
+        {/* Full content */}
         <div 
-          className="prose prose-headings:text-[#1a2e1a] prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-p:text-lg prose-a:text-green-700 prose-strong:font-semibold prose-blockquote:border-l-green-600 prose-blockquote:text-slate-700 max-w-none"
-          dangerouslySetInnerHTML={{ __html: news.richContent }} 
+          className="prose prose-lg max-w-none prose-headings:text-[#1a2e1a] prose-headings:font-bold prose-a:text-green-700 hover:prose-a:text-green-800 prose-strong:text-[#1a2e1a] prose-blockquote:border-l-green-600 prose-blockquote:text-[#4a5a4a]"
+          dangerouslySetInnerHTML={{ __html: item.richContent || '<p>No content available.</p>' }}
         />
 
-        {/* Back Link */}
-        <div className="mt-16 pt-12 border-t border-[#ede8d8]">
-          <Link
-            href="/news"
-            className="inline-flex items-center gap-2 text-green-700 hover:text-green-800 font-semibold text-lg"
-          >
-            ← Back to Newsroom
-          </Link>
+        {/* Meta footer */}
+        <div className="mt-16 pt-12 border-t border-[#ede8d8] flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-sm text-[#6a7a6a]">
+          <div className="flex items-center gap-2">
+            <span>Published: {dateStr || 'Draft'}</span>
+            {item.region && (
+              <>
+                <span>•</span>
+                <span className="capitalize">{item.region.replace('_', ' ')}</span>
+              </>
+            )}
+          </div>
+          <div className="flex items-center gap-4">
+            <span>By {item.createdBy.name}</span>
+            <Link href="/news" className="text-green-700 hover:text-green-800 font-semibold">
+              ← See all stories
+            </Link>
+          </div>
         </div>
-      </article>
-    </main>
+      </div>
+    </article>
   );
 }
+

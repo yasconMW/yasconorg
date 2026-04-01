@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
 import { initCms } from "@/lib/cms/init";
 import { getSessionUserFromRequest } from "@/lib/cms/auth";
 import { canCreateOrEditContent } from "@/lib/cms/permissions";
@@ -9,12 +8,6 @@ import {
   deleteContent 
 } from "@/lib/cms/service";
 import type { ContentStatus } from "@/lib/cms/service";
-
-const CONTENT_PAGES = [
-  "/news",
-  "/",
-  "/about/our-story",
-];
 
 export async function GET(
   req: NextRequest,
@@ -63,9 +56,7 @@ export async function PATCH(
     const body = await req.json();
     const updatedContent = await updateContent(contentId, body, user.id);
 
-    CONTENT_PAGES.forEach((p) => revalidatePath(p));
-
-    return NextResponse.json(updatedContent);
+    return NextResponse.json(updatedContent, { status: 200 });
   } catch (error) {
     const msg = error instanceof Error ? error.message : "Failed to update content";
     console.error("Content PATCH error:", error);
@@ -93,9 +84,7 @@ export async function DELETE(
 
     await deleteContent(contentId);
 
-    CONTENT_PAGES.forEach((p) => revalidatePath(p));
-
-    return NextResponse.json({ message: "Content deleted successfully" });
+    return NextResponse.json({ message: "Content deleted successfully" }, { status: 200 });
   } catch (error) {
     const msg = error instanceof Error ? error.message : "Failed to delete content";
     console.error("Content DELETE error:", error);

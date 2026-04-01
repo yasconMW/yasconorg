@@ -1,13 +1,15 @@
 import { redirect } from "next/navigation";
-import { getCurrentDashboardUser } from "@/lib/cms/auth";
 import CmsClient from "./CmsClient";
+import { getCurrentUserServerOnly } from "@/lib/cms/auth";
+import type { CmsUserRecord } from "@/lib/cms/constants";
 
 export default async function CmsDashboardPage() {
-  const user = await getCurrentDashboardUser();
-  if (!user) {
+  const initialUser = await getCurrentUserServerOnly();
+
+  if (!initialUser) {
     redirect("/dashboard/login");
   }
 
-  return <CmsClient initialUser={user} />;
+  return <CmsClient initialUser={initialUser} />;
 }
 

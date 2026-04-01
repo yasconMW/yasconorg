@@ -29,31 +29,6 @@ export type CmsSession = $Result.DefaultSelection<Prisma.$CmsSessionPayload>
  */
 export type CmsContent = $Result.DefaultSelection<Prisma.$CmsContentPayload>
 /**
- * Model CmsAnnouncement
- * 
- */
-export type CmsAnnouncement = $Result.DefaultSelection<Prisma.$CmsAnnouncementPayload>
-/**
- * Model CmsNews
- * 
- */
-export type CmsNews = $Result.DefaultSelection<Prisma.$CmsNewsPayload>
-/**
- * Model CmsPressBreifing
- * 
- */
-export type CmsPressBreifing = $Result.DefaultSelection<Prisma.$CmsPressBreifingPayload>
-/**
- * Model CmsVideo
- * 
- */
-export type CmsVideo = $Result.DefaultSelection<Prisma.$CmsVideoPayload>
-/**
- * Model CmsBlog
- * 
- */
-export type CmsBlog = $Result.DefaultSelection<Prisma.$CmsBlogPayload>
-/**
  * Model CmsTeamMember
  * 
  */
@@ -96,26 +71,14 @@ export type CmsLevel = (typeof CmsLevel)[keyof typeof CmsLevel]
 
 
 export const CmsContentType: {
-  blog: 'blog',
   news: 'news',
   announcement: 'announcement',
   press_briefing: 'press_briefing',
+  blog: 'blog',
   video: 'video'
 };
 
 export type CmsContentType = (typeof CmsContentType)[keyof typeof CmsContentType]
-
-
-export const CmsCategory: {
-  news: 'news',
-  impact: 'impact',
-  press_release: 'press_release',
-  announcement: 'announcement',
-  video: 'video',
-  blog: 'blog'
-};
-
-export type CmsCategory = (typeof CmsCategory)[keyof typeof CmsCategory]
 
 
 export const PublishStatus: {
@@ -159,10 +122,6 @@ export const CmsLevel: typeof $Enums.CmsLevel
 export type CmsContentType = $Enums.CmsContentType
 
 export const CmsContentType: typeof $Enums.CmsContentType
-
-export type CmsCategory = $Enums.CmsCategory
-
-export const CmsCategory: typeof $Enums.CmsCategory
 
 export type PublishStatus = $Enums.PublishStatus
 
@@ -326,56 +285,6 @@ export class PrismaClient<
     * ```
     */
   get cmsContent(): Prisma.CmsContentDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.cmsAnnouncement`: Exposes CRUD operations for the **CmsAnnouncement** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more CmsAnnouncements
-    * const cmsAnnouncements = await prisma.cmsAnnouncement.findMany()
-    * ```
-    */
-  get cmsAnnouncement(): Prisma.CmsAnnouncementDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.cmsNews`: Exposes CRUD operations for the **CmsNews** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more CmsNews
-    * const cmsNews = await prisma.cmsNews.findMany()
-    * ```
-    */
-  get cmsNews(): Prisma.CmsNewsDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.cmsPressBreifing`: Exposes CRUD operations for the **CmsPressBreifing** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more CmsPressBreifings
-    * const cmsPressBreifings = await prisma.cmsPressBreifing.findMany()
-    * ```
-    */
-  get cmsPressBreifing(): Prisma.CmsPressBreifingDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.cmsVideo`: Exposes CRUD operations for the **CmsVideo** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more CmsVideos
-    * const cmsVideos = await prisma.cmsVideo.findMany()
-    * ```
-    */
-  get cmsVideo(): Prisma.CmsVideoDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.cmsBlog`: Exposes CRUD operations for the **CmsBlog** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more CmsBlogs
-    * const cmsBlogs = await prisma.cmsBlog.findMany()
-    * ```
-    */
-  get cmsBlog(): Prisma.CmsBlogDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.cmsTeamMember`: Exposes CRUD operations for the **CmsTeamMember** model.
@@ -833,11 +742,6 @@ export namespace Prisma {
     CmsUser: 'CmsUser',
     CmsSession: 'CmsSession',
     CmsContent: 'CmsContent',
-    CmsAnnouncement: 'CmsAnnouncement',
-    CmsNews: 'CmsNews',
-    CmsPressBreifing: 'CmsPressBreifing',
-    CmsVideo: 'CmsVideo',
-    CmsBlog: 'CmsBlog',
     CmsTeamMember: 'CmsTeamMember',
     CmsMediaItem: 'CmsMediaItem'
   };
@@ -855,7 +759,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "cmsUser" | "cmsSession" | "cmsContent" | "cmsAnnouncement" | "cmsNews" | "cmsPressBreifing" | "cmsVideo" | "cmsBlog" | "cmsTeamMember" | "cmsMediaItem"
+      modelProps: "cmsUser" | "cmsSession" | "cmsContent" | "cmsTeamMember" | "cmsMediaItem"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1078,376 +982,6 @@ export namespace Prisma {
           count: {
             args: Prisma.CmsContentCountArgs<ExtArgs>
             result: $Utils.Optional<CmsContentCountAggregateOutputType> | number
-          }
-        }
-      }
-      CmsAnnouncement: {
-        payload: Prisma.$CmsAnnouncementPayload<ExtArgs>
-        fields: Prisma.CmsAnnouncementFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.CmsAnnouncementFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsAnnouncementPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.CmsAnnouncementFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsAnnouncementPayload>
-          }
-          findFirst: {
-            args: Prisma.CmsAnnouncementFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsAnnouncementPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.CmsAnnouncementFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsAnnouncementPayload>
-          }
-          findMany: {
-            args: Prisma.CmsAnnouncementFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsAnnouncementPayload>[]
-          }
-          create: {
-            args: Prisma.CmsAnnouncementCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsAnnouncementPayload>
-          }
-          createMany: {
-            args: Prisma.CmsAnnouncementCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.CmsAnnouncementCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsAnnouncementPayload>[]
-          }
-          delete: {
-            args: Prisma.CmsAnnouncementDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsAnnouncementPayload>
-          }
-          update: {
-            args: Prisma.CmsAnnouncementUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsAnnouncementPayload>
-          }
-          deleteMany: {
-            args: Prisma.CmsAnnouncementDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.CmsAnnouncementUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.CmsAnnouncementUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsAnnouncementPayload>[]
-          }
-          upsert: {
-            args: Prisma.CmsAnnouncementUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsAnnouncementPayload>
-          }
-          aggregate: {
-            args: Prisma.CmsAnnouncementAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateCmsAnnouncement>
-          }
-          groupBy: {
-            args: Prisma.CmsAnnouncementGroupByArgs<ExtArgs>
-            result: $Utils.Optional<CmsAnnouncementGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.CmsAnnouncementCountArgs<ExtArgs>
-            result: $Utils.Optional<CmsAnnouncementCountAggregateOutputType> | number
-          }
-        }
-      }
-      CmsNews: {
-        payload: Prisma.$CmsNewsPayload<ExtArgs>
-        fields: Prisma.CmsNewsFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.CmsNewsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsNewsPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.CmsNewsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsNewsPayload>
-          }
-          findFirst: {
-            args: Prisma.CmsNewsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsNewsPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.CmsNewsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsNewsPayload>
-          }
-          findMany: {
-            args: Prisma.CmsNewsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsNewsPayload>[]
-          }
-          create: {
-            args: Prisma.CmsNewsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsNewsPayload>
-          }
-          createMany: {
-            args: Prisma.CmsNewsCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.CmsNewsCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsNewsPayload>[]
-          }
-          delete: {
-            args: Prisma.CmsNewsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsNewsPayload>
-          }
-          update: {
-            args: Prisma.CmsNewsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsNewsPayload>
-          }
-          deleteMany: {
-            args: Prisma.CmsNewsDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.CmsNewsUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.CmsNewsUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsNewsPayload>[]
-          }
-          upsert: {
-            args: Prisma.CmsNewsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsNewsPayload>
-          }
-          aggregate: {
-            args: Prisma.CmsNewsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateCmsNews>
-          }
-          groupBy: {
-            args: Prisma.CmsNewsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<CmsNewsGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.CmsNewsCountArgs<ExtArgs>
-            result: $Utils.Optional<CmsNewsCountAggregateOutputType> | number
-          }
-        }
-      }
-      CmsPressBreifing: {
-        payload: Prisma.$CmsPressBreifingPayload<ExtArgs>
-        fields: Prisma.CmsPressBreifingFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.CmsPressBreifingFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsPressBreifingPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.CmsPressBreifingFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsPressBreifingPayload>
-          }
-          findFirst: {
-            args: Prisma.CmsPressBreifingFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsPressBreifingPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.CmsPressBreifingFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsPressBreifingPayload>
-          }
-          findMany: {
-            args: Prisma.CmsPressBreifingFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsPressBreifingPayload>[]
-          }
-          create: {
-            args: Prisma.CmsPressBreifingCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsPressBreifingPayload>
-          }
-          createMany: {
-            args: Prisma.CmsPressBreifingCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.CmsPressBreifingCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsPressBreifingPayload>[]
-          }
-          delete: {
-            args: Prisma.CmsPressBreifingDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsPressBreifingPayload>
-          }
-          update: {
-            args: Prisma.CmsPressBreifingUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsPressBreifingPayload>
-          }
-          deleteMany: {
-            args: Prisma.CmsPressBreifingDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.CmsPressBreifingUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.CmsPressBreifingUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsPressBreifingPayload>[]
-          }
-          upsert: {
-            args: Prisma.CmsPressBreifingUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsPressBreifingPayload>
-          }
-          aggregate: {
-            args: Prisma.CmsPressBreifingAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateCmsPressBreifing>
-          }
-          groupBy: {
-            args: Prisma.CmsPressBreifingGroupByArgs<ExtArgs>
-            result: $Utils.Optional<CmsPressBreifingGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.CmsPressBreifingCountArgs<ExtArgs>
-            result: $Utils.Optional<CmsPressBreifingCountAggregateOutputType> | number
-          }
-        }
-      }
-      CmsVideo: {
-        payload: Prisma.$CmsVideoPayload<ExtArgs>
-        fields: Prisma.CmsVideoFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.CmsVideoFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsVideoPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.CmsVideoFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsVideoPayload>
-          }
-          findFirst: {
-            args: Prisma.CmsVideoFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsVideoPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.CmsVideoFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsVideoPayload>
-          }
-          findMany: {
-            args: Prisma.CmsVideoFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsVideoPayload>[]
-          }
-          create: {
-            args: Prisma.CmsVideoCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsVideoPayload>
-          }
-          createMany: {
-            args: Prisma.CmsVideoCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.CmsVideoCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsVideoPayload>[]
-          }
-          delete: {
-            args: Prisma.CmsVideoDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsVideoPayload>
-          }
-          update: {
-            args: Prisma.CmsVideoUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsVideoPayload>
-          }
-          deleteMany: {
-            args: Prisma.CmsVideoDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.CmsVideoUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.CmsVideoUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsVideoPayload>[]
-          }
-          upsert: {
-            args: Prisma.CmsVideoUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsVideoPayload>
-          }
-          aggregate: {
-            args: Prisma.CmsVideoAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateCmsVideo>
-          }
-          groupBy: {
-            args: Prisma.CmsVideoGroupByArgs<ExtArgs>
-            result: $Utils.Optional<CmsVideoGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.CmsVideoCountArgs<ExtArgs>
-            result: $Utils.Optional<CmsVideoCountAggregateOutputType> | number
-          }
-        }
-      }
-      CmsBlog: {
-        payload: Prisma.$CmsBlogPayload<ExtArgs>
-        fields: Prisma.CmsBlogFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.CmsBlogFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsBlogPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.CmsBlogFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsBlogPayload>
-          }
-          findFirst: {
-            args: Prisma.CmsBlogFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsBlogPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.CmsBlogFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsBlogPayload>
-          }
-          findMany: {
-            args: Prisma.CmsBlogFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsBlogPayload>[]
-          }
-          create: {
-            args: Prisma.CmsBlogCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsBlogPayload>
-          }
-          createMany: {
-            args: Prisma.CmsBlogCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.CmsBlogCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsBlogPayload>[]
-          }
-          delete: {
-            args: Prisma.CmsBlogDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsBlogPayload>
-          }
-          update: {
-            args: Prisma.CmsBlogUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsBlogPayload>
-          }
-          deleteMany: {
-            args: Prisma.CmsBlogDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.CmsBlogUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.CmsBlogUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsBlogPayload>[]
-          }
-          upsert: {
-            args: Prisma.CmsBlogUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CmsBlogPayload>
-          }
-          aggregate: {
-            args: Prisma.CmsBlogAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateCmsBlog>
-          }
-          groupBy: {
-            args: Prisma.CmsBlogGroupByArgs<ExtArgs>
-            result: $Utils.Optional<CmsBlogGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.CmsBlogCountArgs<ExtArgs>
-            result: $Utils.Optional<CmsBlogCountAggregateOutputType> | number
           }
         }
       }
@@ -1710,11 +1244,6 @@ export namespace Prisma {
     cmsUser?: CmsUserOmit
     cmsSession?: CmsSessionOmit
     cmsContent?: CmsContentOmit
-    cmsAnnouncement?: CmsAnnouncementOmit
-    cmsNews?: CmsNewsOmit
-    cmsPressBreifing?: CmsPressBreifingOmit
-    cmsVideo?: CmsVideoOmit
-    cmsBlog?: CmsBlogOmit
     cmsTeamMember?: CmsTeamMemberOmit
     cmsMediaItem?: CmsMediaItemOmit
   }
@@ -1797,19 +1326,9 @@ export namespace Prisma {
    */
 
   export type CmsUserCountOutputType = {
-    sessions: number
     createdContent: number
     updatedContent: number
-    createdAnnouncements: number
-    updatedAnnouncements: number
-    createdNews: number
-    updatedNews: number
-    createdBriefings: number
-    updatedBriefings: number
-    createdVideos: number
-    updatedVideos: number
-    createdBlogs: number
-    updatedBlogs: number
+    sessions: number
     createdTeams: number
     updatedTeams: number
     createdMedia: number
@@ -1817,19 +1336,9 @@ export namespace Prisma {
   }
 
   export type CmsUserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | CmsUserCountOutputTypeCountSessionsArgs
     createdContent?: boolean | CmsUserCountOutputTypeCountCreatedContentArgs
     updatedContent?: boolean | CmsUserCountOutputTypeCountUpdatedContentArgs
-    createdAnnouncements?: boolean | CmsUserCountOutputTypeCountCreatedAnnouncementsArgs
-    updatedAnnouncements?: boolean | CmsUserCountOutputTypeCountUpdatedAnnouncementsArgs
-    createdNews?: boolean | CmsUserCountOutputTypeCountCreatedNewsArgs
-    updatedNews?: boolean | CmsUserCountOutputTypeCountUpdatedNewsArgs
-    createdBriefings?: boolean | CmsUserCountOutputTypeCountCreatedBriefingsArgs
-    updatedBriefings?: boolean | CmsUserCountOutputTypeCountUpdatedBriefingsArgs
-    createdVideos?: boolean | CmsUserCountOutputTypeCountCreatedVideosArgs
-    updatedVideos?: boolean | CmsUserCountOutputTypeCountUpdatedVideosArgs
-    createdBlogs?: boolean | CmsUserCountOutputTypeCountCreatedBlogsArgs
-    updatedBlogs?: boolean | CmsUserCountOutputTypeCountUpdatedBlogsArgs
+    sessions?: boolean | CmsUserCountOutputTypeCountSessionsArgs
     createdTeams?: boolean | CmsUserCountOutputTypeCountCreatedTeamsArgs
     updatedTeams?: boolean | CmsUserCountOutputTypeCountUpdatedTeamsArgs
     createdMedia?: boolean | CmsUserCountOutputTypeCountCreatedMediaArgs
@@ -1850,13 +1359,6 @@ export namespace Prisma {
   /**
    * CmsUserCountOutputType without action
    */
-  export type CmsUserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsSessionWhereInput
-  }
-
-  /**
-   * CmsUserCountOutputType without action
-   */
   export type CmsUserCountOutputTypeCountCreatedContentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CmsContentWhereInput
   }
@@ -1871,71 +1373,8 @@ export namespace Prisma {
   /**
    * CmsUserCountOutputType without action
    */
-  export type CmsUserCountOutputTypeCountCreatedAnnouncementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsAnnouncementWhereInput
-  }
-
-  /**
-   * CmsUserCountOutputType without action
-   */
-  export type CmsUserCountOutputTypeCountUpdatedAnnouncementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsAnnouncementWhereInput
-  }
-
-  /**
-   * CmsUserCountOutputType without action
-   */
-  export type CmsUserCountOutputTypeCountCreatedNewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsNewsWhereInput
-  }
-
-  /**
-   * CmsUserCountOutputType without action
-   */
-  export type CmsUserCountOutputTypeCountUpdatedNewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsNewsWhereInput
-  }
-
-  /**
-   * CmsUserCountOutputType without action
-   */
-  export type CmsUserCountOutputTypeCountCreatedBriefingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsPressBreifingWhereInput
-  }
-
-  /**
-   * CmsUserCountOutputType without action
-   */
-  export type CmsUserCountOutputTypeCountUpdatedBriefingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsPressBreifingWhereInput
-  }
-
-  /**
-   * CmsUserCountOutputType without action
-   */
-  export type CmsUserCountOutputTypeCountCreatedVideosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsVideoWhereInput
-  }
-
-  /**
-   * CmsUserCountOutputType without action
-   */
-  export type CmsUserCountOutputTypeCountUpdatedVideosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsVideoWhereInput
-  }
-
-  /**
-   * CmsUserCountOutputType without action
-   */
-  export type CmsUserCountOutputTypeCountCreatedBlogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsBlogWhereInput
-  }
-
-  /**
-   * CmsUserCountOutputType without action
-   */
-  export type CmsUserCountOutputTypeCountUpdatedBlogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsBlogWhereInput
+  export type CmsUserCountOutputTypeCountSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CmsSessionWhereInput
   }
 
   /**
@@ -2185,19 +1624,9 @@ export namespace Prisma {
     role?: boolean
     region?: boolean
     createdAt?: boolean
-    sessions?: boolean | CmsUser$sessionsArgs<ExtArgs>
     createdContent?: boolean | CmsUser$createdContentArgs<ExtArgs>
     updatedContent?: boolean | CmsUser$updatedContentArgs<ExtArgs>
-    createdAnnouncements?: boolean | CmsUser$createdAnnouncementsArgs<ExtArgs>
-    updatedAnnouncements?: boolean | CmsUser$updatedAnnouncementsArgs<ExtArgs>
-    createdNews?: boolean | CmsUser$createdNewsArgs<ExtArgs>
-    updatedNews?: boolean | CmsUser$updatedNewsArgs<ExtArgs>
-    createdBriefings?: boolean | CmsUser$createdBriefingsArgs<ExtArgs>
-    updatedBriefings?: boolean | CmsUser$updatedBriefingsArgs<ExtArgs>
-    createdVideos?: boolean | CmsUser$createdVideosArgs<ExtArgs>
-    updatedVideos?: boolean | CmsUser$updatedVideosArgs<ExtArgs>
-    createdBlogs?: boolean | CmsUser$createdBlogsArgs<ExtArgs>
-    updatedBlogs?: boolean | CmsUser$updatedBlogsArgs<ExtArgs>
+    sessions?: boolean | CmsUser$sessionsArgs<ExtArgs>
     createdTeams?: boolean | CmsUser$createdTeamsArgs<ExtArgs>
     updatedTeams?: boolean | CmsUser$updatedTeamsArgs<ExtArgs>
     createdMedia?: boolean | CmsUser$createdMediaArgs<ExtArgs>
@@ -2237,19 +1666,9 @@ export namespace Prisma {
 
   export type CmsUserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "passwordHash" | "role" | "region" | "createdAt", ExtArgs["result"]["cmsUser"]>
   export type CmsUserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sessions?: boolean | CmsUser$sessionsArgs<ExtArgs>
     createdContent?: boolean | CmsUser$createdContentArgs<ExtArgs>
     updatedContent?: boolean | CmsUser$updatedContentArgs<ExtArgs>
-    createdAnnouncements?: boolean | CmsUser$createdAnnouncementsArgs<ExtArgs>
-    updatedAnnouncements?: boolean | CmsUser$updatedAnnouncementsArgs<ExtArgs>
-    createdNews?: boolean | CmsUser$createdNewsArgs<ExtArgs>
-    updatedNews?: boolean | CmsUser$updatedNewsArgs<ExtArgs>
-    createdBriefings?: boolean | CmsUser$createdBriefingsArgs<ExtArgs>
-    updatedBriefings?: boolean | CmsUser$updatedBriefingsArgs<ExtArgs>
-    createdVideos?: boolean | CmsUser$createdVideosArgs<ExtArgs>
-    updatedVideos?: boolean | CmsUser$updatedVideosArgs<ExtArgs>
-    createdBlogs?: boolean | CmsUser$createdBlogsArgs<ExtArgs>
-    updatedBlogs?: boolean | CmsUser$updatedBlogsArgs<ExtArgs>
+    sessions?: boolean | CmsUser$sessionsArgs<ExtArgs>
     createdTeams?: boolean | CmsUser$createdTeamsArgs<ExtArgs>
     updatedTeams?: boolean | CmsUser$updatedTeamsArgs<ExtArgs>
     createdMedia?: boolean | CmsUser$createdMediaArgs<ExtArgs>
@@ -2262,19 +1681,9 @@ export namespace Prisma {
   export type $CmsUserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "CmsUser"
     objects: {
-      sessions: Prisma.$CmsSessionPayload<ExtArgs>[]
       createdContent: Prisma.$CmsContentPayload<ExtArgs>[]
       updatedContent: Prisma.$CmsContentPayload<ExtArgs>[]
-      createdAnnouncements: Prisma.$CmsAnnouncementPayload<ExtArgs>[]
-      updatedAnnouncements: Prisma.$CmsAnnouncementPayload<ExtArgs>[]
-      createdNews: Prisma.$CmsNewsPayload<ExtArgs>[]
-      updatedNews: Prisma.$CmsNewsPayload<ExtArgs>[]
-      createdBriefings: Prisma.$CmsPressBreifingPayload<ExtArgs>[]
-      updatedBriefings: Prisma.$CmsPressBreifingPayload<ExtArgs>[]
-      createdVideos: Prisma.$CmsVideoPayload<ExtArgs>[]
-      updatedVideos: Prisma.$CmsVideoPayload<ExtArgs>[]
-      createdBlogs: Prisma.$CmsBlogPayload<ExtArgs>[]
-      updatedBlogs: Prisma.$CmsBlogPayload<ExtArgs>[]
+      sessions: Prisma.$CmsSessionPayload<ExtArgs>[]
       createdTeams: Prisma.$CmsTeamMemberPayload<ExtArgs>[]
       updatedTeams: Prisma.$CmsTeamMemberPayload<ExtArgs>[]
       createdMedia: Prisma.$CmsMediaItemPayload<ExtArgs>[]
@@ -2682,19 +2091,9 @@ export namespace Prisma {
    */
   export interface Prisma__CmsUserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    sessions<T extends CmsUser$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     createdContent<T extends CmsUser$createdContentArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$createdContentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsContentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     updatedContent<T extends CmsUser$updatedContentArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$updatedContentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsContentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    createdAnnouncements<T extends CmsUser$createdAnnouncementsArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$createdAnnouncementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsAnnouncementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    updatedAnnouncements<T extends CmsUser$updatedAnnouncementsArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$updatedAnnouncementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsAnnouncementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    createdNews<T extends CmsUser$createdNewsArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$createdNewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsNewsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    updatedNews<T extends CmsUser$updatedNewsArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$updatedNewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsNewsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    createdBriefings<T extends CmsUser$createdBriefingsArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$createdBriefingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsPressBreifingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    updatedBriefings<T extends CmsUser$updatedBriefingsArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$updatedBriefingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsPressBreifingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    createdVideos<T extends CmsUser$createdVideosArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$createdVideosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsVideoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    updatedVideos<T extends CmsUser$updatedVideosArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$updatedVideosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsVideoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    createdBlogs<T extends CmsUser$createdBlogsArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$createdBlogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsBlogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    updatedBlogs<T extends CmsUser$updatedBlogsArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$updatedBlogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsBlogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sessions<T extends CmsUser$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     createdTeams<T extends CmsUser$createdTeamsArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$createdTeamsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsTeamMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     updatedTeams<T extends CmsUser$updatedTeamsArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$updatedTeamsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsTeamMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     createdMedia<T extends CmsUser$createdMediaArgs<ExtArgs> = {}>(args?: Subset<T, CmsUser$createdMediaArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsMediaItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3128,30 +2527,6 @@ export namespace Prisma {
   }
 
   /**
-   * CmsUser.sessions
-   */
-  export type CmsUser$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsSession
-     */
-    select?: CmsSessionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsSession
-     */
-    omit?: CmsSessionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsSessionInclude<ExtArgs> | null
-    where?: CmsSessionWhereInput
-    orderBy?: CmsSessionOrderByWithRelationInput | CmsSessionOrderByWithRelationInput[]
-    cursor?: CmsSessionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CmsSessionScalarFieldEnum | CmsSessionScalarFieldEnum[]
-  }
-
-  /**
    * CmsUser.createdContent
    */
   export type CmsUser$createdContentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3200,243 +2575,27 @@ export namespace Prisma {
   }
 
   /**
-   * CmsUser.createdAnnouncements
+   * CmsUser.sessions
    */
-  export type CmsUser$createdAnnouncementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type CmsUser$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the CmsAnnouncement
+     * Select specific fields to fetch from the CmsSession
      */
-    select?: CmsAnnouncementSelect<ExtArgs> | null
+    select?: CmsSessionSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the CmsAnnouncement
+     * Omit specific fields from the CmsSession
      */
-    omit?: CmsAnnouncementOmit<ExtArgs> | null
+    omit?: CmsSessionOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CmsAnnouncementInclude<ExtArgs> | null
-    where?: CmsAnnouncementWhereInput
-    orderBy?: CmsAnnouncementOrderByWithRelationInput | CmsAnnouncementOrderByWithRelationInput[]
-    cursor?: CmsAnnouncementWhereUniqueInput
+    include?: CmsSessionInclude<ExtArgs> | null
+    where?: CmsSessionWhereInput
+    orderBy?: CmsSessionOrderByWithRelationInput | CmsSessionOrderByWithRelationInput[]
+    cursor?: CmsSessionWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: CmsAnnouncementScalarFieldEnum | CmsAnnouncementScalarFieldEnum[]
-  }
-
-  /**
-   * CmsUser.updatedAnnouncements
-   */
-  export type CmsUser$updatedAnnouncementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsAnnouncement
-     */
-    select?: CmsAnnouncementSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsAnnouncement
-     */
-    omit?: CmsAnnouncementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsAnnouncementInclude<ExtArgs> | null
-    where?: CmsAnnouncementWhereInput
-    orderBy?: CmsAnnouncementOrderByWithRelationInput | CmsAnnouncementOrderByWithRelationInput[]
-    cursor?: CmsAnnouncementWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CmsAnnouncementScalarFieldEnum | CmsAnnouncementScalarFieldEnum[]
-  }
-
-  /**
-   * CmsUser.createdNews
-   */
-  export type CmsUser$createdNewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsNews
-     */
-    select?: CmsNewsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsNews
-     */
-    omit?: CmsNewsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsNewsInclude<ExtArgs> | null
-    where?: CmsNewsWhereInput
-    orderBy?: CmsNewsOrderByWithRelationInput | CmsNewsOrderByWithRelationInput[]
-    cursor?: CmsNewsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CmsNewsScalarFieldEnum | CmsNewsScalarFieldEnum[]
-  }
-
-  /**
-   * CmsUser.updatedNews
-   */
-  export type CmsUser$updatedNewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsNews
-     */
-    select?: CmsNewsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsNews
-     */
-    omit?: CmsNewsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsNewsInclude<ExtArgs> | null
-    where?: CmsNewsWhereInput
-    orderBy?: CmsNewsOrderByWithRelationInput | CmsNewsOrderByWithRelationInput[]
-    cursor?: CmsNewsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CmsNewsScalarFieldEnum | CmsNewsScalarFieldEnum[]
-  }
-
-  /**
-   * CmsUser.createdBriefings
-   */
-  export type CmsUser$createdBriefingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsPressBreifing
-     */
-    select?: CmsPressBreifingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsPressBreifing
-     */
-    omit?: CmsPressBreifingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsPressBreifingInclude<ExtArgs> | null
-    where?: CmsPressBreifingWhereInput
-    orderBy?: CmsPressBreifingOrderByWithRelationInput | CmsPressBreifingOrderByWithRelationInput[]
-    cursor?: CmsPressBreifingWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CmsPressBreifingScalarFieldEnum | CmsPressBreifingScalarFieldEnum[]
-  }
-
-  /**
-   * CmsUser.updatedBriefings
-   */
-  export type CmsUser$updatedBriefingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsPressBreifing
-     */
-    select?: CmsPressBreifingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsPressBreifing
-     */
-    omit?: CmsPressBreifingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsPressBreifingInclude<ExtArgs> | null
-    where?: CmsPressBreifingWhereInput
-    orderBy?: CmsPressBreifingOrderByWithRelationInput | CmsPressBreifingOrderByWithRelationInput[]
-    cursor?: CmsPressBreifingWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CmsPressBreifingScalarFieldEnum | CmsPressBreifingScalarFieldEnum[]
-  }
-
-  /**
-   * CmsUser.createdVideos
-   */
-  export type CmsUser$createdVideosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsVideo
-     */
-    select?: CmsVideoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsVideo
-     */
-    omit?: CmsVideoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsVideoInclude<ExtArgs> | null
-    where?: CmsVideoWhereInput
-    orderBy?: CmsVideoOrderByWithRelationInput | CmsVideoOrderByWithRelationInput[]
-    cursor?: CmsVideoWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CmsVideoScalarFieldEnum | CmsVideoScalarFieldEnum[]
-  }
-
-  /**
-   * CmsUser.updatedVideos
-   */
-  export type CmsUser$updatedVideosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsVideo
-     */
-    select?: CmsVideoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsVideo
-     */
-    omit?: CmsVideoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsVideoInclude<ExtArgs> | null
-    where?: CmsVideoWhereInput
-    orderBy?: CmsVideoOrderByWithRelationInput | CmsVideoOrderByWithRelationInput[]
-    cursor?: CmsVideoWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CmsVideoScalarFieldEnum | CmsVideoScalarFieldEnum[]
-  }
-
-  /**
-   * CmsUser.createdBlogs
-   */
-  export type CmsUser$createdBlogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsBlog
-     */
-    select?: CmsBlogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsBlog
-     */
-    omit?: CmsBlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsBlogInclude<ExtArgs> | null
-    where?: CmsBlogWhereInput
-    orderBy?: CmsBlogOrderByWithRelationInput | CmsBlogOrderByWithRelationInput[]
-    cursor?: CmsBlogWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CmsBlogScalarFieldEnum | CmsBlogScalarFieldEnum[]
-  }
-
-  /**
-   * CmsUser.updatedBlogs
-   */
-  export type CmsUser$updatedBlogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsBlog
-     */
-    select?: CmsBlogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsBlog
-     */
-    omit?: CmsBlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsBlogInclude<ExtArgs> | null
-    where?: CmsBlogWhereInput
-    orderBy?: CmsBlogOrderByWithRelationInput | CmsBlogOrderByWithRelationInput[]
-    cursor?: CmsBlogWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CmsBlogScalarFieldEnum | CmsBlogScalarFieldEnum[]
+    distinct?: CmsSessionScalarFieldEnum | CmsSessionScalarFieldEnum[]
   }
 
   /**
@@ -4669,25 +3828,32 @@ export namespace Prisma {
 
   export type CmsContentAvgAggregateOutputType = {
     id: number | null
+    videoDuration: number | null
     createdById: number | null
     updatedById: number | null
   }
 
   export type CmsContentSumAggregateOutputType = {
     id: number | null
+    videoDuration: number | null
     createdById: number | null
     updatedById: number | null
   }
 
   export type CmsContentMinAggregateOutputType = {
     id: number | null
+    contentType: $Enums.CmsContentType | null
     title: string | null
     slug: string | null
-    contentType: $Enums.CmsContentType | null
-    category: $Enums.CmsCategory | null
-    level: $Enums.CmsLevel | null
+    excerpt: string | null
+    richContent: string | null
+    coverImage: string | null
+    videoUrl: string | null
+    videoDuration: number | null
     region: $Enums.CmsRegion | null
-    body: string | null
+    level: $Enums.CmsLevel | null
+    status: $Enums.PublishStatus | null
+    publishedAt: Date | null
     createdById: number | null
     updatedById: number | null
     createdAt: Date | null
@@ -4696,13 +3862,18 @@ export namespace Prisma {
 
   export type CmsContentMaxAggregateOutputType = {
     id: number | null
+    contentType: $Enums.CmsContentType | null
     title: string | null
     slug: string | null
-    contentType: $Enums.CmsContentType | null
-    category: $Enums.CmsCategory | null
-    level: $Enums.CmsLevel | null
+    excerpt: string | null
+    richContent: string | null
+    coverImage: string | null
+    videoUrl: string | null
+    videoDuration: number | null
     region: $Enums.CmsRegion | null
-    body: string | null
+    level: $Enums.CmsLevel | null
+    status: $Enums.PublishStatus | null
+    publishedAt: Date | null
     createdById: number | null
     updatedById: number | null
     createdAt: Date | null
@@ -4711,13 +3882,18 @@ export namespace Prisma {
 
   export type CmsContentCountAggregateOutputType = {
     id: number
+    contentType: number
     title: number
     slug: number
-    contentType: number
-    category: number
-    level: number
+    excerpt: number
+    richContent: number
+    coverImage: number
+    videoUrl: number
+    videoDuration: number
     region: number
-    body: number
+    level: number
+    status: number
+    publishedAt: number
     createdById: number
     updatedById: number
     createdAt: number
@@ -4728,25 +3904,32 @@ export namespace Prisma {
 
   export type CmsContentAvgAggregateInputType = {
     id?: true
+    videoDuration?: true
     createdById?: true
     updatedById?: true
   }
 
   export type CmsContentSumAggregateInputType = {
     id?: true
+    videoDuration?: true
     createdById?: true
     updatedById?: true
   }
 
   export type CmsContentMinAggregateInputType = {
     id?: true
+    contentType?: true
     title?: true
     slug?: true
-    contentType?: true
-    category?: true
-    level?: true
+    excerpt?: true
+    richContent?: true
+    coverImage?: true
+    videoUrl?: true
+    videoDuration?: true
     region?: true
-    body?: true
+    level?: true
+    status?: true
+    publishedAt?: true
     createdById?: true
     updatedById?: true
     createdAt?: true
@@ -4755,13 +3938,18 @@ export namespace Prisma {
 
   export type CmsContentMaxAggregateInputType = {
     id?: true
+    contentType?: true
     title?: true
     slug?: true
-    contentType?: true
-    category?: true
-    level?: true
+    excerpt?: true
+    richContent?: true
+    coverImage?: true
+    videoUrl?: true
+    videoDuration?: true
     region?: true
-    body?: true
+    level?: true
+    status?: true
+    publishedAt?: true
     createdById?: true
     updatedById?: true
     createdAt?: true
@@ -4770,13 +3958,18 @@ export namespace Prisma {
 
   export type CmsContentCountAggregateInputType = {
     id?: true
+    contentType?: true
     title?: true
     slug?: true
-    contentType?: true
-    category?: true
-    level?: true
+    excerpt?: true
+    richContent?: true
+    coverImage?: true
+    videoUrl?: true
+    videoDuration?: true
     region?: true
-    body?: true
+    level?: true
+    status?: true
+    publishedAt?: true
     createdById?: true
     updatedById?: true
     createdAt?: true
@@ -4872,13 +4065,18 @@ export namespace Prisma {
 
   export type CmsContentGroupByOutputType = {
     id: number
+    contentType: $Enums.CmsContentType
     title: string
     slug: string
-    contentType: $Enums.CmsContentType
-    category: $Enums.CmsCategory
+    excerpt: string
+    richContent: string
+    coverImage: string | null
+    videoUrl: string | null
+    videoDuration: number | null
+    region: $Enums.CmsRegion
     level: $Enums.CmsLevel
-    region: $Enums.CmsRegion | null
-    body: string
+    status: $Enums.PublishStatus
+    publishedAt: Date | null
     createdById: number
     updatedById: number
     createdAt: Date
@@ -4906,13 +4104,18 @@ export namespace Prisma {
 
   export type CmsContentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    contentType?: boolean
     title?: boolean
     slug?: boolean
-    contentType?: boolean
-    category?: boolean
-    level?: boolean
+    excerpt?: boolean
+    richContent?: boolean
+    coverImage?: boolean
+    videoUrl?: boolean
+    videoDuration?: boolean
     region?: boolean
-    body?: boolean
+    level?: boolean
+    status?: boolean
+    publishedAt?: boolean
     createdById?: boolean
     updatedById?: boolean
     createdAt?: boolean
@@ -4923,13 +4126,18 @@ export namespace Prisma {
 
   export type CmsContentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    contentType?: boolean
     title?: boolean
     slug?: boolean
-    contentType?: boolean
-    category?: boolean
-    level?: boolean
+    excerpt?: boolean
+    richContent?: boolean
+    coverImage?: boolean
+    videoUrl?: boolean
+    videoDuration?: boolean
     region?: boolean
-    body?: boolean
+    level?: boolean
+    status?: boolean
+    publishedAt?: boolean
     createdById?: boolean
     updatedById?: boolean
     createdAt?: boolean
@@ -4940,13 +4148,18 @@ export namespace Prisma {
 
   export type CmsContentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    contentType?: boolean
     title?: boolean
     slug?: boolean
-    contentType?: boolean
-    category?: boolean
-    level?: boolean
+    excerpt?: boolean
+    richContent?: boolean
+    coverImage?: boolean
+    videoUrl?: boolean
+    videoDuration?: boolean
     region?: boolean
-    body?: boolean
+    level?: boolean
+    status?: boolean
+    publishedAt?: boolean
     createdById?: boolean
     updatedById?: boolean
     createdAt?: boolean
@@ -4957,20 +4170,25 @@ export namespace Prisma {
 
   export type CmsContentSelectScalar = {
     id?: boolean
+    contentType?: boolean
     title?: boolean
     slug?: boolean
-    contentType?: boolean
-    category?: boolean
-    level?: boolean
+    excerpt?: boolean
+    richContent?: boolean
+    coverImage?: boolean
+    videoUrl?: boolean
+    videoDuration?: boolean
     region?: boolean
-    body?: boolean
+    level?: boolean
+    status?: boolean
+    publishedAt?: boolean
     createdById?: boolean
     updatedById?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CmsContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "contentType" | "category" | "level" | "region" | "body" | "createdById" | "updatedById" | "createdAt" | "updatedAt", ExtArgs["result"]["cmsContent"]>
+  export type CmsContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "contentType" | "title" | "slug" | "excerpt" | "richContent" | "coverImage" | "videoUrl" | "videoDuration" | "region" | "level" | "status" | "publishedAt" | "createdById" | "updatedById" | "createdAt" | "updatedAt", ExtArgs["result"]["cmsContent"]>
   export type CmsContentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
     updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
@@ -4992,13 +4210,18 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      contentType: $Enums.CmsContentType
       title: string
       slug: string
-      contentType: $Enums.CmsContentType
-      category: $Enums.CmsCategory
+      excerpt: string
+      richContent: string
+      coverImage: string | null
+      videoUrl: string | null
+      videoDuration: number | null
+      region: $Enums.CmsRegion
       level: $Enums.CmsLevel
-      region: $Enums.CmsRegion | null
-      body: string
+      status: $Enums.PublishStatus
+      publishedAt: Date | null
       createdById: number
       updatedById: number
       createdAt: Date
@@ -5429,13 +4652,18 @@ export namespace Prisma {
    */
   interface CmsContentFieldRefs {
     readonly id: FieldRef<"CmsContent", 'Int'>
+    readonly contentType: FieldRef<"CmsContent", 'CmsContentType'>
     readonly title: FieldRef<"CmsContent", 'String'>
     readonly slug: FieldRef<"CmsContent", 'String'>
-    readonly contentType: FieldRef<"CmsContent", 'CmsContentType'>
-    readonly category: FieldRef<"CmsContent", 'CmsCategory'>
-    readonly level: FieldRef<"CmsContent", 'CmsLevel'>
+    readonly excerpt: FieldRef<"CmsContent", 'String'>
+    readonly richContent: FieldRef<"CmsContent", 'String'>
+    readonly coverImage: FieldRef<"CmsContent", 'String'>
+    readonly videoUrl: FieldRef<"CmsContent", 'String'>
+    readonly videoDuration: FieldRef<"CmsContent", 'Int'>
     readonly region: FieldRef<"CmsContent", 'CmsRegion'>
-    readonly body: FieldRef<"CmsContent", 'String'>
+    readonly level: FieldRef<"CmsContent", 'CmsLevel'>
+    readonly status: FieldRef<"CmsContent", 'PublishStatus'>
+    readonly publishedAt: FieldRef<"CmsContent", 'DateTime'>
     readonly createdById: FieldRef<"CmsContent", 'Int'>
     readonly updatedById: FieldRef<"CmsContent", 'Int'>
     readonly createdAt: FieldRef<"CmsContent", 'DateTime'>
@@ -5856,6121 +5084,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: CmsContentInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model CmsAnnouncement
-   */
-
-  export type AggregateCmsAnnouncement = {
-    _count: CmsAnnouncementCountAggregateOutputType | null
-    _avg: CmsAnnouncementAvgAggregateOutputType | null
-    _sum: CmsAnnouncementSumAggregateOutputType | null
-    _min: CmsAnnouncementMinAggregateOutputType | null
-    _max: CmsAnnouncementMaxAggregateOutputType | null
-  }
-
-  export type CmsAnnouncementAvgAggregateOutputType = {
-    id: number | null
-    createdById: number | null
-    updatedById: number | null
-  }
-
-  export type CmsAnnouncementSumAggregateOutputType = {
-    id: number | null
-    createdById: number | null
-    updatedById: number | null
-  }
-
-  export type CmsAnnouncementMinAggregateOutputType = {
-    id: number | null
-    title: string | null
-    slug: string | null
-    excerpt: string | null
-    richContent: string | null
-    coverImage: string | null
-    region: $Enums.CmsRegion | null
-    status: $Enums.PublishStatus | null
-    publishedAt: Date | null
-    createdById: number | null
-    updatedById: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type CmsAnnouncementMaxAggregateOutputType = {
-    id: number | null
-    title: string | null
-    slug: string | null
-    excerpt: string | null
-    richContent: string | null
-    coverImage: string | null
-    region: $Enums.CmsRegion | null
-    status: $Enums.PublishStatus | null
-    publishedAt: Date | null
-    createdById: number | null
-    updatedById: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type CmsAnnouncementCountAggregateOutputType = {
-    id: number
-    title: number
-    slug: number
-    excerpt: number
-    richContent: number
-    coverImage: number
-    region: number
-    status: number
-    publishedAt: number
-    createdById: number
-    updatedById: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type CmsAnnouncementAvgAggregateInputType = {
-    id?: true
-    createdById?: true
-    updatedById?: true
-  }
-
-  export type CmsAnnouncementSumAggregateInputType = {
-    id?: true
-    createdById?: true
-    updatedById?: true
-  }
-
-  export type CmsAnnouncementMinAggregateInputType = {
-    id?: true
-    title?: true
-    slug?: true
-    excerpt?: true
-    richContent?: true
-    coverImage?: true
-    region?: true
-    status?: true
-    publishedAt?: true
-    createdById?: true
-    updatedById?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type CmsAnnouncementMaxAggregateInputType = {
-    id?: true
-    title?: true
-    slug?: true
-    excerpt?: true
-    richContent?: true
-    coverImage?: true
-    region?: true
-    status?: true
-    publishedAt?: true
-    createdById?: true
-    updatedById?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type CmsAnnouncementCountAggregateInputType = {
-    id?: true
-    title?: true
-    slug?: true
-    excerpt?: true
-    richContent?: true
-    coverImage?: true
-    region?: true
-    status?: true
-    publishedAt?: true
-    createdById?: true
-    updatedById?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type CmsAnnouncementAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which CmsAnnouncement to aggregate.
-     */
-    where?: CmsAnnouncementWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsAnnouncements to fetch.
-     */
-    orderBy?: CmsAnnouncementOrderByWithRelationInput | CmsAnnouncementOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: CmsAnnouncementWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsAnnouncements from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsAnnouncements.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned CmsAnnouncements
-    **/
-    _count?: true | CmsAnnouncementCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: CmsAnnouncementAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: CmsAnnouncementSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: CmsAnnouncementMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: CmsAnnouncementMaxAggregateInputType
-  }
-
-  export type GetCmsAnnouncementAggregateType<T extends CmsAnnouncementAggregateArgs> = {
-        [P in keyof T & keyof AggregateCmsAnnouncement]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateCmsAnnouncement[P]>
-      : GetScalarType<T[P], AggregateCmsAnnouncement[P]>
-  }
-
-
-
-
-  export type CmsAnnouncementGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsAnnouncementWhereInput
-    orderBy?: CmsAnnouncementOrderByWithAggregationInput | CmsAnnouncementOrderByWithAggregationInput[]
-    by: CmsAnnouncementScalarFieldEnum[] | CmsAnnouncementScalarFieldEnum
-    having?: CmsAnnouncementScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: CmsAnnouncementCountAggregateInputType | true
-    _avg?: CmsAnnouncementAvgAggregateInputType
-    _sum?: CmsAnnouncementSumAggregateInputType
-    _min?: CmsAnnouncementMinAggregateInputType
-    _max?: CmsAnnouncementMaxAggregateInputType
-  }
-
-  export type CmsAnnouncementGroupByOutputType = {
-    id: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage: string | null
-    region: $Enums.CmsRegion
-    status: $Enums.PublishStatus
-    publishedAt: Date | null
-    createdById: number
-    updatedById: number
-    createdAt: Date
-    updatedAt: Date
-    _count: CmsAnnouncementCountAggregateOutputType | null
-    _avg: CmsAnnouncementAvgAggregateOutputType | null
-    _sum: CmsAnnouncementSumAggregateOutputType | null
-    _min: CmsAnnouncementMinAggregateOutputType | null
-    _max: CmsAnnouncementMaxAggregateOutputType | null
-  }
-
-  type GetCmsAnnouncementGroupByPayload<T extends CmsAnnouncementGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<CmsAnnouncementGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof CmsAnnouncementGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], CmsAnnouncementGroupByOutputType[P]>
-            : GetScalarType<T[P], CmsAnnouncementGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type CmsAnnouncementSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cmsAnnouncement"]>
-
-  export type CmsAnnouncementSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cmsAnnouncement"]>
-
-  export type CmsAnnouncementSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cmsAnnouncement"]>
-
-  export type CmsAnnouncementSelectScalar = {
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type CmsAnnouncementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "excerpt" | "richContent" | "coverImage" | "region" | "status" | "publishedAt" | "createdById" | "updatedById" | "createdAt" | "updatedAt", ExtArgs["result"]["cmsAnnouncement"]>
-  export type CmsAnnouncementInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }
-  export type CmsAnnouncementIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }
-  export type CmsAnnouncementIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }
-
-  export type $CmsAnnouncementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "CmsAnnouncement"
-    objects: {
-      createdBy: Prisma.$CmsUserPayload<ExtArgs>
-      updatedBy: Prisma.$CmsUserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      title: string
-      slug: string
-      excerpt: string
-      richContent: string
-      coverImage: string | null
-      region: $Enums.CmsRegion
-      status: $Enums.PublishStatus
-      publishedAt: Date | null
-      createdById: number
-      updatedById: number
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["cmsAnnouncement"]>
-    composites: {}
-  }
-
-  type CmsAnnouncementGetPayload<S extends boolean | null | undefined | CmsAnnouncementDefaultArgs> = $Result.GetResult<Prisma.$CmsAnnouncementPayload, S>
-
-  type CmsAnnouncementCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<CmsAnnouncementFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: CmsAnnouncementCountAggregateInputType | true
-    }
-
-  export interface CmsAnnouncementDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CmsAnnouncement'], meta: { name: 'CmsAnnouncement' } }
-    /**
-     * Find zero or one CmsAnnouncement that matches the filter.
-     * @param {CmsAnnouncementFindUniqueArgs} args - Arguments to find a CmsAnnouncement
-     * @example
-     * // Get one CmsAnnouncement
-     * const cmsAnnouncement = await prisma.cmsAnnouncement.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends CmsAnnouncementFindUniqueArgs>(args: SelectSubset<T, CmsAnnouncementFindUniqueArgs<ExtArgs>>): Prisma__CmsAnnouncementClient<$Result.GetResult<Prisma.$CmsAnnouncementPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one CmsAnnouncement that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {CmsAnnouncementFindUniqueOrThrowArgs} args - Arguments to find a CmsAnnouncement
-     * @example
-     * // Get one CmsAnnouncement
-     * const cmsAnnouncement = await prisma.cmsAnnouncement.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends CmsAnnouncementFindUniqueOrThrowArgs>(args: SelectSubset<T, CmsAnnouncementFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CmsAnnouncementClient<$Result.GetResult<Prisma.$CmsAnnouncementPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first CmsAnnouncement that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsAnnouncementFindFirstArgs} args - Arguments to find a CmsAnnouncement
-     * @example
-     * // Get one CmsAnnouncement
-     * const cmsAnnouncement = await prisma.cmsAnnouncement.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends CmsAnnouncementFindFirstArgs>(args?: SelectSubset<T, CmsAnnouncementFindFirstArgs<ExtArgs>>): Prisma__CmsAnnouncementClient<$Result.GetResult<Prisma.$CmsAnnouncementPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first CmsAnnouncement that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsAnnouncementFindFirstOrThrowArgs} args - Arguments to find a CmsAnnouncement
-     * @example
-     * // Get one CmsAnnouncement
-     * const cmsAnnouncement = await prisma.cmsAnnouncement.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends CmsAnnouncementFindFirstOrThrowArgs>(args?: SelectSubset<T, CmsAnnouncementFindFirstOrThrowArgs<ExtArgs>>): Prisma__CmsAnnouncementClient<$Result.GetResult<Prisma.$CmsAnnouncementPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more CmsAnnouncements that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsAnnouncementFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all CmsAnnouncements
-     * const cmsAnnouncements = await prisma.cmsAnnouncement.findMany()
-     * 
-     * // Get first 10 CmsAnnouncements
-     * const cmsAnnouncements = await prisma.cmsAnnouncement.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const cmsAnnouncementWithIdOnly = await prisma.cmsAnnouncement.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends CmsAnnouncementFindManyArgs>(args?: SelectSubset<T, CmsAnnouncementFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsAnnouncementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a CmsAnnouncement.
-     * @param {CmsAnnouncementCreateArgs} args - Arguments to create a CmsAnnouncement.
-     * @example
-     * // Create one CmsAnnouncement
-     * const CmsAnnouncement = await prisma.cmsAnnouncement.create({
-     *   data: {
-     *     // ... data to create a CmsAnnouncement
-     *   }
-     * })
-     * 
-     */
-    create<T extends CmsAnnouncementCreateArgs>(args: SelectSubset<T, CmsAnnouncementCreateArgs<ExtArgs>>): Prisma__CmsAnnouncementClient<$Result.GetResult<Prisma.$CmsAnnouncementPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many CmsAnnouncements.
-     * @param {CmsAnnouncementCreateManyArgs} args - Arguments to create many CmsAnnouncements.
-     * @example
-     * // Create many CmsAnnouncements
-     * const cmsAnnouncement = await prisma.cmsAnnouncement.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends CmsAnnouncementCreateManyArgs>(args?: SelectSubset<T, CmsAnnouncementCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many CmsAnnouncements and returns the data saved in the database.
-     * @param {CmsAnnouncementCreateManyAndReturnArgs} args - Arguments to create many CmsAnnouncements.
-     * @example
-     * // Create many CmsAnnouncements
-     * const cmsAnnouncement = await prisma.cmsAnnouncement.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many CmsAnnouncements and only return the `id`
-     * const cmsAnnouncementWithIdOnly = await prisma.cmsAnnouncement.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends CmsAnnouncementCreateManyAndReturnArgs>(args?: SelectSubset<T, CmsAnnouncementCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsAnnouncementPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a CmsAnnouncement.
-     * @param {CmsAnnouncementDeleteArgs} args - Arguments to delete one CmsAnnouncement.
-     * @example
-     * // Delete one CmsAnnouncement
-     * const CmsAnnouncement = await prisma.cmsAnnouncement.delete({
-     *   where: {
-     *     // ... filter to delete one CmsAnnouncement
-     *   }
-     * })
-     * 
-     */
-    delete<T extends CmsAnnouncementDeleteArgs>(args: SelectSubset<T, CmsAnnouncementDeleteArgs<ExtArgs>>): Prisma__CmsAnnouncementClient<$Result.GetResult<Prisma.$CmsAnnouncementPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one CmsAnnouncement.
-     * @param {CmsAnnouncementUpdateArgs} args - Arguments to update one CmsAnnouncement.
-     * @example
-     * // Update one CmsAnnouncement
-     * const cmsAnnouncement = await prisma.cmsAnnouncement.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends CmsAnnouncementUpdateArgs>(args: SelectSubset<T, CmsAnnouncementUpdateArgs<ExtArgs>>): Prisma__CmsAnnouncementClient<$Result.GetResult<Prisma.$CmsAnnouncementPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more CmsAnnouncements.
-     * @param {CmsAnnouncementDeleteManyArgs} args - Arguments to filter CmsAnnouncements to delete.
-     * @example
-     * // Delete a few CmsAnnouncements
-     * const { count } = await prisma.cmsAnnouncement.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends CmsAnnouncementDeleteManyArgs>(args?: SelectSubset<T, CmsAnnouncementDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more CmsAnnouncements.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsAnnouncementUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many CmsAnnouncements
-     * const cmsAnnouncement = await prisma.cmsAnnouncement.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends CmsAnnouncementUpdateManyArgs>(args: SelectSubset<T, CmsAnnouncementUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more CmsAnnouncements and returns the data updated in the database.
-     * @param {CmsAnnouncementUpdateManyAndReturnArgs} args - Arguments to update many CmsAnnouncements.
-     * @example
-     * // Update many CmsAnnouncements
-     * const cmsAnnouncement = await prisma.cmsAnnouncement.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more CmsAnnouncements and only return the `id`
-     * const cmsAnnouncementWithIdOnly = await prisma.cmsAnnouncement.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends CmsAnnouncementUpdateManyAndReturnArgs>(args: SelectSubset<T, CmsAnnouncementUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsAnnouncementPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one CmsAnnouncement.
-     * @param {CmsAnnouncementUpsertArgs} args - Arguments to update or create a CmsAnnouncement.
-     * @example
-     * // Update or create a CmsAnnouncement
-     * const cmsAnnouncement = await prisma.cmsAnnouncement.upsert({
-     *   create: {
-     *     // ... data to create a CmsAnnouncement
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the CmsAnnouncement we want to update
-     *   }
-     * })
-     */
-    upsert<T extends CmsAnnouncementUpsertArgs>(args: SelectSubset<T, CmsAnnouncementUpsertArgs<ExtArgs>>): Prisma__CmsAnnouncementClient<$Result.GetResult<Prisma.$CmsAnnouncementPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of CmsAnnouncements.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsAnnouncementCountArgs} args - Arguments to filter CmsAnnouncements to count.
-     * @example
-     * // Count the number of CmsAnnouncements
-     * const count = await prisma.cmsAnnouncement.count({
-     *   where: {
-     *     // ... the filter for the CmsAnnouncements we want to count
-     *   }
-     * })
-    **/
-    count<T extends CmsAnnouncementCountArgs>(
-      args?: Subset<T, CmsAnnouncementCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], CmsAnnouncementCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a CmsAnnouncement.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsAnnouncementAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends CmsAnnouncementAggregateArgs>(args: Subset<T, CmsAnnouncementAggregateArgs>): Prisma.PrismaPromise<GetCmsAnnouncementAggregateType<T>>
-
-    /**
-     * Group by CmsAnnouncement.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsAnnouncementGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends CmsAnnouncementGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: CmsAnnouncementGroupByArgs['orderBy'] }
-        : { orderBy?: CmsAnnouncementGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, CmsAnnouncementGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCmsAnnouncementGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the CmsAnnouncement model
-   */
-  readonly fields: CmsAnnouncementFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for CmsAnnouncement.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__CmsAnnouncementClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    createdBy<T extends CmsUserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CmsUserDefaultArgs<ExtArgs>>): Prisma__CmsUserClient<$Result.GetResult<Prisma.$CmsUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    updatedBy<T extends CmsUserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CmsUserDefaultArgs<ExtArgs>>): Prisma__CmsUserClient<$Result.GetResult<Prisma.$CmsUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the CmsAnnouncement model
-   */
-  interface CmsAnnouncementFieldRefs {
-    readonly id: FieldRef<"CmsAnnouncement", 'Int'>
-    readonly title: FieldRef<"CmsAnnouncement", 'String'>
-    readonly slug: FieldRef<"CmsAnnouncement", 'String'>
-    readonly excerpt: FieldRef<"CmsAnnouncement", 'String'>
-    readonly richContent: FieldRef<"CmsAnnouncement", 'String'>
-    readonly coverImage: FieldRef<"CmsAnnouncement", 'String'>
-    readonly region: FieldRef<"CmsAnnouncement", 'CmsRegion'>
-    readonly status: FieldRef<"CmsAnnouncement", 'PublishStatus'>
-    readonly publishedAt: FieldRef<"CmsAnnouncement", 'DateTime'>
-    readonly createdById: FieldRef<"CmsAnnouncement", 'Int'>
-    readonly updatedById: FieldRef<"CmsAnnouncement", 'Int'>
-    readonly createdAt: FieldRef<"CmsAnnouncement", 'DateTime'>
-    readonly updatedAt: FieldRef<"CmsAnnouncement", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * CmsAnnouncement findUnique
-   */
-  export type CmsAnnouncementFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsAnnouncement
-     */
-    select?: CmsAnnouncementSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsAnnouncement
-     */
-    omit?: CmsAnnouncementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsAnnouncementInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsAnnouncement to fetch.
-     */
-    where: CmsAnnouncementWhereUniqueInput
-  }
-
-  /**
-   * CmsAnnouncement findUniqueOrThrow
-   */
-  export type CmsAnnouncementFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsAnnouncement
-     */
-    select?: CmsAnnouncementSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsAnnouncement
-     */
-    omit?: CmsAnnouncementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsAnnouncementInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsAnnouncement to fetch.
-     */
-    where: CmsAnnouncementWhereUniqueInput
-  }
-
-  /**
-   * CmsAnnouncement findFirst
-   */
-  export type CmsAnnouncementFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsAnnouncement
-     */
-    select?: CmsAnnouncementSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsAnnouncement
-     */
-    omit?: CmsAnnouncementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsAnnouncementInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsAnnouncement to fetch.
-     */
-    where?: CmsAnnouncementWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsAnnouncements to fetch.
-     */
-    orderBy?: CmsAnnouncementOrderByWithRelationInput | CmsAnnouncementOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for CmsAnnouncements.
-     */
-    cursor?: CmsAnnouncementWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsAnnouncements from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsAnnouncements.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CmsAnnouncements.
-     */
-    distinct?: CmsAnnouncementScalarFieldEnum | CmsAnnouncementScalarFieldEnum[]
-  }
-
-  /**
-   * CmsAnnouncement findFirstOrThrow
-   */
-  export type CmsAnnouncementFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsAnnouncement
-     */
-    select?: CmsAnnouncementSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsAnnouncement
-     */
-    omit?: CmsAnnouncementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsAnnouncementInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsAnnouncement to fetch.
-     */
-    where?: CmsAnnouncementWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsAnnouncements to fetch.
-     */
-    orderBy?: CmsAnnouncementOrderByWithRelationInput | CmsAnnouncementOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for CmsAnnouncements.
-     */
-    cursor?: CmsAnnouncementWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsAnnouncements from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsAnnouncements.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CmsAnnouncements.
-     */
-    distinct?: CmsAnnouncementScalarFieldEnum | CmsAnnouncementScalarFieldEnum[]
-  }
-
-  /**
-   * CmsAnnouncement findMany
-   */
-  export type CmsAnnouncementFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsAnnouncement
-     */
-    select?: CmsAnnouncementSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsAnnouncement
-     */
-    omit?: CmsAnnouncementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsAnnouncementInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsAnnouncements to fetch.
-     */
-    where?: CmsAnnouncementWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsAnnouncements to fetch.
-     */
-    orderBy?: CmsAnnouncementOrderByWithRelationInput | CmsAnnouncementOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing CmsAnnouncements.
-     */
-    cursor?: CmsAnnouncementWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsAnnouncements from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsAnnouncements.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CmsAnnouncements.
-     */
-    distinct?: CmsAnnouncementScalarFieldEnum | CmsAnnouncementScalarFieldEnum[]
-  }
-
-  /**
-   * CmsAnnouncement create
-   */
-  export type CmsAnnouncementCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsAnnouncement
-     */
-    select?: CmsAnnouncementSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsAnnouncement
-     */
-    omit?: CmsAnnouncementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsAnnouncementInclude<ExtArgs> | null
-    /**
-     * The data needed to create a CmsAnnouncement.
-     */
-    data: XOR<CmsAnnouncementCreateInput, CmsAnnouncementUncheckedCreateInput>
-  }
-
-  /**
-   * CmsAnnouncement createMany
-   */
-  export type CmsAnnouncementCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many CmsAnnouncements.
-     */
-    data: CmsAnnouncementCreateManyInput | CmsAnnouncementCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * CmsAnnouncement createManyAndReturn
-   */
-  export type CmsAnnouncementCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsAnnouncement
-     */
-    select?: CmsAnnouncementSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsAnnouncement
-     */
-    omit?: CmsAnnouncementOmit<ExtArgs> | null
-    /**
-     * The data used to create many CmsAnnouncements.
-     */
-    data: CmsAnnouncementCreateManyInput | CmsAnnouncementCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsAnnouncementIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * CmsAnnouncement update
-   */
-  export type CmsAnnouncementUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsAnnouncement
-     */
-    select?: CmsAnnouncementSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsAnnouncement
-     */
-    omit?: CmsAnnouncementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsAnnouncementInclude<ExtArgs> | null
-    /**
-     * The data needed to update a CmsAnnouncement.
-     */
-    data: XOR<CmsAnnouncementUpdateInput, CmsAnnouncementUncheckedUpdateInput>
-    /**
-     * Choose, which CmsAnnouncement to update.
-     */
-    where: CmsAnnouncementWhereUniqueInput
-  }
-
-  /**
-   * CmsAnnouncement updateMany
-   */
-  export type CmsAnnouncementUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update CmsAnnouncements.
-     */
-    data: XOR<CmsAnnouncementUpdateManyMutationInput, CmsAnnouncementUncheckedUpdateManyInput>
-    /**
-     * Filter which CmsAnnouncements to update
-     */
-    where?: CmsAnnouncementWhereInput
-    /**
-     * Limit how many CmsAnnouncements to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * CmsAnnouncement updateManyAndReturn
-   */
-  export type CmsAnnouncementUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsAnnouncement
-     */
-    select?: CmsAnnouncementSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsAnnouncement
-     */
-    omit?: CmsAnnouncementOmit<ExtArgs> | null
-    /**
-     * The data used to update CmsAnnouncements.
-     */
-    data: XOR<CmsAnnouncementUpdateManyMutationInput, CmsAnnouncementUncheckedUpdateManyInput>
-    /**
-     * Filter which CmsAnnouncements to update
-     */
-    where?: CmsAnnouncementWhereInput
-    /**
-     * Limit how many CmsAnnouncements to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsAnnouncementIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * CmsAnnouncement upsert
-   */
-  export type CmsAnnouncementUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsAnnouncement
-     */
-    select?: CmsAnnouncementSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsAnnouncement
-     */
-    omit?: CmsAnnouncementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsAnnouncementInclude<ExtArgs> | null
-    /**
-     * The filter to search for the CmsAnnouncement to update in case it exists.
-     */
-    where: CmsAnnouncementWhereUniqueInput
-    /**
-     * In case the CmsAnnouncement found by the `where` argument doesn't exist, create a new CmsAnnouncement with this data.
-     */
-    create: XOR<CmsAnnouncementCreateInput, CmsAnnouncementUncheckedCreateInput>
-    /**
-     * In case the CmsAnnouncement was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<CmsAnnouncementUpdateInput, CmsAnnouncementUncheckedUpdateInput>
-  }
-
-  /**
-   * CmsAnnouncement delete
-   */
-  export type CmsAnnouncementDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsAnnouncement
-     */
-    select?: CmsAnnouncementSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsAnnouncement
-     */
-    omit?: CmsAnnouncementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsAnnouncementInclude<ExtArgs> | null
-    /**
-     * Filter which CmsAnnouncement to delete.
-     */
-    where: CmsAnnouncementWhereUniqueInput
-  }
-
-  /**
-   * CmsAnnouncement deleteMany
-   */
-  export type CmsAnnouncementDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which CmsAnnouncements to delete
-     */
-    where?: CmsAnnouncementWhereInput
-    /**
-     * Limit how many CmsAnnouncements to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * CmsAnnouncement without action
-   */
-  export type CmsAnnouncementDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsAnnouncement
-     */
-    select?: CmsAnnouncementSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsAnnouncement
-     */
-    omit?: CmsAnnouncementOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsAnnouncementInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model CmsNews
-   */
-
-  export type AggregateCmsNews = {
-    _count: CmsNewsCountAggregateOutputType | null
-    _avg: CmsNewsAvgAggregateOutputType | null
-    _sum: CmsNewsSumAggregateOutputType | null
-    _min: CmsNewsMinAggregateOutputType | null
-    _max: CmsNewsMaxAggregateOutputType | null
-  }
-
-  export type CmsNewsAvgAggregateOutputType = {
-    id: number | null
-    createdById: number | null
-    updatedById: number | null
-  }
-
-  export type CmsNewsSumAggregateOutputType = {
-    id: number | null
-    createdById: number | null
-    updatedById: number | null
-  }
-
-  export type CmsNewsMinAggregateOutputType = {
-    id: number | null
-    title: string | null
-    slug: string | null
-    excerpt: string | null
-    richContent: string | null
-    coverImage: string | null
-    region: $Enums.CmsRegion | null
-    status: $Enums.PublishStatus | null
-    publishedAt: Date | null
-    createdById: number | null
-    updatedById: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type CmsNewsMaxAggregateOutputType = {
-    id: number | null
-    title: string | null
-    slug: string | null
-    excerpt: string | null
-    richContent: string | null
-    coverImage: string | null
-    region: $Enums.CmsRegion | null
-    status: $Enums.PublishStatus | null
-    publishedAt: Date | null
-    createdById: number | null
-    updatedById: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type CmsNewsCountAggregateOutputType = {
-    id: number
-    title: number
-    slug: number
-    excerpt: number
-    richContent: number
-    coverImage: number
-    region: number
-    status: number
-    publishedAt: number
-    createdById: number
-    updatedById: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type CmsNewsAvgAggregateInputType = {
-    id?: true
-    createdById?: true
-    updatedById?: true
-  }
-
-  export type CmsNewsSumAggregateInputType = {
-    id?: true
-    createdById?: true
-    updatedById?: true
-  }
-
-  export type CmsNewsMinAggregateInputType = {
-    id?: true
-    title?: true
-    slug?: true
-    excerpt?: true
-    richContent?: true
-    coverImage?: true
-    region?: true
-    status?: true
-    publishedAt?: true
-    createdById?: true
-    updatedById?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type CmsNewsMaxAggregateInputType = {
-    id?: true
-    title?: true
-    slug?: true
-    excerpt?: true
-    richContent?: true
-    coverImage?: true
-    region?: true
-    status?: true
-    publishedAt?: true
-    createdById?: true
-    updatedById?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type CmsNewsCountAggregateInputType = {
-    id?: true
-    title?: true
-    slug?: true
-    excerpt?: true
-    richContent?: true
-    coverImage?: true
-    region?: true
-    status?: true
-    publishedAt?: true
-    createdById?: true
-    updatedById?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type CmsNewsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which CmsNews to aggregate.
-     */
-    where?: CmsNewsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsNews to fetch.
-     */
-    orderBy?: CmsNewsOrderByWithRelationInput | CmsNewsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: CmsNewsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsNews from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsNews.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned CmsNews
-    **/
-    _count?: true | CmsNewsCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: CmsNewsAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: CmsNewsSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: CmsNewsMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: CmsNewsMaxAggregateInputType
-  }
-
-  export type GetCmsNewsAggregateType<T extends CmsNewsAggregateArgs> = {
-        [P in keyof T & keyof AggregateCmsNews]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateCmsNews[P]>
-      : GetScalarType<T[P], AggregateCmsNews[P]>
-  }
-
-
-
-
-  export type CmsNewsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsNewsWhereInput
-    orderBy?: CmsNewsOrderByWithAggregationInput | CmsNewsOrderByWithAggregationInput[]
-    by: CmsNewsScalarFieldEnum[] | CmsNewsScalarFieldEnum
-    having?: CmsNewsScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: CmsNewsCountAggregateInputType | true
-    _avg?: CmsNewsAvgAggregateInputType
-    _sum?: CmsNewsSumAggregateInputType
-    _min?: CmsNewsMinAggregateInputType
-    _max?: CmsNewsMaxAggregateInputType
-  }
-
-  export type CmsNewsGroupByOutputType = {
-    id: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage: string | null
-    region: $Enums.CmsRegion
-    status: $Enums.PublishStatus
-    publishedAt: Date | null
-    createdById: number
-    updatedById: number
-    createdAt: Date
-    updatedAt: Date
-    _count: CmsNewsCountAggregateOutputType | null
-    _avg: CmsNewsAvgAggregateOutputType | null
-    _sum: CmsNewsSumAggregateOutputType | null
-    _min: CmsNewsMinAggregateOutputType | null
-    _max: CmsNewsMaxAggregateOutputType | null
-  }
-
-  type GetCmsNewsGroupByPayload<T extends CmsNewsGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<CmsNewsGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof CmsNewsGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], CmsNewsGroupByOutputType[P]>
-            : GetScalarType<T[P], CmsNewsGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type CmsNewsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cmsNews"]>
-
-  export type CmsNewsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cmsNews"]>
-
-  export type CmsNewsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cmsNews"]>
-
-  export type CmsNewsSelectScalar = {
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type CmsNewsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "excerpt" | "richContent" | "coverImage" | "region" | "status" | "publishedAt" | "createdById" | "updatedById" | "createdAt" | "updatedAt", ExtArgs["result"]["cmsNews"]>
-  export type CmsNewsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }
-  export type CmsNewsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }
-  export type CmsNewsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }
-
-  export type $CmsNewsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "CmsNews"
-    objects: {
-      createdBy: Prisma.$CmsUserPayload<ExtArgs>
-      updatedBy: Prisma.$CmsUserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      title: string
-      slug: string
-      excerpt: string
-      richContent: string
-      coverImage: string | null
-      region: $Enums.CmsRegion
-      status: $Enums.PublishStatus
-      publishedAt: Date | null
-      createdById: number
-      updatedById: number
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["cmsNews"]>
-    composites: {}
-  }
-
-  type CmsNewsGetPayload<S extends boolean | null | undefined | CmsNewsDefaultArgs> = $Result.GetResult<Prisma.$CmsNewsPayload, S>
-
-  type CmsNewsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<CmsNewsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: CmsNewsCountAggregateInputType | true
-    }
-
-  export interface CmsNewsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CmsNews'], meta: { name: 'CmsNews' } }
-    /**
-     * Find zero or one CmsNews that matches the filter.
-     * @param {CmsNewsFindUniqueArgs} args - Arguments to find a CmsNews
-     * @example
-     * // Get one CmsNews
-     * const cmsNews = await prisma.cmsNews.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends CmsNewsFindUniqueArgs>(args: SelectSubset<T, CmsNewsFindUniqueArgs<ExtArgs>>): Prisma__CmsNewsClient<$Result.GetResult<Prisma.$CmsNewsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one CmsNews that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {CmsNewsFindUniqueOrThrowArgs} args - Arguments to find a CmsNews
-     * @example
-     * // Get one CmsNews
-     * const cmsNews = await prisma.cmsNews.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends CmsNewsFindUniqueOrThrowArgs>(args: SelectSubset<T, CmsNewsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CmsNewsClient<$Result.GetResult<Prisma.$CmsNewsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first CmsNews that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsNewsFindFirstArgs} args - Arguments to find a CmsNews
-     * @example
-     * // Get one CmsNews
-     * const cmsNews = await prisma.cmsNews.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends CmsNewsFindFirstArgs>(args?: SelectSubset<T, CmsNewsFindFirstArgs<ExtArgs>>): Prisma__CmsNewsClient<$Result.GetResult<Prisma.$CmsNewsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first CmsNews that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsNewsFindFirstOrThrowArgs} args - Arguments to find a CmsNews
-     * @example
-     * // Get one CmsNews
-     * const cmsNews = await prisma.cmsNews.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends CmsNewsFindFirstOrThrowArgs>(args?: SelectSubset<T, CmsNewsFindFirstOrThrowArgs<ExtArgs>>): Prisma__CmsNewsClient<$Result.GetResult<Prisma.$CmsNewsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more CmsNews that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsNewsFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all CmsNews
-     * const cmsNews = await prisma.cmsNews.findMany()
-     * 
-     * // Get first 10 CmsNews
-     * const cmsNews = await prisma.cmsNews.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const cmsNewsWithIdOnly = await prisma.cmsNews.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends CmsNewsFindManyArgs>(args?: SelectSubset<T, CmsNewsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsNewsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a CmsNews.
-     * @param {CmsNewsCreateArgs} args - Arguments to create a CmsNews.
-     * @example
-     * // Create one CmsNews
-     * const CmsNews = await prisma.cmsNews.create({
-     *   data: {
-     *     // ... data to create a CmsNews
-     *   }
-     * })
-     * 
-     */
-    create<T extends CmsNewsCreateArgs>(args: SelectSubset<T, CmsNewsCreateArgs<ExtArgs>>): Prisma__CmsNewsClient<$Result.GetResult<Prisma.$CmsNewsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many CmsNews.
-     * @param {CmsNewsCreateManyArgs} args - Arguments to create many CmsNews.
-     * @example
-     * // Create many CmsNews
-     * const cmsNews = await prisma.cmsNews.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends CmsNewsCreateManyArgs>(args?: SelectSubset<T, CmsNewsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many CmsNews and returns the data saved in the database.
-     * @param {CmsNewsCreateManyAndReturnArgs} args - Arguments to create many CmsNews.
-     * @example
-     * // Create many CmsNews
-     * const cmsNews = await prisma.cmsNews.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many CmsNews and only return the `id`
-     * const cmsNewsWithIdOnly = await prisma.cmsNews.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends CmsNewsCreateManyAndReturnArgs>(args?: SelectSubset<T, CmsNewsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsNewsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a CmsNews.
-     * @param {CmsNewsDeleteArgs} args - Arguments to delete one CmsNews.
-     * @example
-     * // Delete one CmsNews
-     * const CmsNews = await prisma.cmsNews.delete({
-     *   where: {
-     *     // ... filter to delete one CmsNews
-     *   }
-     * })
-     * 
-     */
-    delete<T extends CmsNewsDeleteArgs>(args: SelectSubset<T, CmsNewsDeleteArgs<ExtArgs>>): Prisma__CmsNewsClient<$Result.GetResult<Prisma.$CmsNewsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one CmsNews.
-     * @param {CmsNewsUpdateArgs} args - Arguments to update one CmsNews.
-     * @example
-     * // Update one CmsNews
-     * const cmsNews = await prisma.cmsNews.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends CmsNewsUpdateArgs>(args: SelectSubset<T, CmsNewsUpdateArgs<ExtArgs>>): Prisma__CmsNewsClient<$Result.GetResult<Prisma.$CmsNewsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more CmsNews.
-     * @param {CmsNewsDeleteManyArgs} args - Arguments to filter CmsNews to delete.
-     * @example
-     * // Delete a few CmsNews
-     * const { count } = await prisma.cmsNews.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends CmsNewsDeleteManyArgs>(args?: SelectSubset<T, CmsNewsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more CmsNews.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsNewsUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many CmsNews
-     * const cmsNews = await prisma.cmsNews.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends CmsNewsUpdateManyArgs>(args: SelectSubset<T, CmsNewsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more CmsNews and returns the data updated in the database.
-     * @param {CmsNewsUpdateManyAndReturnArgs} args - Arguments to update many CmsNews.
-     * @example
-     * // Update many CmsNews
-     * const cmsNews = await prisma.cmsNews.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more CmsNews and only return the `id`
-     * const cmsNewsWithIdOnly = await prisma.cmsNews.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends CmsNewsUpdateManyAndReturnArgs>(args: SelectSubset<T, CmsNewsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsNewsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one CmsNews.
-     * @param {CmsNewsUpsertArgs} args - Arguments to update or create a CmsNews.
-     * @example
-     * // Update or create a CmsNews
-     * const cmsNews = await prisma.cmsNews.upsert({
-     *   create: {
-     *     // ... data to create a CmsNews
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the CmsNews we want to update
-     *   }
-     * })
-     */
-    upsert<T extends CmsNewsUpsertArgs>(args: SelectSubset<T, CmsNewsUpsertArgs<ExtArgs>>): Prisma__CmsNewsClient<$Result.GetResult<Prisma.$CmsNewsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of CmsNews.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsNewsCountArgs} args - Arguments to filter CmsNews to count.
-     * @example
-     * // Count the number of CmsNews
-     * const count = await prisma.cmsNews.count({
-     *   where: {
-     *     // ... the filter for the CmsNews we want to count
-     *   }
-     * })
-    **/
-    count<T extends CmsNewsCountArgs>(
-      args?: Subset<T, CmsNewsCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], CmsNewsCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a CmsNews.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsNewsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends CmsNewsAggregateArgs>(args: Subset<T, CmsNewsAggregateArgs>): Prisma.PrismaPromise<GetCmsNewsAggregateType<T>>
-
-    /**
-     * Group by CmsNews.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsNewsGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends CmsNewsGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: CmsNewsGroupByArgs['orderBy'] }
-        : { orderBy?: CmsNewsGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, CmsNewsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCmsNewsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the CmsNews model
-   */
-  readonly fields: CmsNewsFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for CmsNews.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__CmsNewsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    createdBy<T extends CmsUserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CmsUserDefaultArgs<ExtArgs>>): Prisma__CmsUserClient<$Result.GetResult<Prisma.$CmsUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    updatedBy<T extends CmsUserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CmsUserDefaultArgs<ExtArgs>>): Prisma__CmsUserClient<$Result.GetResult<Prisma.$CmsUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the CmsNews model
-   */
-  interface CmsNewsFieldRefs {
-    readonly id: FieldRef<"CmsNews", 'Int'>
-    readonly title: FieldRef<"CmsNews", 'String'>
-    readonly slug: FieldRef<"CmsNews", 'String'>
-    readonly excerpt: FieldRef<"CmsNews", 'String'>
-    readonly richContent: FieldRef<"CmsNews", 'String'>
-    readonly coverImage: FieldRef<"CmsNews", 'String'>
-    readonly region: FieldRef<"CmsNews", 'CmsRegion'>
-    readonly status: FieldRef<"CmsNews", 'PublishStatus'>
-    readonly publishedAt: FieldRef<"CmsNews", 'DateTime'>
-    readonly createdById: FieldRef<"CmsNews", 'Int'>
-    readonly updatedById: FieldRef<"CmsNews", 'Int'>
-    readonly createdAt: FieldRef<"CmsNews", 'DateTime'>
-    readonly updatedAt: FieldRef<"CmsNews", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * CmsNews findUnique
-   */
-  export type CmsNewsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsNews
-     */
-    select?: CmsNewsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsNews
-     */
-    omit?: CmsNewsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsNewsInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsNews to fetch.
-     */
-    where: CmsNewsWhereUniqueInput
-  }
-
-  /**
-   * CmsNews findUniqueOrThrow
-   */
-  export type CmsNewsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsNews
-     */
-    select?: CmsNewsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsNews
-     */
-    omit?: CmsNewsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsNewsInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsNews to fetch.
-     */
-    where: CmsNewsWhereUniqueInput
-  }
-
-  /**
-   * CmsNews findFirst
-   */
-  export type CmsNewsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsNews
-     */
-    select?: CmsNewsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsNews
-     */
-    omit?: CmsNewsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsNewsInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsNews to fetch.
-     */
-    where?: CmsNewsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsNews to fetch.
-     */
-    orderBy?: CmsNewsOrderByWithRelationInput | CmsNewsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for CmsNews.
-     */
-    cursor?: CmsNewsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsNews from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsNews.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CmsNews.
-     */
-    distinct?: CmsNewsScalarFieldEnum | CmsNewsScalarFieldEnum[]
-  }
-
-  /**
-   * CmsNews findFirstOrThrow
-   */
-  export type CmsNewsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsNews
-     */
-    select?: CmsNewsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsNews
-     */
-    omit?: CmsNewsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsNewsInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsNews to fetch.
-     */
-    where?: CmsNewsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsNews to fetch.
-     */
-    orderBy?: CmsNewsOrderByWithRelationInput | CmsNewsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for CmsNews.
-     */
-    cursor?: CmsNewsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsNews from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsNews.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CmsNews.
-     */
-    distinct?: CmsNewsScalarFieldEnum | CmsNewsScalarFieldEnum[]
-  }
-
-  /**
-   * CmsNews findMany
-   */
-  export type CmsNewsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsNews
-     */
-    select?: CmsNewsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsNews
-     */
-    omit?: CmsNewsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsNewsInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsNews to fetch.
-     */
-    where?: CmsNewsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsNews to fetch.
-     */
-    orderBy?: CmsNewsOrderByWithRelationInput | CmsNewsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing CmsNews.
-     */
-    cursor?: CmsNewsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsNews from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsNews.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CmsNews.
-     */
-    distinct?: CmsNewsScalarFieldEnum | CmsNewsScalarFieldEnum[]
-  }
-
-  /**
-   * CmsNews create
-   */
-  export type CmsNewsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsNews
-     */
-    select?: CmsNewsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsNews
-     */
-    omit?: CmsNewsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsNewsInclude<ExtArgs> | null
-    /**
-     * The data needed to create a CmsNews.
-     */
-    data: XOR<CmsNewsCreateInput, CmsNewsUncheckedCreateInput>
-  }
-
-  /**
-   * CmsNews createMany
-   */
-  export type CmsNewsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many CmsNews.
-     */
-    data: CmsNewsCreateManyInput | CmsNewsCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * CmsNews createManyAndReturn
-   */
-  export type CmsNewsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsNews
-     */
-    select?: CmsNewsSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsNews
-     */
-    omit?: CmsNewsOmit<ExtArgs> | null
-    /**
-     * The data used to create many CmsNews.
-     */
-    data: CmsNewsCreateManyInput | CmsNewsCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsNewsIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * CmsNews update
-   */
-  export type CmsNewsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsNews
-     */
-    select?: CmsNewsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsNews
-     */
-    omit?: CmsNewsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsNewsInclude<ExtArgs> | null
-    /**
-     * The data needed to update a CmsNews.
-     */
-    data: XOR<CmsNewsUpdateInput, CmsNewsUncheckedUpdateInput>
-    /**
-     * Choose, which CmsNews to update.
-     */
-    where: CmsNewsWhereUniqueInput
-  }
-
-  /**
-   * CmsNews updateMany
-   */
-  export type CmsNewsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update CmsNews.
-     */
-    data: XOR<CmsNewsUpdateManyMutationInput, CmsNewsUncheckedUpdateManyInput>
-    /**
-     * Filter which CmsNews to update
-     */
-    where?: CmsNewsWhereInput
-    /**
-     * Limit how many CmsNews to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * CmsNews updateManyAndReturn
-   */
-  export type CmsNewsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsNews
-     */
-    select?: CmsNewsSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsNews
-     */
-    omit?: CmsNewsOmit<ExtArgs> | null
-    /**
-     * The data used to update CmsNews.
-     */
-    data: XOR<CmsNewsUpdateManyMutationInput, CmsNewsUncheckedUpdateManyInput>
-    /**
-     * Filter which CmsNews to update
-     */
-    where?: CmsNewsWhereInput
-    /**
-     * Limit how many CmsNews to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsNewsIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * CmsNews upsert
-   */
-  export type CmsNewsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsNews
-     */
-    select?: CmsNewsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsNews
-     */
-    omit?: CmsNewsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsNewsInclude<ExtArgs> | null
-    /**
-     * The filter to search for the CmsNews to update in case it exists.
-     */
-    where: CmsNewsWhereUniqueInput
-    /**
-     * In case the CmsNews found by the `where` argument doesn't exist, create a new CmsNews with this data.
-     */
-    create: XOR<CmsNewsCreateInput, CmsNewsUncheckedCreateInput>
-    /**
-     * In case the CmsNews was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<CmsNewsUpdateInput, CmsNewsUncheckedUpdateInput>
-  }
-
-  /**
-   * CmsNews delete
-   */
-  export type CmsNewsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsNews
-     */
-    select?: CmsNewsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsNews
-     */
-    omit?: CmsNewsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsNewsInclude<ExtArgs> | null
-    /**
-     * Filter which CmsNews to delete.
-     */
-    where: CmsNewsWhereUniqueInput
-  }
-
-  /**
-   * CmsNews deleteMany
-   */
-  export type CmsNewsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which CmsNews to delete
-     */
-    where?: CmsNewsWhereInput
-    /**
-     * Limit how many CmsNews to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * CmsNews without action
-   */
-  export type CmsNewsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsNews
-     */
-    select?: CmsNewsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsNews
-     */
-    omit?: CmsNewsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsNewsInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model CmsPressBreifing
-   */
-
-  export type AggregateCmsPressBreifing = {
-    _count: CmsPressBreifingCountAggregateOutputType | null
-    _avg: CmsPressBreifingAvgAggregateOutputType | null
-    _sum: CmsPressBreifingSumAggregateOutputType | null
-    _min: CmsPressBreifingMinAggregateOutputType | null
-    _max: CmsPressBreifingMaxAggregateOutputType | null
-  }
-
-  export type CmsPressBreifingAvgAggregateOutputType = {
-    id: number | null
-    createdById: number | null
-    updatedById: number | null
-  }
-
-  export type CmsPressBreifingSumAggregateOutputType = {
-    id: number | null
-    createdById: number | null
-    updatedById: number | null
-  }
-
-  export type CmsPressBreifingMinAggregateOutputType = {
-    id: number | null
-    title: string | null
-    slug: string | null
-    excerpt: string | null
-    richContent: string | null
-    coverImage: string | null
-    region: $Enums.CmsRegion | null
-    status: $Enums.PublishStatus | null
-    publishedAt: Date | null
-    createdById: number | null
-    updatedById: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type CmsPressBreifingMaxAggregateOutputType = {
-    id: number | null
-    title: string | null
-    slug: string | null
-    excerpt: string | null
-    richContent: string | null
-    coverImage: string | null
-    region: $Enums.CmsRegion | null
-    status: $Enums.PublishStatus | null
-    publishedAt: Date | null
-    createdById: number | null
-    updatedById: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type CmsPressBreifingCountAggregateOutputType = {
-    id: number
-    title: number
-    slug: number
-    excerpt: number
-    richContent: number
-    coverImage: number
-    region: number
-    status: number
-    publishedAt: number
-    createdById: number
-    updatedById: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type CmsPressBreifingAvgAggregateInputType = {
-    id?: true
-    createdById?: true
-    updatedById?: true
-  }
-
-  export type CmsPressBreifingSumAggregateInputType = {
-    id?: true
-    createdById?: true
-    updatedById?: true
-  }
-
-  export type CmsPressBreifingMinAggregateInputType = {
-    id?: true
-    title?: true
-    slug?: true
-    excerpt?: true
-    richContent?: true
-    coverImage?: true
-    region?: true
-    status?: true
-    publishedAt?: true
-    createdById?: true
-    updatedById?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type CmsPressBreifingMaxAggregateInputType = {
-    id?: true
-    title?: true
-    slug?: true
-    excerpt?: true
-    richContent?: true
-    coverImage?: true
-    region?: true
-    status?: true
-    publishedAt?: true
-    createdById?: true
-    updatedById?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type CmsPressBreifingCountAggregateInputType = {
-    id?: true
-    title?: true
-    slug?: true
-    excerpt?: true
-    richContent?: true
-    coverImage?: true
-    region?: true
-    status?: true
-    publishedAt?: true
-    createdById?: true
-    updatedById?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type CmsPressBreifingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which CmsPressBreifing to aggregate.
-     */
-    where?: CmsPressBreifingWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsPressBreifings to fetch.
-     */
-    orderBy?: CmsPressBreifingOrderByWithRelationInput | CmsPressBreifingOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: CmsPressBreifingWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsPressBreifings from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsPressBreifings.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned CmsPressBreifings
-    **/
-    _count?: true | CmsPressBreifingCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: CmsPressBreifingAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: CmsPressBreifingSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: CmsPressBreifingMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: CmsPressBreifingMaxAggregateInputType
-  }
-
-  export type GetCmsPressBreifingAggregateType<T extends CmsPressBreifingAggregateArgs> = {
-        [P in keyof T & keyof AggregateCmsPressBreifing]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateCmsPressBreifing[P]>
-      : GetScalarType<T[P], AggregateCmsPressBreifing[P]>
-  }
-
-
-
-
-  export type CmsPressBreifingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsPressBreifingWhereInput
-    orderBy?: CmsPressBreifingOrderByWithAggregationInput | CmsPressBreifingOrderByWithAggregationInput[]
-    by: CmsPressBreifingScalarFieldEnum[] | CmsPressBreifingScalarFieldEnum
-    having?: CmsPressBreifingScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: CmsPressBreifingCountAggregateInputType | true
-    _avg?: CmsPressBreifingAvgAggregateInputType
-    _sum?: CmsPressBreifingSumAggregateInputType
-    _min?: CmsPressBreifingMinAggregateInputType
-    _max?: CmsPressBreifingMaxAggregateInputType
-  }
-
-  export type CmsPressBreifingGroupByOutputType = {
-    id: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage: string | null
-    region: $Enums.CmsRegion
-    status: $Enums.PublishStatus
-    publishedAt: Date | null
-    createdById: number
-    updatedById: number
-    createdAt: Date
-    updatedAt: Date
-    _count: CmsPressBreifingCountAggregateOutputType | null
-    _avg: CmsPressBreifingAvgAggregateOutputType | null
-    _sum: CmsPressBreifingSumAggregateOutputType | null
-    _min: CmsPressBreifingMinAggregateOutputType | null
-    _max: CmsPressBreifingMaxAggregateOutputType | null
-  }
-
-  type GetCmsPressBreifingGroupByPayload<T extends CmsPressBreifingGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<CmsPressBreifingGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof CmsPressBreifingGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], CmsPressBreifingGroupByOutputType[P]>
-            : GetScalarType<T[P], CmsPressBreifingGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type CmsPressBreifingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cmsPressBreifing"]>
-
-  export type CmsPressBreifingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cmsPressBreifing"]>
-
-  export type CmsPressBreifingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cmsPressBreifing"]>
-
-  export type CmsPressBreifingSelectScalar = {
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type CmsPressBreifingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "excerpt" | "richContent" | "coverImage" | "region" | "status" | "publishedAt" | "createdById" | "updatedById" | "createdAt" | "updatedAt", ExtArgs["result"]["cmsPressBreifing"]>
-  export type CmsPressBreifingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }
-  export type CmsPressBreifingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }
-  export type CmsPressBreifingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }
-
-  export type $CmsPressBreifingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "CmsPressBreifing"
-    objects: {
-      createdBy: Prisma.$CmsUserPayload<ExtArgs>
-      updatedBy: Prisma.$CmsUserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      title: string
-      slug: string
-      excerpt: string
-      richContent: string
-      coverImage: string | null
-      region: $Enums.CmsRegion
-      status: $Enums.PublishStatus
-      publishedAt: Date | null
-      createdById: number
-      updatedById: number
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["cmsPressBreifing"]>
-    composites: {}
-  }
-
-  type CmsPressBreifingGetPayload<S extends boolean | null | undefined | CmsPressBreifingDefaultArgs> = $Result.GetResult<Prisma.$CmsPressBreifingPayload, S>
-
-  type CmsPressBreifingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<CmsPressBreifingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: CmsPressBreifingCountAggregateInputType | true
-    }
-
-  export interface CmsPressBreifingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CmsPressBreifing'], meta: { name: 'CmsPressBreifing' } }
-    /**
-     * Find zero or one CmsPressBreifing that matches the filter.
-     * @param {CmsPressBreifingFindUniqueArgs} args - Arguments to find a CmsPressBreifing
-     * @example
-     * // Get one CmsPressBreifing
-     * const cmsPressBreifing = await prisma.cmsPressBreifing.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends CmsPressBreifingFindUniqueArgs>(args: SelectSubset<T, CmsPressBreifingFindUniqueArgs<ExtArgs>>): Prisma__CmsPressBreifingClient<$Result.GetResult<Prisma.$CmsPressBreifingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one CmsPressBreifing that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {CmsPressBreifingFindUniqueOrThrowArgs} args - Arguments to find a CmsPressBreifing
-     * @example
-     * // Get one CmsPressBreifing
-     * const cmsPressBreifing = await prisma.cmsPressBreifing.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends CmsPressBreifingFindUniqueOrThrowArgs>(args: SelectSubset<T, CmsPressBreifingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CmsPressBreifingClient<$Result.GetResult<Prisma.$CmsPressBreifingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first CmsPressBreifing that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsPressBreifingFindFirstArgs} args - Arguments to find a CmsPressBreifing
-     * @example
-     * // Get one CmsPressBreifing
-     * const cmsPressBreifing = await prisma.cmsPressBreifing.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends CmsPressBreifingFindFirstArgs>(args?: SelectSubset<T, CmsPressBreifingFindFirstArgs<ExtArgs>>): Prisma__CmsPressBreifingClient<$Result.GetResult<Prisma.$CmsPressBreifingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first CmsPressBreifing that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsPressBreifingFindFirstOrThrowArgs} args - Arguments to find a CmsPressBreifing
-     * @example
-     * // Get one CmsPressBreifing
-     * const cmsPressBreifing = await prisma.cmsPressBreifing.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends CmsPressBreifingFindFirstOrThrowArgs>(args?: SelectSubset<T, CmsPressBreifingFindFirstOrThrowArgs<ExtArgs>>): Prisma__CmsPressBreifingClient<$Result.GetResult<Prisma.$CmsPressBreifingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more CmsPressBreifings that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsPressBreifingFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all CmsPressBreifings
-     * const cmsPressBreifings = await prisma.cmsPressBreifing.findMany()
-     * 
-     * // Get first 10 CmsPressBreifings
-     * const cmsPressBreifings = await prisma.cmsPressBreifing.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const cmsPressBreifingWithIdOnly = await prisma.cmsPressBreifing.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends CmsPressBreifingFindManyArgs>(args?: SelectSubset<T, CmsPressBreifingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsPressBreifingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a CmsPressBreifing.
-     * @param {CmsPressBreifingCreateArgs} args - Arguments to create a CmsPressBreifing.
-     * @example
-     * // Create one CmsPressBreifing
-     * const CmsPressBreifing = await prisma.cmsPressBreifing.create({
-     *   data: {
-     *     // ... data to create a CmsPressBreifing
-     *   }
-     * })
-     * 
-     */
-    create<T extends CmsPressBreifingCreateArgs>(args: SelectSubset<T, CmsPressBreifingCreateArgs<ExtArgs>>): Prisma__CmsPressBreifingClient<$Result.GetResult<Prisma.$CmsPressBreifingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many CmsPressBreifings.
-     * @param {CmsPressBreifingCreateManyArgs} args - Arguments to create many CmsPressBreifings.
-     * @example
-     * // Create many CmsPressBreifings
-     * const cmsPressBreifing = await prisma.cmsPressBreifing.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends CmsPressBreifingCreateManyArgs>(args?: SelectSubset<T, CmsPressBreifingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many CmsPressBreifings and returns the data saved in the database.
-     * @param {CmsPressBreifingCreateManyAndReturnArgs} args - Arguments to create many CmsPressBreifings.
-     * @example
-     * // Create many CmsPressBreifings
-     * const cmsPressBreifing = await prisma.cmsPressBreifing.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many CmsPressBreifings and only return the `id`
-     * const cmsPressBreifingWithIdOnly = await prisma.cmsPressBreifing.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends CmsPressBreifingCreateManyAndReturnArgs>(args?: SelectSubset<T, CmsPressBreifingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsPressBreifingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a CmsPressBreifing.
-     * @param {CmsPressBreifingDeleteArgs} args - Arguments to delete one CmsPressBreifing.
-     * @example
-     * // Delete one CmsPressBreifing
-     * const CmsPressBreifing = await prisma.cmsPressBreifing.delete({
-     *   where: {
-     *     // ... filter to delete one CmsPressBreifing
-     *   }
-     * })
-     * 
-     */
-    delete<T extends CmsPressBreifingDeleteArgs>(args: SelectSubset<T, CmsPressBreifingDeleteArgs<ExtArgs>>): Prisma__CmsPressBreifingClient<$Result.GetResult<Prisma.$CmsPressBreifingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one CmsPressBreifing.
-     * @param {CmsPressBreifingUpdateArgs} args - Arguments to update one CmsPressBreifing.
-     * @example
-     * // Update one CmsPressBreifing
-     * const cmsPressBreifing = await prisma.cmsPressBreifing.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends CmsPressBreifingUpdateArgs>(args: SelectSubset<T, CmsPressBreifingUpdateArgs<ExtArgs>>): Prisma__CmsPressBreifingClient<$Result.GetResult<Prisma.$CmsPressBreifingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more CmsPressBreifings.
-     * @param {CmsPressBreifingDeleteManyArgs} args - Arguments to filter CmsPressBreifings to delete.
-     * @example
-     * // Delete a few CmsPressBreifings
-     * const { count } = await prisma.cmsPressBreifing.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends CmsPressBreifingDeleteManyArgs>(args?: SelectSubset<T, CmsPressBreifingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more CmsPressBreifings.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsPressBreifingUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many CmsPressBreifings
-     * const cmsPressBreifing = await prisma.cmsPressBreifing.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends CmsPressBreifingUpdateManyArgs>(args: SelectSubset<T, CmsPressBreifingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more CmsPressBreifings and returns the data updated in the database.
-     * @param {CmsPressBreifingUpdateManyAndReturnArgs} args - Arguments to update many CmsPressBreifings.
-     * @example
-     * // Update many CmsPressBreifings
-     * const cmsPressBreifing = await prisma.cmsPressBreifing.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more CmsPressBreifings and only return the `id`
-     * const cmsPressBreifingWithIdOnly = await prisma.cmsPressBreifing.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends CmsPressBreifingUpdateManyAndReturnArgs>(args: SelectSubset<T, CmsPressBreifingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsPressBreifingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one CmsPressBreifing.
-     * @param {CmsPressBreifingUpsertArgs} args - Arguments to update or create a CmsPressBreifing.
-     * @example
-     * // Update or create a CmsPressBreifing
-     * const cmsPressBreifing = await prisma.cmsPressBreifing.upsert({
-     *   create: {
-     *     // ... data to create a CmsPressBreifing
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the CmsPressBreifing we want to update
-     *   }
-     * })
-     */
-    upsert<T extends CmsPressBreifingUpsertArgs>(args: SelectSubset<T, CmsPressBreifingUpsertArgs<ExtArgs>>): Prisma__CmsPressBreifingClient<$Result.GetResult<Prisma.$CmsPressBreifingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of CmsPressBreifings.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsPressBreifingCountArgs} args - Arguments to filter CmsPressBreifings to count.
-     * @example
-     * // Count the number of CmsPressBreifings
-     * const count = await prisma.cmsPressBreifing.count({
-     *   where: {
-     *     // ... the filter for the CmsPressBreifings we want to count
-     *   }
-     * })
-    **/
-    count<T extends CmsPressBreifingCountArgs>(
-      args?: Subset<T, CmsPressBreifingCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], CmsPressBreifingCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a CmsPressBreifing.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsPressBreifingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends CmsPressBreifingAggregateArgs>(args: Subset<T, CmsPressBreifingAggregateArgs>): Prisma.PrismaPromise<GetCmsPressBreifingAggregateType<T>>
-
-    /**
-     * Group by CmsPressBreifing.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsPressBreifingGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends CmsPressBreifingGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: CmsPressBreifingGroupByArgs['orderBy'] }
-        : { orderBy?: CmsPressBreifingGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, CmsPressBreifingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCmsPressBreifingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the CmsPressBreifing model
-   */
-  readonly fields: CmsPressBreifingFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for CmsPressBreifing.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__CmsPressBreifingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    createdBy<T extends CmsUserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CmsUserDefaultArgs<ExtArgs>>): Prisma__CmsUserClient<$Result.GetResult<Prisma.$CmsUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    updatedBy<T extends CmsUserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CmsUserDefaultArgs<ExtArgs>>): Prisma__CmsUserClient<$Result.GetResult<Prisma.$CmsUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the CmsPressBreifing model
-   */
-  interface CmsPressBreifingFieldRefs {
-    readonly id: FieldRef<"CmsPressBreifing", 'Int'>
-    readonly title: FieldRef<"CmsPressBreifing", 'String'>
-    readonly slug: FieldRef<"CmsPressBreifing", 'String'>
-    readonly excerpt: FieldRef<"CmsPressBreifing", 'String'>
-    readonly richContent: FieldRef<"CmsPressBreifing", 'String'>
-    readonly coverImage: FieldRef<"CmsPressBreifing", 'String'>
-    readonly region: FieldRef<"CmsPressBreifing", 'CmsRegion'>
-    readonly status: FieldRef<"CmsPressBreifing", 'PublishStatus'>
-    readonly publishedAt: FieldRef<"CmsPressBreifing", 'DateTime'>
-    readonly createdById: FieldRef<"CmsPressBreifing", 'Int'>
-    readonly updatedById: FieldRef<"CmsPressBreifing", 'Int'>
-    readonly createdAt: FieldRef<"CmsPressBreifing", 'DateTime'>
-    readonly updatedAt: FieldRef<"CmsPressBreifing", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * CmsPressBreifing findUnique
-   */
-  export type CmsPressBreifingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsPressBreifing
-     */
-    select?: CmsPressBreifingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsPressBreifing
-     */
-    omit?: CmsPressBreifingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsPressBreifingInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsPressBreifing to fetch.
-     */
-    where: CmsPressBreifingWhereUniqueInput
-  }
-
-  /**
-   * CmsPressBreifing findUniqueOrThrow
-   */
-  export type CmsPressBreifingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsPressBreifing
-     */
-    select?: CmsPressBreifingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsPressBreifing
-     */
-    omit?: CmsPressBreifingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsPressBreifingInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsPressBreifing to fetch.
-     */
-    where: CmsPressBreifingWhereUniqueInput
-  }
-
-  /**
-   * CmsPressBreifing findFirst
-   */
-  export type CmsPressBreifingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsPressBreifing
-     */
-    select?: CmsPressBreifingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsPressBreifing
-     */
-    omit?: CmsPressBreifingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsPressBreifingInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsPressBreifing to fetch.
-     */
-    where?: CmsPressBreifingWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsPressBreifings to fetch.
-     */
-    orderBy?: CmsPressBreifingOrderByWithRelationInput | CmsPressBreifingOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for CmsPressBreifings.
-     */
-    cursor?: CmsPressBreifingWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsPressBreifings from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsPressBreifings.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CmsPressBreifings.
-     */
-    distinct?: CmsPressBreifingScalarFieldEnum | CmsPressBreifingScalarFieldEnum[]
-  }
-
-  /**
-   * CmsPressBreifing findFirstOrThrow
-   */
-  export type CmsPressBreifingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsPressBreifing
-     */
-    select?: CmsPressBreifingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsPressBreifing
-     */
-    omit?: CmsPressBreifingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsPressBreifingInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsPressBreifing to fetch.
-     */
-    where?: CmsPressBreifingWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsPressBreifings to fetch.
-     */
-    orderBy?: CmsPressBreifingOrderByWithRelationInput | CmsPressBreifingOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for CmsPressBreifings.
-     */
-    cursor?: CmsPressBreifingWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsPressBreifings from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsPressBreifings.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CmsPressBreifings.
-     */
-    distinct?: CmsPressBreifingScalarFieldEnum | CmsPressBreifingScalarFieldEnum[]
-  }
-
-  /**
-   * CmsPressBreifing findMany
-   */
-  export type CmsPressBreifingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsPressBreifing
-     */
-    select?: CmsPressBreifingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsPressBreifing
-     */
-    omit?: CmsPressBreifingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsPressBreifingInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsPressBreifings to fetch.
-     */
-    where?: CmsPressBreifingWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsPressBreifings to fetch.
-     */
-    orderBy?: CmsPressBreifingOrderByWithRelationInput | CmsPressBreifingOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing CmsPressBreifings.
-     */
-    cursor?: CmsPressBreifingWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsPressBreifings from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsPressBreifings.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CmsPressBreifings.
-     */
-    distinct?: CmsPressBreifingScalarFieldEnum | CmsPressBreifingScalarFieldEnum[]
-  }
-
-  /**
-   * CmsPressBreifing create
-   */
-  export type CmsPressBreifingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsPressBreifing
-     */
-    select?: CmsPressBreifingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsPressBreifing
-     */
-    omit?: CmsPressBreifingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsPressBreifingInclude<ExtArgs> | null
-    /**
-     * The data needed to create a CmsPressBreifing.
-     */
-    data: XOR<CmsPressBreifingCreateInput, CmsPressBreifingUncheckedCreateInput>
-  }
-
-  /**
-   * CmsPressBreifing createMany
-   */
-  export type CmsPressBreifingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many CmsPressBreifings.
-     */
-    data: CmsPressBreifingCreateManyInput | CmsPressBreifingCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * CmsPressBreifing createManyAndReturn
-   */
-  export type CmsPressBreifingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsPressBreifing
-     */
-    select?: CmsPressBreifingSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsPressBreifing
-     */
-    omit?: CmsPressBreifingOmit<ExtArgs> | null
-    /**
-     * The data used to create many CmsPressBreifings.
-     */
-    data: CmsPressBreifingCreateManyInput | CmsPressBreifingCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsPressBreifingIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * CmsPressBreifing update
-   */
-  export type CmsPressBreifingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsPressBreifing
-     */
-    select?: CmsPressBreifingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsPressBreifing
-     */
-    omit?: CmsPressBreifingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsPressBreifingInclude<ExtArgs> | null
-    /**
-     * The data needed to update a CmsPressBreifing.
-     */
-    data: XOR<CmsPressBreifingUpdateInput, CmsPressBreifingUncheckedUpdateInput>
-    /**
-     * Choose, which CmsPressBreifing to update.
-     */
-    where: CmsPressBreifingWhereUniqueInput
-  }
-
-  /**
-   * CmsPressBreifing updateMany
-   */
-  export type CmsPressBreifingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update CmsPressBreifings.
-     */
-    data: XOR<CmsPressBreifingUpdateManyMutationInput, CmsPressBreifingUncheckedUpdateManyInput>
-    /**
-     * Filter which CmsPressBreifings to update
-     */
-    where?: CmsPressBreifingWhereInput
-    /**
-     * Limit how many CmsPressBreifings to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * CmsPressBreifing updateManyAndReturn
-   */
-  export type CmsPressBreifingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsPressBreifing
-     */
-    select?: CmsPressBreifingSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsPressBreifing
-     */
-    omit?: CmsPressBreifingOmit<ExtArgs> | null
-    /**
-     * The data used to update CmsPressBreifings.
-     */
-    data: XOR<CmsPressBreifingUpdateManyMutationInput, CmsPressBreifingUncheckedUpdateManyInput>
-    /**
-     * Filter which CmsPressBreifings to update
-     */
-    where?: CmsPressBreifingWhereInput
-    /**
-     * Limit how many CmsPressBreifings to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsPressBreifingIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * CmsPressBreifing upsert
-   */
-  export type CmsPressBreifingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsPressBreifing
-     */
-    select?: CmsPressBreifingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsPressBreifing
-     */
-    omit?: CmsPressBreifingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsPressBreifingInclude<ExtArgs> | null
-    /**
-     * The filter to search for the CmsPressBreifing to update in case it exists.
-     */
-    where: CmsPressBreifingWhereUniqueInput
-    /**
-     * In case the CmsPressBreifing found by the `where` argument doesn't exist, create a new CmsPressBreifing with this data.
-     */
-    create: XOR<CmsPressBreifingCreateInput, CmsPressBreifingUncheckedCreateInput>
-    /**
-     * In case the CmsPressBreifing was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<CmsPressBreifingUpdateInput, CmsPressBreifingUncheckedUpdateInput>
-  }
-
-  /**
-   * CmsPressBreifing delete
-   */
-  export type CmsPressBreifingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsPressBreifing
-     */
-    select?: CmsPressBreifingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsPressBreifing
-     */
-    omit?: CmsPressBreifingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsPressBreifingInclude<ExtArgs> | null
-    /**
-     * Filter which CmsPressBreifing to delete.
-     */
-    where: CmsPressBreifingWhereUniqueInput
-  }
-
-  /**
-   * CmsPressBreifing deleteMany
-   */
-  export type CmsPressBreifingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which CmsPressBreifings to delete
-     */
-    where?: CmsPressBreifingWhereInput
-    /**
-     * Limit how many CmsPressBreifings to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * CmsPressBreifing without action
-   */
-  export type CmsPressBreifingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsPressBreifing
-     */
-    select?: CmsPressBreifingSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsPressBreifing
-     */
-    omit?: CmsPressBreifingOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsPressBreifingInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model CmsVideo
-   */
-
-  export type AggregateCmsVideo = {
-    _count: CmsVideoCountAggregateOutputType | null
-    _avg: CmsVideoAvgAggregateOutputType | null
-    _sum: CmsVideoSumAggregateOutputType | null
-    _min: CmsVideoMinAggregateOutputType | null
-    _max: CmsVideoMaxAggregateOutputType | null
-  }
-
-  export type CmsVideoAvgAggregateOutputType = {
-    id: number | null
-    videoDuration: number | null
-    createdById: number | null
-    updatedById: number | null
-  }
-
-  export type CmsVideoSumAggregateOutputType = {
-    id: number | null
-    videoDuration: number | null
-    createdById: number | null
-    updatedById: number | null
-  }
-
-  export type CmsVideoMinAggregateOutputType = {
-    id: number | null
-    title: string | null
-    slug: string | null
-    excerpt: string | null
-    richContent: string | null
-    coverImage: string | null
-    videoUrl: string | null
-    videoDuration: number | null
-    region: $Enums.CmsRegion | null
-    status: $Enums.PublishStatus | null
-    publishedAt: Date | null
-    createdById: number | null
-    updatedById: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type CmsVideoMaxAggregateOutputType = {
-    id: number | null
-    title: string | null
-    slug: string | null
-    excerpt: string | null
-    richContent: string | null
-    coverImage: string | null
-    videoUrl: string | null
-    videoDuration: number | null
-    region: $Enums.CmsRegion | null
-    status: $Enums.PublishStatus | null
-    publishedAt: Date | null
-    createdById: number | null
-    updatedById: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type CmsVideoCountAggregateOutputType = {
-    id: number
-    title: number
-    slug: number
-    excerpt: number
-    richContent: number
-    coverImage: number
-    videoUrl: number
-    videoDuration: number
-    region: number
-    status: number
-    publishedAt: number
-    createdById: number
-    updatedById: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type CmsVideoAvgAggregateInputType = {
-    id?: true
-    videoDuration?: true
-    createdById?: true
-    updatedById?: true
-  }
-
-  export type CmsVideoSumAggregateInputType = {
-    id?: true
-    videoDuration?: true
-    createdById?: true
-    updatedById?: true
-  }
-
-  export type CmsVideoMinAggregateInputType = {
-    id?: true
-    title?: true
-    slug?: true
-    excerpt?: true
-    richContent?: true
-    coverImage?: true
-    videoUrl?: true
-    videoDuration?: true
-    region?: true
-    status?: true
-    publishedAt?: true
-    createdById?: true
-    updatedById?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type CmsVideoMaxAggregateInputType = {
-    id?: true
-    title?: true
-    slug?: true
-    excerpt?: true
-    richContent?: true
-    coverImage?: true
-    videoUrl?: true
-    videoDuration?: true
-    region?: true
-    status?: true
-    publishedAt?: true
-    createdById?: true
-    updatedById?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type CmsVideoCountAggregateInputType = {
-    id?: true
-    title?: true
-    slug?: true
-    excerpt?: true
-    richContent?: true
-    coverImage?: true
-    videoUrl?: true
-    videoDuration?: true
-    region?: true
-    status?: true
-    publishedAt?: true
-    createdById?: true
-    updatedById?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type CmsVideoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which CmsVideo to aggregate.
-     */
-    where?: CmsVideoWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsVideos to fetch.
-     */
-    orderBy?: CmsVideoOrderByWithRelationInput | CmsVideoOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: CmsVideoWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsVideos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsVideos.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned CmsVideos
-    **/
-    _count?: true | CmsVideoCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: CmsVideoAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: CmsVideoSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: CmsVideoMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: CmsVideoMaxAggregateInputType
-  }
-
-  export type GetCmsVideoAggregateType<T extends CmsVideoAggregateArgs> = {
-        [P in keyof T & keyof AggregateCmsVideo]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateCmsVideo[P]>
-      : GetScalarType<T[P], AggregateCmsVideo[P]>
-  }
-
-
-
-
-  export type CmsVideoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsVideoWhereInput
-    orderBy?: CmsVideoOrderByWithAggregationInput | CmsVideoOrderByWithAggregationInput[]
-    by: CmsVideoScalarFieldEnum[] | CmsVideoScalarFieldEnum
-    having?: CmsVideoScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: CmsVideoCountAggregateInputType | true
-    _avg?: CmsVideoAvgAggregateInputType
-    _sum?: CmsVideoSumAggregateInputType
-    _min?: CmsVideoMinAggregateInputType
-    _max?: CmsVideoMaxAggregateInputType
-  }
-
-  export type CmsVideoGroupByOutputType = {
-    id: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage: string | null
-    videoUrl: string
-    videoDuration: number | null
-    region: $Enums.CmsRegion
-    status: $Enums.PublishStatus
-    publishedAt: Date | null
-    createdById: number
-    updatedById: number
-    createdAt: Date
-    updatedAt: Date
-    _count: CmsVideoCountAggregateOutputType | null
-    _avg: CmsVideoAvgAggregateOutputType | null
-    _sum: CmsVideoSumAggregateOutputType | null
-    _min: CmsVideoMinAggregateOutputType | null
-    _max: CmsVideoMaxAggregateOutputType | null
-  }
-
-  type GetCmsVideoGroupByPayload<T extends CmsVideoGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<CmsVideoGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof CmsVideoGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], CmsVideoGroupByOutputType[P]>
-            : GetScalarType<T[P], CmsVideoGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type CmsVideoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    videoUrl?: boolean
-    videoDuration?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cmsVideo"]>
-
-  export type CmsVideoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    videoUrl?: boolean
-    videoDuration?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cmsVideo"]>
-
-  export type CmsVideoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    videoUrl?: boolean
-    videoDuration?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cmsVideo"]>
-
-  export type CmsVideoSelectScalar = {
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    videoUrl?: boolean
-    videoDuration?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type CmsVideoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "excerpt" | "richContent" | "coverImage" | "videoUrl" | "videoDuration" | "region" | "status" | "publishedAt" | "createdById" | "updatedById" | "createdAt" | "updatedAt", ExtArgs["result"]["cmsVideo"]>
-  export type CmsVideoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }
-  export type CmsVideoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }
-  export type CmsVideoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }
-
-  export type $CmsVideoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "CmsVideo"
-    objects: {
-      createdBy: Prisma.$CmsUserPayload<ExtArgs>
-      updatedBy: Prisma.$CmsUserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      title: string
-      slug: string
-      excerpt: string
-      richContent: string
-      coverImage: string | null
-      videoUrl: string
-      videoDuration: number | null
-      region: $Enums.CmsRegion
-      status: $Enums.PublishStatus
-      publishedAt: Date | null
-      createdById: number
-      updatedById: number
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["cmsVideo"]>
-    composites: {}
-  }
-
-  type CmsVideoGetPayload<S extends boolean | null | undefined | CmsVideoDefaultArgs> = $Result.GetResult<Prisma.$CmsVideoPayload, S>
-
-  type CmsVideoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<CmsVideoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: CmsVideoCountAggregateInputType | true
-    }
-
-  export interface CmsVideoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CmsVideo'], meta: { name: 'CmsVideo' } }
-    /**
-     * Find zero or one CmsVideo that matches the filter.
-     * @param {CmsVideoFindUniqueArgs} args - Arguments to find a CmsVideo
-     * @example
-     * // Get one CmsVideo
-     * const cmsVideo = await prisma.cmsVideo.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends CmsVideoFindUniqueArgs>(args: SelectSubset<T, CmsVideoFindUniqueArgs<ExtArgs>>): Prisma__CmsVideoClient<$Result.GetResult<Prisma.$CmsVideoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one CmsVideo that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {CmsVideoFindUniqueOrThrowArgs} args - Arguments to find a CmsVideo
-     * @example
-     * // Get one CmsVideo
-     * const cmsVideo = await prisma.cmsVideo.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends CmsVideoFindUniqueOrThrowArgs>(args: SelectSubset<T, CmsVideoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CmsVideoClient<$Result.GetResult<Prisma.$CmsVideoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first CmsVideo that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsVideoFindFirstArgs} args - Arguments to find a CmsVideo
-     * @example
-     * // Get one CmsVideo
-     * const cmsVideo = await prisma.cmsVideo.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends CmsVideoFindFirstArgs>(args?: SelectSubset<T, CmsVideoFindFirstArgs<ExtArgs>>): Prisma__CmsVideoClient<$Result.GetResult<Prisma.$CmsVideoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first CmsVideo that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsVideoFindFirstOrThrowArgs} args - Arguments to find a CmsVideo
-     * @example
-     * // Get one CmsVideo
-     * const cmsVideo = await prisma.cmsVideo.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends CmsVideoFindFirstOrThrowArgs>(args?: SelectSubset<T, CmsVideoFindFirstOrThrowArgs<ExtArgs>>): Prisma__CmsVideoClient<$Result.GetResult<Prisma.$CmsVideoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more CmsVideos that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsVideoFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all CmsVideos
-     * const cmsVideos = await prisma.cmsVideo.findMany()
-     * 
-     * // Get first 10 CmsVideos
-     * const cmsVideos = await prisma.cmsVideo.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const cmsVideoWithIdOnly = await prisma.cmsVideo.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends CmsVideoFindManyArgs>(args?: SelectSubset<T, CmsVideoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsVideoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a CmsVideo.
-     * @param {CmsVideoCreateArgs} args - Arguments to create a CmsVideo.
-     * @example
-     * // Create one CmsVideo
-     * const CmsVideo = await prisma.cmsVideo.create({
-     *   data: {
-     *     // ... data to create a CmsVideo
-     *   }
-     * })
-     * 
-     */
-    create<T extends CmsVideoCreateArgs>(args: SelectSubset<T, CmsVideoCreateArgs<ExtArgs>>): Prisma__CmsVideoClient<$Result.GetResult<Prisma.$CmsVideoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many CmsVideos.
-     * @param {CmsVideoCreateManyArgs} args - Arguments to create many CmsVideos.
-     * @example
-     * // Create many CmsVideos
-     * const cmsVideo = await prisma.cmsVideo.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends CmsVideoCreateManyArgs>(args?: SelectSubset<T, CmsVideoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many CmsVideos and returns the data saved in the database.
-     * @param {CmsVideoCreateManyAndReturnArgs} args - Arguments to create many CmsVideos.
-     * @example
-     * // Create many CmsVideos
-     * const cmsVideo = await prisma.cmsVideo.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many CmsVideos and only return the `id`
-     * const cmsVideoWithIdOnly = await prisma.cmsVideo.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends CmsVideoCreateManyAndReturnArgs>(args?: SelectSubset<T, CmsVideoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsVideoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a CmsVideo.
-     * @param {CmsVideoDeleteArgs} args - Arguments to delete one CmsVideo.
-     * @example
-     * // Delete one CmsVideo
-     * const CmsVideo = await prisma.cmsVideo.delete({
-     *   where: {
-     *     // ... filter to delete one CmsVideo
-     *   }
-     * })
-     * 
-     */
-    delete<T extends CmsVideoDeleteArgs>(args: SelectSubset<T, CmsVideoDeleteArgs<ExtArgs>>): Prisma__CmsVideoClient<$Result.GetResult<Prisma.$CmsVideoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one CmsVideo.
-     * @param {CmsVideoUpdateArgs} args - Arguments to update one CmsVideo.
-     * @example
-     * // Update one CmsVideo
-     * const cmsVideo = await prisma.cmsVideo.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends CmsVideoUpdateArgs>(args: SelectSubset<T, CmsVideoUpdateArgs<ExtArgs>>): Prisma__CmsVideoClient<$Result.GetResult<Prisma.$CmsVideoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more CmsVideos.
-     * @param {CmsVideoDeleteManyArgs} args - Arguments to filter CmsVideos to delete.
-     * @example
-     * // Delete a few CmsVideos
-     * const { count } = await prisma.cmsVideo.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends CmsVideoDeleteManyArgs>(args?: SelectSubset<T, CmsVideoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more CmsVideos.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsVideoUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many CmsVideos
-     * const cmsVideo = await prisma.cmsVideo.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends CmsVideoUpdateManyArgs>(args: SelectSubset<T, CmsVideoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more CmsVideos and returns the data updated in the database.
-     * @param {CmsVideoUpdateManyAndReturnArgs} args - Arguments to update many CmsVideos.
-     * @example
-     * // Update many CmsVideos
-     * const cmsVideo = await prisma.cmsVideo.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more CmsVideos and only return the `id`
-     * const cmsVideoWithIdOnly = await prisma.cmsVideo.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends CmsVideoUpdateManyAndReturnArgs>(args: SelectSubset<T, CmsVideoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsVideoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one CmsVideo.
-     * @param {CmsVideoUpsertArgs} args - Arguments to update or create a CmsVideo.
-     * @example
-     * // Update or create a CmsVideo
-     * const cmsVideo = await prisma.cmsVideo.upsert({
-     *   create: {
-     *     // ... data to create a CmsVideo
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the CmsVideo we want to update
-     *   }
-     * })
-     */
-    upsert<T extends CmsVideoUpsertArgs>(args: SelectSubset<T, CmsVideoUpsertArgs<ExtArgs>>): Prisma__CmsVideoClient<$Result.GetResult<Prisma.$CmsVideoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of CmsVideos.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsVideoCountArgs} args - Arguments to filter CmsVideos to count.
-     * @example
-     * // Count the number of CmsVideos
-     * const count = await prisma.cmsVideo.count({
-     *   where: {
-     *     // ... the filter for the CmsVideos we want to count
-     *   }
-     * })
-    **/
-    count<T extends CmsVideoCountArgs>(
-      args?: Subset<T, CmsVideoCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], CmsVideoCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a CmsVideo.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsVideoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends CmsVideoAggregateArgs>(args: Subset<T, CmsVideoAggregateArgs>): Prisma.PrismaPromise<GetCmsVideoAggregateType<T>>
-
-    /**
-     * Group by CmsVideo.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsVideoGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends CmsVideoGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: CmsVideoGroupByArgs['orderBy'] }
-        : { orderBy?: CmsVideoGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, CmsVideoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCmsVideoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the CmsVideo model
-   */
-  readonly fields: CmsVideoFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for CmsVideo.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__CmsVideoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    createdBy<T extends CmsUserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CmsUserDefaultArgs<ExtArgs>>): Prisma__CmsUserClient<$Result.GetResult<Prisma.$CmsUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    updatedBy<T extends CmsUserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CmsUserDefaultArgs<ExtArgs>>): Prisma__CmsUserClient<$Result.GetResult<Prisma.$CmsUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the CmsVideo model
-   */
-  interface CmsVideoFieldRefs {
-    readonly id: FieldRef<"CmsVideo", 'Int'>
-    readonly title: FieldRef<"CmsVideo", 'String'>
-    readonly slug: FieldRef<"CmsVideo", 'String'>
-    readonly excerpt: FieldRef<"CmsVideo", 'String'>
-    readonly richContent: FieldRef<"CmsVideo", 'String'>
-    readonly coverImage: FieldRef<"CmsVideo", 'String'>
-    readonly videoUrl: FieldRef<"CmsVideo", 'String'>
-    readonly videoDuration: FieldRef<"CmsVideo", 'Int'>
-    readonly region: FieldRef<"CmsVideo", 'CmsRegion'>
-    readonly status: FieldRef<"CmsVideo", 'PublishStatus'>
-    readonly publishedAt: FieldRef<"CmsVideo", 'DateTime'>
-    readonly createdById: FieldRef<"CmsVideo", 'Int'>
-    readonly updatedById: FieldRef<"CmsVideo", 'Int'>
-    readonly createdAt: FieldRef<"CmsVideo", 'DateTime'>
-    readonly updatedAt: FieldRef<"CmsVideo", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * CmsVideo findUnique
-   */
-  export type CmsVideoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsVideo
-     */
-    select?: CmsVideoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsVideo
-     */
-    omit?: CmsVideoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsVideoInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsVideo to fetch.
-     */
-    where: CmsVideoWhereUniqueInput
-  }
-
-  /**
-   * CmsVideo findUniqueOrThrow
-   */
-  export type CmsVideoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsVideo
-     */
-    select?: CmsVideoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsVideo
-     */
-    omit?: CmsVideoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsVideoInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsVideo to fetch.
-     */
-    where: CmsVideoWhereUniqueInput
-  }
-
-  /**
-   * CmsVideo findFirst
-   */
-  export type CmsVideoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsVideo
-     */
-    select?: CmsVideoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsVideo
-     */
-    omit?: CmsVideoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsVideoInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsVideo to fetch.
-     */
-    where?: CmsVideoWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsVideos to fetch.
-     */
-    orderBy?: CmsVideoOrderByWithRelationInput | CmsVideoOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for CmsVideos.
-     */
-    cursor?: CmsVideoWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsVideos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsVideos.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CmsVideos.
-     */
-    distinct?: CmsVideoScalarFieldEnum | CmsVideoScalarFieldEnum[]
-  }
-
-  /**
-   * CmsVideo findFirstOrThrow
-   */
-  export type CmsVideoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsVideo
-     */
-    select?: CmsVideoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsVideo
-     */
-    omit?: CmsVideoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsVideoInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsVideo to fetch.
-     */
-    where?: CmsVideoWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsVideos to fetch.
-     */
-    orderBy?: CmsVideoOrderByWithRelationInput | CmsVideoOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for CmsVideos.
-     */
-    cursor?: CmsVideoWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsVideos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsVideos.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CmsVideos.
-     */
-    distinct?: CmsVideoScalarFieldEnum | CmsVideoScalarFieldEnum[]
-  }
-
-  /**
-   * CmsVideo findMany
-   */
-  export type CmsVideoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsVideo
-     */
-    select?: CmsVideoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsVideo
-     */
-    omit?: CmsVideoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsVideoInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsVideos to fetch.
-     */
-    where?: CmsVideoWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsVideos to fetch.
-     */
-    orderBy?: CmsVideoOrderByWithRelationInput | CmsVideoOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing CmsVideos.
-     */
-    cursor?: CmsVideoWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsVideos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsVideos.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CmsVideos.
-     */
-    distinct?: CmsVideoScalarFieldEnum | CmsVideoScalarFieldEnum[]
-  }
-
-  /**
-   * CmsVideo create
-   */
-  export type CmsVideoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsVideo
-     */
-    select?: CmsVideoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsVideo
-     */
-    omit?: CmsVideoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsVideoInclude<ExtArgs> | null
-    /**
-     * The data needed to create a CmsVideo.
-     */
-    data: XOR<CmsVideoCreateInput, CmsVideoUncheckedCreateInput>
-  }
-
-  /**
-   * CmsVideo createMany
-   */
-  export type CmsVideoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many CmsVideos.
-     */
-    data: CmsVideoCreateManyInput | CmsVideoCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * CmsVideo createManyAndReturn
-   */
-  export type CmsVideoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsVideo
-     */
-    select?: CmsVideoSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsVideo
-     */
-    omit?: CmsVideoOmit<ExtArgs> | null
-    /**
-     * The data used to create many CmsVideos.
-     */
-    data: CmsVideoCreateManyInput | CmsVideoCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsVideoIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * CmsVideo update
-   */
-  export type CmsVideoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsVideo
-     */
-    select?: CmsVideoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsVideo
-     */
-    omit?: CmsVideoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsVideoInclude<ExtArgs> | null
-    /**
-     * The data needed to update a CmsVideo.
-     */
-    data: XOR<CmsVideoUpdateInput, CmsVideoUncheckedUpdateInput>
-    /**
-     * Choose, which CmsVideo to update.
-     */
-    where: CmsVideoWhereUniqueInput
-  }
-
-  /**
-   * CmsVideo updateMany
-   */
-  export type CmsVideoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update CmsVideos.
-     */
-    data: XOR<CmsVideoUpdateManyMutationInput, CmsVideoUncheckedUpdateManyInput>
-    /**
-     * Filter which CmsVideos to update
-     */
-    where?: CmsVideoWhereInput
-    /**
-     * Limit how many CmsVideos to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * CmsVideo updateManyAndReturn
-   */
-  export type CmsVideoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsVideo
-     */
-    select?: CmsVideoSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsVideo
-     */
-    omit?: CmsVideoOmit<ExtArgs> | null
-    /**
-     * The data used to update CmsVideos.
-     */
-    data: XOR<CmsVideoUpdateManyMutationInput, CmsVideoUncheckedUpdateManyInput>
-    /**
-     * Filter which CmsVideos to update
-     */
-    where?: CmsVideoWhereInput
-    /**
-     * Limit how many CmsVideos to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsVideoIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * CmsVideo upsert
-   */
-  export type CmsVideoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsVideo
-     */
-    select?: CmsVideoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsVideo
-     */
-    omit?: CmsVideoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsVideoInclude<ExtArgs> | null
-    /**
-     * The filter to search for the CmsVideo to update in case it exists.
-     */
-    where: CmsVideoWhereUniqueInput
-    /**
-     * In case the CmsVideo found by the `where` argument doesn't exist, create a new CmsVideo with this data.
-     */
-    create: XOR<CmsVideoCreateInput, CmsVideoUncheckedCreateInput>
-    /**
-     * In case the CmsVideo was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<CmsVideoUpdateInput, CmsVideoUncheckedUpdateInput>
-  }
-
-  /**
-   * CmsVideo delete
-   */
-  export type CmsVideoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsVideo
-     */
-    select?: CmsVideoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsVideo
-     */
-    omit?: CmsVideoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsVideoInclude<ExtArgs> | null
-    /**
-     * Filter which CmsVideo to delete.
-     */
-    where: CmsVideoWhereUniqueInput
-  }
-
-  /**
-   * CmsVideo deleteMany
-   */
-  export type CmsVideoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which CmsVideos to delete
-     */
-    where?: CmsVideoWhereInput
-    /**
-     * Limit how many CmsVideos to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * CmsVideo without action
-   */
-  export type CmsVideoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsVideo
-     */
-    select?: CmsVideoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsVideo
-     */
-    omit?: CmsVideoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsVideoInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model CmsBlog
-   */
-
-  export type AggregateCmsBlog = {
-    _count: CmsBlogCountAggregateOutputType | null
-    _avg: CmsBlogAvgAggregateOutputType | null
-    _sum: CmsBlogSumAggregateOutputType | null
-    _min: CmsBlogMinAggregateOutputType | null
-    _max: CmsBlogMaxAggregateOutputType | null
-  }
-
-  export type CmsBlogAvgAggregateOutputType = {
-    id: number | null
-    createdById: number | null
-    updatedById: number | null
-  }
-
-  export type CmsBlogSumAggregateOutputType = {
-    id: number | null
-    createdById: number | null
-    updatedById: number | null
-  }
-
-  export type CmsBlogMinAggregateOutputType = {
-    id: number | null
-    title: string | null
-    slug: string | null
-    excerpt: string | null
-    richContent: string | null
-    coverImage: string | null
-    region: $Enums.CmsRegion | null
-    status: $Enums.PublishStatus | null
-    publishedAt: Date | null
-    createdById: number | null
-    updatedById: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type CmsBlogMaxAggregateOutputType = {
-    id: number | null
-    title: string | null
-    slug: string | null
-    excerpt: string | null
-    richContent: string | null
-    coverImage: string | null
-    region: $Enums.CmsRegion | null
-    status: $Enums.PublishStatus | null
-    publishedAt: Date | null
-    createdById: number | null
-    updatedById: number | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type CmsBlogCountAggregateOutputType = {
-    id: number
-    title: number
-    slug: number
-    excerpt: number
-    richContent: number
-    coverImage: number
-    region: number
-    status: number
-    publishedAt: number
-    createdById: number
-    updatedById: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type CmsBlogAvgAggregateInputType = {
-    id?: true
-    createdById?: true
-    updatedById?: true
-  }
-
-  export type CmsBlogSumAggregateInputType = {
-    id?: true
-    createdById?: true
-    updatedById?: true
-  }
-
-  export type CmsBlogMinAggregateInputType = {
-    id?: true
-    title?: true
-    slug?: true
-    excerpt?: true
-    richContent?: true
-    coverImage?: true
-    region?: true
-    status?: true
-    publishedAt?: true
-    createdById?: true
-    updatedById?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type CmsBlogMaxAggregateInputType = {
-    id?: true
-    title?: true
-    slug?: true
-    excerpt?: true
-    richContent?: true
-    coverImage?: true
-    region?: true
-    status?: true
-    publishedAt?: true
-    createdById?: true
-    updatedById?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type CmsBlogCountAggregateInputType = {
-    id?: true
-    title?: true
-    slug?: true
-    excerpt?: true
-    richContent?: true
-    coverImage?: true
-    region?: true
-    status?: true
-    publishedAt?: true
-    createdById?: true
-    updatedById?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type CmsBlogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which CmsBlog to aggregate.
-     */
-    where?: CmsBlogWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsBlogs to fetch.
-     */
-    orderBy?: CmsBlogOrderByWithRelationInput | CmsBlogOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: CmsBlogWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsBlogs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsBlogs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned CmsBlogs
-    **/
-    _count?: true | CmsBlogCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: CmsBlogAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: CmsBlogSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: CmsBlogMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: CmsBlogMaxAggregateInputType
-  }
-
-  export type GetCmsBlogAggregateType<T extends CmsBlogAggregateArgs> = {
-        [P in keyof T & keyof AggregateCmsBlog]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateCmsBlog[P]>
-      : GetScalarType<T[P], AggregateCmsBlog[P]>
-  }
-
-
-
-
-  export type CmsBlogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CmsBlogWhereInput
-    orderBy?: CmsBlogOrderByWithAggregationInput | CmsBlogOrderByWithAggregationInput[]
-    by: CmsBlogScalarFieldEnum[] | CmsBlogScalarFieldEnum
-    having?: CmsBlogScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: CmsBlogCountAggregateInputType | true
-    _avg?: CmsBlogAvgAggregateInputType
-    _sum?: CmsBlogSumAggregateInputType
-    _min?: CmsBlogMinAggregateInputType
-    _max?: CmsBlogMaxAggregateInputType
-  }
-
-  export type CmsBlogGroupByOutputType = {
-    id: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage: string | null
-    region: $Enums.CmsRegion
-    status: $Enums.PublishStatus
-    publishedAt: Date | null
-    createdById: number
-    updatedById: number
-    createdAt: Date
-    updatedAt: Date
-    _count: CmsBlogCountAggregateOutputType | null
-    _avg: CmsBlogAvgAggregateOutputType | null
-    _sum: CmsBlogSumAggregateOutputType | null
-    _min: CmsBlogMinAggregateOutputType | null
-    _max: CmsBlogMaxAggregateOutputType | null
-  }
-
-  type GetCmsBlogGroupByPayload<T extends CmsBlogGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<CmsBlogGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof CmsBlogGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], CmsBlogGroupByOutputType[P]>
-            : GetScalarType<T[P], CmsBlogGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type CmsBlogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cmsBlog"]>
-
-  export type CmsBlogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cmsBlog"]>
-
-  export type CmsBlogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cmsBlog"]>
-
-  export type CmsBlogSelectScalar = {
-    id?: boolean
-    title?: boolean
-    slug?: boolean
-    excerpt?: boolean
-    richContent?: boolean
-    coverImage?: boolean
-    region?: boolean
-    status?: boolean
-    publishedAt?: boolean
-    createdById?: boolean
-    updatedById?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type CmsBlogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "excerpt" | "richContent" | "coverImage" | "region" | "status" | "publishedAt" | "createdById" | "updatedById" | "createdAt" | "updatedAt", ExtArgs["result"]["cmsBlog"]>
-  export type CmsBlogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }
-  export type CmsBlogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }
-  export type CmsBlogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    createdBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-    updatedBy?: boolean | CmsUserDefaultArgs<ExtArgs>
-  }
-
-  export type $CmsBlogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "CmsBlog"
-    objects: {
-      createdBy: Prisma.$CmsUserPayload<ExtArgs>
-      updatedBy: Prisma.$CmsUserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      title: string
-      slug: string
-      excerpt: string
-      richContent: string
-      coverImage: string | null
-      region: $Enums.CmsRegion
-      status: $Enums.PublishStatus
-      publishedAt: Date | null
-      createdById: number
-      updatedById: number
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["cmsBlog"]>
-    composites: {}
-  }
-
-  type CmsBlogGetPayload<S extends boolean | null | undefined | CmsBlogDefaultArgs> = $Result.GetResult<Prisma.$CmsBlogPayload, S>
-
-  type CmsBlogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<CmsBlogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: CmsBlogCountAggregateInputType | true
-    }
-
-  export interface CmsBlogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CmsBlog'], meta: { name: 'CmsBlog' } }
-    /**
-     * Find zero or one CmsBlog that matches the filter.
-     * @param {CmsBlogFindUniqueArgs} args - Arguments to find a CmsBlog
-     * @example
-     * // Get one CmsBlog
-     * const cmsBlog = await prisma.cmsBlog.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends CmsBlogFindUniqueArgs>(args: SelectSubset<T, CmsBlogFindUniqueArgs<ExtArgs>>): Prisma__CmsBlogClient<$Result.GetResult<Prisma.$CmsBlogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one CmsBlog that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {CmsBlogFindUniqueOrThrowArgs} args - Arguments to find a CmsBlog
-     * @example
-     * // Get one CmsBlog
-     * const cmsBlog = await prisma.cmsBlog.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends CmsBlogFindUniqueOrThrowArgs>(args: SelectSubset<T, CmsBlogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CmsBlogClient<$Result.GetResult<Prisma.$CmsBlogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first CmsBlog that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsBlogFindFirstArgs} args - Arguments to find a CmsBlog
-     * @example
-     * // Get one CmsBlog
-     * const cmsBlog = await prisma.cmsBlog.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends CmsBlogFindFirstArgs>(args?: SelectSubset<T, CmsBlogFindFirstArgs<ExtArgs>>): Prisma__CmsBlogClient<$Result.GetResult<Prisma.$CmsBlogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first CmsBlog that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsBlogFindFirstOrThrowArgs} args - Arguments to find a CmsBlog
-     * @example
-     * // Get one CmsBlog
-     * const cmsBlog = await prisma.cmsBlog.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends CmsBlogFindFirstOrThrowArgs>(args?: SelectSubset<T, CmsBlogFindFirstOrThrowArgs<ExtArgs>>): Prisma__CmsBlogClient<$Result.GetResult<Prisma.$CmsBlogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more CmsBlogs that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsBlogFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all CmsBlogs
-     * const cmsBlogs = await prisma.cmsBlog.findMany()
-     * 
-     * // Get first 10 CmsBlogs
-     * const cmsBlogs = await prisma.cmsBlog.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const cmsBlogWithIdOnly = await prisma.cmsBlog.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends CmsBlogFindManyArgs>(args?: SelectSubset<T, CmsBlogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsBlogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a CmsBlog.
-     * @param {CmsBlogCreateArgs} args - Arguments to create a CmsBlog.
-     * @example
-     * // Create one CmsBlog
-     * const CmsBlog = await prisma.cmsBlog.create({
-     *   data: {
-     *     // ... data to create a CmsBlog
-     *   }
-     * })
-     * 
-     */
-    create<T extends CmsBlogCreateArgs>(args: SelectSubset<T, CmsBlogCreateArgs<ExtArgs>>): Prisma__CmsBlogClient<$Result.GetResult<Prisma.$CmsBlogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many CmsBlogs.
-     * @param {CmsBlogCreateManyArgs} args - Arguments to create many CmsBlogs.
-     * @example
-     * // Create many CmsBlogs
-     * const cmsBlog = await prisma.cmsBlog.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends CmsBlogCreateManyArgs>(args?: SelectSubset<T, CmsBlogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many CmsBlogs and returns the data saved in the database.
-     * @param {CmsBlogCreateManyAndReturnArgs} args - Arguments to create many CmsBlogs.
-     * @example
-     * // Create many CmsBlogs
-     * const cmsBlog = await prisma.cmsBlog.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many CmsBlogs and only return the `id`
-     * const cmsBlogWithIdOnly = await prisma.cmsBlog.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends CmsBlogCreateManyAndReturnArgs>(args?: SelectSubset<T, CmsBlogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsBlogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a CmsBlog.
-     * @param {CmsBlogDeleteArgs} args - Arguments to delete one CmsBlog.
-     * @example
-     * // Delete one CmsBlog
-     * const CmsBlog = await prisma.cmsBlog.delete({
-     *   where: {
-     *     // ... filter to delete one CmsBlog
-     *   }
-     * })
-     * 
-     */
-    delete<T extends CmsBlogDeleteArgs>(args: SelectSubset<T, CmsBlogDeleteArgs<ExtArgs>>): Prisma__CmsBlogClient<$Result.GetResult<Prisma.$CmsBlogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one CmsBlog.
-     * @param {CmsBlogUpdateArgs} args - Arguments to update one CmsBlog.
-     * @example
-     * // Update one CmsBlog
-     * const cmsBlog = await prisma.cmsBlog.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends CmsBlogUpdateArgs>(args: SelectSubset<T, CmsBlogUpdateArgs<ExtArgs>>): Prisma__CmsBlogClient<$Result.GetResult<Prisma.$CmsBlogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more CmsBlogs.
-     * @param {CmsBlogDeleteManyArgs} args - Arguments to filter CmsBlogs to delete.
-     * @example
-     * // Delete a few CmsBlogs
-     * const { count } = await prisma.cmsBlog.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends CmsBlogDeleteManyArgs>(args?: SelectSubset<T, CmsBlogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more CmsBlogs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsBlogUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many CmsBlogs
-     * const cmsBlog = await prisma.cmsBlog.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends CmsBlogUpdateManyArgs>(args: SelectSubset<T, CmsBlogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more CmsBlogs and returns the data updated in the database.
-     * @param {CmsBlogUpdateManyAndReturnArgs} args - Arguments to update many CmsBlogs.
-     * @example
-     * // Update many CmsBlogs
-     * const cmsBlog = await prisma.cmsBlog.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more CmsBlogs and only return the `id`
-     * const cmsBlogWithIdOnly = await prisma.cmsBlog.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends CmsBlogUpdateManyAndReturnArgs>(args: SelectSubset<T, CmsBlogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CmsBlogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one CmsBlog.
-     * @param {CmsBlogUpsertArgs} args - Arguments to update or create a CmsBlog.
-     * @example
-     * // Update or create a CmsBlog
-     * const cmsBlog = await prisma.cmsBlog.upsert({
-     *   create: {
-     *     // ... data to create a CmsBlog
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the CmsBlog we want to update
-     *   }
-     * })
-     */
-    upsert<T extends CmsBlogUpsertArgs>(args: SelectSubset<T, CmsBlogUpsertArgs<ExtArgs>>): Prisma__CmsBlogClient<$Result.GetResult<Prisma.$CmsBlogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of CmsBlogs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsBlogCountArgs} args - Arguments to filter CmsBlogs to count.
-     * @example
-     * // Count the number of CmsBlogs
-     * const count = await prisma.cmsBlog.count({
-     *   where: {
-     *     // ... the filter for the CmsBlogs we want to count
-     *   }
-     * })
-    **/
-    count<T extends CmsBlogCountArgs>(
-      args?: Subset<T, CmsBlogCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], CmsBlogCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a CmsBlog.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsBlogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends CmsBlogAggregateArgs>(args: Subset<T, CmsBlogAggregateArgs>): Prisma.PrismaPromise<GetCmsBlogAggregateType<T>>
-
-    /**
-     * Group by CmsBlog.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CmsBlogGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends CmsBlogGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: CmsBlogGroupByArgs['orderBy'] }
-        : { orderBy?: CmsBlogGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, CmsBlogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCmsBlogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the CmsBlog model
-   */
-  readonly fields: CmsBlogFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for CmsBlog.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__CmsBlogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    createdBy<T extends CmsUserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CmsUserDefaultArgs<ExtArgs>>): Prisma__CmsUserClient<$Result.GetResult<Prisma.$CmsUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    updatedBy<T extends CmsUserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CmsUserDefaultArgs<ExtArgs>>): Prisma__CmsUserClient<$Result.GetResult<Prisma.$CmsUserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the CmsBlog model
-   */
-  interface CmsBlogFieldRefs {
-    readonly id: FieldRef<"CmsBlog", 'Int'>
-    readonly title: FieldRef<"CmsBlog", 'String'>
-    readonly slug: FieldRef<"CmsBlog", 'String'>
-    readonly excerpt: FieldRef<"CmsBlog", 'String'>
-    readonly richContent: FieldRef<"CmsBlog", 'String'>
-    readonly coverImage: FieldRef<"CmsBlog", 'String'>
-    readonly region: FieldRef<"CmsBlog", 'CmsRegion'>
-    readonly status: FieldRef<"CmsBlog", 'PublishStatus'>
-    readonly publishedAt: FieldRef<"CmsBlog", 'DateTime'>
-    readonly createdById: FieldRef<"CmsBlog", 'Int'>
-    readonly updatedById: FieldRef<"CmsBlog", 'Int'>
-    readonly createdAt: FieldRef<"CmsBlog", 'DateTime'>
-    readonly updatedAt: FieldRef<"CmsBlog", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * CmsBlog findUnique
-   */
-  export type CmsBlogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsBlog
-     */
-    select?: CmsBlogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsBlog
-     */
-    omit?: CmsBlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsBlogInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsBlog to fetch.
-     */
-    where: CmsBlogWhereUniqueInput
-  }
-
-  /**
-   * CmsBlog findUniqueOrThrow
-   */
-  export type CmsBlogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsBlog
-     */
-    select?: CmsBlogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsBlog
-     */
-    omit?: CmsBlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsBlogInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsBlog to fetch.
-     */
-    where: CmsBlogWhereUniqueInput
-  }
-
-  /**
-   * CmsBlog findFirst
-   */
-  export type CmsBlogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsBlog
-     */
-    select?: CmsBlogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsBlog
-     */
-    omit?: CmsBlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsBlogInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsBlog to fetch.
-     */
-    where?: CmsBlogWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsBlogs to fetch.
-     */
-    orderBy?: CmsBlogOrderByWithRelationInput | CmsBlogOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for CmsBlogs.
-     */
-    cursor?: CmsBlogWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsBlogs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsBlogs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CmsBlogs.
-     */
-    distinct?: CmsBlogScalarFieldEnum | CmsBlogScalarFieldEnum[]
-  }
-
-  /**
-   * CmsBlog findFirstOrThrow
-   */
-  export type CmsBlogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsBlog
-     */
-    select?: CmsBlogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsBlog
-     */
-    omit?: CmsBlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsBlogInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsBlog to fetch.
-     */
-    where?: CmsBlogWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsBlogs to fetch.
-     */
-    orderBy?: CmsBlogOrderByWithRelationInput | CmsBlogOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for CmsBlogs.
-     */
-    cursor?: CmsBlogWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsBlogs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsBlogs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CmsBlogs.
-     */
-    distinct?: CmsBlogScalarFieldEnum | CmsBlogScalarFieldEnum[]
-  }
-
-  /**
-   * CmsBlog findMany
-   */
-  export type CmsBlogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsBlog
-     */
-    select?: CmsBlogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsBlog
-     */
-    omit?: CmsBlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsBlogInclude<ExtArgs> | null
-    /**
-     * Filter, which CmsBlogs to fetch.
-     */
-    where?: CmsBlogWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of CmsBlogs to fetch.
-     */
-    orderBy?: CmsBlogOrderByWithRelationInput | CmsBlogOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing CmsBlogs.
-     */
-    cursor?: CmsBlogWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` CmsBlogs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` CmsBlogs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of CmsBlogs.
-     */
-    distinct?: CmsBlogScalarFieldEnum | CmsBlogScalarFieldEnum[]
-  }
-
-  /**
-   * CmsBlog create
-   */
-  export type CmsBlogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsBlog
-     */
-    select?: CmsBlogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsBlog
-     */
-    omit?: CmsBlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsBlogInclude<ExtArgs> | null
-    /**
-     * The data needed to create a CmsBlog.
-     */
-    data: XOR<CmsBlogCreateInput, CmsBlogUncheckedCreateInput>
-  }
-
-  /**
-   * CmsBlog createMany
-   */
-  export type CmsBlogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many CmsBlogs.
-     */
-    data: CmsBlogCreateManyInput | CmsBlogCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * CmsBlog createManyAndReturn
-   */
-  export type CmsBlogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsBlog
-     */
-    select?: CmsBlogSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsBlog
-     */
-    omit?: CmsBlogOmit<ExtArgs> | null
-    /**
-     * The data used to create many CmsBlogs.
-     */
-    data: CmsBlogCreateManyInput | CmsBlogCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsBlogIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * CmsBlog update
-   */
-  export type CmsBlogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsBlog
-     */
-    select?: CmsBlogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsBlog
-     */
-    omit?: CmsBlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsBlogInclude<ExtArgs> | null
-    /**
-     * The data needed to update a CmsBlog.
-     */
-    data: XOR<CmsBlogUpdateInput, CmsBlogUncheckedUpdateInput>
-    /**
-     * Choose, which CmsBlog to update.
-     */
-    where: CmsBlogWhereUniqueInput
-  }
-
-  /**
-   * CmsBlog updateMany
-   */
-  export type CmsBlogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update CmsBlogs.
-     */
-    data: XOR<CmsBlogUpdateManyMutationInput, CmsBlogUncheckedUpdateManyInput>
-    /**
-     * Filter which CmsBlogs to update
-     */
-    where?: CmsBlogWhereInput
-    /**
-     * Limit how many CmsBlogs to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * CmsBlog updateManyAndReturn
-   */
-  export type CmsBlogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsBlog
-     */
-    select?: CmsBlogSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsBlog
-     */
-    omit?: CmsBlogOmit<ExtArgs> | null
-    /**
-     * The data used to update CmsBlogs.
-     */
-    data: XOR<CmsBlogUpdateManyMutationInput, CmsBlogUncheckedUpdateManyInput>
-    /**
-     * Filter which CmsBlogs to update
-     */
-    where?: CmsBlogWhereInput
-    /**
-     * Limit how many CmsBlogs to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsBlogIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * CmsBlog upsert
-   */
-  export type CmsBlogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsBlog
-     */
-    select?: CmsBlogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsBlog
-     */
-    omit?: CmsBlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsBlogInclude<ExtArgs> | null
-    /**
-     * The filter to search for the CmsBlog to update in case it exists.
-     */
-    where: CmsBlogWhereUniqueInput
-    /**
-     * In case the CmsBlog found by the `where` argument doesn't exist, create a new CmsBlog with this data.
-     */
-    create: XOR<CmsBlogCreateInput, CmsBlogUncheckedCreateInput>
-    /**
-     * In case the CmsBlog was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<CmsBlogUpdateInput, CmsBlogUncheckedUpdateInput>
-  }
-
-  /**
-   * CmsBlog delete
-   */
-  export type CmsBlogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsBlog
-     */
-    select?: CmsBlogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsBlog
-     */
-    omit?: CmsBlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsBlogInclude<ExtArgs> | null
-    /**
-     * Filter which CmsBlog to delete.
-     */
-    where: CmsBlogWhereUniqueInput
-  }
-
-  /**
-   * CmsBlog deleteMany
-   */
-  export type CmsBlogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which CmsBlogs to delete
-     */
-    where?: CmsBlogWhereInput
-    /**
-     * Limit how many CmsBlogs to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * CmsBlog without action
-   */
-  export type CmsBlogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CmsBlog
-     */
-    select?: CmsBlogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the CmsBlog
-     */
-    omit?: CmsBlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CmsBlogInclude<ExtArgs> | null
   }
 
 
@@ -14487,81 +7600,7 @@ export namespace Prisma {
 
   export const CmsContentScalarFieldEnum: {
     id: 'id',
-    title: 'title',
-    slug: 'slug',
     contentType: 'contentType',
-    category: 'category',
-    level: 'level',
-    region: 'region',
-    body: 'body',
-    createdById: 'createdById',
-    updatedById: 'updatedById',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type CmsContentScalarFieldEnum = (typeof CmsContentScalarFieldEnum)[keyof typeof CmsContentScalarFieldEnum]
-
-
-  export const CmsAnnouncementScalarFieldEnum: {
-    id: 'id',
-    title: 'title',
-    slug: 'slug',
-    excerpt: 'excerpt',
-    richContent: 'richContent',
-    coverImage: 'coverImage',
-    region: 'region',
-    status: 'status',
-    publishedAt: 'publishedAt',
-    createdById: 'createdById',
-    updatedById: 'updatedById',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type CmsAnnouncementScalarFieldEnum = (typeof CmsAnnouncementScalarFieldEnum)[keyof typeof CmsAnnouncementScalarFieldEnum]
-
-
-  export const CmsNewsScalarFieldEnum: {
-    id: 'id',
-    title: 'title',
-    slug: 'slug',
-    excerpt: 'excerpt',
-    richContent: 'richContent',
-    coverImage: 'coverImage',
-    region: 'region',
-    status: 'status',
-    publishedAt: 'publishedAt',
-    createdById: 'createdById',
-    updatedById: 'updatedById',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type CmsNewsScalarFieldEnum = (typeof CmsNewsScalarFieldEnum)[keyof typeof CmsNewsScalarFieldEnum]
-
-
-  export const CmsPressBreifingScalarFieldEnum: {
-    id: 'id',
-    title: 'title',
-    slug: 'slug',
-    excerpt: 'excerpt',
-    richContent: 'richContent',
-    coverImage: 'coverImage',
-    region: 'region',
-    status: 'status',
-    publishedAt: 'publishedAt',
-    createdById: 'createdById',
-    updatedById: 'updatedById',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type CmsPressBreifingScalarFieldEnum = (typeof CmsPressBreifingScalarFieldEnum)[keyof typeof CmsPressBreifingScalarFieldEnum]
-
-
-  export const CmsVideoScalarFieldEnum: {
-    id: 'id',
     title: 'title',
     slug: 'slug',
     excerpt: 'excerpt',
@@ -14570,6 +7609,7 @@ export namespace Prisma {
     videoUrl: 'videoUrl',
     videoDuration: 'videoDuration',
     region: 'region',
+    level: 'level',
     status: 'status',
     publishedAt: 'publishedAt',
     createdById: 'createdById',
@@ -14578,26 +7618,7 @@ export namespace Prisma {
     updatedAt: 'updatedAt'
   };
 
-  export type CmsVideoScalarFieldEnum = (typeof CmsVideoScalarFieldEnum)[keyof typeof CmsVideoScalarFieldEnum]
-
-
-  export const CmsBlogScalarFieldEnum: {
-    id: 'id',
-    title: 'title',
-    slug: 'slug',
-    excerpt: 'excerpt',
-    richContent: 'richContent',
-    coverImage: 'coverImage',
-    region: 'region',
-    status: 'status',
-    publishedAt: 'publishedAt',
-    createdById: 'createdById',
-    updatedById: 'updatedById',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type CmsBlogScalarFieldEnum = (typeof CmsBlogScalarFieldEnum)[keyof typeof CmsBlogScalarFieldEnum]
+  export type CmsContentScalarFieldEnum = (typeof CmsContentScalarFieldEnum)[keyof typeof CmsContentScalarFieldEnum]
 
 
   export const CmsTeamMemberScalarFieldEnum: {
@@ -14755,20 +7776,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'CmsCategory'
-   */
-  export type EnumCmsCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CmsCategory'>
-    
-
-
-  /**
-   * Reference to a field of type 'CmsCategory[]'
-   */
-  export type ListEnumCmsCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CmsCategory[]'>
-    
-
-
-  /**
    * Reference to a field of type 'CmsLevel'
    */
   export type EnumCmsLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CmsLevel'>
@@ -14852,19 +7859,9 @@ export namespace Prisma {
     role?: EnumCmsRoleFilter<"CmsUser"> | $Enums.CmsRole
     region?: EnumCmsRegionFilter<"CmsUser"> | $Enums.CmsRegion
     createdAt?: DateTimeFilter<"CmsUser"> | Date | string
-    sessions?: CmsSessionListRelationFilter
     createdContent?: CmsContentListRelationFilter
     updatedContent?: CmsContentListRelationFilter
-    createdAnnouncements?: CmsAnnouncementListRelationFilter
-    updatedAnnouncements?: CmsAnnouncementListRelationFilter
-    createdNews?: CmsNewsListRelationFilter
-    updatedNews?: CmsNewsListRelationFilter
-    createdBriefings?: CmsPressBreifingListRelationFilter
-    updatedBriefings?: CmsPressBreifingListRelationFilter
-    createdVideos?: CmsVideoListRelationFilter
-    updatedVideos?: CmsVideoListRelationFilter
-    createdBlogs?: CmsBlogListRelationFilter
-    updatedBlogs?: CmsBlogListRelationFilter
+    sessions?: CmsSessionListRelationFilter
     createdTeams?: CmsTeamMemberListRelationFilter
     updatedTeams?: CmsTeamMemberListRelationFilter
     createdMedia?: CmsMediaItemListRelationFilter
@@ -14879,19 +7876,9 @@ export namespace Prisma {
     role?: SortOrder
     region?: SortOrder
     createdAt?: SortOrder
-    sessions?: CmsSessionOrderByRelationAggregateInput
     createdContent?: CmsContentOrderByRelationAggregateInput
     updatedContent?: CmsContentOrderByRelationAggregateInput
-    createdAnnouncements?: CmsAnnouncementOrderByRelationAggregateInput
-    updatedAnnouncements?: CmsAnnouncementOrderByRelationAggregateInput
-    createdNews?: CmsNewsOrderByRelationAggregateInput
-    updatedNews?: CmsNewsOrderByRelationAggregateInput
-    createdBriefings?: CmsPressBreifingOrderByRelationAggregateInput
-    updatedBriefings?: CmsPressBreifingOrderByRelationAggregateInput
-    createdVideos?: CmsVideoOrderByRelationAggregateInput
-    updatedVideos?: CmsVideoOrderByRelationAggregateInput
-    createdBlogs?: CmsBlogOrderByRelationAggregateInput
-    updatedBlogs?: CmsBlogOrderByRelationAggregateInput
+    sessions?: CmsSessionOrderByRelationAggregateInput
     createdTeams?: CmsTeamMemberOrderByRelationAggregateInput
     updatedTeams?: CmsTeamMemberOrderByRelationAggregateInput
     createdMedia?: CmsMediaItemOrderByRelationAggregateInput
@@ -14909,19 +7896,9 @@ export namespace Prisma {
     role?: EnumCmsRoleFilter<"CmsUser"> | $Enums.CmsRole
     region?: EnumCmsRegionFilter<"CmsUser"> | $Enums.CmsRegion
     createdAt?: DateTimeFilter<"CmsUser"> | Date | string
-    sessions?: CmsSessionListRelationFilter
     createdContent?: CmsContentListRelationFilter
     updatedContent?: CmsContentListRelationFilter
-    createdAnnouncements?: CmsAnnouncementListRelationFilter
-    updatedAnnouncements?: CmsAnnouncementListRelationFilter
-    createdNews?: CmsNewsListRelationFilter
-    updatedNews?: CmsNewsListRelationFilter
-    createdBriefings?: CmsPressBreifingListRelationFilter
-    updatedBriefings?: CmsPressBreifingListRelationFilter
-    createdVideos?: CmsVideoListRelationFilter
-    updatedVideos?: CmsVideoListRelationFilter
-    createdBlogs?: CmsBlogListRelationFilter
-    updatedBlogs?: CmsBlogListRelationFilter
+    sessions?: CmsSessionListRelationFilter
     createdTeams?: CmsTeamMemberListRelationFilter
     updatedTeams?: CmsTeamMemberListRelationFilter
     createdMedia?: CmsMediaItemListRelationFilter
@@ -15018,13 +7995,18 @@ export namespace Prisma {
     OR?: CmsContentWhereInput[]
     NOT?: CmsContentWhereInput | CmsContentWhereInput[]
     id?: IntFilter<"CmsContent"> | number
+    contentType?: EnumCmsContentTypeFilter<"CmsContent"> | $Enums.CmsContentType
     title?: StringFilter<"CmsContent"> | string
     slug?: StringFilter<"CmsContent"> | string
-    contentType?: EnumCmsContentTypeFilter<"CmsContent"> | $Enums.CmsContentType
-    category?: EnumCmsCategoryFilter<"CmsContent"> | $Enums.CmsCategory
+    excerpt?: StringFilter<"CmsContent"> | string
+    richContent?: StringFilter<"CmsContent"> | string
+    coverImage?: StringNullableFilter<"CmsContent"> | string | null
+    videoUrl?: StringNullableFilter<"CmsContent"> | string | null
+    videoDuration?: IntNullableFilter<"CmsContent"> | number | null
+    region?: EnumCmsRegionFilter<"CmsContent"> | $Enums.CmsRegion
     level?: EnumCmsLevelFilter<"CmsContent"> | $Enums.CmsLevel
-    region?: EnumCmsRegionNullableFilter<"CmsContent"> | $Enums.CmsRegion | null
-    body?: StringFilter<"CmsContent"> | string
+    status?: EnumPublishStatusFilter<"CmsContent"> | $Enums.PublishStatus
+    publishedAt?: DateTimeNullableFilter<"CmsContent"> | Date | string | null
     createdById?: IntFilter<"CmsContent"> | number
     updatedById?: IntFilter<"CmsContent"> | number
     createdAt?: DateTimeFilter<"CmsContent"> | Date | string
@@ -15035,13 +8017,18 @@ export namespace Prisma {
 
   export type CmsContentOrderByWithRelationInput = {
     id?: SortOrder
+    contentType?: SortOrder
     title?: SortOrder
     slug?: SortOrder
-    contentType?: SortOrder
-    category?: SortOrder
+    excerpt?: SortOrder
+    richContent?: SortOrder
+    coverImage?: SortOrderInput | SortOrder
+    videoUrl?: SortOrderInput | SortOrder
+    videoDuration?: SortOrderInput | SortOrder
+    region?: SortOrder
     level?: SortOrder
-    region?: SortOrderInput | SortOrder
-    body?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
     createdById?: SortOrder
     updatedById?: SortOrder
     createdAt?: SortOrder
@@ -15056,12 +8043,17 @@ export namespace Prisma {
     AND?: CmsContentWhereInput | CmsContentWhereInput[]
     OR?: CmsContentWhereInput[]
     NOT?: CmsContentWhereInput | CmsContentWhereInput[]
-    title?: StringFilter<"CmsContent"> | string
     contentType?: EnumCmsContentTypeFilter<"CmsContent"> | $Enums.CmsContentType
-    category?: EnumCmsCategoryFilter<"CmsContent"> | $Enums.CmsCategory
+    title?: StringFilter<"CmsContent"> | string
+    excerpt?: StringFilter<"CmsContent"> | string
+    richContent?: StringFilter<"CmsContent"> | string
+    coverImage?: StringNullableFilter<"CmsContent"> | string | null
+    videoUrl?: StringNullableFilter<"CmsContent"> | string | null
+    videoDuration?: IntNullableFilter<"CmsContent"> | number | null
+    region?: EnumCmsRegionFilter<"CmsContent"> | $Enums.CmsRegion
     level?: EnumCmsLevelFilter<"CmsContent"> | $Enums.CmsLevel
-    region?: EnumCmsRegionNullableFilter<"CmsContent"> | $Enums.CmsRegion | null
-    body?: StringFilter<"CmsContent"> | string
+    status?: EnumPublishStatusFilter<"CmsContent"> | $Enums.PublishStatus
+    publishedAt?: DateTimeNullableFilter<"CmsContent"> | Date | string | null
     createdById?: IntFilter<"CmsContent"> | number
     updatedById?: IntFilter<"CmsContent"> | number
     createdAt?: DateTimeFilter<"CmsContent"> | Date | string
@@ -15072,13 +8064,18 @@ export namespace Prisma {
 
   export type CmsContentOrderByWithAggregationInput = {
     id?: SortOrder
+    contentType?: SortOrder
     title?: SortOrder
     slug?: SortOrder
-    contentType?: SortOrder
-    category?: SortOrder
+    excerpt?: SortOrder
+    richContent?: SortOrder
+    coverImage?: SortOrderInput | SortOrder
+    videoUrl?: SortOrderInput | SortOrder
+    videoDuration?: SortOrderInput | SortOrder
+    region?: SortOrder
     level?: SortOrder
-    region?: SortOrderInput | SortOrder
-    body?: SortOrder
+    status?: SortOrder
+    publishedAt?: SortOrderInput | SortOrder
     createdById?: SortOrder
     updatedById?: SortOrder
     createdAt?: SortOrder
@@ -15095,527 +8092,22 @@ export namespace Prisma {
     OR?: CmsContentScalarWhereWithAggregatesInput[]
     NOT?: CmsContentScalarWhereWithAggregatesInput | CmsContentScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"CmsContent"> | number
+    contentType?: EnumCmsContentTypeWithAggregatesFilter<"CmsContent"> | $Enums.CmsContentType
     title?: StringWithAggregatesFilter<"CmsContent"> | string
     slug?: StringWithAggregatesFilter<"CmsContent"> | string
-    contentType?: EnumCmsContentTypeWithAggregatesFilter<"CmsContent"> | $Enums.CmsContentType
-    category?: EnumCmsCategoryWithAggregatesFilter<"CmsContent"> | $Enums.CmsCategory
+    excerpt?: StringWithAggregatesFilter<"CmsContent"> | string
+    richContent?: StringWithAggregatesFilter<"CmsContent"> | string
+    coverImage?: StringNullableWithAggregatesFilter<"CmsContent"> | string | null
+    videoUrl?: StringNullableWithAggregatesFilter<"CmsContent"> | string | null
+    videoDuration?: IntNullableWithAggregatesFilter<"CmsContent"> | number | null
+    region?: EnumCmsRegionWithAggregatesFilter<"CmsContent"> | $Enums.CmsRegion
     level?: EnumCmsLevelWithAggregatesFilter<"CmsContent"> | $Enums.CmsLevel
-    region?: EnumCmsRegionNullableWithAggregatesFilter<"CmsContent"> | $Enums.CmsRegion | null
-    body?: StringWithAggregatesFilter<"CmsContent"> | string
+    status?: EnumPublishStatusWithAggregatesFilter<"CmsContent"> | $Enums.PublishStatus
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"CmsContent"> | Date | string | null
     createdById?: IntWithAggregatesFilter<"CmsContent"> | number
     updatedById?: IntWithAggregatesFilter<"CmsContent"> | number
     createdAt?: DateTimeWithAggregatesFilter<"CmsContent"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"CmsContent"> | Date | string
-  }
-
-  export type CmsAnnouncementWhereInput = {
-    AND?: CmsAnnouncementWhereInput | CmsAnnouncementWhereInput[]
-    OR?: CmsAnnouncementWhereInput[]
-    NOT?: CmsAnnouncementWhereInput | CmsAnnouncementWhereInput[]
-    id?: IntFilter<"CmsAnnouncement"> | number
-    title?: StringFilter<"CmsAnnouncement"> | string
-    slug?: StringFilter<"CmsAnnouncement"> | string
-    excerpt?: StringFilter<"CmsAnnouncement"> | string
-    richContent?: StringFilter<"CmsAnnouncement"> | string
-    coverImage?: StringNullableFilter<"CmsAnnouncement"> | string | null
-    region?: EnumCmsRegionFilter<"CmsAnnouncement"> | $Enums.CmsRegion
-    status?: EnumPublishStatusFilter<"CmsAnnouncement"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableFilter<"CmsAnnouncement"> | Date | string | null
-    createdById?: IntFilter<"CmsAnnouncement"> | number
-    updatedById?: IntFilter<"CmsAnnouncement"> | number
-    createdAt?: DateTimeFilter<"CmsAnnouncement"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsAnnouncement"> | Date | string
-    createdBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-    updatedBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-  }
-
-  export type CmsAnnouncementOrderByWithRelationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrderInput | SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrderInput | SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    createdBy?: CmsUserOrderByWithRelationInput
-    updatedBy?: CmsUserOrderByWithRelationInput
-  }
-
-  export type CmsAnnouncementWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    slug?: string
-    AND?: CmsAnnouncementWhereInput | CmsAnnouncementWhereInput[]
-    OR?: CmsAnnouncementWhereInput[]
-    NOT?: CmsAnnouncementWhereInput | CmsAnnouncementWhereInput[]
-    title?: StringFilter<"CmsAnnouncement"> | string
-    excerpt?: StringFilter<"CmsAnnouncement"> | string
-    richContent?: StringFilter<"CmsAnnouncement"> | string
-    coverImage?: StringNullableFilter<"CmsAnnouncement"> | string | null
-    region?: EnumCmsRegionFilter<"CmsAnnouncement"> | $Enums.CmsRegion
-    status?: EnumPublishStatusFilter<"CmsAnnouncement"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableFilter<"CmsAnnouncement"> | Date | string | null
-    createdById?: IntFilter<"CmsAnnouncement"> | number
-    updatedById?: IntFilter<"CmsAnnouncement"> | number
-    createdAt?: DateTimeFilter<"CmsAnnouncement"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsAnnouncement"> | Date | string
-    createdBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-    updatedBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-  }, "id" | "slug">
-
-  export type CmsAnnouncementOrderByWithAggregationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrderInput | SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrderInput | SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: CmsAnnouncementCountOrderByAggregateInput
-    _avg?: CmsAnnouncementAvgOrderByAggregateInput
-    _max?: CmsAnnouncementMaxOrderByAggregateInput
-    _min?: CmsAnnouncementMinOrderByAggregateInput
-    _sum?: CmsAnnouncementSumOrderByAggregateInput
-  }
-
-  export type CmsAnnouncementScalarWhereWithAggregatesInput = {
-    AND?: CmsAnnouncementScalarWhereWithAggregatesInput | CmsAnnouncementScalarWhereWithAggregatesInput[]
-    OR?: CmsAnnouncementScalarWhereWithAggregatesInput[]
-    NOT?: CmsAnnouncementScalarWhereWithAggregatesInput | CmsAnnouncementScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"CmsAnnouncement"> | number
-    title?: StringWithAggregatesFilter<"CmsAnnouncement"> | string
-    slug?: StringWithAggregatesFilter<"CmsAnnouncement"> | string
-    excerpt?: StringWithAggregatesFilter<"CmsAnnouncement"> | string
-    richContent?: StringWithAggregatesFilter<"CmsAnnouncement"> | string
-    coverImage?: StringNullableWithAggregatesFilter<"CmsAnnouncement"> | string | null
-    region?: EnumCmsRegionWithAggregatesFilter<"CmsAnnouncement"> | $Enums.CmsRegion
-    status?: EnumPublishStatusWithAggregatesFilter<"CmsAnnouncement"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableWithAggregatesFilter<"CmsAnnouncement"> | Date | string | null
-    createdById?: IntWithAggregatesFilter<"CmsAnnouncement"> | number
-    updatedById?: IntWithAggregatesFilter<"CmsAnnouncement"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"CmsAnnouncement"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"CmsAnnouncement"> | Date | string
-  }
-
-  export type CmsNewsWhereInput = {
-    AND?: CmsNewsWhereInput | CmsNewsWhereInput[]
-    OR?: CmsNewsWhereInput[]
-    NOT?: CmsNewsWhereInput | CmsNewsWhereInput[]
-    id?: IntFilter<"CmsNews"> | number
-    title?: StringFilter<"CmsNews"> | string
-    slug?: StringFilter<"CmsNews"> | string
-    excerpt?: StringFilter<"CmsNews"> | string
-    richContent?: StringFilter<"CmsNews"> | string
-    coverImage?: StringNullableFilter<"CmsNews"> | string | null
-    region?: EnumCmsRegionFilter<"CmsNews"> | $Enums.CmsRegion
-    status?: EnumPublishStatusFilter<"CmsNews"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableFilter<"CmsNews"> | Date | string | null
-    createdById?: IntFilter<"CmsNews"> | number
-    updatedById?: IntFilter<"CmsNews"> | number
-    createdAt?: DateTimeFilter<"CmsNews"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsNews"> | Date | string
-    createdBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-    updatedBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-  }
-
-  export type CmsNewsOrderByWithRelationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrderInput | SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrderInput | SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    createdBy?: CmsUserOrderByWithRelationInput
-    updatedBy?: CmsUserOrderByWithRelationInput
-  }
-
-  export type CmsNewsWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    slug?: string
-    AND?: CmsNewsWhereInput | CmsNewsWhereInput[]
-    OR?: CmsNewsWhereInput[]
-    NOT?: CmsNewsWhereInput | CmsNewsWhereInput[]
-    title?: StringFilter<"CmsNews"> | string
-    excerpt?: StringFilter<"CmsNews"> | string
-    richContent?: StringFilter<"CmsNews"> | string
-    coverImage?: StringNullableFilter<"CmsNews"> | string | null
-    region?: EnumCmsRegionFilter<"CmsNews"> | $Enums.CmsRegion
-    status?: EnumPublishStatusFilter<"CmsNews"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableFilter<"CmsNews"> | Date | string | null
-    createdById?: IntFilter<"CmsNews"> | number
-    updatedById?: IntFilter<"CmsNews"> | number
-    createdAt?: DateTimeFilter<"CmsNews"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsNews"> | Date | string
-    createdBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-    updatedBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-  }, "id" | "slug">
-
-  export type CmsNewsOrderByWithAggregationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrderInput | SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrderInput | SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: CmsNewsCountOrderByAggregateInput
-    _avg?: CmsNewsAvgOrderByAggregateInput
-    _max?: CmsNewsMaxOrderByAggregateInput
-    _min?: CmsNewsMinOrderByAggregateInput
-    _sum?: CmsNewsSumOrderByAggregateInput
-  }
-
-  export type CmsNewsScalarWhereWithAggregatesInput = {
-    AND?: CmsNewsScalarWhereWithAggregatesInput | CmsNewsScalarWhereWithAggregatesInput[]
-    OR?: CmsNewsScalarWhereWithAggregatesInput[]
-    NOT?: CmsNewsScalarWhereWithAggregatesInput | CmsNewsScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"CmsNews"> | number
-    title?: StringWithAggregatesFilter<"CmsNews"> | string
-    slug?: StringWithAggregatesFilter<"CmsNews"> | string
-    excerpt?: StringWithAggregatesFilter<"CmsNews"> | string
-    richContent?: StringWithAggregatesFilter<"CmsNews"> | string
-    coverImage?: StringNullableWithAggregatesFilter<"CmsNews"> | string | null
-    region?: EnumCmsRegionWithAggregatesFilter<"CmsNews"> | $Enums.CmsRegion
-    status?: EnumPublishStatusWithAggregatesFilter<"CmsNews"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableWithAggregatesFilter<"CmsNews"> | Date | string | null
-    createdById?: IntWithAggregatesFilter<"CmsNews"> | number
-    updatedById?: IntWithAggregatesFilter<"CmsNews"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"CmsNews"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"CmsNews"> | Date | string
-  }
-
-  export type CmsPressBreifingWhereInput = {
-    AND?: CmsPressBreifingWhereInput | CmsPressBreifingWhereInput[]
-    OR?: CmsPressBreifingWhereInput[]
-    NOT?: CmsPressBreifingWhereInput | CmsPressBreifingWhereInput[]
-    id?: IntFilter<"CmsPressBreifing"> | number
-    title?: StringFilter<"CmsPressBreifing"> | string
-    slug?: StringFilter<"CmsPressBreifing"> | string
-    excerpt?: StringFilter<"CmsPressBreifing"> | string
-    richContent?: StringFilter<"CmsPressBreifing"> | string
-    coverImage?: StringNullableFilter<"CmsPressBreifing"> | string | null
-    region?: EnumCmsRegionFilter<"CmsPressBreifing"> | $Enums.CmsRegion
-    status?: EnumPublishStatusFilter<"CmsPressBreifing"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableFilter<"CmsPressBreifing"> | Date | string | null
-    createdById?: IntFilter<"CmsPressBreifing"> | number
-    updatedById?: IntFilter<"CmsPressBreifing"> | number
-    createdAt?: DateTimeFilter<"CmsPressBreifing"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsPressBreifing"> | Date | string
-    createdBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-    updatedBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-  }
-
-  export type CmsPressBreifingOrderByWithRelationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrderInput | SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrderInput | SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    createdBy?: CmsUserOrderByWithRelationInput
-    updatedBy?: CmsUserOrderByWithRelationInput
-  }
-
-  export type CmsPressBreifingWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    slug?: string
-    AND?: CmsPressBreifingWhereInput | CmsPressBreifingWhereInput[]
-    OR?: CmsPressBreifingWhereInput[]
-    NOT?: CmsPressBreifingWhereInput | CmsPressBreifingWhereInput[]
-    title?: StringFilter<"CmsPressBreifing"> | string
-    excerpt?: StringFilter<"CmsPressBreifing"> | string
-    richContent?: StringFilter<"CmsPressBreifing"> | string
-    coverImage?: StringNullableFilter<"CmsPressBreifing"> | string | null
-    region?: EnumCmsRegionFilter<"CmsPressBreifing"> | $Enums.CmsRegion
-    status?: EnumPublishStatusFilter<"CmsPressBreifing"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableFilter<"CmsPressBreifing"> | Date | string | null
-    createdById?: IntFilter<"CmsPressBreifing"> | number
-    updatedById?: IntFilter<"CmsPressBreifing"> | number
-    createdAt?: DateTimeFilter<"CmsPressBreifing"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsPressBreifing"> | Date | string
-    createdBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-    updatedBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-  }, "id" | "slug">
-
-  export type CmsPressBreifingOrderByWithAggregationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrderInput | SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrderInput | SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: CmsPressBreifingCountOrderByAggregateInput
-    _avg?: CmsPressBreifingAvgOrderByAggregateInput
-    _max?: CmsPressBreifingMaxOrderByAggregateInput
-    _min?: CmsPressBreifingMinOrderByAggregateInput
-    _sum?: CmsPressBreifingSumOrderByAggregateInput
-  }
-
-  export type CmsPressBreifingScalarWhereWithAggregatesInput = {
-    AND?: CmsPressBreifingScalarWhereWithAggregatesInput | CmsPressBreifingScalarWhereWithAggregatesInput[]
-    OR?: CmsPressBreifingScalarWhereWithAggregatesInput[]
-    NOT?: CmsPressBreifingScalarWhereWithAggregatesInput | CmsPressBreifingScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"CmsPressBreifing"> | number
-    title?: StringWithAggregatesFilter<"CmsPressBreifing"> | string
-    slug?: StringWithAggregatesFilter<"CmsPressBreifing"> | string
-    excerpt?: StringWithAggregatesFilter<"CmsPressBreifing"> | string
-    richContent?: StringWithAggregatesFilter<"CmsPressBreifing"> | string
-    coverImage?: StringNullableWithAggregatesFilter<"CmsPressBreifing"> | string | null
-    region?: EnumCmsRegionWithAggregatesFilter<"CmsPressBreifing"> | $Enums.CmsRegion
-    status?: EnumPublishStatusWithAggregatesFilter<"CmsPressBreifing"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableWithAggregatesFilter<"CmsPressBreifing"> | Date | string | null
-    createdById?: IntWithAggregatesFilter<"CmsPressBreifing"> | number
-    updatedById?: IntWithAggregatesFilter<"CmsPressBreifing"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"CmsPressBreifing"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"CmsPressBreifing"> | Date | string
-  }
-
-  export type CmsVideoWhereInput = {
-    AND?: CmsVideoWhereInput | CmsVideoWhereInput[]
-    OR?: CmsVideoWhereInput[]
-    NOT?: CmsVideoWhereInput | CmsVideoWhereInput[]
-    id?: IntFilter<"CmsVideo"> | number
-    title?: StringFilter<"CmsVideo"> | string
-    slug?: StringFilter<"CmsVideo"> | string
-    excerpt?: StringFilter<"CmsVideo"> | string
-    richContent?: StringFilter<"CmsVideo"> | string
-    coverImage?: StringNullableFilter<"CmsVideo"> | string | null
-    videoUrl?: StringFilter<"CmsVideo"> | string
-    videoDuration?: IntNullableFilter<"CmsVideo"> | number | null
-    region?: EnumCmsRegionFilter<"CmsVideo"> | $Enums.CmsRegion
-    status?: EnumPublishStatusFilter<"CmsVideo"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableFilter<"CmsVideo"> | Date | string | null
-    createdById?: IntFilter<"CmsVideo"> | number
-    updatedById?: IntFilter<"CmsVideo"> | number
-    createdAt?: DateTimeFilter<"CmsVideo"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsVideo"> | Date | string
-    createdBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-    updatedBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-  }
-
-  export type CmsVideoOrderByWithRelationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrderInput | SortOrder
-    videoUrl?: SortOrder
-    videoDuration?: SortOrderInput | SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrderInput | SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    createdBy?: CmsUserOrderByWithRelationInput
-    updatedBy?: CmsUserOrderByWithRelationInput
-  }
-
-  export type CmsVideoWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    slug?: string
-    AND?: CmsVideoWhereInput | CmsVideoWhereInput[]
-    OR?: CmsVideoWhereInput[]
-    NOT?: CmsVideoWhereInput | CmsVideoWhereInput[]
-    title?: StringFilter<"CmsVideo"> | string
-    excerpt?: StringFilter<"CmsVideo"> | string
-    richContent?: StringFilter<"CmsVideo"> | string
-    coverImage?: StringNullableFilter<"CmsVideo"> | string | null
-    videoUrl?: StringFilter<"CmsVideo"> | string
-    videoDuration?: IntNullableFilter<"CmsVideo"> | number | null
-    region?: EnumCmsRegionFilter<"CmsVideo"> | $Enums.CmsRegion
-    status?: EnumPublishStatusFilter<"CmsVideo"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableFilter<"CmsVideo"> | Date | string | null
-    createdById?: IntFilter<"CmsVideo"> | number
-    updatedById?: IntFilter<"CmsVideo"> | number
-    createdAt?: DateTimeFilter<"CmsVideo"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsVideo"> | Date | string
-    createdBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-    updatedBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-  }, "id" | "slug">
-
-  export type CmsVideoOrderByWithAggregationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrderInput | SortOrder
-    videoUrl?: SortOrder
-    videoDuration?: SortOrderInput | SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrderInput | SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: CmsVideoCountOrderByAggregateInput
-    _avg?: CmsVideoAvgOrderByAggregateInput
-    _max?: CmsVideoMaxOrderByAggregateInput
-    _min?: CmsVideoMinOrderByAggregateInput
-    _sum?: CmsVideoSumOrderByAggregateInput
-  }
-
-  export type CmsVideoScalarWhereWithAggregatesInput = {
-    AND?: CmsVideoScalarWhereWithAggregatesInput | CmsVideoScalarWhereWithAggregatesInput[]
-    OR?: CmsVideoScalarWhereWithAggregatesInput[]
-    NOT?: CmsVideoScalarWhereWithAggregatesInput | CmsVideoScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"CmsVideo"> | number
-    title?: StringWithAggregatesFilter<"CmsVideo"> | string
-    slug?: StringWithAggregatesFilter<"CmsVideo"> | string
-    excerpt?: StringWithAggregatesFilter<"CmsVideo"> | string
-    richContent?: StringWithAggregatesFilter<"CmsVideo"> | string
-    coverImage?: StringNullableWithAggregatesFilter<"CmsVideo"> | string | null
-    videoUrl?: StringWithAggregatesFilter<"CmsVideo"> | string
-    videoDuration?: IntNullableWithAggregatesFilter<"CmsVideo"> | number | null
-    region?: EnumCmsRegionWithAggregatesFilter<"CmsVideo"> | $Enums.CmsRegion
-    status?: EnumPublishStatusWithAggregatesFilter<"CmsVideo"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableWithAggregatesFilter<"CmsVideo"> | Date | string | null
-    createdById?: IntWithAggregatesFilter<"CmsVideo"> | number
-    updatedById?: IntWithAggregatesFilter<"CmsVideo"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"CmsVideo"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"CmsVideo"> | Date | string
-  }
-
-  export type CmsBlogWhereInput = {
-    AND?: CmsBlogWhereInput | CmsBlogWhereInput[]
-    OR?: CmsBlogWhereInput[]
-    NOT?: CmsBlogWhereInput | CmsBlogWhereInput[]
-    id?: IntFilter<"CmsBlog"> | number
-    title?: StringFilter<"CmsBlog"> | string
-    slug?: StringFilter<"CmsBlog"> | string
-    excerpt?: StringFilter<"CmsBlog"> | string
-    richContent?: StringFilter<"CmsBlog"> | string
-    coverImage?: StringNullableFilter<"CmsBlog"> | string | null
-    region?: EnumCmsRegionFilter<"CmsBlog"> | $Enums.CmsRegion
-    status?: EnumPublishStatusFilter<"CmsBlog"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableFilter<"CmsBlog"> | Date | string | null
-    createdById?: IntFilter<"CmsBlog"> | number
-    updatedById?: IntFilter<"CmsBlog"> | number
-    createdAt?: DateTimeFilter<"CmsBlog"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsBlog"> | Date | string
-    createdBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-    updatedBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-  }
-
-  export type CmsBlogOrderByWithRelationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrderInput | SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrderInput | SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    createdBy?: CmsUserOrderByWithRelationInput
-    updatedBy?: CmsUserOrderByWithRelationInput
-  }
-
-  export type CmsBlogWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    slug?: string
-    AND?: CmsBlogWhereInput | CmsBlogWhereInput[]
-    OR?: CmsBlogWhereInput[]
-    NOT?: CmsBlogWhereInput | CmsBlogWhereInput[]
-    title?: StringFilter<"CmsBlog"> | string
-    excerpt?: StringFilter<"CmsBlog"> | string
-    richContent?: StringFilter<"CmsBlog"> | string
-    coverImage?: StringNullableFilter<"CmsBlog"> | string | null
-    region?: EnumCmsRegionFilter<"CmsBlog"> | $Enums.CmsRegion
-    status?: EnumPublishStatusFilter<"CmsBlog"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableFilter<"CmsBlog"> | Date | string | null
-    createdById?: IntFilter<"CmsBlog"> | number
-    updatedById?: IntFilter<"CmsBlog"> | number
-    createdAt?: DateTimeFilter<"CmsBlog"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsBlog"> | Date | string
-    createdBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-    updatedBy?: XOR<CmsUserScalarRelationFilter, CmsUserWhereInput>
-  }, "id" | "slug">
-
-  export type CmsBlogOrderByWithAggregationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrderInput | SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrderInput | SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: CmsBlogCountOrderByAggregateInput
-    _avg?: CmsBlogAvgOrderByAggregateInput
-    _max?: CmsBlogMaxOrderByAggregateInput
-    _min?: CmsBlogMinOrderByAggregateInput
-    _sum?: CmsBlogSumOrderByAggregateInput
-  }
-
-  export type CmsBlogScalarWhereWithAggregatesInput = {
-    AND?: CmsBlogScalarWhereWithAggregatesInput | CmsBlogScalarWhereWithAggregatesInput[]
-    OR?: CmsBlogScalarWhereWithAggregatesInput[]
-    NOT?: CmsBlogScalarWhereWithAggregatesInput | CmsBlogScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"CmsBlog"> | number
-    title?: StringWithAggregatesFilter<"CmsBlog"> | string
-    slug?: StringWithAggregatesFilter<"CmsBlog"> | string
-    excerpt?: StringWithAggregatesFilter<"CmsBlog"> | string
-    richContent?: StringWithAggregatesFilter<"CmsBlog"> | string
-    coverImage?: StringNullableWithAggregatesFilter<"CmsBlog"> | string | null
-    region?: EnumCmsRegionWithAggregatesFilter<"CmsBlog"> | $Enums.CmsRegion
-    status?: EnumPublishStatusWithAggregatesFilter<"CmsBlog"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableWithAggregatesFilter<"CmsBlog"> | Date | string | null
-    createdById?: IntWithAggregatesFilter<"CmsBlog"> | number
-    updatedById?: IntWithAggregatesFilter<"CmsBlog"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"CmsBlog"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"CmsBlog"> | Date | string
   }
 
   export type CmsTeamMemberWhereInput = {
@@ -15840,19 +8332,9 @@ export namespace Prisma {
     role: $Enums.CmsRole
     region: $Enums.CmsRegion
     createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
     createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
     updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
+    sessions?: CmsSessionCreateNestedManyWithoutUserInput
     createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
     updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
     createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
@@ -15867,19 +8349,9 @@ export namespace Prisma {
     role: $Enums.CmsRole
     region: $Enums.CmsRegion
     createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
     createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
     updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
     createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
     updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
     createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
@@ -15893,19 +8365,9 @@ export namespace Prisma {
     role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
     region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
     createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
     updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
+    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
     createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
     updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
     createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
@@ -15920,19 +8382,9 @@ export namespace Prisma {
     role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
     region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
     createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
     updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
     createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
     updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
     createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -16021,13 +8473,18 @@ export namespace Prisma {
   }
 
   export type CmsContentCreateInput = {
+    contentType: $Enums.CmsContentType
     title: string
     slug: string
-    contentType: $Enums.CmsContentType
-    category: $Enums.CmsCategory
-    level: $Enums.CmsLevel
-    region?: $Enums.CmsRegion | null
-    body?: string
+    excerpt?: string
+    richContent?: string
+    coverImage?: string | null
+    videoUrl?: string | null
+    videoDuration?: number | null
+    region: $Enums.CmsRegion
+    level?: $Enums.CmsLevel
+    status?: $Enums.PublishStatus
+    publishedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     createdBy: CmsUserCreateNestedOneWithoutCreatedContentInput
@@ -16036,13 +8493,18 @@ export namespace Prisma {
 
   export type CmsContentUncheckedCreateInput = {
     id?: number
+    contentType: $Enums.CmsContentType
     title: string
     slug: string
-    contentType: $Enums.CmsContentType
-    category: $Enums.CmsCategory
-    level: $Enums.CmsLevel
-    region?: $Enums.CmsRegion | null
-    body?: string
+    excerpt?: string
+    richContent?: string
+    coverImage?: string | null
+    videoUrl?: string | null
+    videoDuration?: number | null
+    region: $Enums.CmsRegion
+    level?: $Enums.CmsLevel
+    status?: $Enums.PublishStatus
+    publishedAt?: Date | string | null
     createdById: number
     updatedById: number
     createdAt?: Date | string
@@ -16050,13 +8512,18 @@ export namespace Prisma {
   }
 
   export type CmsContentUpdateInput = {
+    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
-    category?: EnumCmsCategoryFieldUpdateOperationsInput | $Enums.CmsCategory
+    excerpt?: StringFieldUpdateOperationsInput | string
+    richContent?: StringFieldUpdateOperationsInput | string
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
+    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
-    region?: NullableEnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion | null
-    body?: StringFieldUpdateOperationsInput | string
+    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdBy?: CmsUserUpdateOneRequiredWithoutCreatedContentNestedInput
@@ -16065,13 +8532,18 @@ export namespace Prisma {
 
   export type CmsContentUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
-    category?: EnumCmsCategoryFieldUpdateOperationsInput | $Enums.CmsCategory
+    excerpt?: StringFieldUpdateOperationsInput | string
+    richContent?: StringFieldUpdateOperationsInput | string
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
+    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
-    region?: NullableEnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion | null
-    body?: StringFieldUpdateOperationsInput | string
+    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdById?: IntFieldUpdateOperationsInput | number
     updatedById?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16080,13 +8552,18 @@ export namespace Prisma {
 
   export type CmsContentCreateManyInput = {
     id?: number
+    contentType: $Enums.CmsContentType
     title: string
     slug: string
-    contentType: $Enums.CmsContentType
-    category: $Enums.CmsCategory
-    level: $Enums.CmsLevel
-    region?: $Enums.CmsRegion | null
-    body?: string
+    excerpt?: string
+    richContent?: string
+    coverImage?: string | null
+    videoUrl?: string | null
+    videoDuration?: number | null
+    region: $Enums.CmsRegion
+    level?: $Enums.CmsLevel
+    status?: $Enums.PublishStatus
+    publishedAt?: Date | string | null
     createdById: number
     updatedById: number
     createdAt?: Date | string
@@ -16094,573 +8571,34 @@ export namespace Prisma {
   }
 
   export type CmsContentUpdateManyMutationInput = {
+    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
-    category?: EnumCmsCategoryFieldUpdateOperationsInput | $Enums.CmsCategory
+    excerpt?: StringFieldUpdateOperationsInput | string
+    richContent?: StringFieldUpdateOperationsInput | string
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
+    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
-    region?: NullableEnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion | null
-    body?: StringFieldUpdateOperationsInput | string
+    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CmsContentUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
     contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
-    category?: EnumCmsCategoryFieldUpdateOperationsInput | $Enums.CmsCategory
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    excerpt?: StringFieldUpdateOperationsInput | string
+    richContent?: StringFieldUpdateOperationsInput | string
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
+    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
-    region?: NullableEnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion | null
-    body?: StringFieldUpdateOperationsInput | string
-    createdById?: IntFieldUpdateOperationsInput | number
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsAnnouncementCreateInput = {
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    createdBy: CmsUserCreateNestedOneWithoutCreatedAnnouncementsInput
-    updatedBy: CmsUserCreateNestedOneWithoutUpdatedAnnouncementsInput
-  }
-
-  export type CmsAnnouncementUncheckedCreateInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsAnnouncementUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdBy?: CmsUserUpdateOneRequiredWithoutCreatedAnnouncementsNestedInput
-    updatedBy?: CmsUserUpdateOneRequiredWithoutUpdatedAnnouncementsNestedInput
-  }
-
-  export type CmsAnnouncementUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsAnnouncementCreateManyInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsAnnouncementUpdateManyMutationInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsAnnouncementUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsNewsCreateInput = {
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    createdBy: CmsUserCreateNestedOneWithoutCreatedNewsInput
-    updatedBy: CmsUserCreateNestedOneWithoutUpdatedNewsInput
-  }
-
-  export type CmsNewsUncheckedCreateInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsNewsUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdBy?: CmsUserUpdateOneRequiredWithoutCreatedNewsNestedInput
-    updatedBy?: CmsUserUpdateOneRequiredWithoutUpdatedNewsNestedInput
-  }
-
-  export type CmsNewsUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsNewsCreateManyInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsNewsUpdateManyMutationInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsNewsUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsPressBreifingCreateInput = {
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    createdBy: CmsUserCreateNestedOneWithoutCreatedBriefingsInput
-    updatedBy: CmsUserCreateNestedOneWithoutUpdatedBriefingsInput
-  }
-
-  export type CmsPressBreifingUncheckedCreateInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsPressBreifingUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdBy?: CmsUserUpdateOneRequiredWithoutCreatedBriefingsNestedInput
-    updatedBy?: CmsUserUpdateOneRequiredWithoutUpdatedBriefingsNestedInput
-  }
-
-  export type CmsPressBreifingUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsPressBreifingCreateManyInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsPressBreifingUpdateManyMutationInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsPressBreifingUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsVideoCreateInput = {
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    videoUrl: string
-    videoDuration?: number | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    createdBy: CmsUserCreateNestedOneWithoutCreatedVideosInput
-    updatedBy: CmsUserCreateNestedOneWithoutUpdatedVideosInput
-  }
-
-  export type CmsVideoUncheckedCreateInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    videoUrl: string
-    videoDuration?: number | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsVideoUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: StringFieldUpdateOperationsInput | string
-    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdBy?: CmsUserUpdateOneRequiredWithoutCreatedVideosNestedInput
-    updatedBy?: CmsUserUpdateOneRequiredWithoutUpdatedVideosNestedInput
-  }
-
-  export type CmsVideoUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: StringFieldUpdateOperationsInput | string
-    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsVideoCreateManyInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    videoUrl: string
-    videoDuration?: number | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsVideoUpdateManyMutationInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: StringFieldUpdateOperationsInput | string
-    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsVideoUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: StringFieldUpdateOperationsInput | string
-    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsBlogCreateInput = {
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    createdBy: CmsUserCreateNestedOneWithoutCreatedBlogsInput
-    updatedBy: CmsUserCreateNestedOneWithoutUpdatedBlogsInput
-  }
-
-  export type CmsBlogUncheckedCreateInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsBlogUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdBy?: CmsUserUpdateOneRequiredWithoutCreatedBlogsNestedInput
-    updatedBy?: CmsUserUpdateOneRequiredWithoutUpdatedBlogsNestedInput
-  }
-
-  export type CmsBlogUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsBlogCreateManyInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsBlogUpdateManyMutationInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsBlogUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
     publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdById?: IntFieldUpdateOperationsInput | number
@@ -16955,46 +8893,16 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type CmsSessionListRelationFilter = {
-    every?: CmsSessionWhereInput
-    some?: CmsSessionWhereInput
-    none?: CmsSessionWhereInput
-  }
-
   export type CmsContentListRelationFilter = {
     every?: CmsContentWhereInput
     some?: CmsContentWhereInput
     none?: CmsContentWhereInput
   }
 
-  export type CmsAnnouncementListRelationFilter = {
-    every?: CmsAnnouncementWhereInput
-    some?: CmsAnnouncementWhereInput
-    none?: CmsAnnouncementWhereInput
-  }
-
-  export type CmsNewsListRelationFilter = {
-    every?: CmsNewsWhereInput
-    some?: CmsNewsWhereInput
-    none?: CmsNewsWhereInput
-  }
-
-  export type CmsPressBreifingListRelationFilter = {
-    every?: CmsPressBreifingWhereInput
-    some?: CmsPressBreifingWhereInput
-    none?: CmsPressBreifingWhereInput
-  }
-
-  export type CmsVideoListRelationFilter = {
-    every?: CmsVideoWhereInput
-    some?: CmsVideoWhereInput
-    none?: CmsVideoWhereInput
-  }
-
-  export type CmsBlogListRelationFilter = {
-    every?: CmsBlogWhereInput
-    some?: CmsBlogWhereInput
-    none?: CmsBlogWhereInput
+  export type CmsSessionListRelationFilter = {
+    every?: CmsSessionWhereInput
+    some?: CmsSessionWhereInput
+    none?: CmsSessionWhereInput
   }
 
   export type CmsTeamMemberListRelationFilter = {
@@ -17009,31 +8917,11 @@ export namespace Prisma {
     none?: CmsMediaItemWhereInput
   }
 
-  export type CmsSessionOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type CmsContentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type CmsAnnouncementOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type CmsNewsOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type CmsPressBreifingOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type CmsVideoOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type CmsBlogOrderByRelationAggregateInput = {
+  export type CmsSessionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17197,129 +9085,6 @@ export namespace Prisma {
     not?: NestedEnumCmsContentTypeFilter<$PrismaModel> | $Enums.CmsContentType
   }
 
-  export type EnumCmsCategoryFilter<$PrismaModel = never> = {
-    equals?: $Enums.CmsCategory | EnumCmsCategoryFieldRefInput<$PrismaModel>
-    in?: $Enums.CmsCategory[] | ListEnumCmsCategoryFieldRefInput<$PrismaModel>
-    notIn?: $Enums.CmsCategory[] | ListEnumCmsCategoryFieldRefInput<$PrismaModel>
-    not?: NestedEnumCmsCategoryFilter<$PrismaModel> | $Enums.CmsCategory
-  }
-
-  export type EnumCmsLevelFilter<$PrismaModel = never> = {
-    equals?: $Enums.CmsLevel | EnumCmsLevelFieldRefInput<$PrismaModel>
-    in?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
-    notIn?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
-    not?: NestedEnumCmsLevelFilter<$PrismaModel> | $Enums.CmsLevel
-  }
-
-  export type EnumCmsRegionNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.CmsRegion | EnumCmsRegionFieldRefInput<$PrismaModel> | null
-    in?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumCmsRegionNullableFilter<$PrismaModel> | $Enums.CmsRegion | null
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
-  export type CmsContentCountOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    contentType?: SortOrder
-    category?: SortOrder
-    level?: SortOrder
-    region?: SortOrder
-    body?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type CmsContentAvgOrderByAggregateInput = {
-    id?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-  }
-
-  export type CmsContentMaxOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    contentType?: SortOrder
-    category?: SortOrder
-    level?: SortOrder
-    region?: SortOrder
-    body?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type CmsContentMinOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    contentType?: SortOrder
-    category?: SortOrder
-    level?: SortOrder
-    region?: SortOrder
-    body?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type CmsContentSumOrderByAggregateInput = {
-    id?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-  }
-
-  export type EnumCmsContentTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.CmsContentType | EnumCmsContentTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.CmsContentType[] | ListEnumCmsContentTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.CmsContentType[] | ListEnumCmsContentTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumCmsContentTypeWithAggregatesFilter<$PrismaModel> | $Enums.CmsContentType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCmsContentTypeFilter<$PrismaModel>
-    _max?: NestedEnumCmsContentTypeFilter<$PrismaModel>
-  }
-
-  export type EnumCmsCategoryWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.CmsCategory | EnumCmsCategoryFieldRefInput<$PrismaModel>
-    in?: $Enums.CmsCategory[] | ListEnumCmsCategoryFieldRefInput<$PrismaModel>
-    notIn?: $Enums.CmsCategory[] | ListEnumCmsCategoryFieldRefInput<$PrismaModel>
-    not?: NestedEnumCmsCategoryWithAggregatesFilter<$PrismaModel> | $Enums.CmsCategory
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCmsCategoryFilter<$PrismaModel>
-    _max?: NestedEnumCmsCategoryFilter<$PrismaModel>
-  }
-
-  export type EnumCmsLevelWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.CmsLevel | EnumCmsLevelFieldRefInput<$PrismaModel>
-    in?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
-    notIn?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
-    not?: NestedEnumCmsLevelWithAggregatesFilter<$PrismaModel> | $Enums.CmsLevel
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCmsLevelFilter<$PrismaModel>
-    _max?: NestedEnumCmsLevelFilter<$PrismaModel>
-  }
-
-  export type EnumCmsRegionNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.CmsRegion | EnumCmsRegionFieldRefInput<$PrismaModel> | null
-    in?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumCmsRegionNullableWithAggregatesFilter<$PrismaModel> | $Enums.CmsRegion | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumCmsRegionNullableFilter<$PrismaModel>
-    _max?: NestedEnumCmsRegionNullableFilter<$PrismaModel>
-  }
-
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -17333,6 +9098,24 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type EnumCmsLevelFilter<$PrismaModel = never> = {
+    equals?: $Enums.CmsLevel | EnumCmsLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumCmsLevelFilter<$PrismaModel> | $Enums.CmsLevel
   }
 
   export type EnumPublishStatusFilter<$PrismaModel = never> = {
@@ -17353,14 +9136,23 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type CmsAnnouncementCountOrderByAggregateInput = {
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type CmsContentCountOrderByAggregateInput = {
     id?: SortOrder
+    contentType?: SortOrder
     title?: SortOrder
     slug?: SortOrder
     excerpt?: SortOrder
     richContent?: SortOrder
     coverImage?: SortOrder
+    videoUrl?: SortOrder
+    videoDuration?: SortOrder
     region?: SortOrder
+    level?: SortOrder
     status?: SortOrder
     publishedAt?: SortOrder
     createdById?: SortOrder
@@ -17369,20 +9161,25 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type CmsAnnouncementAvgOrderByAggregateInput = {
+  export type CmsContentAvgOrderByAggregateInput = {
     id?: SortOrder
+    videoDuration?: SortOrder
     createdById?: SortOrder
     updatedById?: SortOrder
   }
 
-  export type CmsAnnouncementMaxOrderByAggregateInput = {
+  export type CmsContentMaxOrderByAggregateInput = {
     id?: SortOrder
+    contentType?: SortOrder
     title?: SortOrder
     slug?: SortOrder
     excerpt?: SortOrder
     richContent?: SortOrder
     coverImage?: SortOrder
+    videoUrl?: SortOrder
+    videoDuration?: SortOrder
     region?: SortOrder
+    level?: SortOrder
     status?: SortOrder
     publishedAt?: SortOrder
     createdById?: SortOrder
@@ -17391,14 +9188,18 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type CmsAnnouncementMinOrderByAggregateInput = {
+  export type CmsContentMinOrderByAggregateInput = {
     id?: SortOrder
+    contentType?: SortOrder
     title?: SortOrder
     slug?: SortOrder
     excerpt?: SortOrder
     richContent?: SortOrder
     coverImage?: SortOrder
+    videoUrl?: SortOrder
+    videoDuration?: SortOrder
     region?: SortOrder
+    level?: SortOrder
     status?: SortOrder
     publishedAt?: SortOrder
     createdById?: SortOrder
@@ -17407,10 +9208,21 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type CmsAnnouncementSumOrderByAggregateInput = {
+  export type CmsContentSumOrderByAggregateInput = {
     id?: SortOrder
+    videoDuration?: SortOrder
     createdById?: SortOrder
     updatedById?: SortOrder
+  }
+
+  export type EnumCmsContentTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CmsContentType | EnumCmsContentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CmsContentType[] | ListEnumCmsContentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CmsContentType[] | ListEnumCmsContentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCmsContentTypeWithAggregatesFilter<$PrismaModel> | $Enums.CmsContentType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCmsContentTypeFilter<$PrismaModel>
+    _max?: NestedEnumCmsContentTypeFilter<$PrismaModel>
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -17429,6 +9241,32 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type EnumCmsLevelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CmsLevel | EnumCmsLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumCmsLevelWithAggregatesFilter<$PrismaModel> | $Enums.CmsLevel
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCmsLevelFilter<$PrismaModel>
+    _max?: NestedEnumCmsLevelFilter<$PrismaModel>
   }
 
   export type EnumPublishStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -17455,286 +9293,18 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type CmsNewsCountOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type CmsNewsAvgOrderByAggregateInput = {
-    id?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-  }
-
-  export type CmsNewsMaxOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type CmsNewsMinOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type CmsNewsSumOrderByAggregateInput = {
-    id?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-  }
-
-  export type CmsPressBreifingCountOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type CmsPressBreifingAvgOrderByAggregateInput = {
-    id?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-  }
-
-  export type CmsPressBreifingMaxOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type CmsPressBreifingMinOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type CmsPressBreifingSumOrderByAggregateInput = {
-    id?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-  }
-
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type CmsVideoCountOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrder
-    videoUrl?: SortOrder
-    videoDuration?: SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type CmsVideoAvgOrderByAggregateInput = {
-    id?: SortOrder
-    videoDuration?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-  }
-
-  export type CmsVideoMaxOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrder
-    videoUrl?: SortOrder
-    videoDuration?: SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type CmsVideoMinOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrder
-    videoUrl?: SortOrder
-    videoDuration?: SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type CmsVideoSumOrderByAggregateInput = {
-    id?: SortOrder
-    videoDuration?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type CmsBlogCountOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type CmsBlogAvgOrderByAggregateInput = {
-    id?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-  }
-
-  export type CmsBlogMaxOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type CmsBlogMinOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    slug?: SortOrder
-    excerpt?: SortOrder
-    richContent?: SortOrder
-    coverImage?: SortOrder
-    region?: SortOrder
-    status?: SortOrder
-    publishedAt?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type CmsBlogSumOrderByAggregateInput = {
-    id?: SortOrder
-    createdById?: SortOrder
-    updatedById?: SortOrder
-  }
-
   export type EnumCmsTeamTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.CmsTeamType | EnumCmsTeamTypeFieldRefInput<$PrismaModel>
     in?: $Enums.CmsTeamType[] | ListEnumCmsTeamTypeFieldRefInput<$PrismaModel>
     notIn?: $Enums.CmsTeamType[] | ListEnumCmsTeamTypeFieldRefInput<$PrismaModel>
     not?: NestedEnumCmsTeamTypeFilter<$PrismaModel> | $Enums.CmsTeamType
+  }
+
+  export type EnumCmsRegionNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.CmsRegion | EnumCmsRegionFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCmsRegionNullableFilter<$PrismaModel> | $Enums.CmsRegion | null
   }
 
   export type CmsTeamMemberCountOrderByAggregateInput = {
@@ -17811,6 +9381,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCmsTeamTypeFilter<$PrismaModel>
     _max?: NestedEnumCmsTeamTypeFilter<$PrismaModel>
+  }
+
+  export type EnumCmsRegionNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CmsRegion | EnumCmsRegionFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCmsRegionNullableWithAggregatesFilter<$PrismaModel> | $Enums.CmsRegion | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumCmsRegionNullableFilter<$PrismaModel>
+    _max?: NestedEnumCmsRegionNullableFilter<$PrismaModel>
   }
 
   export type EnumCmsMediaTypeFilter<$PrismaModel = never> = {
@@ -17893,13 +9473,6 @@ export namespace Prisma {
     _max?: NestedEnumCmsMediaTypeFilter<$PrismaModel>
   }
 
-  export type CmsSessionCreateNestedManyWithoutUserInput = {
-    create?: XOR<CmsSessionCreateWithoutUserInput, CmsSessionUncheckedCreateWithoutUserInput> | CmsSessionCreateWithoutUserInput[] | CmsSessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: CmsSessionCreateOrConnectWithoutUserInput | CmsSessionCreateOrConnectWithoutUserInput[]
-    createMany?: CmsSessionCreateManyUserInputEnvelope
-    connect?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
-  }
-
   export type CmsContentCreateNestedManyWithoutCreatedByInput = {
     create?: XOR<CmsContentCreateWithoutCreatedByInput, CmsContentUncheckedCreateWithoutCreatedByInput> | CmsContentCreateWithoutCreatedByInput[] | CmsContentUncheckedCreateWithoutCreatedByInput[]
     connectOrCreate?: CmsContentCreateOrConnectWithoutCreatedByInput | CmsContentCreateOrConnectWithoutCreatedByInput[]
@@ -17914,74 +9487,11 @@ export namespace Prisma {
     connect?: CmsContentWhereUniqueInput | CmsContentWhereUniqueInput[]
   }
 
-  export type CmsAnnouncementCreateNestedManyWithoutCreatedByInput = {
-    create?: XOR<CmsAnnouncementCreateWithoutCreatedByInput, CmsAnnouncementUncheckedCreateWithoutCreatedByInput> | CmsAnnouncementCreateWithoutCreatedByInput[] | CmsAnnouncementUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsAnnouncementCreateOrConnectWithoutCreatedByInput | CmsAnnouncementCreateOrConnectWithoutCreatedByInput[]
-    createMany?: CmsAnnouncementCreateManyCreatedByInputEnvelope
-    connect?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-  }
-
-  export type CmsAnnouncementCreateNestedManyWithoutUpdatedByInput = {
-    create?: XOR<CmsAnnouncementCreateWithoutUpdatedByInput, CmsAnnouncementUncheckedCreateWithoutUpdatedByInput> | CmsAnnouncementCreateWithoutUpdatedByInput[] | CmsAnnouncementUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsAnnouncementCreateOrConnectWithoutUpdatedByInput | CmsAnnouncementCreateOrConnectWithoutUpdatedByInput[]
-    createMany?: CmsAnnouncementCreateManyUpdatedByInputEnvelope
-    connect?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-  }
-
-  export type CmsNewsCreateNestedManyWithoutCreatedByInput = {
-    create?: XOR<CmsNewsCreateWithoutCreatedByInput, CmsNewsUncheckedCreateWithoutCreatedByInput> | CmsNewsCreateWithoutCreatedByInput[] | CmsNewsUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsNewsCreateOrConnectWithoutCreatedByInput | CmsNewsCreateOrConnectWithoutCreatedByInput[]
-    createMany?: CmsNewsCreateManyCreatedByInputEnvelope
-    connect?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-  }
-
-  export type CmsNewsCreateNestedManyWithoutUpdatedByInput = {
-    create?: XOR<CmsNewsCreateWithoutUpdatedByInput, CmsNewsUncheckedCreateWithoutUpdatedByInput> | CmsNewsCreateWithoutUpdatedByInput[] | CmsNewsUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsNewsCreateOrConnectWithoutUpdatedByInput | CmsNewsCreateOrConnectWithoutUpdatedByInput[]
-    createMany?: CmsNewsCreateManyUpdatedByInputEnvelope
-    connect?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-  }
-
-  export type CmsPressBreifingCreateNestedManyWithoutCreatedByInput = {
-    create?: XOR<CmsPressBreifingCreateWithoutCreatedByInput, CmsPressBreifingUncheckedCreateWithoutCreatedByInput> | CmsPressBreifingCreateWithoutCreatedByInput[] | CmsPressBreifingUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsPressBreifingCreateOrConnectWithoutCreatedByInput | CmsPressBreifingCreateOrConnectWithoutCreatedByInput[]
-    createMany?: CmsPressBreifingCreateManyCreatedByInputEnvelope
-    connect?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-  }
-
-  export type CmsPressBreifingCreateNestedManyWithoutUpdatedByInput = {
-    create?: XOR<CmsPressBreifingCreateWithoutUpdatedByInput, CmsPressBreifingUncheckedCreateWithoutUpdatedByInput> | CmsPressBreifingCreateWithoutUpdatedByInput[] | CmsPressBreifingUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsPressBreifingCreateOrConnectWithoutUpdatedByInput | CmsPressBreifingCreateOrConnectWithoutUpdatedByInput[]
-    createMany?: CmsPressBreifingCreateManyUpdatedByInputEnvelope
-    connect?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-  }
-
-  export type CmsVideoCreateNestedManyWithoutCreatedByInput = {
-    create?: XOR<CmsVideoCreateWithoutCreatedByInput, CmsVideoUncheckedCreateWithoutCreatedByInput> | CmsVideoCreateWithoutCreatedByInput[] | CmsVideoUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsVideoCreateOrConnectWithoutCreatedByInput | CmsVideoCreateOrConnectWithoutCreatedByInput[]
-    createMany?: CmsVideoCreateManyCreatedByInputEnvelope
-    connect?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-  }
-
-  export type CmsVideoCreateNestedManyWithoutUpdatedByInput = {
-    create?: XOR<CmsVideoCreateWithoutUpdatedByInput, CmsVideoUncheckedCreateWithoutUpdatedByInput> | CmsVideoCreateWithoutUpdatedByInput[] | CmsVideoUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsVideoCreateOrConnectWithoutUpdatedByInput | CmsVideoCreateOrConnectWithoutUpdatedByInput[]
-    createMany?: CmsVideoCreateManyUpdatedByInputEnvelope
-    connect?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-  }
-
-  export type CmsBlogCreateNestedManyWithoutCreatedByInput = {
-    create?: XOR<CmsBlogCreateWithoutCreatedByInput, CmsBlogUncheckedCreateWithoutCreatedByInput> | CmsBlogCreateWithoutCreatedByInput[] | CmsBlogUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsBlogCreateOrConnectWithoutCreatedByInput | CmsBlogCreateOrConnectWithoutCreatedByInput[]
-    createMany?: CmsBlogCreateManyCreatedByInputEnvelope
-    connect?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-  }
-
-  export type CmsBlogCreateNestedManyWithoutUpdatedByInput = {
-    create?: XOR<CmsBlogCreateWithoutUpdatedByInput, CmsBlogUncheckedCreateWithoutUpdatedByInput> | CmsBlogCreateWithoutUpdatedByInput[] | CmsBlogUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsBlogCreateOrConnectWithoutUpdatedByInput | CmsBlogCreateOrConnectWithoutUpdatedByInput[]
-    createMany?: CmsBlogCreateManyUpdatedByInputEnvelope
-    connect?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
+  export type CmsSessionCreateNestedManyWithoutUserInput = {
+    create?: XOR<CmsSessionCreateWithoutUserInput, CmsSessionUncheckedCreateWithoutUserInput> | CmsSessionCreateWithoutUserInput[] | CmsSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CmsSessionCreateOrConnectWithoutUserInput | CmsSessionCreateOrConnectWithoutUserInput[]
+    createMany?: CmsSessionCreateManyUserInputEnvelope
+    connect?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
   }
 
   export type CmsTeamMemberCreateNestedManyWithoutCreatedByInput = {
@@ -18012,13 +9522,6 @@ export namespace Prisma {
     connect?: CmsMediaItemWhereUniqueInput | CmsMediaItemWhereUniqueInput[]
   }
 
-  export type CmsSessionUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<CmsSessionCreateWithoutUserInput, CmsSessionUncheckedCreateWithoutUserInput> | CmsSessionCreateWithoutUserInput[] | CmsSessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: CmsSessionCreateOrConnectWithoutUserInput | CmsSessionCreateOrConnectWithoutUserInput[]
-    createMany?: CmsSessionCreateManyUserInputEnvelope
-    connect?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
-  }
-
   export type CmsContentUncheckedCreateNestedManyWithoutCreatedByInput = {
     create?: XOR<CmsContentCreateWithoutCreatedByInput, CmsContentUncheckedCreateWithoutCreatedByInput> | CmsContentCreateWithoutCreatedByInput[] | CmsContentUncheckedCreateWithoutCreatedByInput[]
     connectOrCreate?: CmsContentCreateOrConnectWithoutCreatedByInput | CmsContentCreateOrConnectWithoutCreatedByInput[]
@@ -18033,74 +9536,11 @@ export namespace Prisma {
     connect?: CmsContentWhereUniqueInput | CmsContentWhereUniqueInput[]
   }
 
-  export type CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput = {
-    create?: XOR<CmsAnnouncementCreateWithoutCreatedByInput, CmsAnnouncementUncheckedCreateWithoutCreatedByInput> | CmsAnnouncementCreateWithoutCreatedByInput[] | CmsAnnouncementUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsAnnouncementCreateOrConnectWithoutCreatedByInput | CmsAnnouncementCreateOrConnectWithoutCreatedByInput[]
-    createMany?: CmsAnnouncementCreateManyCreatedByInputEnvelope
-    connect?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-  }
-
-  export type CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput = {
-    create?: XOR<CmsAnnouncementCreateWithoutUpdatedByInput, CmsAnnouncementUncheckedCreateWithoutUpdatedByInput> | CmsAnnouncementCreateWithoutUpdatedByInput[] | CmsAnnouncementUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsAnnouncementCreateOrConnectWithoutUpdatedByInput | CmsAnnouncementCreateOrConnectWithoutUpdatedByInput[]
-    createMany?: CmsAnnouncementCreateManyUpdatedByInputEnvelope
-    connect?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-  }
-
-  export type CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput = {
-    create?: XOR<CmsNewsCreateWithoutCreatedByInput, CmsNewsUncheckedCreateWithoutCreatedByInput> | CmsNewsCreateWithoutCreatedByInput[] | CmsNewsUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsNewsCreateOrConnectWithoutCreatedByInput | CmsNewsCreateOrConnectWithoutCreatedByInput[]
-    createMany?: CmsNewsCreateManyCreatedByInputEnvelope
-    connect?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-  }
-
-  export type CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput = {
-    create?: XOR<CmsNewsCreateWithoutUpdatedByInput, CmsNewsUncheckedCreateWithoutUpdatedByInput> | CmsNewsCreateWithoutUpdatedByInput[] | CmsNewsUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsNewsCreateOrConnectWithoutUpdatedByInput | CmsNewsCreateOrConnectWithoutUpdatedByInput[]
-    createMany?: CmsNewsCreateManyUpdatedByInputEnvelope
-    connect?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-  }
-
-  export type CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput = {
-    create?: XOR<CmsPressBreifingCreateWithoutCreatedByInput, CmsPressBreifingUncheckedCreateWithoutCreatedByInput> | CmsPressBreifingCreateWithoutCreatedByInput[] | CmsPressBreifingUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsPressBreifingCreateOrConnectWithoutCreatedByInput | CmsPressBreifingCreateOrConnectWithoutCreatedByInput[]
-    createMany?: CmsPressBreifingCreateManyCreatedByInputEnvelope
-    connect?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-  }
-
-  export type CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput = {
-    create?: XOR<CmsPressBreifingCreateWithoutUpdatedByInput, CmsPressBreifingUncheckedCreateWithoutUpdatedByInput> | CmsPressBreifingCreateWithoutUpdatedByInput[] | CmsPressBreifingUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsPressBreifingCreateOrConnectWithoutUpdatedByInput | CmsPressBreifingCreateOrConnectWithoutUpdatedByInput[]
-    createMany?: CmsPressBreifingCreateManyUpdatedByInputEnvelope
-    connect?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-  }
-
-  export type CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput = {
-    create?: XOR<CmsVideoCreateWithoutCreatedByInput, CmsVideoUncheckedCreateWithoutCreatedByInput> | CmsVideoCreateWithoutCreatedByInput[] | CmsVideoUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsVideoCreateOrConnectWithoutCreatedByInput | CmsVideoCreateOrConnectWithoutCreatedByInput[]
-    createMany?: CmsVideoCreateManyCreatedByInputEnvelope
-    connect?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-  }
-
-  export type CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput = {
-    create?: XOR<CmsVideoCreateWithoutUpdatedByInput, CmsVideoUncheckedCreateWithoutUpdatedByInput> | CmsVideoCreateWithoutUpdatedByInput[] | CmsVideoUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsVideoCreateOrConnectWithoutUpdatedByInput | CmsVideoCreateOrConnectWithoutUpdatedByInput[]
-    createMany?: CmsVideoCreateManyUpdatedByInputEnvelope
-    connect?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-  }
-
-  export type CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput = {
-    create?: XOR<CmsBlogCreateWithoutCreatedByInput, CmsBlogUncheckedCreateWithoutCreatedByInput> | CmsBlogCreateWithoutCreatedByInput[] | CmsBlogUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsBlogCreateOrConnectWithoutCreatedByInput | CmsBlogCreateOrConnectWithoutCreatedByInput[]
-    createMany?: CmsBlogCreateManyCreatedByInputEnvelope
-    connect?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-  }
-
-  export type CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput = {
-    create?: XOR<CmsBlogCreateWithoutUpdatedByInput, CmsBlogUncheckedCreateWithoutUpdatedByInput> | CmsBlogCreateWithoutUpdatedByInput[] | CmsBlogUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsBlogCreateOrConnectWithoutUpdatedByInput | CmsBlogCreateOrConnectWithoutUpdatedByInput[]
-    createMany?: CmsBlogCreateManyUpdatedByInputEnvelope
-    connect?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
+  export type CmsSessionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CmsSessionCreateWithoutUserInput, CmsSessionUncheckedCreateWithoutUserInput> | CmsSessionCreateWithoutUserInput[] | CmsSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CmsSessionCreateOrConnectWithoutUserInput | CmsSessionCreateOrConnectWithoutUserInput[]
+    createMany?: CmsSessionCreateManyUserInputEnvelope
+    connect?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
   }
 
   export type CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput = {
@@ -18147,20 +9587,6 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type CmsSessionUpdateManyWithoutUserNestedInput = {
-    create?: XOR<CmsSessionCreateWithoutUserInput, CmsSessionUncheckedCreateWithoutUserInput> | CmsSessionCreateWithoutUserInput[] | CmsSessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: CmsSessionCreateOrConnectWithoutUserInput | CmsSessionCreateOrConnectWithoutUserInput[]
-    upsert?: CmsSessionUpsertWithWhereUniqueWithoutUserInput | CmsSessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: CmsSessionCreateManyUserInputEnvelope
-    set?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
-    disconnect?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
-    delete?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
-    connect?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
-    update?: CmsSessionUpdateWithWhereUniqueWithoutUserInput | CmsSessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: CmsSessionUpdateManyWithWhereWithoutUserInput | CmsSessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: CmsSessionScalarWhereInput | CmsSessionScalarWhereInput[]
-  }
-
   export type CmsContentUpdateManyWithoutCreatedByNestedInput = {
     create?: XOR<CmsContentCreateWithoutCreatedByInput, CmsContentUncheckedCreateWithoutCreatedByInput> | CmsContentCreateWithoutCreatedByInput[] | CmsContentUncheckedCreateWithoutCreatedByInput[]
     connectOrCreate?: CmsContentCreateOrConnectWithoutCreatedByInput | CmsContentCreateOrConnectWithoutCreatedByInput[]
@@ -18189,144 +9615,18 @@ export namespace Prisma {
     deleteMany?: CmsContentScalarWhereInput | CmsContentScalarWhereInput[]
   }
 
-  export type CmsAnnouncementUpdateManyWithoutCreatedByNestedInput = {
-    create?: XOR<CmsAnnouncementCreateWithoutCreatedByInput, CmsAnnouncementUncheckedCreateWithoutCreatedByInput> | CmsAnnouncementCreateWithoutCreatedByInput[] | CmsAnnouncementUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsAnnouncementCreateOrConnectWithoutCreatedByInput | CmsAnnouncementCreateOrConnectWithoutCreatedByInput[]
-    upsert?: CmsAnnouncementUpsertWithWhereUniqueWithoutCreatedByInput | CmsAnnouncementUpsertWithWhereUniqueWithoutCreatedByInput[]
-    createMany?: CmsAnnouncementCreateManyCreatedByInputEnvelope
-    set?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    disconnect?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    delete?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    connect?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    update?: CmsAnnouncementUpdateWithWhereUniqueWithoutCreatedByInput | CmsAnnouncementUpdateWithWhereUniqueWithoutCreatedByInput[]
-    updateMany?: CmsAnnouncementUpdateManyWithWhereWithoutCreatedByInput | CmsAnnouncementUpdateManyWithWhereWithoutCreatedByInput[]
-    deleteMany?: CmsAnnouncementScalarWhereInput | CmsAnnouncementScalarWhereInput[]
-  }
-
-  export type CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput = {
-    create?: XOR<CmsAnnouncementCreateWithoutUpdatedByInput, CmsAnnouncementUncheckedCreateWithoutUpdatedByInput> | CmsAnnouncementCreateWithoutUpdatedByInput[] | CmsAnnouncementUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsAnnouncementCreateOrConnectWithoutUpdatedByInput | CmsAnnouncementCreateOrConnectWithoutUpdatedByInput[]
-    upsert?: CmsAnnouncementUpsertWithWhereUniqueWithoutUpdatedByInput | CmsAnnouncementUpsertWithWhereUniqueWithoutUpdatedByInput[]
-    createMany?: CmsAnnouncementCreateManyUpdatedByInputEnvelope
-    set?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    disconnect?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    delete?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    connect?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    update?: CmsAnnouncementUpdateWithWhereUniqueWithoutUpdatedByInput | CmsAnnouncementUpdateWithWhereUniqueWithoutUpdatedByInput[]
-    updateMany?: CmsAnnouncementUpdateManyWithWhereWithoutUpdatedByInput | CmsAnnouncementUpdateManyWithWhereWithoutUpdatedByInput[]
-    deleteMany?: CmsAnnouncementScalarWhereInput | CmsAnnouncementScalarWhereInput[]
-  }
-
-  export type CmsNewsUpdateManyWithoutCreatedByNestedInput = {
-    create?: XOR<CmsNewsCreateWithoutCreatedByInput, CmsNewsUncheckedCreateWithoutCreatedByInput> | CmsNewsCreateWithoutCreatedByInput[] | CmsNewsUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsNewsCreateOrConnectWithoutCreatedByInput | CmsNewsCreateOrConnectWithoutCreatedByInput[]
-    upsert?: CmsNewsUpsertWithWhereUniqueWithoutCreatedByInput | CmsNewsUpsertWithWhereUniqueWithoutCreatedByInput[]
-    createMany?: CmsNewsCreateManyCreatedByInputEnvelope
-    set?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    disconnect?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    delete?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    connect?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    update?: CmsNewsUpdateWithWhereUniqueWithoutCreatedByInput | CmsNewsUpdateWithWhereUniqueWithoutCreatedByInput[]
-    updateMany?: CmsNewsUpdateManyWithWhereWithoutCreatedByInput | CmsNewsUpdateManyWithWhereWithoutCreatedByInput[]
-    deleteMany?: CmsNewsScalarWhereInput | CmsNewsScalarWhereInput[]
-  }
-
-  export type CmsNewsUpdateManyWithoutUpdatedByNestedInput = {
-    create?: XOR<CmsNewsCreateWithoutUpdatedByInput, CmsNewsUncheckedCreateWithoutUpdatedByInput> | CmsNewsCreateWithoutUpdatedByInput[] | CmsNewsUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsNewsCreateOrConnectWithoutUpdatedByInput | CmsNewsCreateOrConnectWithoutUpdatedByInput[]
-    upsert?: CmsNewsUpsertWithWhereUniqueWithoutUpdatedByInput | CmsNewsUpsertWithWhereUniqueWithoutUpdatedByInput[]
-    createMany?: CmsNewsCreateManyUpdatedByInputEnvelope
-    set?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    disconnect?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    delete?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    connect?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    update?: CmsNewsUpdateWithWhereUniqueWithoutUpdatedByInput | CmsNewsUpdateWithWhereUniqueWithoutUpdatedByInput[]
-    updateMany?: CmsNewsUpdateManyWithWhereWithoutUpdatedByInput | CmsNewsUpdateManyWithWhereWithoutUpdatedByInput[]
-    deleteMany?: CmsNewsScalarWhereInput | CmsNewsScalarWhereInput[]
-  }
-
-  export type CmsPressBreifingUpdateManyWithoutCreatedByNestedInput = {
-    create?: XOR<CmsPressBreifingCreateWithoutCreatedByInput, CmsPressBreifingUncheckedCreateWithoutCreatedByInput> | CmsPressBreifingCreateWithoutCreatedByInput[] | CmsPressBreifingUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsPressBreifingCreateOrConnectWithoutCreatedByInput | CmsPressBreifingCreateOrConnectWithoutCreatedByInput[]
-    upsert?: CmsPressBreifingUpsertWithWhereUniqueWithoutCreatedByInput | CmsPressBreifingUpsertWithWhereUniqueWithoutCreatedByInput[]
-    createMany?: CmsPressBreifingCreateManyCreatedByInputEnvelope
-    set?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    disconnect?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    delete?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    connect?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    update?: CmsPressBreifingUpdateWithWhereUniqueWithoutCreatedByInput | CmsPressBreifingUpdateWithWhereUniqueWithoutCreatedByInput[]
-    updateMany?: CmsPressBreifingUpdateManyWithWhereWithoutCreatedByInput | CmsPressBreifingUpdateManyWithWhereWithoutCreatedByInput[]
-    deleteMany?: CmsPressBreifingScalarWhereInput | CmsPressBreifingScalarWhereInput[]
-  }
-
-  export type CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput = {
-    create?: XOR<CmsPressBreifingCreateWithoutUpdatedByInput, CmsPressBreifingUncheckedCreateWithoutUpdatedByInput> | CmsPressBreifingCreateWithoutUpdatedByInput[] | CmsPressBreifingUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsPressBreifingCreateOrConnectWithoutUpdatedByInput | CmsPressBreifingCreateOrConnectWithoutUpdatedByInput[]
-    upsert?: CmsPressBreifingUpsertWithWhereUniqueWithoutUpdatedByInput | CmsPressBreifingUpsertWithWhereUniqueWithoutUpdatedByInput[]
-    createMany?: CmsPressBreifingCreateManyUpdatedByInputEnvelope
-    set?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    disconnect?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    delete?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    connect?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    update?: CmsPressBreifingUpdateWithWhereUniqueWithoutUpdatedByInput | CmsPressBreifingUpdateWithWhereUniqueWithoutUpdatedByInput[]
-    updateMany?: CmsPressBreifingUpdateManyWithWhereWithoutUpdatedByInput | CmsPressBreifingUpdateManyWithWhereWithoutUpdatedByInput[]
-    deleteMany?: CmsPressBreifingScalarWhereInput | CmsPressBreifingScalarWhereInput[]
-  }
-
-  export type CmsVideoUpdateManyWithoutCreatedByNestedInput = {
-    create?: XOR<CmsVideoCreateWithoutCreatedByInput, CmsVideoUncheckedCreateWithoutCreatedByInput> | CmsVideoCreateWithoutCreatedByInput[] | CmsVideoUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsVideoCreateOrConnectWithoutCreatedByInput | CmsVideoCreateOrConnectWithoutCreatedByInput[]
-    upsert?: CmsVideoUpsertWithWhereUniqueWithoutCreatedByInput | CmsVideoUpsertWithWhereUniqueWithoutCreatedByInput[]
-    createMany?: CmsVideoCreateManyCreatedByInputEnvelope
-    set?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    disconnect?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    delete?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    connect?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    update?: CmsVideoUpdateWithWhereUniqueWithoutCreatedByInput | CmsVideoUpdateWithWhereUniqueWithoutCreatedByInput[]
-    updateMany?: CmsVideoUpdateManyWithWhereWithoutCreatedByInput | CmsVideoUpdateManyWithWhereWithoutCreatedByInput[]
-    deleteMany?: CmsVideoScalarWhereInput | CmsVideoScalarWhereInput[]
-  }
-
-  export type CmsVideoUpdateManyWithoutUpdatedByNestedInput = {
-    create?: XOR<CmsVideoCreateWithoutUpdatedByInput, CmsVideoUncheckedCreateWithoutUpdatedByInput> | CmsVideoCreateWithoutUpdatedByInput[] | CmsVideoUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsVideoCreateOrConnectWithoutUpdatedByInput | CmsVideoCreateOrConnectWithoutUpdatedByInput[]
-    upsert?: CmsVideoUpsertWithWhereUniqueWithoutUpdatedByInput | CmsVideoUpsertWithWhereUniqueWithoutUpdatedByInput[]
-    createMany?: CmsVideoCreateManyUpdatedByInputEnvelope
-    set?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    disconnect?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    delete?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    connect?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    update?: CmsVideoUpdateWithWhereUniqueWithoutUpdatedByInput | CmsVideoUpdateWithWhereUniqueWithoutUpdatedByInput[]
-    updateMany?: CmsVideoUpdateManyWithWhereWithoutUpdatedByInput | CmsVideoUpdateManyWithWhereWithoutUpdatedByInput[]
-    deleteMany?: CmsVideoScalarWhereInput | CmsVideoScalarWhereInput[]
-  }
-
-  export type CmsBlogUpdateManyWithoutCreatedByNestedInput = {
-    create?: XOR<CmsBlogCreateWithoutCreatedByInput, CmsBlogUncheckedCreateWithoutCreatedByInput> | CmsBlogCreateWithoutCreatedByInput[] | CmsBlogUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsBlogCreateOrConnectWithoutCreatedByInput | CmsBlogCreateOrConnectWithoutCreatedByInput[]
-    upsert?: CmsBlogUpsertWithWhereUniqueWithoutCreatedByInput | CmsBlogUpsertWithWhereUniqueWithoutCreatedByInput[]
-    createMany?: CmsBlogCreateManyCreatedByInputEnvelope
-    set?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    disconnect?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    delete?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    connect?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    update?: CmsBlogUpdateWithWhereUniqueWithoutCreatedByInput | CmsBlogUpdateWithWhereUniqueWithoutCreatedByInput[]
-    updateMany?: CmsBlogUpdateManyWithWhereWithoutCreatedByInput | CmsBlogUpdateManyWithWhereWithoutCreatedByInput[]
-    deleteMany?: CmsBlogScalarWhereInput | CmsBlogScalarWhereInput[]
-  }
-
-  export type CmsBlogUpdateManyWithoutUpdatedByNestedInput = {
-    create?: XOR<CmsBlogCreateWithoutUpdatedByInput, CmsBlogUncheckedCreateWithoutUpdatedByInput> | CmsBlogCreateWithoutUpdatedByInput[] | CmsBlogUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsBlogCreateOrConnectWithoutUpdatedByInput | CmsBlogCreateOrConnectWithoutUpdatedByInput[]
-    upsert?: CmsBlogUpsertWithWhereUniqueWithoutUpdatedByInput | CmsBlogUpsertWithWhereUniqueWithoutUpdatedByInput[]
-    createMany?: CmsBlogCreateManyUpdatedByInputEnvelope
-    set?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    disconnect?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    delete?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    connect?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    update?: CmsBlogUpdateWithWhereUniqueWithoutUpdatedByInput | CmsBlogUpdateWithWhereUniqueWithoutUpdatedByInput[]
-    updateMany?: CmsBlogUpdateManyWithWhereWithoutUpdatedByInput | CmsBlogUpdateManyWithWhereWithoutUpdatedByInput[]
-    deleteMany?: CmsBlogScalarWhereInput | CmsBlogScalarWhereInput[]
+  export type CmsSessionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CmsSessionCreateWithoutUserInput, CmsSessionUncheckedCreateWithoutUserInput> | CmsSessionCreateWithoutUserInput[] | CmsSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CmsSessionCreateOrConnectWithoutUserInput | CmsSessionCreateOrConnectWithoutUserInput[]
+    upsert?: CmsSessionUpsertWithWhereUniqueWithoutUserInput | CmsSessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CmsSessionCreateManyUserInputEnvelope
+    set?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
+    disconnect?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
+    delete?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
+    connect?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
+    update?: CmsSessionUpdateWithWhereUniqueWithoutUserInput | CmsSessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CmsSessionUpdateManyWithWhereWithoutUserInput | CmsSessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CmsSessionScalarWhereInput | CmsSessionScalarWhereInput[]
   }
 
   export type CmsTeamMemberUpdateManyWithoutCreatedByNestedInput = {
@@ -18393,20 +9693,6 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type CmsSessionUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<CmsSessionCreateWithoutUserInput, CmsSessionUncheckedCreateWithoutUserInput> | CmsSessionCreateWithoutUserInput[] | CmsSessionUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: CmsSessionCreateOrConnectWithoutUserInput | CmsSessionCreateOrConnectWithoutUserInput[]
-    upsert?: CmsSessionUpsertWithWhereUniqueWithoutUserInput | CmsSessionUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: CmsSessionCreateManyUserInputEnvelope
-    set?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
-    disconnect?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
-    delete?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
-    connect?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
-    update?: CmsSessionUpdateWithWhereUniqueWithoutUserInput | CmsSessionUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: CmsSessionUpdateManyWithWhereWithoutUserInput | CmsSessionUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: CmsSessionScalarWhereInput | CmsSessionScalarWhereInput[]
-  }
-
   export type CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput = {
     create?: XOR<CmsContentCreateWithoutCreatedByInput, CmsContentUncheckedCreateWithoutCreatedByInput> | CmsContentCreateWithoutCreatedByInput[] | CmsContentUncheckedCreateWithoutCreatedByInput[]
     connectOrCreate?: CmsContentCreateOrConnectWithoutCreatedByInput | CmsContentCreateOrConnectWithoutCreatedByInput[]
@@ -18435,144 +9721,18 @@ export namespace Prisma {
     deleteMany?: CmsContentScalarWhereInput | CmsContentScalarWhereInput[]
   }
 
-  export type CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput = {
-    create?: XOR<CmsAnnouncementCreateWithoutCreatedByInput, CmsAnnouncementUncheckedCreateWithoutCreatedByInput> | CmsAnnouncementCreateWithoutCreatedByInput[] | CmsAnnouncementUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsAnnouncementCreateOrConnectWithoutCreatedByInput | CmsAnnouncementCreateOrConnectWithoutCreatedByInput[]
-    upsert?: CmsAnnouncementUpsertWithWhereUniqueWithoutCreatedByInput | CmsAnnouncementUpsertWithWhereUniqueWithoutCreatedByInput[]
-    createMany?: CmsAnnouncementCreateManyCreatedByInputEnvelope
-    set?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    disconnect?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    delete?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    connect?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    update?: CmsAnnouncementUpdateWithWhereUniqueWithoutCreatedByInput | CmsAnnouncementUpdateWithWhereUniqueWithoutCreatedByInput[]
-    updateMany?: CmsAnnouncementUpdateManyWithWhereWithoutCreatedByInput | CmsAnnouncementUpdateManyWithWhereWithoutCreatedByInput[]
-    deleteMany?: CmsAnnouncementScalarWhereInput | CmsAnnouncementScalarWhereInput[]
-  }
-
-  export type CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput = {
-    create?: XOR<CmsAnnouncementCreateWithoutUpdatedByInput, CmsAnnouncementUncheckedCreateWithoutUpdatedByInput> | CmsAnnouncementCreateWithoutUpdatedByInput[] | CmsAnnouncementUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsAnnouncementCreateOrConnectWithoutUpdatedByInput | CmsAnnouncementCreateOrConnectWithoutUpdatedByInput[]
-    upsert?: CmsAnnouncementUpsertWithWhereUniqueWithoutUpdatedByInput | CmsAnnouncementUpsertWithWhereUniqueWithoutUpdatedByInput[]
-    createMany?: CmsAnnouncementCreateManyUpdatedByInputEnvelope
-    set?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    disconnect?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    delete?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    connect?: CmsAnnouncementWhereUniqueInput | CmsAnnouncementWhereUniqueInput[]
-    update?: CmsAnnouncementUpdateWithWhereUniqueWithoutUpdatedByInput | CmsAnnouncementUpdateWithWhereUniqueWithoutUpdatedByInput[]
-    updateMany?: CmsAnnouncementUpdateManyWithWhereWithoutUpdatedByInput | CmsAnnouncementUpdateManyWithWhereWithoutUpdatedByInput[]
-    deleteMany?: CmsAnnouncementScalarWhereInput | CmsAnnouncementScalarWhereInput[]
-  }
-
-  export type CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput = {
-    create?: XOR<CmsNewsCreateWithoutCreatedByInput, CmsNewsUncheckedCreateWithoutCreatedByInput> | CmsNewsCreateWithoutCreatedByInput[] | CmsNewsUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsNewsCreateOrConnectWithoutCreatedByInput | CmsNewsCreateOrConnectWithoutCreatedByInput[]
-    upsert?: CmsNewsUpsertWithWhereUniqueWithoutCreatedByInput | CmsNewsUpsertWithWhereUniqueWithoutCreatedByInput[]
-    createMany?: CmsNewsCreateManyCreatedByInputEnvelope
-    set?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    disconnect?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    delete?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    connect?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    update?: CmsNewsUpdateWithWhereUniqueWithoutCreatedByInput | CmsNewsUpdateWithWhereUniqueWithoutCreatedByInput[]
-    updateMany?: CmsNewsUpdateManyWithWhereWithoutCreatedByInput | CmsNewsUpdateManyWithWhereWithoutCreatedByInput[]
-    deleteMany?: CmsNewsScalarWhereInput | CmsNewsScalarWhereInput[]
-  }
-
-  export type CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput = {
-    create?: XOR<CmsNewsCreateWithoutUpdatedByInput, CmsNewsUncheckedCreateWithoutUpdatedByInput> | CmsNewsCreateWithoutUpdatedByInput[] | CmsNewsUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsNewsCreateOrConnectWithoutUpdatedByInput | CmsNewsCreateOrConnectWithoutUpdatedByInput[]
-    upsert?: CmsNewsUpsertWithWhereUniqueWithoutUpdatedByInput | CmsNewsUpsertWithWhereUniqueWithoutUpdatedByInput[]
-    createMany?: CmsNewsCreateManyUpdatedByInputEnvelope
-    set?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    disconnect?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    delete?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    connect?: CmsNewsWhereUniqueInput | CmsNewsWhereUniqueInput[]
-    update?: CmsNewsUpdateWithWhereUniqueWithoutUpdatedByInput | CmsNewsUpdateWithWhereUniqueWithoutUpdatedByInput[]
-    updateMany?: CmsNewsUpdateManyWithWhereWithoutUpdatedByInput | CmsNewsUpdateManyWithWhereWithoutUpdatedByInput[]
-    deleteMany?: CmsNewsScalarWhereInput | CmsNewsScalarWhereInput[]
-  }
-
-  export type CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput = {
-    create?: XOR<CmsPressBreifingCreateWithoutCreatedByInput, CmsPressBreifingUncheckedCreateWithoutCreatedByInput> | CmsPressBreifingCreateWithoutCreatedByInput[] | CmsPressBreifingUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsPressBreifingCreateOrConnectWithoutCreatedByInput | CmsPressBreifingCreateOrConnectWithoutCreatedByInput[]
-    upsert?: CmsPressBreifingUpsertWithWhereUniqueWithoutCreatedByInput | CmsPressBreifingUpsertWithWhereUniqueWithoutCreatedByInput[]
-    createMany?: CmsPressBreifingCreateManyCreatedByInputEnvelope
-    set?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    disconnect?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    delete?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    connect?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    update?: CmsPressBreifingUpdateWithWhereUniqueWithoutCreatedByInput | CmsPressBreifingUpdateWithWhereUniqueWithoutCreatedByInput[]
-    updateMany?: CmsPressBreifingUpdateManyWithWhereWithoutCreatedByInput | CmsPressBreifingUpdateManyWithWhereWithoutCreatedByInput[]
-    deleteMany?: CmsPressBreifingScalarWhereInput | CmsPressBreifingScalarWhereInput[]
-  }
-
-  export type CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput = {
-    create?: XOR<CmsPressBreifingCreateWithoutUpdatedByInput, CmsPressBreifingUncheckedCreateWithoutUpdatedByInput> | CmsPressBreifingCreateWithoutUpdatedByInput[] | CmsPressBreifingUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsPressBreifingCreateOrConnectWithoutUpdatedByInput | CmsPressBreifingCreateOrConnectWithoutUpdatedByInput[]
-    upsert?: CmsPressBreifingUpsertWithWhereUniqueWithoutUpdatedByInput | CmsPressBreifingUpsertWithWhereUniqueWithoutUpdatedByInput[]
-    createMany?: CmsPressBreifingCreateManyUpdatedByInputEnvelope
-    set?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    disconnect?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    delete?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    connect?: CmsPressBreifingWhereUniqueInput | CmsPressBreifingWhereUniqueInput[]
-    update?: CmsPressBreifingUpdateWithWhereUniqueWithoutUpdatedByInput | CmsPressBreifingUpdateWithWhereUniqueWithoutUpdatedByInput[]
-    updateMany?: CmsPressBreifingUpdateManyWithWhereWithoutUpdatedByInput | CmsPressBreifingUpdateManyWithWhereWithoutUpdatedByInput[]
-    deleteMany?: CmsPressBreifingScalarWhereInput | CmsPressBreifingScalarWhereInput[]
-  }
-
-  export type CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput = {
-    create?: XOR<CmsVideoCreateWithoutCreatedByInput, CmsVideoUncheckedCreateWithoutCreatedByInput> | CmsVideoCreateWithoutCreatedByInput[] | CmsVideoUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsVideoCreateOrConnectWithoutCreatedByInput | CmsVideoCreateOrConnectWithoutCreatedByInput[]
-    upsert?: CmsVideoUpsertWithWhereUniqueWithoutCreatedByInput | CmsVideoUpsertWithWhereUniqueWithoutCreatedByInput[]
-    createMany?: CmsVideoCreateManyCreatedByInputEnvelope
-    set?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    disconnect?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    delete?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    connect?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    update?: CmsVideoUpdateWithWhereUniqueWithoutCreatedByInput | CmsVideoUpdateWithWhereUniqueWithoutCreatedByInput[]
-    updateMany?: CmsVideoUpdateManyWithWhereWithoutCreatedByInput | CmsVideoUpdateManyWithWhereWithoutCreatedByInput[]
-    deleteMany?: CmsVideoScalarWhereInput | CmsVideoScalarWhereInput[]
-  }
-
-  export type CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput = {
-    create?: XOR<CmsVideoCreateWithoutUpdatedByInput, CmsVideoUncheckedCreateWithoutUpdatedByInput> | CmsVideoCreateWithoutUpdatedByInput[] | CmsVideoUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsVideoCreateOrConnectWithoutUpdatedByInput | CmsVideoCreateOrConnectWithoutUpdatedByInput[]
-    upsert?: CmsVideoUpsertWithWhereUniqueWithoutUpdatedByInput | CmsVideoUpsertWithWhereUniqueWithoutUpdatedByInput[]
-    createMany?: CmsVideoCreateManyUpdatedByInputEnvelope
-    set?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    disconnect?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    delete?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    connect?: CmsVideoWhereUniqueInput | CmsVideoWhereUniqueInput[]
-    update?: CmsVideoUpdateWithWhereUniqueWithoutUpdatedByInput | CmsVideoUpdateWithWhereUniqueWithoutUpdatedByInput[]
-    updateMany?: CmsVideoUpdateManyWithWhereWithoutUpdatedByInput | CmsVideoUpdateManyWithWhereWithoutUpdatedByInput[]
-    deleteMany?: CmsVideoScalarWhereInput | CmsVideoScalarWhereInput[]
-  }
-
-  export type CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput = {
-    create?: XOR<CmsBlogCreateWithoutCreatedByInput, CmsBlogUncheckedCreateWithoutCreatedByInput> | CmsBlogCreateWithoutCreatedByInput[] | CmsBlogUncheckedCreateWithoutCreatedByInput[]
-    connectOrCreate?: CmsBlogCreateOrConnectWithoutCreatedByInput | CmsBlogCreateOrConnectWithoutCreatedByInput[]
-    upsert?: CmsBlogUpsertWithWhereUniqueWithoutCreatedByInput | CmsBlogUpsertWithWhereUniqueWithoutCreatedByInput[]
-    createMany?: CmsBlogCreateManyCreatedByInputEnvelope
-    set?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    disconnect?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    delete?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    connect?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    update?: CmsBlogUpdateWithWhereUniqueWithoutCreatedByInput | CmsBlogUpdateWithWhereUniqueWithoutCreatedByInput[]
-    updateMany?: CmsBlogUpdateManyWithWhereWithoutCreatedByInput | CmsBlogUpdateManyWithWhereWithoutCreatedByInput[]
-    deleteMany?: CmsBlogScalarWhereInput | CmsBlogScalarWhereInput[]
-  }
-
-  export type CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput = {
-    create?: XOR<CmsBlogCreateWithoutUpdatedByInput, CmsBlogUncheckedCreateWithoutUpdatedByInput> | CmsBlogCreateWithoutUpdatedByInput[] | CmsBlogUncheckedCreateWithoutUpdatedByInput[]
-    connectOrCreate?: CmsBlogCreateOrConnectWithoutUpdatedByInput | CmsBlogCreateOrConnectWithoutUpdatedByInput[]
-    upsert?: CmsBlogUpsertWithWhereUniqueWithoutUpdatedByInput | CmsBlogUpsertWithWhereUniqueWithoutUpdatedByInput[]
-    createMany?: CmsBlogCreateManyUpdatedByInputEnvelope
-    set?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    disconnect?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    delete?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    connect?: CmsBlogWhereUniqueInput | CmsBlogWhereUniqueInput[]
-    update?: CmsBlogUpdateWithWhereUniqueWithoutUpdatedByInput | CmsBlogUpdateWithWhereUniqueWithoutUpdatedByInput[]
-    updateMany?: CmsBlogUpdateManyWithWhereWithoutUpdatedByInput | CmsBlogUpdateManyWithWhereWithoutUpdatedByInput[]
-    deleteMany?: CmsBlogScalarWhereInput | CmsBlogScalarWhereInput[]
+  export type CmsSessionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CmsSessionCreateWithoutUserInput, CmsSessionUncheckedCreateWithoutUserInput> | CmsSessionCreateWithoutUserInput[] | CmsSessionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CmsSessionCreateOrConnectWithoutUserInput | CmsSessionCreateOrConnectWithoutUserInput[]
+    upsert?: CmsSessionUpsertWithWhereUniqueWithoutUserInput | CmsSessionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CmsSessionCreateManyUserInputEnvelope
+    set?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
+    disconnect?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
+    delete?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
+    connect?: CmsSessionWhereUniqueInput | CmsSessionWhereUniqueInput[]
+    update?: CmsSessionUpdateWithWhereUniqueWithoutUserInput | CmsSessionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CmsSessionUpdateManyWithWhereWithoutUserInput | CmsSessionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CmsSessionScalarWhereInput | CmsSessionScalarWhereInput[]
   }
 
   export type CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput = {
@@ -18661,16 +9821,28 @@ export namespace Prisma {
     set?: $Enums.CmsContentType
   }
 
-  export type EnumCmsCategoryFieldUpdateOperationsInput = {
-    set?: $Enums.CmsCategory
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type EnumCmsLevelFieldUpdateOperationsInput = {
     set?: $Enums.CmsLevel
   }
 
-  export type NullableEnumCmsRegionFieldUpdateOperationsInput = {
-    set?: $Enums.CmsRegion | null
+  export type EnumPublishStatusFieldUpdateOperationsInput = {
+    set?: $Enums.PublishStatus
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type CmsUserUpdateOneRequiredWithoutCreatedContentNestedInput = {
@@ -18689,166 +9861,6 @@ export namespace Prisma {
     update?: XOR<XOR<CmsUserUpdateToOneWithWhereWithoutUpdatedContentInput, CmsUserUpdateWithoutUpdatedContentInput>, CmsUserUncheckedUpdateWithoutUpdatedContentInput>
   }
 
-  export type CmsUserCreateNestedOneWithoutCreatedAnnouncementsInput = {
-    create?: XOR<CmsUserCreateWithoutCreatedAnnouncementsInput, CmsUserUncheckedCreateWithoutCreatedAnnouncementsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutCreatedAnnouncementsInput
-    connect?: CmsUserWhereUniqueInput
-  }
-
-  export type CmsUserCreateNestedOneWithoutUpdatedAnnouncementsInput = {
-    create?: XOR<CmsUserCreateWithoutUpdatedAnnouncementsInput, CmsUserUncheckedCreateWithoutUpdatedAnnouncementsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutUpdatedAnnouncementsInput
-    connect?: CmsUserWhereUniqueInput
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
-  export type EnumPublishStatusFieldUpdateOperationsInput = {
-    set?: $Enums.PublishStatus
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
-  }
-
-  export type CmsUserUpdateOneRequiredWithoutCreatedAnnouncementsNestedInput = {
-    create?: XOR<CmsUserCreateWithoutCreatedAnnouncementsInput, CmsUserUncheckedCreateWithoutCreatedAnnouncementsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutCreatedAnnouncementsInput
-    upsert?: CmsUserUpsertWithoutCreatedAnnouncementsInput
-    connect?: CmsUserWhereUniqueInput
-    update?: XOR<XOR<CmsUserUpdateToOneWithWhereWithoutCreatedAnnouncementsInput, CmsUserUpdateWithoutCreatedAnnouncementsInput>, CmsUserUncheckedUpdateWithoutCreatedAnnouncementsInput>
-  }
-
-  export type CmsUserUpdateOneRequiredWithoutUpdatedAnnouncementsNestedInput = {
-    create?: XOR<CmsUserCreateWithoutUpdatedAnnouncementsInput, CmsUserUncheckedCreateWithoutUpdatedAnnouncementsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutUpdatedAnnouncementsInput
-    upsert?: CmsUserUpsertWithoutUpdatedAnnouncementsInput
-    connect?: CmsUserWhereUniqueInput
-    update?: XOR<XOR<CmsUserUpdateToOneWithWhereWithoutUpdatedAnnouncementsInput, CmsUserUpdateWithoutUpdatedAnnouncementsInput>, CmsUserUncheckedUpdateWithoutUpdatedAnnouncementsInput>
-  }
-
-  export type CmsUserCreateNestedOneWithoutCreatedNewsInput = {
-    create?: XOR<CmsUserCreateWithoutCreatedNewsInput, CmsUserUncheckedCreateWithoutCreatedNewsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutCreatedNewsInput
-    connect?: CmsUserWhereUniqueInput
-  }
-
-  export type CmsUserCreateNestedOneWithoutUpdatedNewsInput = {
-    create?: XOR<CmsUserCreateWithoutUpdatedNewsInput, CmsUserUncheckedCreateWithoutUpdatedNewsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutUpdatedNewsInput
-    connect?: CmsUserWhereUniqueInput
-  }
-
-  export type CmsUserUpdateOneRequiredWithoutCreatedNewsNestedInput = {
-    create?: XOR<CmsUserCreateWithoutCreatedNewsInput, CmsUserUncheckedCreateWithoutCreatedNewsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutCreatedNewsInput
-    upsert?: CmsUserUpsertWithoutCreatedNewsInput
-    connect?: CmsUserWhereUniqueInput
-    update?: XOR<XOR<CmsUserUpdateToOneWithWhereWithoutCreatedNewsInput, CmsUserUpdateWithoutCreatedNewsInput>, CmsUserUncheckedUpdateWithoutCreatedNewsInput>
-  }
-
-  export type CmsUserUpdateOneRequiredWithoutUpdatedNewsNestedInput = {
-    create?: XOR<CmsUserCreateWithoutUpdatedNewsInput, CmsUserUncheckedCreateWithoutUpdatedNewsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutUpdatedNewsInput
-    upsert?: CmsUserUpsertWithoutUpdatedNewsInput
-    connect?: CmsUserWhereUniqueInput
-    update?: XOR<XOR<CmsUserUpdateToOneWithWhereWithoutUpdatedNewsInput, CmsUserUpdateWithoutUpdatedNewsInput>, CmsUserUncheckedUpdateWithoutUpdatedNewsInput>
-  }
-
-  export type CmsUserCreateNestedOneWithoutCreatedBriefingsInput = {
-    create?: XOR<CmsUserCreateWithoutCreatedBriefingsInput, CmsUserUncheckedCreateWithoutCreatedBriefingsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutCreatedBriefingsInput
-    connect?: CmsUserWhereUniqueInput
-  }
-
-  export type CmsUserCreateNestedOneWithoutUpdatedBriefingsInput = {
-    create?: XOR<CmsUserCreateWithoutUpdatedBriefingsInput, CmsUserUncheckedCreateWithoutUpdatedBriefingsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutUpdatedBriefingsInput
-    connect?: CmsUserWhereUniqueInput
-  }
-
-  export type CmsUserUpdateOneRequiredWithoutCreatedBriefingsNestedInput = {
-    create?: XOR<CmsUserCreateWithoutCreatedBriefingsInput, CmsUserUncheckedCreateWithoutCreatedBriefingsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutCreatedBriefingsInput
-    upsert?: CmsUserUpsertWithoutCreatedBriefingsInput
-    connect?: CmsUserWhereUniqueInput
-    update?: XOR<XOR<CmsUserUpdateToOneWithWhereWithoutCreatedBriefingsInput, CmsUserUpdateWithoutCreatedBriefingsInput>, CmsUserUncheckedUpdateWithoutCreatedBriefingsInput>
-  }
-
-  export type CmsUserUpdateOneRequiredWithoutUpdatedBriefingsNestedInput = {
-    create?: XOR<CmsUserCreateWithoutUpdatedBriefingsInput, CmsUserUncheckedCreateWithoutUpdatedBriefingsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutUpdatedBriefingsInput
-    upsert?: CmsUserUpsertWithoutUpdatedBriefingsInput
-    connect?: CmsUserWhereUniqueInput
-    update?: XOR<XOR<CmsUserUpdateToOneWithWhereWithoutUpdatedBriefingsInput, CmsUserUpdateWithoutUpdatedBriefingsInput>, CmsUserUncheckedUpdateWithoutUpdatedBriefingsInput>
-  }
-
-  export type CmsUserCreateNestedOneWithoutCreatedVideosInput = {
-    create?: XOR<CmsUserCreateWithoutCreatedVideosInput, CmsUserUncheckedCreateWithoutCreatedVideosInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutCreatedVideosInput
-    connect?: CmsUserWhereUniqueInput
-  }
-
-  export type CmsUserCreateNestedOneWithoutUpdatedVideosInput = {
-    create?: XOR<CmsUserCreateWithoutUpdatedVideosInput, CmsUserUncheckedCreateWithoutUpdatedVideosInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutUpdatedVideosInput
-    connect?: CmsUserWhereUniqueInput
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type CmsUserUpdateOneRequiredWithoutCreatedVideosNestedInput = {
-    create?: XOR<CmsUserCreateWithoutCreatedVideosInput, CmsUserUncheckedCreateWithoutCreatedVideosInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutCreatedVideosInput
-    upsert?: CmsUserUpsertWithoutCreatedVideosInput
-    connect?: CmsUserWhereUniqueInput
-    update?: XOR<XOR<CmsUserUpdateToOneWithWhereWithoutCreatedVideosInput, CmsUserUpdateWithoutCreatedVideosInput>, CmsUserUncheckedUpdateWithoutCreatedVideosInput>
-  }
-
-  export type CmsUserUpdateOneRequiredWithoutUpdatedVideosNestedInput = {
-    create?: XOR<CmsUserCreateWithoutUpdatedVideosInput, CmsUserUncheckedCreateWithoutUpdatedVideosInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutUpdatedVideosInput
-    upsert?: CmsUserUpsertWithoutUpdatedVideosInput
-    connect?: CmsUserWhereUniqueInput
-    update?: XOR<XOR<CmsUserUpdateToOneWithWhereWithoutUpdatedVideosInput, CmsUserUpdateWithoutUpdatedVideosInput>, CmsUserUncheckedUpdateWithoutUpdatedVideosInput>
-  }
-
-  export type CmsUserCreateNestedOneWithoutCreatedBlogsInput = {
-    create?: XOR<CmsUserCreateWithoutCreatedBlogsInput, CmsUserUncheckedCreateWithoutCreatedBlogsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutCreatedBlogsInput
-    connect?: CmsUserWhereUniqueInput
-  }
-
-  export type CmsUserCreateNestedOneWithoutUpdatedBlogsInput = {
-    create?: XOR<CmsUserCreateWithoutUpdatedBlogsInput, CmsUserUncheckedCreateWithoutUpdatedBlogsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutUpdatedBlogsInput
-    connect?: CmsUserWhereUniqueInput
-  }
-
-  export type CmsUserUpdateOneRequiredWithoutCreatedBlogsNestedInput = {
-    create?: XOR<CmsUserCreateWithoutCreatedBlogsInput, CmsUserUncheckedCreateWithoutCreatedBlogsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutCreatedBlogsInput
-    upsert?: CmsUserUpsertWithoutCreatedBlogsInput
-    connect?: CmsUserWhereUniqueInput
-    update?: XOR<XOR<CmsUserUpdateToOneWithWhereWithoutCreatedBlogsInput, CmsUserUpdateWithoutCreatedBlogsInput>, CmsUserUncheckedUpdateWithoutCreatedBlogsInput>
-  }
-
-  export type CmsUserUpdateOneRequiredWithoutUpdatedBlogsNestedInput = {
-    create?: XOR<CmsUserCreateWithoutUpdatedBlogsInput, CmsUserUncheckedCreateWithoutUpdatedBlogsInput>
-    connectOrCreate?: CmsUserCreateOrConnectWithoutUpdatedBlogsInput
-    upsert?: CmsUserUpsertWithoutUpdatedBlogsInput
-    connect?: CmsUserWhereUniqueInput
-    update?: XOR<XOR<CmsUserUpdateToOneWithWhereWithoutUpdatedBlogsInput, CmsUserUpdateWithoutUpdatedBlogsInput>, CmsUserUncheckedUpdateWithoutUpdatedBlogsInput>
-  }
-
   export type CmsUserCreateNestedOneWithoutCreatedTeamsInput = {
     create?: XOR<CmsUserCreateWithoutCreatedTeamsInput, CmsUserUncheckedCreateWithoutCreatedTeamsInput>
     connectOrCreate?: CmsUserCreateOrConnectWithoutCreatedTeamsInput
@@ -18863,6 +9875,10 @@ export namespace Prisma {
 
   export type EnumCmsTeamTypeFieldUpdateOperationsInput = {
     set?: $Enums.CmsTeamType
+  }
+
+  export type NullableEnumCmsRegionFieldUpdateOperationsInput = {
+    set?: $Enums.CmsRegion | null
   }
 
   export type CmsUserUpdateOneRequiredWithoutCreatedTeamsNestedInput = {
@@ -19048,65 +10064,18 @@ export namespace Prisma {
     not?: NestedEnumCmsContentTypeFilter<$PrismaModel> | $Enums.CmsContentType
   }
 
-  export type NestedEnumCmsCategoryFilter<$PrismaModel = never> = {
-    equals?: $Enums.CmsCategory | EnumCmsCategoryFieldRefInput<$PrismaModel>
-    in?: $Enums.CmsCategory[] | ListEnumCmsCategoryFieldRefInput<$PrismaModel>
-    notIn?: $Enums.CmsCategory[] | ListEnumCmsCategoryFieldRefInput<$PrismaModel>
-    not?: NestedEnumCmsCategoryFilter<$PrismaModel> | $Enums.CmsCategory
-  }
-
-  export type NestedEnumCmsLevelFilter<$PrismaModel = never> = {
-    equals?: $Enums.CmsLevel | EnumCmsLevelFieldRefInput<$PrismaModel>
-    in?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
-    notIn?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
-    not?: NestedEnumCmsLevelFilter<$PrismaModel> | $Enums.CmsLevel
-  }
-
-  export type NestedEnumCmsRegionNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.CmsRegion | EnumCmsRegionFieldRefInput<$PrismaModel> | null
-    in?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumCmsRegionNullableFilter<$PrismaModel> | $Enums.CmsRegion | null
-  }
-
-  export type NestedEnumCmsContentTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.CmsContentType | EnumCmsContentTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.CmsContentType[] | ListEnumCmsContentTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.CmsContentType[] | ListEnumCmsContentTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumCmsContentTypeWithAggregatesFilter<$PrismaModel> | $Enums.CmsContentType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCmsContentTypeFilter<$PrismaModel>
-    _max?: NestedEnumCmsContentTypeFilter<$PrismaModel>
-  }
-
-  export type NestedEnumCmsCategoryWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.CmsCategory | EnumCmsCategoryFieldRefInput<$PrismaModel>
-    in?: $Enums.CmsCategory[] | ListEnumCmsCategoryFieldRefInput<$PrismaModel>
-    notIn?: $Enums.CmsCategory[] | ListEnumCmsCategoryFieldRefInput<$PrismaModel>
-    not?: NestedEnumCmsCategoryWithAggregatesFilter<$PrismaModel> | $Enums.CmsCategory
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCmsCategoryFilter<$PrismaModel>
-    _max?: NestedEnumCmsCategoryFilter<$PrismaModel>
-  }
-
-  export type NestedEnumCmsLevelWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.CmsLevel | EnumCmsLevelFieldRefInput<$PrismaModel>
-    in?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
-    notIn?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
-    not?: NestedEnumCmsLevelWithAggregatesFilter<$PrismaModel> | $Enums.CmsLevel
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCmsLevelFilter<$PrismaModel>
-    _max?: NestedEnumCmsLevelFilter<$PrismaModel>
-  }
-
-  export type NestedEnumCmsRegionNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.CmsRegion | EnumCmsRegionFieldRefInput<$PrismaModel> | null
-    in?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumCmsRegionNullableWithAggregatesFilter<$PrismaModel> | $Enums.CmsRegion | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedEnumCmsRegionNullableFilter<$PrismaModel>
-    _max?: NestedEnumCmsRegionNullableFilter<$PrismaModel>
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
@@ -19120,18 +10089,11 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  export type NestedEnumCmsLevelFilter<$PrismaModel = never> = {
+    equals?: $Enums.CmsLevel | EnumCmsLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumCmsLevelFilter<$PrismaModel> | $Enums.CmsLevel
   }
 
   export type NestedEnumPublishStatusFilter<$PrismaModel = never> = {
@@ -19152,6 +10114,16 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type NestedEnumCmsContentTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CmsContentType | EnumCmsContentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CmsContentType[] | ListEnumCmsContentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CmsContentType[] | ListEnumCmsContentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCmsContentTypeWithAggregatesFilter<$PrismaModel> | $Enums.CmsContentType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCmsContentTypeFilter<$PrismaModel>
+    _max?: NestedEnumCmsContentTypeFilter<$PrismaModel>
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -19167,30 +10139,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedEnumPublishStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.PublishStatus | EnumPublishStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.PublishStatus[] | ListEnumPublishStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.PublishStatus[] | ListEnumPublishStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumPublishStatusWithAggregatesFilter<$PrismaModel> | $Enums.PublishStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumPublishStatusFilter<$PrismaModel>
-    _max?: NestedEnumPublishStatusFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -19220,11 +10168,52 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedEnumCmsLevelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CmsLevel | EnumCmsLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CmsLevel[] | ListEnumCmsLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumCmsLevelWithAggregatesFilter<$PrismaModel> | $Enums.CmsLevel
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCmsLevelFilter<$PrismaModel>
+    _max?: NestedEnumCmsLevelFilter<$PrismaModel>
+  }
+
+  export type NestedEnumPublishStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PublishStatus | EnumPublishStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PublishStatus[] | ListEnumPublishStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PublishStatus[] | ListEnumPublishStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPublishStatusWithAggregatesFilter<$PrismaModel> | $Enums.PublishStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPublishStatusFilter<$PrismaModel>
+    _max?: NestedEnumPublishStatusFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type NestedEnumCmsTeamTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.CmsTeamType | EnumCmsTeamTypeFieldRefInput<$PrismaModel>
     in?: $Enums.CmsTeamType[] | ListEnumCmsTeamTypeFieldRefInput<$PrismaModel>
     notIn?: $Enums.CmsTeamType[] | ListEnumCmsTeamTypeFieldRefInput<$PrismaModel>
     not?: NestedEnumCmsTeamTypeFilter<$PrismaModel> | $Enums.CmsTeamType
+  }
+
+  export type NestedEnumCmsRegionNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.CmsRegion | EnumCmsRegionFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCmsRegionNullableFilter<$PrismaModel> | $Enums.CmsRegion | null
   }
 
   export type NestedEnumCmsTeamTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -19235,6 +10224,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCmsTeamTypeFilter<$PrismaModel>
     _max?: NestedEnumCmsTeamTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumCmsRegionNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CmsRegion | EnumCmsRegionFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.CmsRegion[] | ListEnumCmsRegionFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumCmsRegionNullableWithAggregatesFilter<$PrismaModel> | $Enums.CmsRegion | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumCmsRegionNullableFilter<$PrismaModel>
+    _max?: NestedEnumCmsRegionNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumCmsMediaTypeFilter<$PrismaModel = never> = {
@@ -19252,6 +10251,100 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCmsMediaTypeFilter<$PrismaModel>
     _max?: NestedEnumCmsMediaTypeFilter<$PrismaModel>
+  }
+
+  export type CmsContentCreateWithoutCreatedByInput = {
+    contentType: $Enums.CmsContentType
+    title: string
+    slug: string
+    excerpt?: string
+    richContent?: string
+    coverImage?: string | null
+    videoUrl?: string | null
+    videoDuration?: number | null
+    region: $Enums.CmsRegion
+    level?: $Enums.CmsLevel
+    status?: $Enums.PublishStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    updatedBy: CmsUserCreateNestedOneWithoutUpdatedContentInput
+  }
+
+  export type CmsContentUncheckedCreateWithoutCreatedByInput = {
+    id?: number
+    contentType: $Enums.CmsContentType
+    title: string
+    slug: string
+    excerpt?: string
+    richContent?: string
+    coverImage?: string | null
+    videoUrl?: string | null
+    videoDuration?: number | null
+    region: $Enums.CmsRegion
+    level?: $Enums.CmsLevel
+    status?: $Enums.PublishStatus
+    publishedAt?: Date | string | null
+    updatedById: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CmsContentCreateOrConnectWithoutCreatedByInput = {
+    where: CmsContentWhereUniqueInput
+    create: XOR<CmsContentCreateWithoutCreatedByInput, CmsContentUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type CmsContentCreateManyCreatedByInputEnvelope = {
+    data: CmsContentCreateManyCreatedByInput | CmsContentCreateManyCreatedByInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CmsContentCreateWithoutUpdatedByInput = {
+    contentType: $Enums.CmsContentType
+    title: string
+    slug: string
+    excerpt?: string
+    richContent?: string
+    coverImage?: string | null
+    videoUrl?: string | null
+    videoDuration?: number | null
+    region: $Enums.CmsRegion
+    level?: $Enums.CmsLevel
+    status?: $Enums.PublishStatus
+    publishedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: CmsUserCreateNestedOneWithoutCreatedContentInput
+  }
+
+  export type CmsContentUncheckedCreateWithoutUpdatedByInput = {
+    id?: number
+    contentType: $Enums.CmsContentType
+    title: string
+    slug: string
+    excerpt?: string
+    richContent?: string
+    coverImage?: string | null
+    videoUrl?: string | null
+    videoDuration?: number | null
+    region: $Enums.CmsRegion
+    level?: $Enums.CmsLevel
+    status?: $Enums.PublishStatus
+    publishedAt?: Date | string | null
+    createdById: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CmsContentCreateOrConnectWithoutUpdatedByInput = {
+    where: CmsContentWhereUniqueInput
+    create: XOR<CmsContentCreateWithoutUpdatedByInput, CmsContentUncheckedCreateWithoutUpdatedByInput>
+  }
+
+  export type CmsContentCreateManyUpdatedByInputEnvelope = {
+    data: CmsContentCreateManyUpdatedByInput | CmsContentCreateManyUpdatedByInput[]
+    skipDuplicates?: boolean
   }
 
   export type CmsSessionCreateWithoutUserInput = {
@@ -19274,478 +10367,6 @@ export namespace Prisma {
 
   export type CmsSessionCreateManyUserInputEnvelope = {
     data: CmsSessionCreateManyUserInput | CmsSessionCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CmsContentCreateWithoutCreatedByInput = {
-    title: string
-    slug: string
-    contentType: $Enums.CmsContentType
-    category: $Enums.CmsCategory
-    level: $Enums.CmsLevel
-    region?: $Enums.CmsRegion | null
-    body?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    updatedBy: CmsUserCreateNestedOneWithoutUpdatedContentInput
-  }
-
-  export type CmsContentUncheckedCreateWithoutCreatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    contentType: $Enums.CmsContentType
-    category: $Enums.CmsCategory
-    level: $Enums.CmsLevel
-    region?: $Enums.CmsRegion | null
-    body?: string
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsContentCreateOrConnectWithoutCreatedByInput = {
-    where: CmsContentWhereUniqueInput
-    create: XOR<CmsContentCreateWithoutCreatedByInput, CmsContentUncheckedCreateWithoutCreatedByInput>
-  }
-
-  export type CmsContentCreateManyCreatedByInputEnvelope = {
-    data: CmsContentCreateManyCreatedByInput | CmsContentCreateManyCreatedByInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CmsContentCreateWithoutUpdatedByInput = {
-    title: string
-    slug: string
-    contentType: $Enums.CmsContentType
-    category: $Enums.CmsCategory
-    level: $Enums.CmsLevel
-    region?: $Enums.CmsRegion | null
-    body?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    createdBy: CmsUserCreateNestedOneWithoutCreatedContentInput
-  }
-
-  export type CmsContentUncheckedCreateWithoutUpdatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    contentType: $Enums.CmsContentType
-    category: $Enums.CmsCategory
-    level: $Enums.CmsLevel
-    region?: $Enums.CmsRegion | null
-    body?: string
-    createdById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsContentCreateOrConnectWithoutUpdatedByInput = {
-    where: CmsContentWhereUniqueInput
-    create: XOR<CmsContentCreateWithoutUpdatedByInput, CmsContentUncheckedCreateWithoutUpdatedByInput>
-  }
-
-  export type CmsContentCreateManyUpdatedByInputEnvelope = {
-    data: CmsContentCreateManyUpdatedByInput | CmsContentCreateManyUpdatedByInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CmsAnnouncementCreateWithoutCreatedByInput = {
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    updatedBy: CmsUserCreateNestedOneWithoutUpdatedAnnouncementsInput
-  }
-
-  export type CmsAnnouncementUncheckedCreateWithoutCreatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsAnnouncementCreateOrConnectWithoutCreatedByInput = {
-    where: CmsAnnouncementWhereUniqueInput
-    create: XOR<CmsAnnouncementCreateWithoutCreatedByInput, CmsAnnouncementUncheckedCreateWithoutCreatedByInput>
-  }
-
-  export type CmsAnnouncementCreateManyCreatedByInputEnvelope = {
-    data: CmsAnnouncementCreateManyCreatedByInput | CmsAnnouncementCreateManyCreatedByInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CmsAnnouncementCreateWithoutUpdatedByInput = {
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    createdBy: CmsUserCreateNestedOneWithoutCreatedAnnouncementsInput
-  }
-
-  export type CmsAnnouncementUncheckedCreateWithoutUpdatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsAnnouncementCreateOrConnectWithoutUpdatedByInput = {
-    where: CmsAnnouncementWhereUniqueInput
-    create: XOR<CmsAnnouncementCreateWithoutUpdatedByInput, CmsAnnouncementUncheckedCreateWithoutUpdatedByInput>
-  }
-
-  export type CmsAnnouncementCreateManyUpdatedByInputEnvelope = {
-    data: CmsAnnouncementCreateManyUpdatedByInput | CmsAnnouncementCreateManyUpdatedByInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CmsNewsCreateWithoutCreatedByInput = {
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    updatedBy: CmsUserCreateNestedOneWithoutUpdatedNewsInput
-  }
-
-  export type CmsNewsUncheckedCreateWithoutCreatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsNewsCreateOrConnectWithoutCreatedByInput = {
-    where: CmsNewsWhereUniqueInput
-    create: XOR<CmsNewsCreateWithoutCreatedByInput, CmsNewsUncheckedCreateWithoutCreatedByInput>
-  }
-
-  export type CmsNewsCreateManyCreatedByInputEnvelope = {
-    data: CmsNewsCreateManyCreatedByInput | CmsNewsCreateManyCreatedByInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CmsNewsCreateWithoutUpdatedByInput = {
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    createdBy: CmsUserCreateNestedOneWithoutCreatedNewsInput
-  }
-
-  export type CmsNewsUncheckedCreateWithoutUpdatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsNewsCreateOrConnectWithoutUpdatedByInput = {
-    where: CmsNewsWhereUniqueInput
-    create: XOR<CmsNewsCreateWithoutUpdatedByInput, CmsNewsUncheckedCreateWithoutUpdatedByInput>
-  }
-
-  export type CmsNewsCreateManyUpdatedByInputEnvelope = {
-    data: CmsNewsCreateManyUpdatedByInput | CmsNewsCreateManyUpdatedByInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CmsPressBreifingCreateWithoutCreatedByInput = {
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    updatedBy: CmsUserCreateNestedOneWithoutUpdatedBriefingsInput
-  }
-
-  export type CmsPressBreifingUncheckedCreateWithoutCreatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsPressBreifingCreateOrConnectWithoutCreatedByInput = {
-    where: CmsPressBreifingWhereUniqueInput
-    create: XOR<CmsPressBreifingCreateWithoutCreatedByInput, CmsPressBreifingUncheckedCreateWithoutCreatedByInput>
-  }
-
-  export type CmsPressBreifingCreateManyCreatedByInputEnvelope = {
-    data: CmsPressBreifingCreateManyCreatedByInput | CmsPressBreifingCreateManyCreatedByInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CmsPressBreifingCreateWithoutUpdatedByInput = {
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    createdBy: CmsUserCreateNestedOneWithoutCreatedBriefingsInput
-  }
-
-  export type CmsPressBreifingUncheckedCreateWithoutUpdatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsPressBreifingCreateOrConnectWithoutUpdatedByInput = {
-    where: CmsPressBreifingWhereUniqueInput
-    create: XOR<CmsPressBreifingCreateWithoutUpdatedByInput, CmsPressBreifingUncheckedCreateWithoutUpdatedByInput>
-  }
-
-  export type CmsPressBreifingCreateManyUpdatedByInputEnvelope = {
-    data: CmsPressBreifingCreateManyUpdatedByInput | CmsPressBreifingCreateManyUpdatedByInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CmsVideoCreateWithoutCreatedByInput = {
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    videoUrl: string
-    videoDuration?: number | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    updatedBy: CmsUserCreateNestedOneWithoutUpdatedVideosInput
-  }
-
-  export type CmsVideoUncheckedCreateWithoutCreatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    videoUrl: string
-    videoDuration?: number | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsVideoCreateOrConnectWithoutCreatedByInput = {
-    where: CmsVideoWhereUniqueInput
-    create: XOR<CmsVideoCreateWithoutCreatedByInput, CmsVideoUncheckedCreateWithoutCreatedByInput>
-  }
-
-  export type CmsVideoCreateManyCreatedByInputEnvelope = {
-    data: CmsVideoCreateManyCreatedByInput | CmsVideoCreateManyCreatedByInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CmsVideoCreateWithoutUpdatedByInput = {
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    videoUrl: string
-    videoDuration?: number | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    createdBy: CmsUserCreateNestedOneWithoutCreatedVideosInput
-  }
-
-  export type CmsVideoUncheckedCreateWithoutUpdatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    videoUrl: string
-    videoDuration?: number | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsVideoCreateOrConnectWithoutUpdatedByInput = {
-    where: CmsVideoWhereUniqueInput
-    create: XOR<CmsVideoCreateWithoutUpdatedByInput, CmsVideoUncheckedCreateWithoutUpdatedByInput>
-  }
-
-  export type CmsVideoCreateManyUpdatedByInputEnvelope = {
-    data: CmsVideoCreateManyUpdatedByInput | CmsVideoCreateManyUpdatedByInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CmsBlogCreateWithoutCreatedByInput = {
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    updatedBy: CmsUserCreateNestedOneWithoutUpdatedBlogsInput
-  }
-
-  export type CmsBlogUncheckedCreateWithoutCreatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsBlogCreateOrConnectWithoutCreatedByInput = {
-    where: CmsBlogWhereUniqueInput
-    create: XOR<CmsBlogCreateWithoutCreatedByInput, CmsBlogUncheckedCreateWithoutCreatedByInput>
-  }
-
-  export type CmsBlogCreateManyCreatedByInputEnvelope = {
-    data: CmsBlogCreateManyCreatedByInput | CmsBlogCreateManyCreatedByInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type CmsBlogCreateWithoutUpdatedByInput = {
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    createdBy: CmsUserCreateNestedOneWithoutCreatedBlogsInput
-  }
-
-  export type CmsBlogUncheckedCreateWithoutUpdatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsBlogCreateOrConnectWithoutUpdatedByInput = {
-    where: CmsBlogWhereUniqueInput
-    create: XOR<CmsBlogCreateWithoutUpdatedByInput, CmsBlogUncheckedCreateWithoutUpdatedByInput>
-  }
-
-  export type CmsBlogCreateManyUpdatedByInputEnvelope = {
-    data: CmsBlogCreateManyUpdatedByInput | CmsBlogCreateManyUpdatedByInput[]
     skipDuplicates?: boolean
   }
 
@@ -19917,6 +10538,61 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CmsContentUpsertWithWhereUniqueWithoutCreatedByInput = {
+    where: CmsContentWhereUniqueInput
+    update: XOR<CmsContentUpdateWithoutCreatedByInput, CmsContentUncheckedUpdateWithoutCreatedByInput>
+    create: XOR<CmsContentCreateWithoutCreatedByInput, CmsContentUncheckedCreateWithoutCreatedByInput>
+  }
+
+  export type CmsContentUpdateWithWhereUniqueWithoutCreatedByInput = {
+    where: CmsContentWhereUniqueInput
+    data: XOR<CmsContentUpdateWithoutCreatedByInput, CmsContentUncheckedUpdateWithoutCreatedByInput>
+  }
+
+  export type CmsContentUpdateManyWithWhereWithoutCreatedByInput = {
+    where: CmsContentScalarWhereInput
+    data: XOR<CmsContentUpdateManyMutationInput, CmsContentUncheckedUpdateManyWithoutCreatedByInput>
+  }
+
+  export type CmsContentScalarWhereInput = {
+    AND?: CmsContentScalarWhereInput | CmsContentScalarWhereInput[]
+    OR?: CmsContentScalarWhereInput[]
+    NOT?: CmsContentScalarWhereInput | CmsContentScalarWhereInput[]
+    id?: IntFilter<"CmsContent"> | number
+    contentType?: EnumCmsContentTypeFilter<"CmsContent"> | $Enums.CmsContentType
+    title?: StringFilter<"CmsContent"> | string
+    slug?: StringFilter<"CmsContent"> | string
+    excerpt?: StringFilter<"CmsContent"> | string
+    richContent?: StringFilter<"CmsContent"> | string
+    coverImage?: StringNullableFilter<"CmsContent"> | string | null
+    videoUrl?: StringNullableFilter<"CmsContent"> | string | null
+    videoDuration?: IntNullableFilter<"CmsContent"> | number | null
+    region?: EnumCmsRegionFilter<"CmsContent"> | $Enums.CmsRegion
+    level?: EnumCmsLevelFilter<"CmsContent"> | $Enums.CmsLevel
+    status?: EnumPublishStatusFilter<"CmsContent"> | $Enums.PublishStatus
+    publishedAt?: DateTimeNullableFilter<"CmsContent"> | Date | string | null
+    createdById?: IntFilter<"CmsContent"> | number
+    updatedById?: IntFilter<"CmsContent"> | number
+    createdAt?: DateTimeFilter<"CmsContent"> | Date | string
+    updatedAt?: DateTimeFilter<"CmsContent"> | Date | string
+  }
+
+  export type CmsContentUpsertWithWhereUniqueWithoutUpdatedByInput = {
+    where: CmsContentWhereUniqueInput
+    update: XOR<CmsContentUpdateWithoutUpdatedByInput, CmsContentUncheckedUpdateWithoutUpdatedByInput>
+    create: XOR<CmsContentCreateWithoutUpdatedByInput, CmsContentUncheckedCreateWithoutUpdatedByInput>
+  }
+
+  export type CmsContentUpdateWithWhereUniqueWithoutUpdatedByInput = {
+    where: CmsContentWhereUniqueInput
+    data: XOR<CmsContentUpdateWithoutUpdatedByInput, CmsContentUncheckedUpdateWithoutUpdatedByInput>
+  }
+
+  export type CmsContentUpdateManyWithWhereWithoutUpdatedByInput = {
+    where: CmsContentScalarWhereInput
+    data: XOR<CmsContentUpdateManyMutationInput, CmsContentUncheckedUpdateManyWithoutUpdatedByInput>
+  }
+
   export type CmsSessionUpsertWithWhereUniqueWithoutUserInput = {
     where: CmsSessionWhereUniqueInput
     update: XOR<CmsSessionUpdateWithoutUserInput, CmsSessionUncheckedUpdateWithoutUserInput>
@@ -19942,313 +10618,6 @@ export namespace Prisma {
     userId?: IntFilter<"CmsSession"> | number
     expiresAt?: DateTimeFilter<"CmsSession"> | Date | string
     createdAt?: DateTimeFilter<"CmsSession"> | Date | string
-  }
-
-  export type CmsContentUpsertWithWhereUniqueWithoutCreatedByInput = {
-    where: CmsContentWhereUniqueInput
-    update: XOR<CmsContentUpdateWithoutCreatedByInput, CmsContentUncheckedUpdateWithoutCreatedByInput>
-    create: XOR<CmsContentCreateWithoutCreatedByInput, CmsContentUncheckedCreateWithoutCreatedByInput>
-  }
-
-  export type CmsContentUpdateWithWhereUniqueWithoutCreatedByInput = {
-    where: CmsContentWhereUniqueInput
-    data: XOR<CmsContentUpdateWithoutCreatedByInput, CmsContentUncheckedUpdateWithoutCreatedByInput>
-  }
-
-  export type CmsContentUpdateManyWithWhereWithoutCreatedByInput = {
-    where: CmsContentScalarWhereInput
-    data: XOR<CmsContentUpdateManyMutationInput, CmsContentUncheckedUpdateManyWithoutCreatedByInput>
-  }
-
-  export type CmsContentScalarWhereInput = {
-    AND?: CmsContentScalarWhereInput | CmsContentScalarWhereInput[]
-    OR?: CmsContentScalarWhereInput[]
-    NOT?: CmsContentScalarWhereInput | CmsContentScalarWhereInput[]
-    id?: IntFilter<"CmsContent"> | number
-    title?: StringFilter<"CmsContent"> | string
-    slug?: StringFilter<"CmsContent"> | string
-    contentType?: EnumCmsContentTypeFilter<"CmsContent"> | $Enums.CmsContentType
-    category?: EnumCmsCategoryFilter<"CmsContent"> | $Enums.CmsCategory
-    level?: EnumCmsLevelFilter<"CmsContent"> | $Enums.CmsLevel
-    region?: EnumCmsRegionNullableFilter<"CmsContent"> | $Enums.CmsRegion | null
-    body?: StringFilter<"CmsContent"> | string
-    createdById?: IntFilter<"CmsContent"> | number
-    updatedById?: IntFilter<"CmsContent"> | number
-    createdAt?: DateTimeFilter<"CmsContent"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsContent"> | Date | string
-  }
-
-  export type CmsContentUpsertWithWhereUniqueWithoutUpdatedByInput = {
-    where: CmsContentWhereUniqueInput
-    update: XOR<CmsContentUpdateWithoutUpdatedByInput, CmsContentUncheckedUpdateWithoutUpdatedByInput>
-    create: XOR<CmsContentCreateWithoutUpdatedByInput, CmsContentUncheckedCreateWithoutUpdatedByInput>
-  }
-
-  export type CmsContentUpdateWithWhereUniqueWithoutUpdatedByInput = {
-    where: CmsContentWhereUniqueInput
-    data: XOR<CmsContentUpdateWithoutUpdatedByInput, CmsContentUncheckedUpdateWithoutUpdatedByInput>
-  }
-
-  export type CmsContentUpdateManyWithWhereWithoutUpdatedByInput = {
-    where: CmsContentScalarWhereInput
-    data: XOR<CmsContentUpdateManyMutationInput, CmsContentUncheckedUpdateManyWithoutUpdatedByInput>
-  }
-
-  export type CmsAnnouncementUpsertWithWhereUniqueWithoutCreatedByInput = {
-    where: CmsAnnouncementWhereUniqueInput
-    update: XOR<CmsAnnouncementUpdateWithoutCreatedByInput, CmsAnnouncementUncheckedUpdateWithoutCreatedByInput>
-    create: XOR<CmsAnnouncementCreateWithoutCreatedByInput, CmsAnnouncementUncheckedCreateWithoutCreatedByInput>
-  }
-
-  export type CmsAnnouncementUpdateWithWhereUniqueWithoutCreatedByInput = {
-    where: CmsAnnouncementWhereUniqueInput
-    data: XOR<CmsAnnouncementUpdateWithoutCreatedByInput, CmsAnnouncementUncheckedUpdateWithoutCreatedByInput>
-  }
-
-  export type CmsAnnouncementUpdateManyWithWhereWithoutCreatedByInput = {
-    where: CmsAnnouncementScalarWhereInput
-    data: XOR<CmsAnnouncementUpdateManyMutationInput, CmsAnnouncementUncheckedUpdateManyWithoutCreatedByInput>
-  }
-
-  export type CmsAnnouncementScalarWhereInput = {
-    AND?: CmsAnnouncementScalarWhereInput | CmsAnnouncementScalarWhereInput[]
-    OR?: CmsAnnouncementScalarWhereInput[]
-    NOT?: CmsAnnouncementScalarWhereInput | CmsAnnouncementScalarWhereInput[]
-    id?: IntFilter<"CmsAnnouncement"> | number
-    title?: StringFilter<"CmsAnnouncement"> | string
-    slug?: StringFilter<"CmsAnnouncement"> | string
-    excerpt?: StringFilter<"CmsAnnouncement"> | string
-    richContent?: StringFilter<"CmsAnnouncement"> | string
-    coverImage?: StringNullableFilter<"CmsAnnouncement"> | string | null
-    region?: EnumCmsRegionFilter<"CmsAnnouncement"> | $Enums.CmsRegion
-    status?: EnumPublishStatusFilter<"CmsAnnouncement"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableFilter<"CmsAnnouncement"> | Date | string | null
-    createdById?: IntFilter<"CmsAnnouncement"> | number
-    updatedById?: IntFilter<"CmsAnnouncement"> | number
-    createdAt?: DateTimeFilter<"CmsAnnouncement"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsAnnouncement"> | Date | string
-  }
-
-  export type CmsAnnouncementUpsertWithWhereUniqueWithoutUpdatedByInput = {
-    where: CmsAnnouncementWhereUniqueInput
-    update: XOR<CmsAnnouncementUpdateWithoutUpdatedByInput, CmsAnnouncementUncheckedUpdateWithoutUpdatedByInput>
-    create: XOR<CmsAnnouncementCreateWithoutUpdatedByInput, CmsAnnouncementUncheckedCreateWithoutUpdatedByInput>
-  }
-
-  export type CmsAnnouncementUpdateWithWhereUniqueWithoutUpdatedByInput = {
-    where: CmsAnnouncementWhereUniqueInput
-    data: XOR<CmsAnnouncementUpdateWithoutUpdatedByInput, CmsAnnouncementUncheckedUpdateWithoutUpdatedByInput>
-  }
-
-  export type CmsAnnouncementUpdateManyWithWhereWithoutUpdatedByInput = {
-    where: CmsAnnouncementScalarWhereInput
-    data: XOR<CmsAnnouncementUpdateManyMutationInput, CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByInput>
-  }
-
-  export type CmsNewsUpsertWithWhereUniqueWithoutCreatedByInput = {
-    where: CmsNewsWhereUniqueInput
-    update: XOR<CmsNewsUpdateWithoutCreatedByInput, CmsNewsUncheckedUpdateWithoutCreatedByInput>
-    create: XOR<CmsNewsCreateWithoutCreatedByInput, CmsNewsUncheckedCreateWithoutCreatedByInput>
-  }
-
-  export type CmsNewsUpdateWithWhereUniqueWithoutCreatedByInput = {
-    where: CmsNewsWhereUniqueInput
-    data: XOR<CmsNewsUpdateWithoutCreatedByInput, CmsNewsUncheckedUpdateWithoutCreatedByInput>
-  }
-
-  export type CmsNewsUpdateManyWithWhereWithoutCreatedByInput = {
-    where: CmsNewsScalarWhereInput
-    data: XOR<CmsNewsUpdateManyMutationInput, CmsNewsUncheckedUpdateManyWithoutCreatedByInput>
-  }
-
-  export type CmsNewsScalarWhereInput = {
-    AND?: CmsNewsScalarWhereInput | CmsNewsScalarWhereInput[]
-    OR?: CmsNewsScalarWhereInput[]
-    NOT?: CmsNewsScalarWhereInput | CmsNewsScalarWhereInput[]
-    id?: IntFilter<"CmsNews"> | number
-    title?: StringFilter<"CmsNews"> | string
-    slug?: StringFilter<"CmsNews"> | string
-    excerpt?: StringFilter<"CmsNews"> | string
-    richContent?: StringFilter<"CmsNews"> | string
-    coverImage?: StringNullableFilter<"CmsNews"> | string | null
-    region?: EnumCmsRegionFilter<"CmsNews"> | $Enums.CmsRegion
-    status?: EnumPublishStatusFilter<"CmsNews"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableFilter<"CmsNews"> | Date | string | null
-    createdById?: IntFilter<"CmsNews"> | number
-    updatedById?: IntFilter<"CmsNews"> | number
-    createdAt?: DateTimeFilter<"CmsNews"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsNews"> | Date | string
-  }
-
-  export type CmsNewsUpsertWithWhereUniqueWithoutUpdatedByInput = {
-    where: CmsNewsWhereUniqueInput
-    update: XOR<CmsNewsUpdateWithoutUpdatedByInput, CmsNewsUncheckedUpdateWithoutUpdatedByInput>
-    create: XOR<CmsNewsCreateWithoutUpdatedByInput, CmsNewsUncheckedCreateWithoutUpdatedByInput>
-  }
-
-  export type CmsNewsUpdateWithWhereUniqueWithoutUpdatedByInput = {
-    where: CmsNewsWhereUniqueInput
-    data: XOR<CmsNewsUpdateWithoutUpdatedByInput, CmsNewsUncheckedUpdateWithoutUpdatedByInput>
-  }
-
-  export type CmsNewsUpdateManyWithWhereWithoutUpdatedByInput = {
-    where: CmsNewsScalarWhereInput
-    data: XOR<CmsNewsUpdateManyMutationInput, CmsNewsUncheckedUpdateManyWithoutUpdatedByInput>
-  }
-
-  export type CmsPressBreifingUpsertWithWhereUniqueWithoutCreatedByInput = {
-    where: CmsPressBreifingWhereUniqueInput
-    update: XOR<CmsPressBreifingUpdateWithoutCreatedByInput, CmsPressBreifingUncheckedUpdateWithoutCreatedByInput>
-    create: XOR<CmsPressBreifingCreateWithoutCreatedByInput, CmsPressBreifingUncheckedCreateWithoutCreatedByInput>
-  }
-
-  export type CmsPressBreifingUpdateWithWhereUniqueWithoutCreatedByInput = {
-    where: CmsPressBreifingWhereUniqueInput
-    data: XOR<CmsPressBreifingUpdateWithoutCreatedByInput, CmsPressBreifingUncheckedUpdateWithoutCreatedByInput>
-  }
-
-  export type CmsPressBreifingUpdateManyWithWhereWithoutCreatedByInput = {
-    where: CmsPressBreifingScalarWhereInput
-    data: XOR<CmsPressBreifingUpdateManyMutationInput, CmsPressBreifingUncheckedUpdateManyWithoutCreatedByInput>
-  }
-
-  export type CmsPressBreifingScalarWhereInput = {
-    AND?: CmsPressBreifingScalarWhereInput | CmsPressBreifingScalarWhereInput[]
-    OR?: CmsPressBreifingScalarWhereInput[]
-    NOT?: CmsPressBreifingScalarWhereInput | CmsPressBreifingScalarWhereInput[]
-    id?: IntFilter<"CmsPressBreifing"> | number
-    title?: StringFilter<"CmsPressBreifing"> | string
-    slug?: StringFilter<"CmsPressBreifing"> | string
-    excerpt?: StringFilter<"CmsPressBreifing"> | string
-    richContent?: StringFilter<"CmsPressBreifing"> | string
-    coverImage?: StringNullableFilter<"CmsPressBreifing"> | string | null
-    region?: EnumCmsRegionFilter<"CmsPressBreifing"> | $Enums.CmsRegion
-    status?: EnumPublishStatusFilter<"CmsPressBreifing"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableFilter<"CmsPressBreifing"> | Date | string | null
-    createdById?: IntFilter<"CmsPressBreifing"> | number
-    updatedById?: IntFilter<"CmsPressBreifing"> | number
-    createdAt?: DateTimeFilter<"CmsPressBreifing"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsPressBreifing"> | Date | string
-  }
-
-  export type CmsPressBreifingUpsertWithWhereUniqueWithoutUpdatedByInput = {
-    where: CmsPressBreifingWhereUniqueInput
-    update: XOR<CmsPressBreifingUpdateWithoutUpdatedByInput, CmsPressBreifingUncheckedUpdateWithoutUpdatedByInput>
-    create: XOR<CmsPressBreifingCreateWithoutUpdatedByInput, CmsPressBreifingUncheckedCreateWithoutUpdatedByInput>
-  }
-
-  export type CmsPressBreifingUpdateWithWhereUniqueWithoutUpdatedByInput = {
-    where: CmsPressBreifingWhereUniqueInput
-    data: XOR<CmsPressBreifingUpdateWithoutUpdatedByInput, CmsPressBreifingUncheckedUpdateWithoutUpdatedByInput>
-  }
-
-  export type CmsPressBreifingUpdateManyWithWhereWithoutUpdatedByInput = {
-    where: CmsPressBreifingScalarWhereInput
-    data: XOR<CmsPressBreifingUpdateManyMutationInput, CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByInput>
-  }
-
-  export type CmsVideoUpsertWithWhereUniqueWithoutCreatedByInput = {
-    where: CmsVideoWhereUniqueInput
-    update: XOR<CmsVideoUpdateWithoutCreatedByInput, CmsVideoUncheckedUpdateWithoutCreatedByInput>
-    create: XOR<CmsVideoCreateWithoutCreatedByInput, CmsVideoUncheckedCreateWithoutCreatedByInput>
-  }
-
-  export type CmsVideoUpdateWithWhereUniqueWithoutCreatedByInput = {
-    where: CmsVideoWhereUniqueInput
-    data: XOR<CmsVideoUpdateWithoutCreatedByInput, CmsVideoUncheckedUpdateWithoutCreatedByInput>
-  }
-
-  export type CmsVideoUpdateManyWithWhereWithoutCreatedByInput = {
-    where: CmsVideoScalarWhereInput
-    data: XOR<CmsVideoUpdateManyMutationInput, CmsVideoUncheckedUpdateManyWithoutCreatedByInput>
-  }
-
-  export type CmsVideoScalarWhereInput = {
-    AND?: CmsVideoScalarWhereInput | CmsVideoScalarWhereInput[]
-    OR?: CmsVideoScalarWhereInput[]
-    NOT?: CmsVideoScalarWhereInput | CmsVideoScalarWhereInput[]
-    id?: IntFilter<"CmsVideo"> | number
-    title?: StringFilter<"CmsVideo"> | string
-    slug?: StringFilter<"CmsVideo"> | string
-    excerpt?: StringFilter<"CmsVideo"> | string
-    richContent?: StringFilter<"CmsVideo"> | string
-    coverImage?: StringNullableFilter<"CmsVideo"> | string | null
-    videoUrl?: StringFilter<"CmsVideo"> | string
-    videoDuration?: IntNullableFilter<"CmsVideo"> | number | null
-    region?: EnumCmsRegionFilter<"CmsVideo"> | $Enums.CmsRegion
-    status?: EnumPublishStatusFilter<"CmsVideo"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableFilter<"CmsVideo"> | Date | string | null
-    createdById?: IntFilter<"CmsVideo"> | number
-    updatedById?: IntFilter<"CmsVideo"> | number
-    createdAt?: DateTimeFilter<"CmsVideo"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsVideo"> | Date | string
-  }
-
-  export type CmsVideoUpsertWithWhereUniqueWithoutUpdatedByInput = {
-    where: CmsVideoWhereUniqueInput
-    update: XOR<CmsVideoUpdateWithoutUpdatedByInput, CmsVideoUncheckedUpdateWithoutUpdatedByInput>
-    create: XOR<CmsVideoCreateWithoutUpdatedByInput, CmsVideoUncheckedCreateWithoutUpdatedByInput>
-  }
-
-  export type CmsVideoUpdateWithWhereUniqueWithoutUpdatedByInput = {
-    where: CmsVideoWhereUniqueInput
-    data: XOR<CmsVideoUpdateWithoutUpdatedByInput, CmsVideoUncheckedUpdateWithoutUpdatedByInput>
-  }
-
-  export type CmsVideoUpdateManyWithWhereWithoutUpdatedByInput = {
-    where: CmsVideoScalarWhereInput
-    data: XOR<CmsVideoUpdateManyMutationInput, CmsVideoUncheckedUpdateManyWithoutUpdatedByInput>
-  }
-
-  export type CmsBlogUpsertWithWhereUniqueWithoutCreatedByInput = {
-    where: CmsBlogWhereUniqueInput
-    update: XOR<CmsBlogUpdateWithoutCreatedByInput, CmsBlogUncheckedUpdateWithoutCreatedByInput>
-    create: XOR<CmsBlogCreateWithoutCreatedByInput, CmsBlogUncheckedCreateWithoutCreatedByInput>
-  }
-
-  export type CmsBlogUpdateWithWhereUniqueWithoutCreatedByInput = {
-    where: CmsBlogWhereUniqueInput
-    data: XOR<CmsBlogUpdateWithoutCreatedByInput, CmsBlogUncheckedUpdateWithoutCreatedByInput>
-  }
-
-  export type CmsBlogUpdateManyWithWhereWithoutCreatedByInput = {
-    where: CmsBlogScalarWhereInput
-    data: XOR<CmsBlogUpdateManyMutationInput, CmsBlogUncheckedUpdateManyWithoutCreatedByInput>
-  }
-
-  export type CmsBlogScalarWhereInput = {
-    AND?: CmsBlogScalarWhereInput | CmsBlogScalarWhereInput[]
-    OR?: CmsBlogScalarWhereInput[]
-    NOT?: CmsBlogScalarWhereInput | CmsBlogScalarWhereInput[]
-    id?: IntFilter<"CmsBlog"> | number
-    title?: StringFilter<"CmsBlog"> | string
-    slug?: StringFilter<"CmsBlog"> | string
-    excerpt?: StringFilter<"CmsBlog"> | string
-    richContent?: StringFilter<"CmsBlog"> | string
-    coverImage?: StringNullableFilter<"CmsBlog"> | string | null
-    region?: EnumCmsRegionFilter<"CmsBlog"> | $Enums.CmsRegion
-    status?: EnumPublishStatusFilter<"CmsBlog"> | $Enums.PublishStatus
-    publishedAt?: DateTimeNullableFilter<"CmsBlog"> | Date | string | null
-    createdById?: IntFilter<"CmsBlog"> | number
-    updatedById?: IntFilter<"CmsBlog"> | number
-    createdAt?: DateTimeFilter<"CmsBlog"> | Date | string
-    updatedAt?: DateTimeFilter<"CmsBlog"> | Date | string
-  }
-
-  export type CmsBlogUpsertWithWhereUniqueWithoutUpdatedByInput = {
-    where: CmsBlogWhereUniqueInput
-    update: XOR<CmsBlogUpdateWithoutUpdatedByInput, CmsBlogUncheckedUpdateWithoutUpdatedByInput>
-    create: XOR<CmsBlogCreateWithoutUpdatedByInput, CmsBlogUncheckedCreateWithoutUpdatedByInput>
-  }
-
-  export type CmsBlogUpdateWithWhereUniqueWithoutUpdatedByInput = {
-    where: CmsBlogWhereUniqueInput
-    data: XOR<CmsBlogUpdateWithoutUpdatedByInput, CmsBlogUncheckedUpdateWithoutUpdatedByInput>
-  }
-
-  export type CmsBlogUpdateManyWithWhereWithoutUpdatedByInput = {
-    where: CmsBlogScalarWhereInput
-    data: XOR<CmsBlogUpdateManyMutationInput, CmsBlogUncheckedUpdateManyWithoutUpdatedByInput>
   }
 
   export type CmsTeamMemberUpsertWithWhereUniqueWithoutCreatedByInput = {
@@ -20365,16 +10734,6 @@ export namespace Prisma {
     createdAt?: Date | string
     createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
     updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
     createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
     updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
     createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
@@ -20391,16 +10750,6 @@ export namespace Prisma {
     createdAt?: Date | string
     createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
     updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
     createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
     updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
     createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
@@ -20432,16 +10781,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
     updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
     createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
     updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
     createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
@@ -20458,16 +10797,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
     updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
     createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
     updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
     createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -20481,18 +10810,8 @@ export namespace Prisma {
     role: $Enums.CmsRole
     region: $Enums.CmsRegion
     createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
     updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
+    sessions?: CmsSessionCreateNestedManyWithoutUserInput
     createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
     updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
     createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
@@ -20507,18 +10826,8 @@ export namespace Prisma {
     role: $Enums.CmsRole
     region: $Enums.CmsRegion
     createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
     updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
     createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
     updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
     createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
@@ -20537,18 +10846,8 @@ export namespace Prisma {
     role: $Enums.CmsRole
     region: $Enums.CmsRegion
     createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
     createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
+    sessions?: CmsSessionCreateNestedManyWithoutUserInput
     createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
     updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
     createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
@@ -20563,18 +10862,8 @@ export namespace Prisma {
     role: $Enums.CmsRole
     region: $Enums.CmsRegion
     createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
     createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
     createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
     updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
     createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
@@ -20604,18 +10893,8 @@ export namespace Prisma {
     role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
     region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
     updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
+    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
     createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
     updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
     createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
@@ -20630,18 +10909,8 @@ export namespace Prisma {
     role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
     region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
     updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
     createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
     updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
     createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -20666,18 +10935,8 @@ export namespace Prisma {
     role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
     region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
     createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
+    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
     createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
     updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
     createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
@@ -20692,1198 +10951,8 @@ export namespace Prisma {
     role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
     region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
     createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUncheckedUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserCreateWithoutCreatedAnnouncementsInput = {
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserUncheckedCreateWithoutCreatedAnnouncementsInput = {
-    id?: number
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserCreateOrConnectWithoutCreatedAnnouncementsInput = {
-    where: CmsUserWhereUniqueInput
-    create: XOR<CmsUserCreateWithoutCreatedAnnouncementsInput, CmsUserUncheckedCreateWithoutCreatedAnnouncementsInput>
-  }
-
-  export type CmsUserCreateWithoutUpdatedAnnouncementsInput = {
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserUncheckedCreateWithoutUpdatedAnnouncementsInput = {
-    id?: number
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserCreateOrConnectWithoutUpdatedAnnouncementsInput = {
-    where: CmsUserWhereUniqueInput
-    create: XOR<CmsUserCreateWithoutUpdatedAnnouncementsInput, CmsUserUncheckedCreateWithoutUpdatedAnnouncementsInput>
-  }
-
-  export type CmsUserUpsertWithoutCreatedAnnouncementsInput = {
-    update: XOR<CmsUserUpdateWithoutCreatedAnnouncementsInput, CmsUserUncheckedUpdateWithoutCreatedAnnouncementsInput>
-    create: XOR<CmsUserCreateWithoutCreatedAnnouncementsInput, CmsUserUncheckedCreateWithoutCreatedAnnouncementsInput>
-    where?: CmsUserWhereInput
-  }
-
-  export type CmsUserUpdateToOneWithWhereWithoutCreatedAnnouncementsInput = {
-    where?: CmsUserWhereInput
-    data: XOR<CmsUserUpdateWithoutCreatedAnnouncementsInput, CmsUserUncheckedUpdateWithoutCreatedAnnouncementsInput>
-  }
-
-  export type CmsUserUpdateWithoutCreatedAnnouncementsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserUncheckedUpdateWithoutCreatedAnnouncementsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUncheckedUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserUpsertWithoutUpdatedAnnouncementsInput = {
-    update: XOR<CmsUserUpdateWithoutUpdatedAnnouncementsInput, CmsUserUncheckedUpdateWithoutUpdatedAnnouncementsInput>
-    create: XOR<CmsUserCreateWithoutUpdatedAnnouncementsInput, CmsUserUncheckedCreateWithoutUpdatedAnnouncementsInput>
-    where?: CmsUserWhereInput
-  }
-
-  export type CmsUserUpdateToOneWithWhereWithoutUpdatedAnnouncementsInput = {
-    where?: CmsUserWhereInput
-    data: XOR<CmsUserUpdateWithoutUpdatedAnnouncementsInput, CmsUserUncheckedUpdateWithoutUpdatedAnnouncementsInput>
-  }
-
-  export type CmsUserUpdateWithoutUpdatedAnnouncementsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserUncheckedUpdateWithoutUpdatedAnnouncementsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUncheckedUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserCreateWithoutCreatedNewsInput = {
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserUncheckedCreateWithoutCreatedNewsInput = {
-    id?: number
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserCreateOrConnectWithoutCreatedNewsInput = {
-    where: CmsUserWhereUniqueInput
-    create: XOR<CmsUserCreateWithoutCreatedNewsInput, CmsUserUncheckedCreateWithoutCreatedNewsInput>
-  }
-
-  export type CmsUserCreateWithoutUpdatedNewsInput = {
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserUncheckedCreateWithoutUpdatedNewsInput = {
-    id?: number
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserCreateOrConnectWithoutUpdatedNewsInput = {
-    where: CmsUserWhereUniqueInput
-    create: XOR<CmsUserCreateWithoutUpdatedNewsInput, CmsUserUncheckedCreateWithoutUpdatedNewsInput>
-  }
-
-  export type CmsUserUpsertWithoutCreatedNewsInput = {
-    update: XOR<CmsUserUpdateWithoutCreatedNewsInput, CmsUserUncheckedUpdateWithoutCreatedNewsInput>
-    create: XOR<CmsUserCreateWithoutCreatedNewsInput, CmsUserUncheckedCreateWithoutCreatedNewsInput>
-    where?: CmsUserWhereInput
-  }
-
-  export type CmsUserUpdateToOneWithWhereWithoutCreatedNewsInput = {
-    where?: CmsUserWhereInput
-    data: XOR<CmsUserUpdateWithoutCreatedNewsInput, CmsUserUncheckedUpdateWithoutCreatedNewsInput>
-  }
-
-  export type CmsUserUpdateWithoutCreatedNewsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserUncheckedUpdateWithoutCreatedNewsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUncheckedUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserUpsertWithoutUpdatedNewsInput = {
-    update: XOR<CmsUserUpdateWithoutUpdatedNewsInput, CmsUserUncheckedUpdateWithoutUpdatedNewsInput>
-    create: XOR<CmsUserCreateWithoutUpdatedNewsInput, CmsUserUncheckedCreateWithoutUpdatedNewsInput>
-    where?: CmsUserWhereInput
-  }
-
-  export type CmsUserUpdateToOneWithWhereWithoutUpdatedNewsInput = {
-    where?: CmsUserWhereInput
-    data: XOR<CmsUserUpdateWithoutUpdatedNewsInput, CmsUserUncheckedUpdateWithoutUpdatedNewsInput>
-  }
-
-  export type CmsUserUpdateWithoutUpdatedNewsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserUncheckedUpdateWithoutUpdatedNewsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUncheckedUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserCreateWithoutCreatedBriefingsInput = {
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserUncheckedCreateWithoutCreatedBriefingsInput = {
-    id?: number
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserCreateOrConnectWithoutCreatedBriefingsInput = {
-    where: CmsUserWhereUniqueInput
-    create: XOR<CmsUserCreateWithoutCreatedBriefingsInput, CmsUserUncheckedCreateWithoutCreatedBriefingsInput>
-  }
-
-  export type CmsUserCreateWithoutUpdatedBriefingsInput = {
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserUncheckedCreateWithoutUpdatedBriefingsInput = {
-    id?: number
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserCreateOrConnectWithoutUpdatedBriefingsInput = {
-    where: CmsUserWhereUniqueInput
-    create: XOR<CmsUserCreateWithoutUpdatedBriefingsInput, CmsUserUncheckedCreateWithoutUpdatedBriefingsInput>
-  }
-
-  export type CmsUserUpsertWithoutCreatedBriefingsInput = {
-    update: XOR<CmsUserUpdateWithoutCreatedBriefingsInput, CmsUserUncheckedUpdateWithoutCreatedBriefingsInput>
-    create: XOR<CmsUserCreateWithoutCreatedBriefingsInput, CmsUserUncheckedCreateWithoutCreatedBriefingsInput>
-    where?: CmsUserWhereInput
-  }
-
-  export type CmsUserUpdateToOneWithWhereWithoutCreatedBriefingsInput = {
-    where?: CmsUserWhereInput
-    data: XOR<CmsUserUpdateWithoutCreatedBriefingsInput, CmsUserUncheckedUpdateWithoutCreatedBriefingsInput>
-  }
-
-  export type CmsUserUpdateWithoutCreatedBriefingsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserUncheckedUpdateWithoutCreatedBriefingsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUncheckedUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserUpsertWithoutUpdatedBriefingsInput = {
-    update: XOR<CmsUserUpdateWithoutUpdatedBriefingsInput, CmsUserUncheckedUpdateWithoutUpdatedBriefingsInput>
-    create: XOR<CmsUserCreateWithoutUpdatedBriefingsInput, CmsUserUncheckedCreateWithoutUpdatedBriefingsInput>
-    where?: CmsUserWhereInput
-  }
-
-  export type CmsUserUpdateToOneWithWhereWithoutUpdatedBriefingsInput = {
-    where?: CmsUserWhereInput
-    data: XOR<CmsUserUpdateWithoutUpdatedBriefingsInput, CmsUserUncheckedUpdateWithoutUpdatedBriefingsInput>
-  }
-
-  export type CmsUserUpdateWithoutUpdatedBriefingsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserUncheckedUpdateWithoutUpdatedBriefingsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUncheckedUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserCreateWithoutCreatedVideosInput = {
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserUncheckedCreateWithoutCreatedVideosInput = {
-    id?: number
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserCreateOrConnectWithoutCreatedVideosInput = {
-    where: CmsUserWhereUniqueInput
-    create: XOR<CmsUserCreateWithoutCreatedVideosInput, CmsUserUncheckedCreateWithoutCreatedVideosInput>
-  }
-
-  export type CmsUserCreateWithoutUpdatedVideosInput = {
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserUncheckedCreateWithoutUpdatedVideosInput = {
-    id?: number
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserCreateOrConnectWithoutUpdatedVideosInput = {
-    where: CmsUserWhereUniqueInput
-    create: XOR<CmsUserCreateWithoutUpdatedVideosInput, CmsUserUncheckedCreateWithoutUpdatedVideosInput>
-  }
-
-  export type CmsUserUpsertWithoutCreatedVideosInput = {
-    update: XOR<CmsUserUpdateWithoutCreatedVideosInput, CmsUserUncheckedUpdateWithoutCreatedVideosInput>
-    create: XOR<CmsUserCreateWithoutCreatedVideosInput, CmsUserUncheckedCreateWithoutCreatedVideosInput>
-    where?: CmsUserWhereInput
-  }
-
-  export type CmsUserUpdateToOneWithWhereWithoutCreatedVideosInput = {
-    where?: CmsUserWhereInput
-    data: XOR<CmsUserUpdateWithoutCreatedVideosInput, CmsUserUncheckedUpdateWithoutCreatedVideosInput>
-  }
-
-  export type CmsUserUpdateWithoutCreatedVideosInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserUncheckedUpdateWithoutCreatedVideosInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUncheckedUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserUpsertWithoutUpdatedVideosInput = {
-    update: XOR<CmsUserUpdateWithoutUpdatedVideosInput, CmsUserUncheckedUpdateWithoutUpdatedVideosInput>
-    create: XOR<CmsUserCreateWithoutUpdatedVideosInput, CmsUserUncheckedCreateWithoutUpdatedVideosInput>
-    where?: CmsUserWhereInput
-  }
-
-  export type CmsUserUpdateToOneWithWhereWithoutUpdatedVideosInput = {
-    where?: CmsUserWhereInput
-    data: XOR<CmsUserUpdateWithoutUpdatedVideosInput, CmsUserUncheckedUpdateWithoutUpdatedVideosInput>
-  }
-
-  export type CmsUserUpdateWithoutUpdatedVideosInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserUncheckedUpdateWithoutUpdatedVideosInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUncheckedUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserCreateWithoutCreatedBlogsInput = {
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserUncheckedCreateWithoutCreatedBlogsInput = {
-    id?: number
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserCreateOrConnectWithoutCreatedBlogsInput = {
-    where: CmsUserWhereUniqueInput
-    create: XOR<CmsUserCreateWithoutCreatedBlogsInput, CmsUserUncheckedCreateWithoutCreatedBlogsInput>
-  }
-
-  export type CmsUserCreateWithoutUpdatedBlogsInput = {
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserUncheckedCreateWithoutUpdatedBlogsInput = {
-    id?: number
-    name: string
-    email: string
-    passwordHash: string
-    role: $Enums.CmsRole
-    region: $Enums.CmsRegion
-    createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
-    createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutUpdatedByInput
-  }
-
-  export type CmsUserCreateOrConnectWithoutUpdatedBlogsInput = {
-    where: CmsUserWhereUniqueInput
-    create: XOR<CmsUserCreateWithoutUpdatedBlogsInput, CmsUserUncheckedCreateWithoutUpdatedBlogsInput>
-  }
-
-  export type CmsUserUpsertWithoutCreatedBlogsInput = {
-    update: XOR<CmsUserUpdateWithoutCreatedBlogsInput, CmsUserUncheckedUpdateWithoutCreatedBlogsInput>
-    create: XOR<CmsUserCreateWithoutCreatedBlogsInput, CmsUserUncheckedCreateWithoutCreatedBlogsInput>
-    where?: CmsUserWhereInput
-  }
-
-  export type CmsUserUpdateToOneWithWhereWithoutCreatedBlogsInput = {
-    where?: CmsUserWhereInput
-    data: XOR<CmsUserUpdateWithoutCreatedBlogsInput, CmsUserUncheckedUpdateWithoutCreatedBlogsInput>
-  }
-
-  export type CmsUserUpdateWithoutCreatedBlogsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserUncheckedUpdateWithoutCreatedBlogsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUncheckedUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserUpsertWithoutUpdatedBlogsInput = {
-    update: XOR<CmsUserUpdateWithoutUpdatedBlogsInput, CmsUserUncheckedUpdateWithoutUpdatedBlogsInput>
-    create: XOR<CmsUserCreateWithoutUpdatedBlogsInput, CmsUserUncheckedCreateWithoutUpdatedBlogsInput>
-    where?: CmsUserWhereInput
-  }
-
-  export type CmsUserUpdateToOneWithWhereWithoutUpdatedBlogsInput = {
-    where?: CmsUserWhereInput
-    data: XOR<CmsUserUpdateWithoutUpdatedBlogsInput, CmsUserUncheckedUpdateWithoutUpdatedBlogsInput>
-  }
-
-  export type CmsUserUpdateWithoutUpdatedBlogsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
-    updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
-    createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
-    updatedMedia?: CmsMediaItemUpdateManyWithoutUpdatedByNestedInput
-  }
-
-  export type CmsUserUncheckedUpdateWithoutUpdatedBlogsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
-    role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
-    createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
     createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
     updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
     createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
@@ -21897,19 +10966,9 @@ export namespace Prisma {
     role: $Enums.CmsRole
     region: $Enums.CmsRegion
     createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
     createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
     updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
+    sessions?: CmsSessionCreateNestedManyWithoutUserInput
     updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
     createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
     updatedMedia?: CmsMediaItemCreateNestedManyWithoutUpdatedByInput
@@ -21923,19 +10982,9 @@ export namespace Prisma {
     role: $Enums.CmsRole
     region: $Enums.CmsRegion
     createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
     createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
     updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
     updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
     createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
     updatedMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutUpdatedByInput
@@ -21953,19 +11002,9 @@ export namespace Prisma {
     role: $Enums.CmsRole
     region: $Enums.CmsRegion
     createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
     createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
     updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
+    sessions?: CmsSessionCreateNestedManyWithoutUserInput
     createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
     createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
     updatedMedia?: CmsMediaItemCreateNestedManyWithoutUpdatedByInput
@@ -21979,19 +11018,9 @@ export namespace Prisma {
     role: $Enums.CmsRole
     region: $Enums.CmsRegion
     createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
     createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
     updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
     createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
     createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
     updatedMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutUpdatedByInput
@@ -22020,19 +11049,9 @@ export namespace Prisma {
     role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
     region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
     createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
     updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
+    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
     updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
     createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
     updatedMedia?: CmsMediaItemUpdateManyWithoutUpdatedByNestedInput
@@ -22046,19 +11065,9 @@ export namespace Prisma {
     role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
     region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
     createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
     updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
     updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
     createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
     updatedMedia?: CmsMediaItemUncheckedUpdateManyWithoutUpdatedByNestedInput
@@ -22082,19 +11091,9 @@ export namespace Prisma {
     role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
     region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
     createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
     updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
+    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
     createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
     createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
     updatedMedia?: CmsMediaItemUpdateManyWithoutUpdatedByNestedInput
@@ -22108,19 +11107,9 @@ export namespace Prisma {
     role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
     region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
     createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
     updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
     createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
     createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
     updatedMedia?: CmsMediaItemUncheckedUpdateManyWithoutUpdatedByNestedInput
@@ -22133,19 +11122,9 @@ export namespace Prisma {
     role: $Enums.CmsRole
     region: $Enums.CmsRegion
     createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
     createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
     updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
+    sessions?: CmsSessionCreateNestedManyWithoutUserInput
     createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
     updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
     updatedMedia?: CmsMediaItemCreateNestedManyWithoutUpdatedByInput
@@ -22159,19 +11138,9 @@ export namespace Prisma {
     role: $Enums.CmsRole
     region: $Enums.CmsRegion
     createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
     createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
     updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
     createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
     updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
     updatedMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutUpdatedByInput
@@ -22189,19 +11158,9 @@ export namespace Prisma {
     role: $Enums.CmsRole
     region: $Enums.CmsRegion
     createdAt?: Date | string
-    sessions?: CmsSessionCreateNestedManyWithoutUserInput
     createdContent?: CmsContentCreateNestedManyWithoutCreatedByInput
     updatedContent?: CmsContentCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogCreateNestedManyWithoutUpdatedByInput
+    sessions?: CmsSessionCreateNestedManyWithoutUserInput
     createdTeams?: CmsTeamMemberCreateNestedManyWithoutCreatedByInput
     updatedTeams?: CmsTeamMemberCreateNestedManyWithoutUpdatedByInput
     createdMedia?: CmsMediaItemCreateNestedManyWithoutCreatedByInput
@@ -22215,19 +11174,9 @@ export namespace Prisma {
     role: $Enums.CmsRole
     region: $Enums.CmsRegion
     createdAt?: Date | string
-    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
     createdContent?: CmsContentUncheckedCreateNestedManyWithoutCreatedByInput
     updatedContent?: CmsContentUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdNews?: CmsNewsUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedNews?: CmsNewsUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBriefings?: CmsPressBreifingUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdVideos?: CmsVideoUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedVideos?: CmsVideoUncheckedCreateNestedManyWithoutUpdatedByInput
-    createdBlogs?: CmsBlogUncheckedCreateNestedManyWithoutCreatedByInput
-    updatedBlogs?: CmsBlogUncheckedCreateNestedManyWithoutUpdatedByInput
+    sessions?: CmsSessionUncheckedCreateNestedManyWithoutUserInput
     createdTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutCreatedByInput
     updatedTeams?: CmsTeamMemberUncheckedCreateNestedManyWithoutUpdatedByInput
     createdMedia?: CmsMediaItemUncheckedCreateNestedManyWithoutCreatedByInput
@@ -22256,19 +11205,9 @@ export namespace Prisma {
     role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
     region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
     createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
     updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
+    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
     createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
     updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
     updatedMedia?: CmsMediaItemUpdateManyWithoutUpdatedByNestedInput
@@ -22282,19 +11221,9 @@ export namespace Prisma {
     role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
     region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
     createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
     updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
     createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
     updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
     updatedMedia?: CmsMediaItemUncheckedUpdateManyWithoutUpdatedByNestedInput
@@ -22318,19 +11247,9 @@ export namespace Prisma {
     role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
     region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
     createdContent?: CmsContentUpdateManyWithoutCreatedByNestedInput
     updatedContent?: CmsContentUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUpdateManyWithoutUpdatedByNestedInput
+    sessions?: CmsSessionUpdateManyWithoutUserNestedInput
     createdTeams?: CmsTeamMemberUpdateManyWithoutCreatedByNestedInput
     updatedTeams?: CmsTeamMemberUpdateManyWithoutUpdatedByNestedInput
     createdMedia?: CmsMediaItemUpdateManyWithoutCreatedByNestedInput
@@ -22344,40 +11263,28 @@ export namespace Prisma {
     role?: EnumCmsRoleFieldUpdateOperationsInput | $Enums.CmsRole
     region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
     createdContent?: CmsContentUncheckedUpdateManyWithoutCreatedByNestedInput
     updatedContent?: CmsContentUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedAnnouncements?: CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdNews?: CmsNewsUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedNews?: CmsNewsUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBriefings?: CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdVideos?: CmsVideoUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedVideos?: CmsVideoUncheckedUpdateManyWithoutUpdatedByNestedInput
-    createdBlogs?: CmsBlogUncheckedUpdateManyWithoutCreatedByNestedInput
-    updatedBlogs?: CmsBlogUncheckedUpdateManyWithoutUpdatedByNestedInput
+    sessions?: CmsSessionUncheckedUpdateManyWithoutUserNestedInput
     createdTeams?: CmsTeamMemberUncheckedUpdateManyWithoutCreatedByNestedInput
     updatedTeams?: CmsTeamMemberUncheckedUpdateManyWithoutUpdatedByNestedInput
     createdMedia?: CmsMediaItemUncheckedUpdateManyWithoutCreatedByNestedInput
   }
 
-  export type CmsSessionCreateManyUserInput = {
-    id?: number
-    tokenHash: string
-    expiresAt: Date | string
-    createdAt?: Date | string
-  }
-
   export type CmsContentCreateManyCreatedByInput = {
     id?: number
+    contentType: $Enums.CmsContentType
     title: string
     slug: string
-    contentType: $Enums.CmsContentType
-    category: $Enums.CmsCategory
-    level: $Enums.CmsLevel
-    region?: $Enums.CmsRegion | null
-    body?: string
+    excerpt?: string
+    richContent?: string
+    coverImage?: string | null
+    videoUrl?: string | null
+    videoDuration?: number | null
+    region: $Enums.CmsRegion
+    level?: $Enums.CmsLevel
+    status?: $Enums.PublishStatus
+    publishedAt?: Date | string | null
     updatedById: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22385,135 +11292,16 @@ export namespace Prisma {
 
   export type CmsContentCreateManyUpdatedByInput = {
     id?: number
-    title: string
-    slug: string
     contentType: $Enums.CmsContentType
-    category: $Enums.CmsCategory
-    level: $Enums.CmsLevel
-    region?: $Enums.CmsRegion | null
-    body?: string
-    createdById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsAnnouncementCreateManyCreatedByInput = {
-    id?: number
     title: string
     slug: string
-    excerpt: string
-    richContent: string
+    excerpt?: string
+    richContent?: string
     coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsAnnouncementCreateManyUpdatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsNewsCreateManyCreatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsNewsCreateManyUpdatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsPressBreifingCreateManyCreatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsPressBreifingCreateManyUpdatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsVideoCreateManyCreatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    videoUrl: string
+    videoUrl?: string | null
     videoDuration?: number | null
     region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    updatedById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsVideoCreateManyUpdatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    videoUrl: string
-    videoDuration?: number | null
-    region: $Enums.CmsRegion
+    level?: $Enums.CmsLevel
     status?: $Enums.PublishStatus
     publishedAt?: Date | string | null
     createdById: number
@@ -22521,34 +11309,11 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type CmsBlogCreateManyCreatedByInput = {
+  export type CmsSessionCreateManyUserInput = {
     id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    updatedById: number
+    tokenHash: string
+    expiresAt: Date | string
     createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type CmsBlogCreateManyUpdatedByInput = {
-    id?: number
-    title: string
-    slug: string
-    excerpt: string
-    richContent: string
-    coverImage?: string | null
-    region: $Enums.CmsRegion
-    status?: $Enums.PublishStatus
-    publishedAt?: Date | string | null
-    createdById: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type CmsTeamMemberCreateManyCreatedByInput = {
@@ -22617,6 +11382,118 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type CmsContentUpdateWithoutCreatedByInput = {
+    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    excerpt?: StringFieldUpdateOperationsInput | string
+    richContent?: StringFieldUpdateOperationsInput | string
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
+    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
+    level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
+    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedBy?: CmsUserUpdateOneRequiredWithoutUpdatedContentNestedInput
+  }
+
+  export type CmsContentUncheckedUpdateWithoutCreatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    excerpt?: StringFieldUpdateOperationsInput | string
+    richContent?: StringFieldUpdateOperationsInput | string
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
+    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
+    level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
+    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedById?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CmsContentUncheckedUpdateManyWithoutCreatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    excerpt?: StringFieldUpdateOperationsInput | string
+    richContent?: StringFieldUpdateOperationsInput | string
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
+    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
+    level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
+    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedById?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CmsContentUpdateWithoutUpdatedByInput = {
+    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    excerpt?: StringFieldUpdateOperationsInput | string
+    richContent?: StringFieldUpdateOperationsInput | string
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
+    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
+    level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
+    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: CmsUserUpdateOneRequiredWithoutCreatedContentNestedInput
+  }
+
+  export type CmsContentUncheckedUpdateWithoutUpdatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    excerpt?: StringFieldUpdateOperationsInput | string
+    richContent?: StringFieldUpdateOperationsInput | string
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
+    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
+    level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
+    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdById?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CmsContentUncheckedUpdateManyWithoutUpdatedByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    excerpt?: StringFieldUpdateOperationsInput | string
+    richContent?: StringFieldUpdateOperationsInput | string
+    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
+    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
+    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
+    level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
+    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdById?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type CmsSessionUpdateWithoutUserInput = {
     tokenHash?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22635,540 +11512,6 @@ export namespace Prisma {
     tokenHash?: StringFieldUpdateOperationsInput | string
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsContentUpdateWithoutCreatedByInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
-    category?: EnumCmsCategoryFieldUpdateOperationsInput | $Enums.CmsCategory
-    level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
-    region?: NullableEnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion | null
-    body?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedBy?: CmsUserUpdateOneRequiredWithoutUpdatedContentNestedInput
-  }
-
-  export type CmsContentUncheckedUpdateWithoutCreatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
-    category?: EnumCmsCategoryFieldUpdateOperationsInput | $Enums.CmsCategory
-    level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
-    region?: NullableEnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion | null
-    body?: StringFieldUpdateOperationsInput | string
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsContentUncheckedUpdateManyWithoutCreatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
-    category?: EnumCmsCategoryFieldUpdateOperationsInput | $Enums.CmsCategory
-    level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
-    region?: NullableEnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion | null
-    body?: StringFieldUpdateOperationsInput | string
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsContentUpdateWithoutUpdatedByInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
-    category?: EnumCmsCategoryFieldUpdateOperationsInput | $Enums.CmsCategory
-    level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
-    region?: NullableEnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion | null
-    body?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdBy?: CmsUserUpdateOneRequiredWithoutCreatedContentNestedInput
-  }
-
-  export type CmsContentUncheckedUpdateWithoutUpdatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
-    category?: EnumCmsCategoryFieldUpdateOperationsInput | $Enums.CmsCategory
-    level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
-    region?: NullableEnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion | null
-    body?: StringFieldUpdateOperationsInput | string
-    createdById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsContentUncheckedUpdateManyWithoutUpdatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    contentType?: EnumCmsContentTypeFieldUpdateOperationsInput | $Enums.CmsContentType
-    category?: EnumCmsCategoryFieldUpdateOperationsInput | $Enums.CmsCategory
-    level?: EnumCmsLevelFieldUpdateOperationsInput | $Enums.CmsLevel
-    region?: NullableEnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion | null
-    body?: StringFieldUpdateOperationsInput | string
-    createdById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsAnnouncementUpdateWithoutCreatedByInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedBy?: CmsUserUpdateOneRequiredWithoutUpdatedAnnouncementsNestedInput
-  }
-
-  export type CmsAnnouncementUncheckedUpdateWithoutCreatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsAnnouncementUncheckedUpdateManyWithoutCreatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsAnnouncementUpdateWithoutUpdatedByInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdBy?: CmsUserUpdateOneRequiredWithoutCreatedAnnouncementsNestedInput
-  }
-
-  export type CmsAnnouncementUncheckedUpdateWithoutUpdatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsAnnouncementUncheckedUpdateManyWithoutUpdatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsNewsUpdateWithoutCreatedByInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedBy?: CmsUserUpdateOneRequiredWithoutUpdatedNewsNestedInput
-  }
-
-  export type CmsNewsUncheckedUpdateWithoutCreatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsNewsUncheckedUpdateManyWithoutCreatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsNewsUpdateWithoutUpdatedByInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdBy?: CmsUserUpdateOneRequiredWithoutCreatedNewsNestedInput
-  }
-
-  export type CmsNewsUncheckedUpdateWithoutUpdatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsNewsUncheckedUpdateManyWithoutUpdatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsPressBreifingUpdateWithoutCreatedByInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedBy?: CmsUserUpdateOneRequiredWithoutUpdatedBriefingsNestedInput
-  }
-
-  export type CmsPressBreifingUncheckedUpdateWithoutCreatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsPressBreifingUncheckedUpdateManyWithoutCreatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsPressBreifingUpdateWithoutUpdatedByInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdBy?: CmsUserUpdateOneRequiredWithoutCreatedBriefingsNestedInput
-  }
-
-  export type CmsPressBreifingUncheckedUpdateWithoutUpdatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsPressBreifingUncheckedUpdateManyWithoutUpdatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsVideoUpdateWithoutCreatedByInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: StringFieldUpdateOperationsInput | string
-    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedBy?: CmsUserUpdateOneRequiredWithoutUpdatedVideosNestedInput
-  }
-
-  export type CmsVideoUncheckedUpdateWithoutCreatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: StringFieldUpdateOperationsInput | string
-    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsVideoUncheckedUpdateManyWithoutCreatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: StringFieldUpdateOperationsInput | string
-    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsVideoUpdateWithoutUpdatedByInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: StringFieldUpdateOperationsInput | string
-    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdBy?: CmsUserUpdateOneRequiredWithoutCreatedVideosNestedInput
-  }
-
-  export type CmsVideoUncheckedUpdateWithoutUpdatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: StringFieldUpdateOperationsInput | string
-    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsVideoUncheckedUpdateManyWithoutUpdatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: StringFieldUpdateOperationsInput | string
-    videoDuration?: NullableIntFieldUpdateOperationsInput | number | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsBlogUpdateWithoutCreatedByInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedBy?: CmsUserUpdateOneRequiredWithoutUpdatedBlogsNestedInput
-  }
-
-  export type CmsBlogUncheckedUpdateWithoutCreatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsBlogUncheckedUpdateManyWithoutCreatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsBlogUpdateWithoutUpdatedByInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdBy?: CmsUserUpdateOneRequiredWithoutCreatedBlogsNestedInput
-  }
-
-  export type CmsBlogUncheckedUpdateWithoutUpdatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CmsBlogUncheckedUpdateManyWithoutUpdatedByInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    excerpt?: StringFieldUpdateOperationsInput | string
-    richContent?: StringFieldUpdateOperationsInput | string
-    coverImage?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: EnumCmsRegionFieldUpdateOperationsInput | $Enums.CmsRegion
-    status?: EnumPublishStatusFieldUpdateOperationsInput | $Enums.PublishStatus
-    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdById?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CmsTeamMemberUpdateWithoutCreatedByInput = {

@@ -16,6 +16,11 @@ interface VideoUploadResult {
   publicId?: string;
 }
 
+interface DocumentUploadResult {
+  url?: string;
+  publicId?: string;
+}
+
 let cloudinaryInstance: any = null;
 
 function initCloudinary() {
@@ -120,3 +125,33 @@ export async function deleteCloudinaryResource(publicId: string): Promise<boolea
   const result = await instance.uploader.destroy(publicId);
   return result.result === "ok";
 }
+
+// Document upload to Cloudinary
+export async function uploadDocument(
+  file: Buffer,
+  filename: string,
+  folder: string = "yascon_cms/documents"
+): Promise<DocumentUploadResult> {
+  const instance = initCloudinary();
+
+  if (!instance) {
+    throw new Error("Cloudinary not configured. Install cloudinary package.");
+  }
+
+  return new Promise((resolve, reject) => {
+    const uploadStream = instance.uploader.upload_stream(
+      {
+        folder, // Use the desired folder for documents
+        resource_type: "auto",
+        public_id: filename,
+        overwrite: true,
+      },
+      (error: Error | null, result: CloudinaryResponse) => {
+        if (error) reject(error);
+        else resolve({ url: result?.secure_url, publicId: result?.public_id });
+      }
+    );
+
+    uploadStream.end(file);
+  })  
+};

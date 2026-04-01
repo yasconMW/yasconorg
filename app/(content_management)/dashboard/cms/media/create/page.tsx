@@ -62,7 +62,7 @@ export default function MediaCreatePage() {
     try {
       const fd = new FormData();
       fd.append("file", file);
-      const endpoint = formData.mediaType === "gallery" ? "/api/upload/image" : "/api/upload/video";
+      const endpoint = formData.mediaType === "gallery" ? "/api/upload/image" : "/api/upload/document";
       const res = await fetch(endpoint, { method: "POST", body: fd });
       if (!res.ok) throw new Error((await res.json()).error || "Upload failed");
       const data = await res.json();
@@ -216,7 +216,7 @@ export default function MediaCreatePage() {
             ) : formData.fileUrl && !isGallery ? (
               <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg border border-blue-200 mb-2">
                 <FileText size={20} className="text-blue-600 flex-shrink-0" />
-                <span className="text-sm text-blue-800 truncate">{formData.fileUrl.split("/").pop()}</span>
+                {/* <span className="text-sm text-blue-800 truncate">{formData.fileUrl.split("/").pop()}</span> */}
                 <button type="button" onClick={() => setFormData((prev) => ({ ...prev, fileUrl: "" }))} className="ml-auto text-red-500 hover:text-red-700"><X size={16} /></button>
               </div>
             ) : (

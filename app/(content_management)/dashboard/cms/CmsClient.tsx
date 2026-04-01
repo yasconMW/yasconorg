@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useMemo, useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import DashboardSidebar from "@/components/cms/DashboardSidebar";
 import UnifiedContentForm, { type ContentFormData } from "@/components/cms/UnifiedContentForm";
 import { type CmsUserRecord } from "@/lib/cms/constants";
 import Image from "next/image";
+
 import {
   FileText, CheckCircle, Trash2, Edit, Eye, EyeOff, Plus, ArrowUp,
   ArrowDown, Save, X, Users2, Image as ImageIcon, Loader2,
@@ -25,7 +26,7 @@ interface ContentItem {
   updatedAt: string;
   publishedAt: string | null;
   coverImage: string | null;
-  videoUrl?: string;
+  videoUrl?: string | null;
   createdBy: { name: string };
 }
 
@@ -51,21 +52,22 @@ interface MediaItem {
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 const REGIONS = ["national", "central", "northern", "southern", "eastern"];
-const TYPE_MAP: Record<string, string> = {
-  news: "news", announcement: "announcements", press_briefing: "press-briefings",
-  blog: "blogs", video: "videos", team: "teams", media: "media",
-};
+
 const TYPE_LABEL: Record<string, string> = {
-  news: "News", announcement: "Announcement", press_briefing: "Press Briefing",
-  blog: "Blog", video: "Video", team: "Team Member", media: "Media",
+  news: "News",
+  announcement: "Announcement",
+  press_briefing: "Press Briefing",
+  blog: "Blog",
+  video: "Video",
 };
+
 const STATUS_STYLE: Record<string, string> = {
   published: "bg-emerald-100 text-emerald-700",
   draft: "bg-amber-100 text-amber-700",
   archived: "bg-slate-100 text-slate-700",
 };
 
-// ── Alert component ──────────────────────────────────────────────────────────
+// ── Alert component ────────────────────────────────────────────────────────────
 function Alert({ msg, type, onDismiss }: { msg: string; type: "success" | "error"; onDismiss: () => void }) {
   return (
     <div className={`mb-6 p-4 rounded-lg border flex items-start justify-between gap-4 ${type === "success" ? "bg-emerald-50 border-emerald-200 text-emerald-800" : "bg-red-50 border-red-200 text-red-800"}`}>
@@ -78,11 +80,48 @@ function Alert({ msg, type, onDismiss }: { msg: string; type: "success" | "error
   );
 }
 
-// ── Main component ────────────────────────────────────────────────────────────
-export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord }) {
+// ── Main component ─────────────────────────────────────────────────────────────
+interface ContentItem {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  richContent: string;
+  contentType: string;
+  region: string;
+  status: string;
+  updatedAt: string;
+  publishedAt: string | null;
+  coverImage: string | null;
+  videoUrl?: string | null;
+  createdBy: { name: string };
+}
+
+interface HeroSlide {
+  id: string; label: string; heading: string; sub: string; bg: string;
+  cta1Label: string; cta1Href: string; cta2Label: string; cta2Href: string;
+  order: number; active: boolean;
+}
+
+interface TeamMember {
+  id: number; name: string; role: string; joined?: string | null;
+  avatar?: string | null; focus: string; teamType: string;
+  region: string; status: string; updatedAt: string;
+  createdBy: { name: string };
+}
+
+interface MediaItem {
+  id: number; title: string; slug: string; description?: string | null;
+  mediaType: string; fileUrl: string; coverImage?: string | null;
+  region: string; status: string; updatedAt: string;
+  createdBy: { name: string };
+}
+
+export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord | null }) {
   const router = useRouter();
-  const [user] = useState(initialUser);
-  const [activeTab, setActiveTab] = useState("overview");
+  const searchParams = useSearchParams();
+  const [user, setUser] = useState(initialUser);
+  const [activeTab, setActiveTab] = useState(() => searchParams?.get("tab") || "overview");
   const [allContent, setAllContent] = useState<ContentItem[]>([]);
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [mediaItems, setMediaItems] = useState<MediaItem[]>([]);
@@ -93,46 +132,65 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
   const [msg, setMsg] = useState<{ text: string; type: "success" | "error" } | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Manage tab
   const [typeFilter, setTypeFilter] = useState("all");
   const [teamTypeFilter, setTeamTypeFilter] = useState<"all" | "management" | "board">("all");
   const [mediaTypeFilter, setMediaTypeFilter] = useState<"all" | "gallery" | "document">("all");
   const [editItem, setEditItem] = useState<ContentItem | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<{ id: number; type: string; title: string } | null>(null);
 
-  // Hero slides
   const [heroSlides, setHeroSlides] = useState<HeroSlide[]>([]);
   const [heroSaving, setHeroSaving] = useState(false);
 
-  // User form
+  useEffect(() => {
+    const tab = searchParams?.get("tab");
+    if (tab && tab !== activeTab) {
+      setActiveTab(tab);
+    } else if (!tab && activeTab !== "overview") {
+      setActiveTab("overview");
+    }
+  }, [searchParams, activeTab]);
+
   const [userForm, setUserForm] = useState({ name: "", email: "", password: "", role: "regional_admin" as const, region: "national" });
   const [editingUser, setEditingUser] = useState<CmsUserRecord | null>(null);
 
-  const canManageUsers = useMemo(() => user.role === "super_admin", [user.role]);
+  const canManageUsers = useMemo(() => user?.role === "super_admin", [user]);
   const showMsg = (text: string, type: "success" | "error" = "success") => setMsg({ text, type });
 
+  // Fetch current user on mount/refresh
+  const refreshUser = useCallback(async () => {
+    try {
+      const res = await fetch('/api/cms/session');
+      if (!res.ok) {
+        setUser(null);
+        return;
+      }
+      const { user: currentUser } = await res.json();
+      setUser(currentUser);
+    } catch {
+      setUser(null);
+    }
+  }, []);
+
+  useEffect(() => {
+    refreshUser();
+  }, [refreshUser]);
+
   // ── Data fetching ──────────────────────────────────────────────────────────
+
+  // Single request to unified endpoint — no more 5-way fan-out
   const refreshContent = useCallback(async () => {
     setLoading(true);
     try {
-      const results = await Promise.allSettled([
-        fetch("/api/cms/announcements?status=all").then((r) => r.json()),
-        fetch("/api/cms/news?status=all").then((r) => r.json()),
-        fetch("/api/cms/press-briefings?status=all").then((r) => r.json()),
-        fetch("/api/cms/videos?status=all").then((r) => r.json()),
-        fetch("/api/cms/blogs?status=all").then((r) => r.json()),
-      ]);
-      const [ann, news, brief, vids, blogs] = results.map((r) => (r.status === "fulfilled" && Array.isArray(r.value) ? r.value : []));
-      const merged: ContentItem[] = [
-        ...ann.map((x: ContentItem) => ({ ...x, contentType: "announcement" })),
-        ...news.map((x: ContentItem) => ({ ...x, contentType: "news" })),
-        ...brief.map((x: ContentItem) => ({ ...x, contentType: "press_briefing" })),
-        ...vids.map((x: ContentItem) => ({ ...x, contentType: "video" })),
-        ...blogs.map((x: ContentItem) => ({ ...x, contentType: "blog" })),
-      ].sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
-      setAllContent(merged);
-    } catch { showMsg("Failed to load content", "error"); }
-    finally { setLoading(false); }
+      const res = await fetch("/api/cms/content?status=all&limit=200");
+      if (!res.ok) throw new Error("Failed to load");
+      const items: ContentItem[] = await res.json();
+      items.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
+      setAllContent(items);
+    } catch {
+      showMsg("Failed to load content", "error");
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   const refreshTeams = useCallback(async () => {
@@ -140,8 +198,11 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
     try {
       const res = await fetch("/api/cms/teams?status=all&limit=100");
       if (res.ok) setTeamMembers(await res.json());
-    } catch { showMsg("Failed to load team members", "error"); }
-    finally { setTeamsLoading(false); }
+    } catch {
+      showMsg("Failed to load team members", "error");
+    } finally {
+      setTeamsLoading(false);
+    }
   }, []);
 
   const refreshMedia = useCallback(async () => {
@@ -149,8 +210,11 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
     try {
       const res = await fetch("/api/cms/media?status=all&limit=100");
       if (res.ok) setMediaItems(await res.json());
-    } catch { showMsg("Failed to load media items", "error"); }
-    finally { setMediaLoading(false); }
+    } catch {
+      showMsg("Failed to load media items", "error");
+    } finally {
+      setMediaLoading(false);
+    }
   }, []);
 
   const refreshUsers = useCallback(async () => {
@@ -175,51 +239,83 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
   }, [refreshContent, refreshTeams, refreshMedia, refreshUsers, refreshHeroSlides, canManageUsers]);
 
   // ── Content CRUD ───────────────────────────────────────────────────────────
+
   async function handleContentSubmit(data: ContentFormData) {
     setIsSubmitting(true);
     try {
-      const endpoint = `/api/cms/${TYPE_MAP[data.contentType] || "news"}${editItem ? `/${editItem.id}` : ""}`;
-      const res = await fetch(endpoint, {
-        method: editItem ? "PATCH" : "POST",
+      // All content types go to the same unified endpoint
+      const url = editItem ? `/api/cms/content/${editItem.id}` : "/api/cms/content";
+      const method = editItem ? "PATCH" : "POST";
+
+      const res = await fetch(url, {
+        method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, coverImage: data.coverImage || null, videoUrl: data.videoUrl || undefined }),
+        body: JSON.stringify({
+          ...data,
+          coverImage: data.coverImage || null,
+          videoUrl: data.videoUrl || null,
+        }),
       });
+
       const result = await res.json();
       if (!res.ok) { showMsg(result.error || "Save failed", "error"); return; }
+
       showMsg(editItem ? "Content updated!" : "Content created!");
       setEditItem(null);
       setActiveTab("manage");
       await refreshContent();
-    } catch { showMsg("An error occurred", "error"); }
-    finally { setIsSubmitting(false); }
+    } catch {
+      showMsg("An error occurred", "error");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
-  async function handleDeleteContent(id: number, type: string) {
+  async function handleDeleteContent(id: number) {
     try {
-      const res = await fetch(`/api/cms/${TYPE_MAP[type]}/${id}`, { method: "DELETE" });
-      if (res.ok) { showMsg("Deleted."); setConfirmDelete(null); await refreshContent(); }
-      else showMsg("Delete failed", "error");
-    } catch { showMsg("Delete failed", "error"); }
+      const res = await fetch(`/api/cms/content/${id}`, { method: "DELETE" });
+      if (res.ok) {
+        showMsg("Deleted.");
+        setConfirmDelete(null);
+        await refreshContent();
+      } else {
+        showMsg("Delete failed", "error");
+      }
+    } catch {
+      showMsg("Delete failed", "error");
+    }
   }
 
   async function toggleContentStatus(item: ContentItem) {
     const newStatus = item.status === "published" ? "draft" : "published";
-    const res = await fetch(`/api/cms/${TYPE_MAP[item.contentType]}/${item.id}`, {
+    const res = await fetch(`/api/cms/content/${item.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: newStatus }),
     });
-    if (res.ok) { showMsg(`Set to ${newStatus}.`); await refreshContent(); }
-    else showMsg("Failed to update status", "error");
+    if (res.ok) {
+      showMsg(`Set to ${newStatus}.`);
+      await refreshContent();
+    } else {
+      showMsg("Failed to update status", "error");
+    }
   }
 
   // ── Team CRUD ──────────────────────────────────────────────────────────────
+
   async function handleDeleteTeam(id: number, name: string) {
     try {
       const res = await fetch(`/api/cms/teams/${id}`, { method: "DELETE" });
-      if (res.ok) { showMsg(`"${name}" deleted.`); setConfirmDelete(null); await refreshTeams(); }
-      else showMsg("Delete failed", "error");
-    } catch { showMsg("Delete failed", "error"); }
+      if (res.ok) {
+        showMsg(`"${name}" deleted.`);
+        setConfirmDelete(null);
+        await refreshTeams();
+      } else {
+        showMsg("Delete failed", "error");
+      }
+    } catch {
+      showMsg("Delete failed", "error");
+    }
   }
 
   async function toggleTeamStatus(m: TeamMember) {
@@ -229,17 +325,29 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: newStatus }),
     });
-    if (res.ok) { showMsg(`"${m.name}" ${newStatus}.`); await refreshTeams(); }
-    else showMsg("Failed", "error");
+    if (res.ok) {
+      showMsg(`"${m.name}" ${newStatus}.`);
+      await refreshTeams();
+    } else {
+      showMsg("Failed", "error");
+    }
   }
 
   // ── Media CRUD ─────────────────────────────────────────────────────────────
+
   async function handleDeleteMedia(id: number, title: string) {
     try {
       const res = await fetch(`/api/cms/media/${id}`, { method: "DELETE" });
-      if (res.ok) { showMsg(`"${title}" deleted.`); setConfirmDelete(null); await refreshMedia(); }
-      else showMsg("Delete failed", "error");
-    } catch { showMsg("Delete failed", "error"); }
+      if (res.ok) {
+        showMsg(`"${title}" deleted.`);
+        setConfirmDelete(null);
+        await refreshMedia();
+      } else {
+        showMsg("Delete failed", "error");
+      }
+    } catch {
+      showMsg("Delete failed", "error");
+    }
   }
 
   async function toggleMediaStatus(item: MediaItem) {
@@ -249,11 +357,16 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: newStatus }),
     });
-    if (res.ok) { showMsg(`"${item.title}" ${newStatus}.`); await refreshMedia(); }
-    else showMsg("Failed", "error");
+    if (res.ok) {
+      showMsg(`"${item.title}" ${newStatus}.`);
+      await refreshMedia();
+    } else {
+      showMsg("Failed", "error");
+    }
   }
 
   // ── Hero Slides ────────────────────────────────────────────────────────────
+
   function addSlide() {
     const s: HeroSlide = {
       id: `slide-${Date.now()}`, label: "New Slide", heading: "Heading here",
@@ -291,10 +404,13 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
       });
       if (res.ok) showMsg("Hero slides saved!");
       else showMsg("Failed to save hero slides", "error");
-    } finally { setHeroSaving(false); }
+    } finally {
+      setHeroSaving(false);
+    }
   }
 
   // ── Users CRUD ─────────────────────────────────────────────────────────────
+
   async function handleUserSubmit(e: React.FormEvent) {
     e.preventDefault();
     setIsSubmitting(true);
@@ -303,7 +419,10 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
         const res = await fetch(`/api/cms/users/${editingUser.id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: userForm.name, role: userForm.role, region: userForm.region, ...(userForm.password ? { password: userForm.password } : {}) }),
+          body: JSON.stringify({
+            name: userForm.name, role: userForm.role, region: userForm.region,
+            ...(userForm.password ? { password: userForm.password } : {}),
+          }),
         });
         const data = await res.json();
         if (!res.ok) { showMsg(data.error || "Update failed", "error"); return; }
@@ -321,7 +440,9 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
       }
       setUserForm({ name: "", email: "", password: "", role: "regional_admin", region: "national" });
       await refreshUsers();
-    } finally { setIsSubmitting(false); }
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   async function deleteUser(id: number) {
@@ -331,12 +452,12 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
     else showMsg("Delete failed", "error");
   }
 
-  // ── Filtered data ──────────────────────────────────────────────────────────
+  // ── Helpers ────────────────────────────────────────────────────────────────
+
   const filteredContent = typeFilter === "all" ? allContent : allContent.filter((i) => i.contentType === typeFilter);
   const filteredTeams = teamTypeFilter === "all" ? teamMembers : teamMembers.filter((m) => m.teamType === teamTypeFilter);
   const filteredMedia = mediaTypeFilter === "all" ? mediaItems : mediaItems.filter((i) => i.mediaType === mediaTypeFilter);
 
-  // ── Overview stats ────────────────────────────────────────────────────────
   const totalAll = allContent.length + teamMembers.length + mediaItems.length;
   const stats = {
     total: totalAll,
@@ -344,30 +465,30 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
     draft: [...allContent, ...teamMembers, ...mediaItems].filter((i) => i.status === "draft").length,
   };
 
-  const changeTab = (tab: string) => { setActiveTab(tab); setEditItem(null); };
+  // Tab navigation — "content" tab is handled inline in this component
+  const changeTab = (tab: string) => {
+    setActiveTab(tab);
+    setEditItem(null);
+  };
+
+  // ── Render ─────────────────────────────────────────────────────────────────
 
   return (
-    <div className="flex min-h-screen mt-8 bg-slate-50">
-      <DashboardSidebar
-        user={user} activeTab={activeTab} onTabChange={changeTab}
-        onLogout={async () => { await fetch("/api/auth/logout", { method: "POST" }); window.location.href = "/dashboard/login"; }}
-        canManageUsers={canManageUsers}
-      />
-
-      <main className="flex-1 md:ml-64 pt-16 p-6 mt-7 md:p-8">
-        {msg && <Alert msg={msg.text} type={msg.type} onDismiss={() => setMsg(null)} />}
+    <div className="flex min-h-screen bg-slate-50">
+    <main className="w-full pt-16 p-6 md:p-8">
+      {msg && <Alert msg={msg.text} type={msg.type} onDismiss={() => setMsg(null)} />}
 
         {/* ── Overview ── */}
         {activeTab === "overview" && (
           <div>
             <h1 className="text-3xl font-bold text-slate-900 mb-2">Dashboard</h1>
-            <p className="text-slate-600 mb-8">Welcome back, {user.name}.</p>
+            <p className="text-slate-600 mb-8">Welcome back, {user?.name}.</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               {[
                 { label: "Total Items", value: stats.total, color: "bg-blue-50 border-blue-200" },
                 { label: "Published", value: stats.published, color: "bg-emerald-50 border-emerald-200" },
                 { label: "Drafts", value: stats.draft, color: "bg-amber-50 border-amber-200" },
-                { label: "Region", value: user.region.charAt(0).toUpperCase() + user.region.slice(1), color: "bg-purple-50 border-purple-200" },
+                { label: "Region", value: user?.region.charAt(0).toUpperCase() + user.region.slice(1), color: "bg-purple-50 border-purple-200" },
               ].map((s) => (
                 <div key={s.label} className={`border rounded-xl p-5 ${s.color}`}>
                   <p className="text-xs text-slate-500 mb-1">{s.label}</p>
@@ -376,7 +497,6 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
               ))}
             </div>
 
-            {/* Quick actions */}
             <h2 className="text-lg font-bold text-slate-800 mb-3">Quick Actions</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
               {[
@@ -417,19 +537,31 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
         {activeTab === "create" && (
           <div>
             <div className="flex items-center gap-3 mb-6">
-              {editItem && <button onClick={() => setEditItem(null)} className="text-slate-500 hover:text-slate-700"><X size={20} /></button>}
+              {editItem && (
+                <button onClick={() => { setEditItem(null); changeTab("manage"); }} className="text-slate-500 hover:text-slate-700">
+                  <X size={20} />
+                </button>
+              )}
               <h1 className="text-3xl font-bold text-slate-900">
                 {editItem ? `Editing: ${editItem.title.slice(0, 40)}${editItem.title.length > 40 ? "…" : ""}` : "Create New Content"}
               </h1>
             </div>
             <div className="bg-white border border-slate-200 rounded-xl p-8">
               <UnifiedContentForm
-                regions={REGIONS} onSubmit={handleContentSubmit} isLoading={isSubmitting}
+                regions={REGIONS}
+                onSubmit={handleContentSubmit}
+                isLoading={isSubmitting}
                 mode={editItem ? "edit" : "create"}
                 initialData={editItem ? {
-                  id: editItem.id, contentType: editItem.contentType, title: editItem.title,
-                  excerpt: editItem.excerpt, richContent: editItem.richContent, region: editItem.region,
-                  status: editItem.status, coverImage: editItem.coverImage || "", videoUrl: editItem.videoUrl || "",
+                  id: editItem.id,
+                  contentType: editItem.contentType,
+                  title: editItem.title,
+                  excerpt: editItem.excerpt,
+                  richContent: editItem.richContent,
+                  region: editItem.region,
+                  status: editItem.status,
+                  coverImage: editItem.coverImage || "",
+                  videoUrl: editItem.videoUrl || "",
                 } : undefined}
               />
             </div>
@@ -437,7 +569,7 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
         )}
 
         {/* ── Manage Content ── */}
-        {activeTab === "manage" && (
+        {activeTab === "content" && (
           <div>
             <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
               <h1 className="text-3xl font-bold text-slate-900">Manage Content</h1>
@@ -446,6 +578,7 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
                 <Plus size={16} /> New Content
               </button>
             </div>
+
             <div className="mb-5 flex flex-wrap gap-2">
               {["all", "news", "announcement", "press_briefing", "blog", "video"].map((t) => (
                 <button key={t} onClick={() => setTypeFilter(t)}
@@ -454,8 +587,11 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
                 </button>
               ))}
             </div>
+
             {loading ? (
-              <div className="flex items-center justify-center py-20"><Loader2 size={28} className="animate-spin text-slate-300" /></div>
+              <div className="flex items-center justify-center py-20">
+                <Loader2 size={28} className="animate-spin text-slate-300" />
+              </div>
             ) : filteredContent.length === 0 ? (
               <div className="text-center py-16 text-slate-500">
                 <FileText size={40} className="mx-auto mb-3 opacity-30" />
@@ -481,16 +617,21 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
                           className={`p-2 rounded-lg border transition-colors ${item.status === "published" ? "border-emerald-300 text-emerald-600 hover:bg-emerald-50" : "border-slate-300 text-slate-500 hover:bg-slate-50"}`}>
                           {item.status === "published" ? <Eye size={16} /> : <EyeOff size={16} />}
                         </button>
-                        <button onClick={() => { setEditItem(item); changeTab("create"); }}
-                          className="p-2 rounded-lg border border-blue-300 text-blue-600 hover:bg-blue-50 transition-colors"><Edit size={16} /></button>
+                        <button onClick={() => router.push(`/dashboard/cms/content/edit/${item.id}`)}
+                          className="p-2 rounded-lg border border-blue-300 text-blue-600 hover:bg-blue-50 transition-colors">
+                          <Edit size={16} />
+                        </button>
                         <button onClick={() => setConfirmDelete({ id: item.id, type: item.contentType, title: item.title })}
-                          className="p-2 rounded-lg border border-red-300 text-red-600 hover:bg-red-50 transition-colors"><Trash2 size={16} /></button>
+                          className="p-2 rounded-lg border border-red-300 text-red-600 hover:bg-red-50 transition-colors">
+                          <Trash2 size={16} />
+                        </button>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
             )}
+            <p className="text-xs text-slate-400 mt-2">{filteredContent.length} item{filteredContent.length !== 1 ? "s" : ""}</p>
           </div>
         )}
 
@@ -577,7 +718,6 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
               </div>
             </div>
 
-            {/* Type filter */}
             <div className="mb-4 flex flex-wrap gap-2">
               {(["all", "management", "board"] as const).map((t) => (
                 <button key={t} onClick={() => setTeamTypeFilter(t)}
@@ -663,7 +803,6 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
               </div>
             </div>
 
-            {/* Type filter */}
             <div className="mb-4 flex flex-wrap gap-2">
               {(["all", "gallery", "document"] as const).map((t) => (
                 <button key={t} onClick={() => setMediaTypeFilter(t)}
@@ -762,6 +901,7 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
                 </div>
               </form>
             </div>
+
             <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
               <div className="px-6 py-4 border-b border-slate-200">
                 <h2 className="text-lg font-bold text-slate-900">All Users ({users.length})</h2>
@@ -786,7 +926,7 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
                             <div className="flex gap-2">
                               <button onClick={() => { setEditingUser(u); setUserForm({ name: u.name, email: u.email, password: "", role: u.role as typeof userForm.role, region: u.region }); }}
                                 className="p-1.5 rounded border border-blue-200 text-blue-600 hover:bg-blue-50"><Edit size={14} /></button>
-                              {u.id !== user.id && (
+                              {u.id !== user?.id && (
                                 <button onClick={() => deleteUser(u.id)} className="p-1.5 rounded border border-red-200 text-red-600 hover:bg-red-50"><Trash2 size={14} /></button>
                               )}
                             </div>
@@ -802,7 +942,7 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
         )}
       </main>
 
-      {/* ── Confirm Delete Modal ── */}
+     {/* ── Confirm Delete Modal ── */}
       {confirmDelete && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setConfirmDelete(null)}>
           <div className="bg-white rounded-xl shadow-2xl p-6 max-w-sm w-full" onClick={(e) => e.stopPropagation()}>
@@ -815,7 +955,7 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
                 onClick={() => {
                   if (confirmDelete.type === "team") handleDeleteTeam(confirmDelete.id, confirmDelete.title);
                   else if (confirmDelete.type === "media") handleDeleteMedia(confirmDelete.id, confirmDelete.title);
-                  else handleDeleteContent(confirmDelete.id, confirmDelete.type);
+                  else handleDeleteContent(confirmDelete.id);
                 }}
                 className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm font-semibold">
                 <Trash2 size={15} /> Delete
@@ -827,6 +967,6 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
           </div>
         </div>
       )}
-    </div>
-  );
+</div>
+      );
 }

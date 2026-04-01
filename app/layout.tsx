@@ -6,7 +6,7 @@ import { QueryProvider } from "@/lib/query/QueryProvider";
 export const metadata: Metadata = {
   title: "YASCON - Youth Association for Conservation of Nature and Environment",
   description:
-    "YASCON mobilizes Malawian youth to protect nature, restore ecosystems, and build a sustainable future through grassroots conservation action.",
+    "YASCON mobilizes youth to protect nature, restore ecosystems, and build a sustainable future through grassroots conservation action.",
   keywords:
     "YASCON, Malawi, youth, conservation, environment, nature, tree planting",
 };

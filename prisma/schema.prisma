@@ -5,10 +5,11 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-
 }
 
-// ===== CMS System Models =====
+// ───────────────────────────────────────────────────────────────────────────
+// Enums
+// ───────────────────────────────────────────────────────────────────────────
 
 enum CmsRole {
   super_admin
@@ -29,20 +30,11 @@ enum CmsLevel {
 }
 
 enum CmsContentType {
-  blog
   news
   announcement
   press_briefing
-  video
-}
-
-enum CmsCategory {
-  news
-  impact
-  press_release
-  announcement
-  video
   blog
+  video
 }
 
 enum PublishStatus {
@@ -61,223 +53,131 @@ enum CmsMediaType {
   document
 }
 
+// ───────────────────────────────────────────────────────────────────────────
+// Users & Sessions
+// ───────────────────────────────────────────────────────────────────────────
+
 model CmsUser {
-  id                 Int       @id @default(autoincrement())
-  name               String
-  email              String    @unique
-  passwordHash       String    @map("password_hash")
-  role               CmsRole
-  region             CmsRegion
-  createdAt          DateTime  @default(now()) @map("created_at")
-  
-  sessions           CmsSession[]
-  createdContent     CmsContent[] @relation("CreatedBy")
-  updatedContent     CmsContent[] @relation("UpdatedBy")
-  
-  createdAnnouncements   CmsAnnouncement[] @relation("CreatedBy")
-  updatedAnnouncements   CmsAnnouncement[] @relation("UpdatedBy")
-  
-  createdNews        CmsNews[] @relation("CreatedBy")
-  updatedNews        CmsNews[] @relation("UpdatedBy")
-  
-  createdBriefings   CmsPressBreifing[] @relation("CreatedBy")
-  updatedBriefings   CmsPressBreifing[] @relation("UpdatedBy")
-  
-  createdVideos      CmsVideo[] @relation("CreatedBy")
-  updatedVideos      CmsVideo[] @relation("UpdatedBy")
-  
-  createdBlogs       CmsBlog[] @relation("CreatedBy")
-  updatedBlogs       CmsBlog[] @relation("UpdatedBy")
-  
-  createdTeams       CmsTeamMember[] @relation("CreatedBy")
-  updatedTeams       CmsTeamMember[] @relation("UpdatedBy")
-  
-  createdMedia       CmsMediaItem[] @relation("CreatedBy")
-  updatedMedia       CmsMediaItem[] @relation("UpdatedBy")
+  id             Int             @id @default(autoincrement())
+  name           String
+  email          String          @unique
+  passwordHash   String          @map("password_hash")
+  role           CmsRole
+  region         CmsRegion
+  createdAt      DateTime        @default(now()) @map("created_at")
+
+  // Single relation for ALL content — clean and scalable
+  createdContent CmsContent[]    @relation("CreatedBy")
+  updatedContent CmsContent[]    @relation("UpdatedBy")
+
+  sessions       CmsSession[]
+  createdTeams   CmsTeamMember[] @relation("CreatedBy")
+  updatedTeams   CmsTeamMember[] @relation("UpdatedBy")
+  createdMedia   CmsMediaItem[]  @relation("CreatedBy")
+  updatedMedia   CmsMediaItem[]  @relation("UpdatedBy")
 
   @@map("cms_users")
 }
 
 model CmsSession {
-  id                 Int       @id @default(autoincrement())
-  tokenHash          String    @unique @map("token_hash")
-  userId             Int       @map("user_id")
-  user               CmsUser   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  expiresAt          DateTime  @map("expires_at")
-  createdAt          DateTime  @default(now()) @map("created_at")
+  id        Int      @id @default(autoincrement())
+  tokenHash String   @unique @map("token_hash")
+  userId    Int      @map("user_id")
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  user      CmsUser  @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("cms_sessions")
 }
 
-model CmsContent {
-  id                 Int       @id @default(autoincrement())
-  title              String
-  slug               String    @unique
-  contentType        CmsContentType @map("content_type")
-  category           CmsCategory
-  level              CmsLevel
-  region             CmsRegion?
-  body               String    @default("")
-  createdById        Int       @map("created_by")
-  createdBy          CmsUser   @relation("CreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
-  updatedById        Int       @map("updated_by")
-  updatedBy          CmsUser   @relation("UpdatedBy", fields: [updatedById], references: [id], onDelete: Restrict)
-  createdAt          DateTime  @default(now()) @map("created_at")
-  updatedAt          DateTime  @updatedAt @map("updated_at")
+// ───────────────────────────────────────────────────────────────────────────
+// Unified Content Model  (replaces CmsNews, CmsBlog, CmsAnnouncement,
+//                         CmsPressBreifing, CmsVideo)
+// ───────────────────────────────────────────────────────────────────────────
 
-  @@index([level, region, contentType, category])
+model CmsContent {
+  id            Int            @id @default(autoincrement())
+  // Discriminator — what kind of content this is
+  contentType   CmsContentType @map("content_type")
+
+  title         String
+  slug          String         @unique
+  excerpt       String         @default("")
+  richContent   String         @default("") @map("rich_content")
+  coverImage    String?        @map("cover_image")
+
+  // Video-only fields (null for other types)
+  videoUrl      String?        @map("video_url")
+  videoDuration Int?           @map("video_duration")
+
+  region        CmsRegion
+  level         CmsLevel       @default(national)
+
+  status        PublishStatus  @default(draft)
+  publishedAt   DateTime?      @map("published_at")
+
+  createdById   Int            @map("created_by")
+  createdBy     CmsUser        @relation("CreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  updatedById   Int            @map("updated_by")
+  updatedBy     CmsUser        @relation("UpdatedBy", fields: [updatedById], references: [id], onDelete: Restrict)
+
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+
+  @@index([contentType, region, status, publishedAt])
+  @@index([slug])
   @@map("cms_content")
 }
 
-model CmsAnnouncement {
-  id                 Int       @id @default(autoincrement())
-  title              String
-  slug               String    @unique
-  excerpt            String
-  richContent        String    @map("rich_content")
-  coverImage         String?   @map("cover_image")
-  region             CmsRegion
-  status             PublishStatus @default(draft)
-  publishedAt        DateTime? @map("published_at")
-  createdById        Int       @map("created_by")
-  createdBy          CmsUser   @relation("CreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
-  updatedById        Int       @map("updated_by")
-  updatedBy          CmsUser   @relation("UpdatedBy", fields: [updatedById], references: [id], onDelete: Restrict)
-  createdAt          DateTime  @default(now()) @map("created_at")
-  updatedAt          DateTime  @updatedAt @map("updated_at")
-
-  @@index([region, status, publishedAt])
-  @@map("cms_announcements")
-}
-
-model CmsNews {
-  id                 Int       @id @default(autoincrement())
-  title              String
-  slug               String    @unique
-  excerpt            String
-  richContent        String    @map("rich_content")
-  coverImage         String?   @map("cover_image")
-  region             CmsRegion
-  status             PublishStatus @default(draft)
-  publishedAt        DateTime? @map("published_at")
-  createdById        Int       @map("created_by")
-  createdBy          CmsUser   @relation("CreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
-  updatedById        Int       @map("updated_by")
-  updatedBy          CmsUser   @relation("UpdatedBy", fields: [updatedById], references: [id], onDelete: Restrict)
-  createdAt          DateTime  @default(now()) @map("created_at")
-  updatedAt          DateTime  @updatedAt @map("updated_at")
-
-  @@index([region, status, publishedAt])
-  @@map("cms_news")
-}
-
-model CmsPressBreifing {
-  id                 Int       @id @default(autoincrement())
-  title              String
-  slug               String    @unique
-  excerpt            String
-  richContent        String    @map("rich_content")
-  coverImage         String?   @map("cover_image")
-  region             CmsRegion
-  status             PublishStatus @default(draft)
-  publishedAt        DateTime? @map("published_at")
-  createdById        Int       @map("created_by")
-  createdBy          CmsUser   @relation("CreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
-  updatedById        Int       @map("updated_by")
-  updatedBy          CmsUser   @relation("UpdatedBy", fields: [updatedById], references: [id], onDelete: Restrict)
-  createdAt          DateTime  @default(now()) @map("created_at")
-  updatedAt          DateTime  @updatedAt @map("updated_at")
-
-  @@index([region, status, publishedAt])
-  @@map("cms_press_briefings")
-}
-
-model CmsVideo {
-  id                 Int       @id @default(autoincrement())
-  title              String
-  slug               String    @unique
-  excerpt            String
-  richContent        String    @map("rich_content")
-  coverImage         String?   @map("cover_image")
-  videoUrl           String    @map("video_url")
-  videoDuration      Int?      @map("video_duration")
-  region             CmsRegion
-  status             PublishStatus @default(draft)
-  publishedAt        DateTime? @map("published_at")
-  createdById        Int       @map("created_by")
-  createdBy          CmsUser   @relation("CreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
-  updatedById        Int       @map("updated_by")
-  updatedBy          CmsUser   @relation("UpdatedBy", fields: [updatedById], references: [id], onDelete: Restrict)
-  createdAt          DateTime  @default(now()) @map("created_at")
-  updatedAt          DateTime  @updatedAt @map("updated_at")
-
-  @@index([region, status, publishedAt])
-  @@map("cms_videos")
-}
-
-model CmsBlog {
-  id                 Int       @id @default(autoincrement())
-  title              String
-  slug               String    @unique
-  excerpt            String
-  richContent        String    @map("rich_content")
-  coverImage         String?   @map("cover_image")
-  region             CmsRegion
-  status             PublishStatus @default(draft)
-  publishedAt        DateTime? @map("published_at")
-  createdById        Int       @map("created_by")
-  createdBy          CmsUser   @relation("CreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
-  updatedById        Int       @map("updated_by")
-  updatedBy          CmsUser   @relation("UpdatedBy", fields: [updatedById], references: [id], onDelete: Restrict)
-  createdAt          DateTime  @default(now()) @map("created_at")
-  updatedAt          DateTime  @updatedAt @map("updated_at")
-
-  @@index([region, status, publishedAt])
-  @@map("cms_blogs")
-}
+// ───────────────────────────────────────────────────────────────────────────
+// Team Members
+// ───────────────────────────────────────────────────────────────────────────
 
 model CmsTeamMember {
-  id          Int       @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   name        String
-  slug        String    @unique
+  slug        String        @unique
   role        String
   joined      String?
-  avatar      String?   @map("avatar")
+  avatar      String?
   focus       String
   teamType    CmsTeamType
   region      CmsRegion?
   status      PublishStatus @default(draft)
-  publishedAt DateTime? @map("published_at")
-  createdById Int       @map("created_by")
-  createdBy   CmsUser   @relation("CreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
-  updatedById Int       @map("updated_by")
-  updatedBy   CmsUser   @relation("UpdatedBy", fields: [updatedById], references: [id], onDelete: Restrict)
-  createdAt   DateTime  @default(now()) @map("created_at")
-  updatedAt   DateTime  @updatedAt @map("updated_at")
+  publishedAt DateTime?     @map("published_at")
+  createdById Int           @map("created_by")
+  updatedById Int           @map("updated_by")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+  createdBy   CmsUser       @relation("CreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  updatedBy   CmsUser       @relation("UpdatedBy", fields: [updatedById], references: [id], onDelete: Restrict)
 
   @@index([region, teamType, status, publishedAt])
   @@map("cms_team_members")
 }
 
+// ───────────────────────────────────────────────────────────────────────────
+// Media Items
+// ───────────────────────────────────────────────────────────────────────────
+
 model CmsMediaItem {
-  id          Int         @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   title       String
-  slug        String      @unique
+  slug        String        @unique
   description String?
   mediaType   CmsMediaType
-  fileUrl     String      @map("file_url")
-  coverImage  String?     @map("cover_image")
+  fileUrl     String        @map("file_url")
+  coverImage  String?       @map("cover_image")
   region      CmsRegion?
   status      PublishStatus @default(draft)
-  publishedAt DateTime?   @map("published_at")
-  createdById Int         @map("created_by")
-  createdBy   CmsUser     @relation("CreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
-  updatedById Int         @map("updated_by")
-  updatedBy   CmsUser     @relation("UpdatedBy", fields: [updatedById], references: [id], onDelete: Restrict)
-  createdAt   DateTime    @default(now()) @map("created_at")
-  updatedAt   DateTime    @updatedAt @map("updated_at")
+  publishedAt DateTime?     @map("published_at")
+  createdById Int           @map("created_by")
+  updatedById Int           @map("updated_by")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+  createdBy   CmsUser       @relation("CreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  updatedBy   CmsUser       @relation("UpdatedBy", fields: [updatedById], references: [id], onDelete: Restrict)
 
   @@index([region, mediaType, status, publishedAt])
   @@map("cms_media_items")
 }
-

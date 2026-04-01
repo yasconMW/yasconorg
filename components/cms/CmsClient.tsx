@@ -103,13 +103,17 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
         fetch("/api/cms/blogs?status=all").then((r) => r.json()),
       ]);
       const [ann, news, brief, vids, blogs] = results.map((r) => (r.status === "fulfilled" ? r.value : []));
-      const merged: ContentItem[] = [
-        ...ann.map((x: ContentItem) => ({ ...x, contentType: "announcement" })),
-        ...news.map((x: ContentItem) => ({ ...x, contentType: "news" })),
-        ...brief.map((x: ContentItem) => ({ ...x, contentType: "press_briefing" })),
-        ...vids.map((x: ContentItem) => ({ ...x, contentType: "video" })),
-        ...blogs.map((x: ContentItem) => ({ ...x, contentType: "blog" })),
-      ].sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
+// Deduplicate by contentType + id, keep latest
+      const allItemsMap = new Map<string, ContentItem>();
+      [...ann.map((x: ContentItem) => ({ ...x, contentType: "announcement" as const })),
+       ...news.map((x: ContentItem) => ({ ...x, contentType: "news" as const })),
+       ...brief.map((x: ContentItem) => ({ ...x, contentType: "press_briefing" as const })),
+       ...vids.map((x: ContentItem) => ({ ...x, contentType: "video" as const })),
+       ...blogs.map((x: ContentItem) => ({ ...x, contentType: "blog" as const }))].forEach(item => {
+        const key = `${item.contentType}-${item.id}`;
+        allItemsMap.set(key, item); // overwrite, keeps last
+      });
+      const merged: ContentItem[] = Array.from(allItemsMap.values()).sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
       setAllContent(merged);
     } catch { showMsg("Failed to load content", "error"); }
     finally { setLoading(false); }
@@ -311,8 +315,8 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
             {/* Recent content */}
             <h2 className="text-lg font-bold text-slate-800 mb-3">Recent Content</h2>
             <div className="space-y-3">
-              {allContent.slice(0, 5).map((item) => (
-                <div key={`${item.contentType}-${item.id}`} className="bg-white border border-slate-200 rounded-lg p-4 flex items-center justify-between gap-4">
+{allContent.slice(0, 5).map((item, index) => (
+                <div key={`${item.contentType}-${item.id}-${item.slug || index}`} className="bg-white border border-slate-200 rounded-lg p-4 flex items-center justify-between gap-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1 flex-wrap">
                       <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs font-semibold">{TYPE_LABEL[item.contentType] || item.contentType}</span>
@@ -394,8 +398,8 @@ export default function CmsClient({ initialUser }: { initialUser: CmsUserRecord 
               </div>
             ) : (
               <div className="space-y-3">
-                {filtered.map((item) => (
-                  <div key={`${item.contentType}-${item.id}`}
+{filtered.map((item, index) => (
+                  <div key={`${item.contentType}-${item.id}-${item.slug || index}`}
                     className="bg-white border border-slate-200 rounded-xl p-5 hover:shadow-sm transition-shadow">
                     <div className="flex flex-col md:flex-row md:items-center gap-4">
                       <div className="flex-1 min-w-0">

@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { getPrismaClient ,ensureCmsSchema} from "./db";
 import { CMS_SESSION_COOKIE, type CmsUserRecord } from "./constants";
@@ -99,13 +98,18 @@ export async function getSessionUserFromRequest(req: NextRequest) {
   return getSessionUserByToken(token);
 }
 
-export async function getCurrentDashboardUser() {
+export async function getCurrentUserServerOnly() {
+  const { cookies } = await import("next/headers");
   const cookieStore = await cookies();
   const token = cookieStore.get(CMS_SESSION_COOKIE)?.value;
   if (!token) {
     return null;
   }
   return getSessionUserByToken(token);
+}
+
+export async function getCurrentDashboardUser() {
+  return getCurrentUserServerOnly();
 }
 
 export function attachSessionCookie(

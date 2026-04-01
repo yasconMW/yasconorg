@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ensureCmsSchema } from "@/lib/cms/db";
+import { initCms } from "@/lib/cms/init";
 import { getSessionUserFromRequest } from "@/lib/cms/auth";
 import { canCreateOrEditContent } from "@/lib/cms/permissions";
 import { getMediaItems, createMediaItem } from "@/lib/cms/service";
@@ -9,7 +9,7 @@ import type { CmsMediaType } from "@/lib/cms/constants";
 
 export async function GET(req: NextRequest) {
   try {
-    await ensureCmsSchema();
+    await initCms();
     const { searchParams } = new URL(req.url);
     const region = searchParams.get("region") as ContentRegion | null;
     const type = searchParams.get("type") as CmsMediaType | "all" | null;
@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    await ensureCmsSchema();
+    await initCms();
     const user = await getSessionUserFromRequest(req);
     if (!user || !canCreateOrEditContent(user)) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
