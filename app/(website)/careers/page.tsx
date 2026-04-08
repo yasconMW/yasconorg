@@ -213,6 +213,7 @@ function VacancyDetail({ vacancy, onBack }) {
 
 function SubmitCVForm({ onBack }) {
   const [submitted, setSubmitted] = useState(false);
+  const [fileName, setFileName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -243,9 +244,7 @@ function SubmitCVForm({ onBack }) {
             Expression of interest received!
           </p>
           <p className="text-green-600 text-sm">
-            Please also email your CV directly to{" "}
-            <strong>recruitment@yascon.org</strong>. We'll be in touch when a
-            suitable role opens up.
+            We'll be in touch when a suitable role opens up.
           </p>
         </div>
       ) : (
@@ -311,16 +310,45 @@ function SubmitCVForm({ onBack }) {
             />
           </div>
 
-          <p className="text-xs text-gray-400">
-            Also attach your CV by emailing it to{" "}
-            <a
-              href="mailto:recruitment@yascon.org"
-              className="text-blue-500 hover:underline"
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Upload CV{" "}
+              <span className="text-gray-400 font-normal">(PDF or Word)</span>
+            </label>
+            <div
+              className="border border-dashed border-gray-300 rounded-lg px-4 py-6 text-center hover:border-gray-400 transition-colors cursor-pointer"
+              onClick={() => document.getElementById("cv-upload")?.click()}
             >
-              recruitment@yascon.org
-            </a>{" "}
-            with your name in the subject line.
-          </p>
+              <input
+                id="cv-upload"
+                type="file"
+                accept=".pdf,.doc,.docx"
+                required
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) setFileName(file.name);
+                }}
+              />
+              <svg
+                className="w-6 h-6 text-gray-400 mx-auto mb-2"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M12 16V8m0 0l-3 3m3-3l3 3M6 20h12a2 2 0 002-2V8a2 2 0 00-.586-1.414l-4-4A2 2 0 0014 2H6a2 2 0 00-2 2v14a2 2 0 002 2z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <p className="text-sm text-gray-500">
+                {fileName ? fileName : "Click to upload your CV"}
+              </p>
+              <p className="text-xs text-gray-400 mt-1">PDF, DOC or DOCX · Max 5MB</p>
+            </div>
+          </div>
 
           <button
             type="submit"
