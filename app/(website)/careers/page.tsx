@@ -20,7 +20,7 @@ export default function Dashboard() {
 
       <div>
         <h3 className="text-sm font-semibold text-[#d4a017] uppercase mb-2">
-          vacancies
+          Vacancies
         </h3>
 
         <ul className="space-y-2">
