@@ -6,7 +6,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import TopHeader from "./TopHeader";
 
-type FlatLink = { href: string; label: string };
+type FlatLink = {
+  href: string;
+  label: string;
+  children?: FlatLink[];
+};
 
 type FlatDropdown = {
   type: "flat";
@@ -50,7 +54,25 @@ const navItems: NavItem[] = [
         {
           heading: "Get Involved",
           links: [
-            { href: "/about/management", label: "Our Team" },
+            {
+              href: "/about/management",
+              label: "Our Team",
+              children: [
+                { href: "/impact/national/board", label: "Board" },
+                {
+                  href: "/about/management",
+                  label: "Executive Management",
+                },
+                {
+                  href: "/about/management",
+                  label: "Senior Management",
+                },
+                {
+                  href: "/about/management",
+                  label: "Program Management Unit",
+                },
+              ],
+            },
             { href: "/about/our-story", label: "Our Story" },
             { href: "/impact/national/partners", label: "Partners" },
             { href: "/contact", label: "Contact Us" },
@@ -69,7 +91,6 @@ const navItems: NavItem[] = [
         {
           heading: "Governance",
           links: [
-            { href: "/impact/national/board", label: "Board" },
             { href: "/about/management", label: "Management" },
             { href: "/impact/national/programs", label: "Programs" },
           ],
@@ -423,14 +444,11 @@ export default function Navbar() {
                               </p>
                             )}
                             {col.links.map((link, li) => (
-                              <Link
+                              <MobileFlatLink
                                 key={li}
-                                href={link.href}
-                                onClick={() => setMobileOpen(false)}
-                                className="block py-2 text-sm text-white/70 hover:text-white transition-colors"
-                              >
-                                {link.label}
-                              </Link>
+                                link={link}
+                                onNavigate={() => setMobileOpen(false)}
+                              />
                             ))}
                           </div>
                         ))}
@@ -505,6 +523,145 @@ export default function Navbar() {
   );
 }
 
+/** A single link inside a flat mega-menu column. If `link.children` is
+ * present (e.g. Our Team -> Board / Executive Management / ...), the
+ * children appear inline directly below the moment the row is hovered —
+ * no separate flyout, no click required. */
+function FlatMegaMenuLink({ link }: { link: FlatLink }) {
+  const [open, setOpen] = useState(false);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleEnter = () => {
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    setOpen(true);
+  };
+
+  const handleLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => setOpen(false), 150);
+  };
+
+  if (!link.children || link.children.length === 0) {
+    return (
+      <Link
+        href={link.href}
+        className="block px-2 py-2.5 rounded border-b border-gray-100 hover:bg-green-50 transition-colors group hover:border-l-4  hover:border-green-500"
+      >
+        <div className="text-sm font-normal  text-shadow-gray-500">
+          {link.label}
+        </div>
+      </Link>
+    );
+  }
+
+  return (
+    <div
+      className="border-b border-gray-100"
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
+      <Link
+        href={link.href}
+        className="w-full flex items-center justify-between px-2 py-2.5 rounded hover:bg-green-50 transition-colors group hover:border-l-4 hover:border-green-500"
+      >
+        <div className="text-sm font-normal text-shadow-gray-500">
+          {link.label}
+        </div>
+        <svg
+          className={`w-3.5 h-3.5 text-gray-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </Link>
+
+      {open && (
+        <div className="pl-4 pb-2 space-y-0.5">
+          {link.children.map((child, ci) => (
+            <Link
+              key={ci}
+              href={child.href}
+              className="block px-2 py-2 rounded text-sm text-gray-600 hover:text-green-800 hover:bg-green-50 transition-colors"
+            >
+              {child.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** Mobile equivalent of FlatMegaMenuLink — tap to expand/collapse inline
+ * instead of a hover reveal, and calls onNavigate() when a leaf link is
+ * clicked so the mobile menu closes. */
+function MobileFlatLink({
+  link,
+  onNavigate,
+}: {
+  link: FlatLink;
+  onNavigate: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+
+  if (!link.children || link.children.length === 0) {
+    return (
+      <Link
+        href={link.href}
+        onClick={onNavigate}
+        className="block py-2 text-sm text-white/70 hover:text-white transition-colors"
+      >
+        {link.label}
+      </Link>
+    );
+  }
+
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="w-full flex items-center justify-between py-2 text-sm text-white/70 hover:text-white transition-colors"
+      >
+        <span>{link.label}</span>
+        <svg
+          className={`w-3.5 h-3.5 text-white/40 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+      {open && (
+        <div className="pl-3 space-y-1 pb-1">
+          {link.children.map((child, ci) => (
+            <Link
+              key={ci}
+              href={child.href}
+              onClick={onNavigate}
+              className="block py-1.5 text-sm text-white/60 hover:text-white transition-colors"
+            >
+              {child.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function FlatMegaMenu({ dropdown }: { dropdown: FlatDropdown }) {
   return (
     <div className="bg-white shadow-xl border border-gray-100 overflow-hidden">
@@ -523,15 +680,7 @@ function FlatMegaMenu({ dropdown }: { dropdown: FlatDropdown }) {
           <div key={ci} className="p-5 border-t border-gray-100 ">
             <div className="space-y-0.5">
               {col.links.map((link, li) => (
-                <Link
-                  key={li}
-                  href={link.href}
-                  className="block px-2 py-2.5 rounded border-b border-gray-100 hover:bg-green-50 transition-colors group hover:border-l-4  hover:border-green-500"
-                >
-                  <div className="text-sm font-normal  text-shadow-gray-500">
-                    {link.label}
-                  </div>
-                </Link>
+                <FlatMegaMenuLink key={li} link={link} />
               ))}
             </div>
           </div>
@@ -617,5 +766,3 @@ function SectionedMegaMenu({ dropdown }: { dropdown: SectionedDropdown }) {
     </div>
   );
 }
-
-
